@@ -30,7 +30,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Factory Bot
   gem 'factory_bot_rails'
-  # RSpec
+  # Testing framework
   gem 'rspec-rails', '~> 5.0.0'
 end
 
@@ -45,7 +45,7 @@ group :test do
   gem 'shoulda-matchers', '~> 5.0'
   # Code coverage generator
   gem 'simplecov', require: false
-  # SQLite
+  # Database adapter for testing
   gem 'sqlite3', '~> 1.4'
 end
 
