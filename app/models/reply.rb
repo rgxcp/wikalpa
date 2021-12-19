@@ -4,4 +4,5 @@ class Reply < ApplicationRecord
 
   validates :comment, presence: true
   validates :user, presence: true
+  validates :body, presence: true
 end
