@@ -4,4 +4,5 @@ class Post < ApplicationRecord
 
   validates :community, presence: true
   validates :user, presence: true
+  validates :body, presence: true
 end
