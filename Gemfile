@@ -41,6 +41,8 @@ group :development do
 end
 
 group :test do
+  # Test matchers
+  gem 'shoulda-matchers', '~> 5.0'
   # SQLite
   gem 'sqlite3', '~> 1.4'
 end
