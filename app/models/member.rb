@@ -4,4 +4,5 @@ class Member < ApplicationRecord
 
   validates :community, presence: true
   validates :user, presence: true
+  validates :user, uniqueness: { scope: :community_id }
 end
