@@ -25,3 +25,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# SQLite3 test database file
+/db/wikalpa_test.sqlite3
