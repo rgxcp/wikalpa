@@ -5,6 +5,7 @@ FactoryBot.define do
 
     trait :unformatted do
       name { " programmer.humor " }
+      description { " css is programming language " }
     end
   end
 end

@@ -19,5 +19,11 @@ RSpec.describe Community, type: :model do
         expect(community.name).to eq("programmer.humor")
       end
     end
+
+    context "when description contain trailing spaces" do
+      it "is removed before validation" do
+        expect(community.description).to eq("css is programming language")
+      end
+    end
   end
 end

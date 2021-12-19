@@ -7,5 +7,6 @@ class Community < ApplicationRecord
 
   before_validation do
     self.name = name.strip if name.present?
+    self.description = description.strip if description.present?
   end
 end
