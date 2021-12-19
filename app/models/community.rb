@@ -4,4 +4,8 @@ class Community < ApplicationRecord
   validates :name, uniqueness: true
   validates :description, length: { maximum: 255 }
   validates :description, presence: true
+
+  before_validation do
+    self.name = name.strip if name.present?
+  end
 end
