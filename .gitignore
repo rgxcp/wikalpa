@@ -26,5 +26,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Simplecov coverage report
+/coverage
+
 # SQLite3 test database file
 /db/wikalpa_test.sqlite3
