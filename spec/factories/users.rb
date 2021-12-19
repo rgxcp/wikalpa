@@ -4,7 +4,7 @@ FactoryBot.define do
     password { "12345678" }
 
     trait :unformatted do
-      username { " john.doe " }
+      username { " JOHN.DOE " }
     end
   end
 end

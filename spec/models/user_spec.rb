@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_secure_password }
   it { is_expected.to validate_length_of(:username).is_at_least(5).is_at_most(15) }
   it { is_expected.to validate_presence_of(:username) }
-  it { is_expected.to validate_uniqueness_of(:username) }
+  it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
   it { is_expected.to validate_length_of(:password).is_at_least(8) }
 
   describe "before validation" do
@@ -16,6 +16,12 @@ RSpec.describe User, type: :model do
 
     context "when username contain trailing spaces" do
       it "is removed before validation" do
+        expect(user.username).to eq("john.doe")
+      end
+    end
+
+    context "when username not in lowercase format" do
+      it "is converted into lowercase before validation" do
         expect(user.username).to eq("john.doe")
       end
     end

@@ -7,6 +7,6 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }
 
   before_validation do
-    self.username = username.strip if username.present?
+    self.username = username.strip.downcase if username.present?
   end
 end
