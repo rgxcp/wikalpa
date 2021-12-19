@@ -1,4 +1,4 @@
 class Community < ApplicationRecord
-  validates :name, length: { minimum: 5 }
+  validates :name, length: { in: 5..20 }
   validates :name, presence: true
 end
