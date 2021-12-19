@@ -43,6 +43,8 @@ end
 group :test do
   # Test matchers
   gem 'shoulda-matchers', '~> 5.0'
+  # Code coverage generator
+  gem 'simplecov', require: false
   # SQLite
   gem 'sqlite3', '~> 1.4'
 end
