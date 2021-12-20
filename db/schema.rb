@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_12_19_232243) do
   create_table "comments", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.bigint "user_id", null: false
-    t.string "body", null: false
+    t.string "body", limit: 255, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_12_19_232243) do
 
   create_table "communities", force: :cascade do |t|
     t.string "name", limit: 20, null: false
-    t.string "description", null: false
+    t.string "description", limit: 255, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_communities_on_name", unique: true
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_12_19_232243) do
   create_table "posts", force: :cascade do |t|
     t.bigint "community_id", null: false
     t.bigint "user_id", null: false
-    t.string "body", null: false
+    t.string "body", limit: 255, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["community_id"], name: "index_posts_on_community_id"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_12_19_232243) do
   create_table "replies", force: :cascade do |t|
     t.bigint "comment_id", null: false
     t.bigint "user_id", null: false
-    t.string "body", null: false
+    t.string "body", limit: 255, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["comment_id"], name: "index_replies_on_comment_id"
