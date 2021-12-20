@@ -9,6 +9,16 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
   it { is_expected.to validate_length_of(:password).is_at_least(8) }
 
+  describe "custom validation" do
+    context "when password equal to username" do
+      it "is not valid" do
+        user.password = user.username
+        user.validate
+        expect(user).not_to be_valid
+      end
+    end
+  end
+
   describe "before validation" do
     subject(:user) { build(:user, :unformatted) }
 
