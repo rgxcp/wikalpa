@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
   validate :password_equality
+  validates :username, format: { with: /\A[a-zA-Z0-9.\w]+\z/ }
   validates :username, length: { in: 5..15 }
   validates :username, presence: true
   validates :username, uniqueness: true
