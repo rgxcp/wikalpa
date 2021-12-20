@@ -1,5 +1,7 @@
+require "regex"
+
 class Community < ApplicationRecord
-  validates :name, format: { with: /\A[a-zA-Z0-9.\w]+\z/ }
+  validates :name, format: { with: REGEX::NAME }
   validates :name, length: { in: 5..20 }
   validates :name, presence: true
   validates :name, uniqueness: true
