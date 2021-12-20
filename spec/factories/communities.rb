@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :community do
-    name { "programmer.humor" }
+    sequence(:name) { |n| "programmer.humor#{n}" }
     description { "css is programming language" }
 
     trait :unformatted do

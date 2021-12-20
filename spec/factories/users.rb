@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    username { "john.doe" }
+    sequence(:username) { |n| "john.doe#{n}" }
     password { "12345678" }
 
     trait :unformatted do
