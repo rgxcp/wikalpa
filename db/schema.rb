@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_19_232243) do
+ActiveRecord::Schema.define(version: 2021_12_20_102622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buddies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "buddy_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buddy_id"], name: "index_buddies_on_buddy_id"
+    t.index ["user_id"], name: "index_buddies_on_user_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "post_id", null: false
@@ -80,6 +89,8 @@ ActiveRecord::Schema.define(version: 2021_12_19_232243) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "buddies", "users"
+  add_foreign_key "buddies", "users", column: "buddy_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
