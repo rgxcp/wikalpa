@@ -4,4 +4,5 @@ class Buddy < ApplicationRecord
 
   validates :user, presence: true
   validates :buddy, presence: true
+  validates :buddy, uniqueness: { scope: :user_id }
 end
