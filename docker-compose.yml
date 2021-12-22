@@ -1,0 +1,24 @@
+version: "3"
+services:
+  db:
+    image: postgres:14-alpine
+    container_name: wikalpa_db
+    ports:
+      - 5433:5432
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=wikalpa
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=wikalpa_production
+  api:
+    image: rgxcp/wikalpa:latest
+    container_name: wikalpa_api
+    ports:
+      - 3001:3000
+    environment:
+      - RAILS_MASTER_KEY=
+      - WIKALPA_DATABASE_HOST=db
+      - WIKALPA_DATABASE_PASSWORD=
+    depends_on:
+      - db
