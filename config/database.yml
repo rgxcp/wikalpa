@@ -85,4 +85,5 @@ production:
   <<: *default
   database: wikalpa_production
   username: wikalpa
+  host: <%= ENV['WIKALPA_DATABASE_HOST'] %>
   password: <%= ENV['WIKALPA_DATABASE_PASSWORD'] %>
