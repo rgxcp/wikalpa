@@ -1,0 +1,10 @@
+/.git
+/spec
+.dockerignore
+.gitattributes
+.gitignore
+.rspec
+docker-compose.yml
+Dockerfile
+LICENSE
+README.md
