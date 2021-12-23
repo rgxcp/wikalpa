@@ -1,0 +1,22 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+      - name: Setup Bundler
+        run: gem install bundler:2.2.33 --no-document
+      - name: Setup Bundle
+        run: bundle config set without development
+      - name: Install dependencies
+        run: bundle install
+      - name: Run test
+        run: bundle exec rspec
