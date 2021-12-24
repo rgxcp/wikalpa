@@ -45,6 +45,8 @@ group :test do
   gem 'shoulda-matchers', '~> 5.0'
   # Code coverage generator
   gem 'simplecov', require: false
+  # SimpleCov XML formatter
+  gem 'simplecov-cobertura'
   # Database adapter for testing
   gem 'sqlite3', '~> 1.4'
 end
