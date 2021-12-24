@@ -20,3 +20,5 @@ jobs:
         run: bundle install
       - name: Run test
         run: bundle exec rspec
+      - name: Upload coverage report result to Codecov
+        uses: codecov/codecov-action@v2
