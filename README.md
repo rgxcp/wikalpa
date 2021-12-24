@@ -4,7 +4,7 @@ A wild wild west of Indonesian community driven discussions platform.
 
 ## 🚦 Status
 
-[![Test](https://github.com/rgxcp/wikalpa/actions/workflows/test.yml/badge.svg)](https://github.com/rgxcp/wikalpa/actions/workflows/test.yml) [![Build](https://github.com/rgxcp/wikalpa/actions/workflows/build.yml/badge.svg)](https://github.com/rgxcp/wikalpa/actions/workflows/build.yml) [![Release](https://github.com/rgxcp/wikalpa/actions/workflows/release.yml/badge.svg)](https://github.com/rgxcp/wikalpa/actions/workflows/release.yml)
+[![Test](https://github.com/rgxcp/wikalpa/actions/workflows/test.yml/badge.svg)](https://github.com/rgxcp/wikalpa/actions/workflows/test.yml) [![Build](https://github.com/rgxcp/wikalpa/actions/workflows/build.yml/badge.svg)](https://github.com/rgxcp/wikalpa/actions/workflows/build.yml) [![Release](https://github.com/rgxcp/wikalpa/actions/workflows/release.yml/badge.svg)](https://github.com/rgxcp/wikalpa/actions/workflows/release.yml) [![codecov](https://codecov.io/gh/rgxcp/wikalpa/branch/main/graph/badge.svg?token=22C69ZCF4L)](https://codecov.io/gh/rgxcp/wikalpa)
 
 DEVELOPING
 
