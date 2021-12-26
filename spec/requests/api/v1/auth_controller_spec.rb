@@ -27,5 +27,13 @@ RSpec.describe Api::V1::AuthController, type: :request do
         expect(result["errors"].size).to be > 0
       end
     end
+
+    context "when entity valid" do
+      it "returns 201 status code" do
+        user = attributes_for(:user)
+        post api_v1_auth_register_url, params: { user: user }
+        expect(response).to have_http_status(:created)
+      end
+    end
   end
 end
