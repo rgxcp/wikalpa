@@ -86,5 +86,16 @@ RSpec.describe Api::V1::AuthController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when password not valid" do
+      it "returns 401 status code" do
+        user = create(:user)
+        post api_v1_auth_login_url, params: {
+          username: user.username,
+          password: "!#{user.password}!"
+        }
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
   end
 end
