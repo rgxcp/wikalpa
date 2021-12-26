@@ -110,5 +110,16 @@ RSpec.describe Api::V1::AuthController, type: :request do
         expect(result["message"]).to eq("Unauthorized")
       end
     end
+
+    context "when password valid" do
+      it "returns 200 status code" do
+        user = create(:user)
+        post api_v1_auth_login_url, params: {
+          username: user.username,
+          password: user.password
+        }
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 end
