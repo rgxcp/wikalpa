@@ -12,7 +12,7 @@ RSpec.describe Api::V1::AuthController, type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
-      it "returns falsey status body" do
+      it "returns falsey success body" do
         result = JSON.parse(response.body)
         expect(result["success"]).to be_falsey
       end
@@ -38,7 +38,7 @@ RSpec.describe Api::V1::AuthController, type: :request do
         expect(response).to have_http_status(:created)
       end
 
-      it "returns truthy status body" do
+      it "returns truthy success body" do
         result = JSON.parse(response.body)
         expect(result["success"]).to be_truthy
       end
@@ -76,7 +76,7 @@ RSpec.describe Api::V1::AuthController, type: :request do
         expect(response).to have_http_status(:not_found)
       end
 
-      it "returns falsey status body" do
+      it "returns falsey success body" do
         result = JSON.parse(response.body)
         expect(result["success"]).to be_falsey
       end
@@ -100,7 +100,7 @@ RSpec.describe Api::V1::AuthController, type: :request do
         expect(response).to have_http_status(:unauthorized)
       end
 
-      it "returns falsey status body" do
+      it "returns falsey success body" do
         result = JSON.parse(response.body)
         expect(result["success"]).to be_falsey
       end
