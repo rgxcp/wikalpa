@@ -47,6 +47,11 @@ RSpec.describe Api::V1::AuthController, type: :request do
         result = JSON.parse(response.body)
         expect(result["message"]).to eq("Created")
       end
+
+      it "returns user data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["user"]).not_to be_empty
+      end
     end
   end
 end

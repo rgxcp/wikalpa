@@ -5,7 +5,10 @@ class Api::V1::AuthController < ApplicationController
     if user.save
       render json: {
         success: true,
-        message: "Created"
+        message: "Created",
+        data: {
+          user: user
+        }
       },
       status: :created
     else
