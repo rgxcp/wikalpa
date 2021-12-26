@@ -4,6 +4,9 @@ class ApplicationController < ActionController::API
   protected
 
   def not_found_response
-    render json: {}, status: :not_found
+    render json: {
+      success: false
+    },
+    status: :not_found
   end
 end
