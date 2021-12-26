@@ -28,7 +28,7 @@ class Api::V1::AuthController < ApplicationController
   end
 
   def login
-    user = User.find(username: params[:username])
+    user = User.find_by!(username: params[:username])
   end
 
   private
