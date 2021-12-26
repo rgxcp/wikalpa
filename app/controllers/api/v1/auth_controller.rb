@@ -38,7 +38,8 @@ class Api::V1::AuthController < ApplicationController
           user: user
         }
       },
-      status: :ok
+      status: :ok,
+      except: :password_digest
     else
       render json: {
         success: false,
