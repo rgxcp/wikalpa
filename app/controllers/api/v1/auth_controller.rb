@@ -34,7 +34,7 @@ class Api::V1::AuthController < ApplicationController
       render json: {}, status: :ok
     else
       render json: {
-        status: false,
+        success: false,
         message: "Unauthorized"
       },
       status: :unauthorized
