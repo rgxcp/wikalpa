@@ -32,7 +32,8 @@ class Api::V1::AuthController < ApplicationController
 
     if user.authenticate(params[:password])
       render json: {
-        success: true
+        success: true,
+        message: "OK"
       },
       status: :ok
     else
