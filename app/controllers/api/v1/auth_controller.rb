@@ -31,11 +31,14 @@ class Api::V1::AuthController < ApplicationController
     user = User.find_by!(username: params[:username])
 
     if user.authenticate(params[:password])
+      token = JsonWebToken.encode({ id: user.id })
+
       render json: {
         success: true,
         message: "OK",
         data: {
-          user: user
+          user: user,
+          token: token
         }
       },
       status: :ok,
