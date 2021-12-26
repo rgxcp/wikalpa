@@ -1,3 +1,19 @@
+# [1.1.0](https://github.com/rgxcp/wikalpa/compare/v1.0.0...v1.1.0) (2021-12-26)
+
+
+### Features
+
+* POST /auth/register excludes password digest on user data ([5adb8ca](https://github.com/rgxcp/wikalpa/commit/5adb8ca34af591e528a457f4fc162a1e9e9f5876))
+* POST /auth/register generates token data when entity valid ([3f88470](https://github.com/rgxcp/wikalpa/commit/3f8847022a08eb67da7be9f68f61f464e712bec8))
+* POST /auth/register returns 201 status code when entity valid ([8dfc5cb](https://github.com/rgxcp/wikalpa/commit/8dfc5cb4c6e785f012c33a19f7ef3e3a38fc9481))
+* POST /auth/register returns 422 status code when entity invalid ([27bc706](https://github.com/rgxcp/wikalpa/commit/27bc70613ba594ac60bd82f47c12785f4b3c5361))
+* POST /auth/register returns created message body when entity valid ([8c897a6](https://github.com/rgxcp/wikalpa/commit/8c897a68598eba30b2fe4c6a832993d3aca1208e))
+* POST /auth/register returns falsey status body when entity invalid ([2777b9f](https://github.com/rgxcp/wikalpa/commit/2777b9fc1aa1dd588ce49fdb4faa2be87826d0ad))
+* POST /auth/register returns truthy status body when entity valid ([af09429](https://github.com/rgxcp/wikalpa/commit/af094293d89805a2e3d15b57dc4f2a1eb9501de0))
+* POST /auth/register returns unprocessable entity message body when entity invalid ([50d42f4](https://github.com/rgxcp/wikalpa/commit/50d42f49e7471037fb3eff1130d9ee5ca097cab0))
+* POST /auth/register returns user data when entity valid ([502275f](https://github.com/rgxcp/wikalpa/commit/502275fb8a7fa572991e009dfc9f01ad9025609c))
+* POST /auth/register returns validation errors when entity invalid ([9e6a307](https://github.com/rgxcp/wikalpa/commit/9e6a307848f6dfc7b5b8e29b86a2e57620e451de))
+
 # 1.0.0 (2021-12-23)
 
 
