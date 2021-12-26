@@ -42,6 +42,11 @@ RSpec.describe Api::V1::AuthController, type: :request do
         result = JSON.parse(response.body)
         expect(result["success"]).to be_truthy
       end
+
+      it "returns created message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Created")
+      end
     end
   end
 end
