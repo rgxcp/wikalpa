@@ -10,7 +10,8 @@ class Api::V1::AuthController < ApplicationController
           user: user
         }
       },
-      status: :created
+      status: :created,
+      except: :password_digest
     else
       render json: {
         success: false,
