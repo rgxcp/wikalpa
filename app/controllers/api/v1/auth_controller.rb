@@ -31,7 +31,10 @@ class Api::V1::AuthController < ApplicationController
     user = User.find_by!(username: params[:username])
 
     if user.authenticate(params[:password])
-      render json: {}, status: :ok
+      render json: {
+        success: true
+      },
+      status: :ok
     else
       render json: {
         success: false,
