@@ -3,7 +3,8 @@ class Api::V1::AuthController < ApplicationController
     user = User.new(user_params)
 
     render json: {
-      success: false
+      success: false,
+      message: "Unprocessable Entity"
     },
     status: :unprocessable_entity unless user.save
   end

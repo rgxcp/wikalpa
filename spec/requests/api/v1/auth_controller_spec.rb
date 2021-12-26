@@ -16,6 +16,11 @@ RSpec.describe Api::V1::AuthController, type: :request do
         result = JSON.parse(response.body)
         expect(result["success"]).to be_falsey
       end
+
+      it "returns unprocessable entity message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Unprocessable Entity")
+      end
     end
   end
 end
