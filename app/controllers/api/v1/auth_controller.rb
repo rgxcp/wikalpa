@@ -4,7 +4,8 @@ class Api::V1::AuthController < ApplicationController
 
     render json: {
       success: false,
-      message: "Unprocessable Entity"
+      message: "Unprocessable Entity",
+      errors: user.errors.messages
     },
     status: :unprocessable_entity unless user.save
   end
