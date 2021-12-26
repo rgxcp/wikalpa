@@ -1,3 +1,27 @@
+# [1.2.0](https://github.com/rgxcp/wikalpa/compare/v1.1.0...v1.2.0) (2021-12-26)
+
+
+### Bug Fixes
+
+* wrong JSON key (status to success) ([e94eedf](https://github.com/rgxcp/wikalpa/commit/e94eedfe9c938070448ccdda051f6b417008df45))
+* wrong method for finding user (find to find_by!) ([04c5200](https://github.com/rgxcp/wikalpa/commit/04c5200be9c9d97b046a9262aeb06f48a006eeac))
+
+
+### Features
+
+* POST /auth/login excludes password digest on user data ([6ba9e65](https://github.com/rgxcp/wikalpa/commit/6ba9e65f7649cf52e9d011a54474549e9f92b7f0))
+* POST /auth/login generates token data when password valid ([18b58ff](https://github.com/rgxcp/wikalpa/commit/18b58ff7ef6952143fc6eed7ae8b2f642fbd1e84))
+* POST /auth/login returns 200 status code when password valid ([f91742f](https://github.com/rgxcp/wikalpa/commit/f91742f1a529733be7260e71744c0b145a51383a))
+* POST /auth/login returns 401 status code when password not valid ([3a003ab](https://github.com/rgxcp/wikalpa/commit/3a003ab8db793dddb5128a5468beab8e0b712494))
+* POST /auth/login returns 404 status code when username not exists ([79efcc8](https://github.com/rgxcp/wikalpa/commit/79efcc8c14f6f1e61538c82fd0f6dd1ebe77fbf0))
+* POST /auth/login returns falsey status body when password not valid ([4477927](https://github.com/rgxcp/wikalpa/commit/44779275b36a71429373fbe3077cc8064cab9f4a))
+* POST /auth/login returns falsey status body when username not exists ([dda2da0](https://github.com/rgxcp/wikalpa/commit/dda2da01882cbbc47d94dea636643ba6abadd84b))
+* POST /auth/login returns not found message body when username not exists ([6456b04](https://github.com/rgxcp/wikalpa/commit/6456b04991cb4966259447bca6ba03725f22e6e3))
+* POST /auth/login returns ok message body when password valid ([f8fd734](https://github.com/rgxcp/wikalpa/commit/f8fd7340466a7fdf56b4c82ac3d3c4240bae14fa))
+* POST /auth/login returns truthy success body when password valid ([9a38923](https://github.com/rgxcp/wikalpa/commit/9a389233e8b03c0c013cc209ca39ded865e92d0f))
+* POST /auth/login returns unauthorized message body when password not valid ([be2b82c](https://github.com/rgxcp/wikalpa/commit/be2b82cdbfbe6b238ba5ab55ab7eb573805d6ef2))
+* POST /auth/login returns user data when password valid ([0522b69](https://github.com/rgxcp/wikalpa/commit/0522b69bafcccb87841bb99fd90faa909b380ad6))
+
 # [1.1.0](https://github.com/rgxcp/wikalpa/compare/v1.0.0...v1.1.0) (2021-12-26)
 
 
