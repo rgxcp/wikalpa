@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: Wikalpa
+  description: API documentation for the Wikalpa project.
+  termsOfService: https://opensource.org/ToS
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+security:
+  - BearerAuth: []
+tags:
+  - name: Auth
+    description: Endpoints related for authentication and authorization.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Token:
+      type: string
+      example: eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.GRKevXZcuSlwDfjKYXB_plUM4m5Pu4S_VgPsFj1bxrI
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        username:
+          type: string
+          example: john.doe
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+  responses:
+    UnprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Unprocessable Entity
+              errors:
+                type: object
+                properties:
+                  attribute:
+                    type: array
+                    items:
+                      type: string
+                      example: error message
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register a new user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+                - password_confirmation
+              properties:
+                username:
+                  type: string
+                  example: john.doe
+                password:
+                  type: string
+                  example: super-strong-password
+                password_confirmation:
+                  type: string
+                  example: super-strong-password
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        $ref: "#/components/schemas/User"
+                      token:
+                        $ref: "#/components/schemas/Token"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local server
+  - url: http://localhost:3001/api/v1
+    description: Local-Docker server
