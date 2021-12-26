@@ -2,7 +2,10 @@ class Api::V1::AuthController < ApplicationController
   def register
     user = User.new(user_params)
 
-    render json: {}, status: :unprocessable_entity unless user.save
+    render json: {
+      success: false
+    },
+    status: :unprocessable_entity unless user.save
   end
 
   private
