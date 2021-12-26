@@ -38,6 +38,32 @@ components:
           type: string
           example: "2021-12-12 12:12:12"
   responses:
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Not Found
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Unauthorized
     UnprocessableEntity:
       description: Unprocessable Entity
       content:
@@ -108,6 +134,52 @@ paths:
                         $ref: "#/components/schemas/Token"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login into an existing user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  example: john.doe
+                password:
+                  type: string
+                  example: super-strong-password
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        $ref: "#/components/schemas/User"
+                      token:
+                        $ref: "#/components/schemas/Token"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
 servers:
   - url: http://localhost:3000/api/v1
     description: Local server
