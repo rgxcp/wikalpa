@@ -57,6 +57,11 @@ RSpec.describe Api::V1::AuthController, type: :request do
         result = JSON.parse(response.body)
         expect(result["data"]["user"]["password_digest"]).to be_nil
       end
+
+      it "generates token data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["token"]).not_to be_empty
+      end
     end
   end
 end

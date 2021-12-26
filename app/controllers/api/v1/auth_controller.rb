@@ -1,13 +1,18 @@
+require "json_web_token"
+
 class Api::V1::AuthController < ApplicationController
   def register
     user = User.new(user_params)
 
     if user.save
+      token = JsonWebToken.encode({ id: user.id })
+
       render json: {
         success: true,
         message: "Created",
         data: {
-          user: user
+          user: user,
+          token: token
         }
       },
       status: :created,
