@@ -3,7 +3,10 @@ class Api::V1::AuthController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      render json: {}, status: :created
+      render json: {
+        success: true
+      },
+      status: :created
     else
       render json: {
         success: false,

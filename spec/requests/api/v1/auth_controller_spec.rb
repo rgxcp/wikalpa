@@ -29,10 +29,18 @@ RSpec.describe Api::V1::AuthController, type: :request do
     end
 
     context "when entity valid" do
-      it "returns 201 status code" do
+      before do
         user = attributes_for(:user)
         post api_v1_auth_register_url, params: { user: user }
+      end
+
+      it "returns 201 status code" do
         expect(response).to have_http_status(:created)
+      end
+
+      it "returns truthy status body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be_truthy
       end
     end
   end
