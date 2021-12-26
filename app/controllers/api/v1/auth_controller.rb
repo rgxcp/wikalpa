@@ -31,7 +31,8 @@ class Api::V1::AuthController < ApplicationController
     user = User.find_by!(username: params[:username])
 
     render json: {
-      status: false
+      status: false,
+      message: "Unauthorized"
     },
     status: :unauthorized unless user.authenticate(params[:password])
   end

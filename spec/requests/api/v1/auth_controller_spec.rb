@@ -104,6 +104,11 @@ RSpec.describe Api::V1::AuthController, type: :request do
         result = JSON.parse(response.body)
         expect(result["success"]).to be_falsey
       end
+
+      it "returns unauthorized message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Unauthorized")
+      end
     end
   end
 end
