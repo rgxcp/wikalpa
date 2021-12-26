@@ -27,6 +27,10 @@ class Api::V1::AuthController < ApplicationController
     end
   end
 
+  def login
+    user = User.find(username: params[:username])
+  end
+
   private
 
   def user_params

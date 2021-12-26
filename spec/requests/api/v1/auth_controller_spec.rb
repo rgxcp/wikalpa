@@ -64,4 +64,14 @@ RSpec.describe Api::V1::AuthController, type: :request do
       end
     end
   end
+
+  describe "POST /auth/login" do
+    context "when username not exists" do
+      it "returns 404 status code" do
+        user = attributes_for(:user)
+        post api_v1_auth_login_url, params: user
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end
