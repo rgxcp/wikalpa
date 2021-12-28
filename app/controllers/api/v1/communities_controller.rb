@@ -21,7 +21,10 @@ class Api::V1::CommunitiesController < ApplicationController
     member = Member.exists?(community: community, user: @auth_user)
     return forbidden_response unless member
 
-    render json: {}, status: :unprocessable_entity unless community.update(community_params)
+    render json: {
+      success: false
+    },
+    status: :unprocessable_entity unless community.update(community_params)
   end
 
   private
