@@ -1,3 +1,26 @@
+# [1.4.0](https://github.com/rgxcp/wikalpa/compare/v1.3.0...v1.4.0) (2021-12-28)
+
+
+### Features
+
+* add forbidden response method ([247f850](https://github.com/rgxcp/wikalpa/commit/247f850c60d0446ff1423500870cc49c8d3d287c))
+* PATCH /users/:id excludes password digest on user data ([8d4aee1](https://github.com/rgxcp/wikalpa/commit/8d4aee1da4818dd5a6c4b32f1655c1bfe3e01ddd))
+* PATCH /users/:id returns 200 status code when entity valid ([56abca9](https://github.com/rgxcp/wikalpa/commit/56abca9f5e518612990c274c54ee1a3806d69348))
+* PATCH /users/:id returns 401 status code when user not logged in ([69f5db2](https://github.com/rgxcp/wikalpa/commit/69f5db2be3077f1d0db6666d2ee02b076d8fa639))
+* PATCH /users/:id returns 403 status code when editing someone else account ([6706c3c](https://github.com/rgxcp/wikalpa/commit/6706c3cea87d9796a42ef6649021bc49543edc55))
+* PATCH /users/:id returns 404 status code when user not exists ([458c455](https://github.com/rgxcp/wikalpa/commit/458c455c15ac528cb527e052a425323f987c882c))
+* PATCH /users/:id returns 422 status code when entity invalid ([3e7b1ca](https://github.com/rgxcp/wikalpa/commit/3e7b1ca38f702f49dc6679c62db282561727e402))
+* PATCH /users/:id returns false success body when entity invalid ([2443346](https://github.com/rgxcp/wikalpa/commit/244334669236de5e7aa39e5c9b0ae01bcf440482))
+* PATCH /users/:id returns falsey success body when editing someone else account ([d4ab33b](https://github.com/rgxcp/wikalpa/commit/d4ab33b47b3c8ee306394e7feef3caf4454707f0))
+* PATCH /users/:id returns falsey success body when user not logged in ([3151d54](https://github.com/rgxcp/wikalpa/commit/3151d54813fb1a85368ce13cbee7fc8ceee7d234))
+* PATCH /users/:id returns forbidden message body when editing someone else account ([a0ac74a](https://github.com/rgxcp/wikalpa/commit/a0ac74a26075f9174c62b6a28c647b3b0bb23c42))
+* PATCH /users/:id returns ok message body when entity valid ([d55b093](https://github.com/rgxcp/wikalpa/commit/d55b0932400cead55dd2bd3b2ef30ce51e5ff45c))
+* PATCH /users/:id returns true success body when entity valid ([c6b858b](https://github.com/rgxcp/wikalpa/commit/c6b858b009c9b426f584c66cb54f592211911941))
+* PATCH /users/:id returns unauthorized message body when user not logged in ([1ca7718](https://github.com/rgxcp/wikalpa/commit/1ca7718317f49f3f119d34dd8646d013514f4d07))
+* PATCH /users/:id returns unprocessable entity message body when entity invalid ([a870816](https://github.com/rgxcp/wikalpa/commit/a87081640c39753c79bf34ec677ef154c8956a11))
+* PATCH /users/:id returns user data when entity valid ([241045a](https://github.com/rgxcp/wikalpa/commit/241045aa412ca9c1efa68378e2768d6e34ea5f36))
+* PATCH /users/:id returns validation errors when entity invalid ([54bbcb4](https://github.com/rgxcp/wikalpa/commit/54bbcb41bb54e203f0f13005fd9e860c7af37648))
+
 # [1.3.0](https://github.com/rgxcp/wikalpa/compare/v1.2.0...v1.3.0) (2021-12-28)
 
 
