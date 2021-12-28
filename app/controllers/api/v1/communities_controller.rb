@@ -5,7 +5,7 @@ class Api::V1::CommunitiesController < ApplicationController
     community = Community.new(community_params)
 
     if community.save
-      Member.create(community: community, user: @auth_user)
+      community.members.create(user: @auth_user)
 
       created_response(data: {
         community: community
