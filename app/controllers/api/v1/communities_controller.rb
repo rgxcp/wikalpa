@@ -17,9 +17,11 @@ class Api::V1::CommunitiesController < ApplicationController
 
   def update
     community = Community.find(params[:id])
-    member = Member.exists?(community: community, user: @auth_user)
 
-    forbidden_response unless member
+    member = Member.exists?(community: community, user: @auth_user)
+    return forbidden_response unless member
+
+    render json: {}, status: :unprocessable_entity unless community.update(community_params)
   end
 
   private
