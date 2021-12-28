@@ -7,7 +7,8 @@ class Api::V1::MembersController < ApplicationController
 
     render json: {
       success: false,
-      message: "Unprocessable Entity"
+      message: "Unprocessable Entity",
+      errors: member.errors.messages
     },
     status: :unprocessable_entity unless member.save
   end
