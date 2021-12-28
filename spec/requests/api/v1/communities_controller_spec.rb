@@ -142,5 +142,19 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         expect(result["errors"].size).to be_positive
       end
     end
+
+    context "when entity valid" do
+      it "returns 200 status code" do
+        member = create(:member)
+        token = JsonWebToken.encode({ id: member.user.id })
+        patch api_v1_community_path(member.community), headers: { Authorization: "Bearer #{token}" }, params: {
+          community: {
+            name: "programmer_humor",
+            description: "html is programming language"
+          }
+        }
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 end
