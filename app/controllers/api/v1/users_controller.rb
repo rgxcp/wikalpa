@@ -14,7 +14,8 @@ class Api::V1::UsersController < ApplicationController
           user: user
         }
       },
-      status: :ok
+      status: :ok,
+      except: :password_digest
     else
       unprocessable_entity_response(errors: user.errors.messages)
     end
