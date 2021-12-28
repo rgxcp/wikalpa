@@ -22,8 +22,10 @@ RSpec.describe Api::V1::UsersController, type: :request do
 
     context "when editing someone else account" do
       before do
-        token = JsonWebToken.encode({ id: 2 })
-        patch api_v1_user_path(1), headers: { Authorization: "Bearer #{token}" }
+        user1 = create(:user)
+        user2 = create(:user)
+        token = JsonWebToken.encode({ id: user2.id })
+        patch api_v1_user_path(user1), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 403 status code" do
@@ -38,14 +40,6 @@ RSpec.describe Api::V1::UsersController, type: :request do
       it "returns forbidden message body" do
         result = JSON.parse(response.body)
         expect(result["message"]).to eq("Forbidden")
-      end
-    end
-
-    context "when user not exists" do
-      it "returns 404 status code" do
-        token = JsonWebToken.encode({ id: 1 })
-        patch api_v1_user_path(1), headers: { Authorization: "Bearer #{token}" }
-        expect(response).to have_http_status(:not_found)
       end
     end
 

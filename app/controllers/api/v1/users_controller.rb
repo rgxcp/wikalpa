@@ -2,19 +2,17 @@ class Api::V1::UsersController < ApplicationController
   before_action :authenticate_request!, only: :update
 
   def update
-    return forbidden_response unless @auth_id == params[:id].to_i
+    return forbidden_response unless @auth_user.id == params[:id].to_i
 
-    user = User.find(params[:id])
-
-    if user.update(user_params)
+    if @auth_user.update(user_params)
       ok_response(
         data: {
-          user: user
+          user: @auth_user
         },
         except: :password_digest
       )
     else
-      unprocessable_entity_response(errors: user.errors.messages)
+      unprocessable_entity_response(errors: @auth_user.errors.messages)
     end
   end
 
