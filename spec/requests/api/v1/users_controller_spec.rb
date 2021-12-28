@@ -9,9 +9,9 @@ RSpec.describe Api::V1::UsersController, type: :request do
         expect(response).to have_http_status(:unauthorized)
       end
 
-      it "returns falsey success body" do
+      it "returns false success body" do
         result = JSON.parse(response.body)
-        expect(result["success"]).to be_falsey
+        expect(result["success"]).to be false
       end
 
       it "returns unauthorized message body" do
@@ -30,9 +30,9 @@ RSpec.describe Api::V1::UsersController, type: :request do
         expect(response).to have_http_status(:forbidden)
       end
 
-      it "returns falsey success body" do
+      it "returns false success body" do
         result = JSON.parse(response.body)
-        expect(result["success"]).to be_falsey
+        expect(result["success"]).to be false
       end
 
       it "returns forbidden message body" do
