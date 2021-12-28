@@ -8,5 +8,15 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         expect(response).to have_http_status(:unauthorized)
       end
     end
+
+    context "when entity invalid" do
+      it "returns 422 status code" do
+        user = create(:user)
+        token = JsonWebToken.encode({ id: user.id })
+        community = attributes_for(:community, :invalid)
+        post api_v1_communities_path, headers: { Authorization: "Bearer #{token}" }, params: { community: community }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 end
