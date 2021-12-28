@@ -21,6 +21,16 @@ class ApplicationController < ActionController::API
     status: :not_found
   end
 
+  def ok_response(data:, except: nil)
+    render json: {
+      success: true,
+      message: "OK",
+      data: data
+    },
+    status: :ok,
+    except: except
+  end
+
   def unprocessable_entity_response(errors:)
     render json: {
       success: false,
