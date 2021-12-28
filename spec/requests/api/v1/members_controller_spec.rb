@@ -17,5 +17,14 @@ RSpec.describe Api::V1::MembersController, type: :request do
         expect(response).to have_http_status(:not_found)
       end
     end
+
+    context "when entity invalid" do
+      it "returns 422 status code" do
+        member = create(:member)
+        token = JsonWebToken.encode({ id: member.user.id })
+        post api_v1_community_members_path(member.community), headers: { Authorization: "Bearer #{token}" }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 end
