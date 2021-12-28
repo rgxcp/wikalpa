@@ -1,5 +1,5 @@
 class Api::V1::MembersController < ApplicationController
-  before_action :authenticate_request!, only: :join
+  before_action :authenticate_request!, only: [:join, :leave]
 
   def join
     community = Community.find(params[:community_id])
@@ -12,5 +12,8 @@ class Api::V1::MembersController < ApplicationController
     else
       unprocessable_entity_response(errors: member.errors.messages)
     end
+  end
+
+  def leave
   end
 end
