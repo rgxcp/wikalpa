@@ -25,16 +25,13 @@ class Api::V1::AuthController < ApplicationController
     if user.authenticate(params[:password])
       token = JsonWebToken.encode({ id: user.id })
 
-      render json: {
-        success: true,
-        message: "OK",
+      ok_response(
         data: {
           user: user,
           token: token
-        }
-      },
-      status: :ok,
-      except: :password_digest
+        },
+        except: :password_digest
+      )
     else
       render json: {
         success: false,
