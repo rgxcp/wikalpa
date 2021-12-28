@@ -21,7 +21,10 @@ class Api::V1::MembersController < ApplicationController
 
     render json: {
       success: true,
-      message: "OK"
+      message: "OK",
+      data: {
+        member: member
+      }
     },
     status: :ok
   end

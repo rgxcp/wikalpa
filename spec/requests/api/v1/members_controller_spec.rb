@@ -121,6 +121,11 @@ RSpec.describe Api::V1::MembersController, type: :request do
         result = JSON.parse(response.body)
         expect(result["message"]).to eq("OK")
       end
+
+      it "returns member data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["member"]).not_to be_empty
+      end
     end
   end
 end
