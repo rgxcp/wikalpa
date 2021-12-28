@@ -22,6 +22,14 @@ class ApplicationController < ActionController::API
     except: except
   end
 
+  def forbidden_response
+    render json: {
+      success: false,
+      message: "Forbidden"
+    },
+    status: :forbidden
+  end
+
   def not_found_response
     render json: {
       success: false,
