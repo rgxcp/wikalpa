@@ -7,7 +7,10 @@ class Api::V1::UsersController < ApplicationController
     user = User.find(params[:id])
 
     if user.update(user_params)
-      render json: {}, status: :ok
+      render json: {
+        success: true
+      },
+      status: :ok
     else
       unprocessable_entity_response(errors: user.errors.messages)
     end
