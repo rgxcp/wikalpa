@@ -38,9 +38,9 @@ RSpec.describe Api::V1::AuthController, type: :request do
         expect(response).to have_http_status(:created)
       end
 
-      it "returns truthy success body" do
+      it "returns true success body" do
         result = JSON.parse(response.body)
-        expect(result["success"]).to be_truthy
+        expect(result["success"]).to be true
       end
 
       it "returns created message body" do
@@ -124,9 +124,9 @@ RSpec.describe Api::V1::AuthController, type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "returns truthy success body" do
+      it "returns true success body" do
         result = JSON.parse(response.body)
-        expect(result["success"]).to be_truthy
+        expect(result["success"]).to be true
       end
 
       it "returns ok message body" do
