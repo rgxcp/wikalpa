@@ -67,7 +67,7 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
       it "adds auth user into community member" do
         community = Community.first
         user = User.first
-        member = Member.exists?(community: community, user: user)
+        member = community.members.exists?(user: user)
         expect(member).to be_truthy
       end
     end
