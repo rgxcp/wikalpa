@@ -7,7 +7,8 @@ class Api::V1::MembersController < ApplicationController
 
     if member.save
       render json: {
-        success: true
+        success: true,
+        message: "Created"
       },
       status: :created
     else
