@@ -9,7 +9,10 @@ class ApplicationController < ActionController::API
     token = request.headers.fetch("Authorization", "").split.last
     @auth_id = JsonWebToken.decode(token).first["id"]
   rescue JWT::DecodeError
-    render json: {}, status: :unauthorized
+    render json: {
+      success: false
+    },
+    status: :unauthorized
   end
 
   def created_response(data:, except: nil)
