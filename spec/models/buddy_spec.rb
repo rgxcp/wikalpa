@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Buddy, type: :model do
   subject(:buddy) { build(:buddy) }
