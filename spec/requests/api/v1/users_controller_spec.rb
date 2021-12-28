@@ -76,5 +76,19 @@ RSpec.describe Api::V1::UsersController, type: :request do
         expect(result["errors"].size).to be_positive
       end
     end
+
+    context "when entity valid" do
+      it "returns 200 status code" do
+        user = create(:user)
+        token = JsonWebToken.encode({ id: user.id })
+        patch api_v1_user_path(user), headers: { Authorization: "Bearer #{token}" }, params: {
+          user: {
+            username: "john_doe",
+            password: "87654321"
+          }
+        }
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 end
