@@ -106,6 +106,11 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         result = JSON.parse(response.body)
         expect(result["success"]).to be false
       end
+
+      it "returns forbidden message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Forbidden")
+      end
     end
   end
 end
