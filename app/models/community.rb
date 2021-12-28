@@ -1,6 +1,8 @@
 require "regex"
 
 class Community < ApplicationRecord
+  has_many :members
+
   validates :name, format: { with: REGEX::NAME }
   validates :name, length: { in: 5..20 }
   validates :name, presence: true
