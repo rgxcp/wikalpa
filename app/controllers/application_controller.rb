@@ -20,4 +20,13 @@ class ApplicationController < ActionController::API
     },
     status: :not_found
   end
+
+  def unprocessable_entity_response(errors:)
+    render json: {
+      success: false,
+      message: "Unprocessable Entity",
+      errors: errors
+    },
+    status: :unprocessable_entity
+  end
 end
