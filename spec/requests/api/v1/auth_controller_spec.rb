@@ -5,7 +5,7 @@ RSpec.describe Api::V1::AuthController, type: :request do
     context "when entity invalid" do
       before do
         user = attributes_for(:user, :invalid)
-        post api_v1_auth_register_url, params: { user: user }
+        post api_v1_auth_register_path, params: { user: user }
       end
 
       it "returns 422 status code" do
@@ -31,7 +31,7 @@ RSpec.describe Api::V1::AuthController, type: :request do
     context "when entity valid" do
       before do
         user = attributes_for(:user)
-        post api_v1_auth_register_url, params: { user: user }
+        post api_v1_auth_register_path, params: { user: user }
       end
 
       it "returns 201 status code" do
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::AuthController, type: :request do
     context "when username not exists" do
       before do
         user = attributes_for(:user)
-        post api_v1_auth_login_url, params: user
+        post api_v1_auth_login_path, params: user
       end
 
       it "returns 404 status code" do
@@ -90,7 +90,7 @@ RSpec.describe Api::V1::AuthController, type: :request do
     context "when password not valid" do
       before do
         user = create(:user)
-        post api_v1_auth_login_url, params: {
+        post api_v1_auth_login_path, params: {
           username: user.username,
           password: "!#{user.password}!"
         }
@@ -114,7 +114,7 @@ RSpec.describe Api::V1::AuthController, type: :request do
     context "when password valid" do
       before do
         user = create(:user)
-        post api_v1_auth_login_url, params: {
+        post api_v1_auth_login_path, params: {
           username: user.username,
           password: user.password
         }
