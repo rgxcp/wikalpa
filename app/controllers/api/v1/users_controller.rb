@@ -6,12 +6,7 @@ class Api::V1::UsersController < ApplicationController
 
     user = User.find(params[:id])
 
-    render json: {
-      success: false,
-      message: "Unprocessable Entity",
-      errors: user.errors.messages
-    },
-    status: :unprocessable_entity unless user.update(user_params)
+    unprocessable_entity_response(errors: user.errors.messages) unless user.update(user_params)
   end
 
   private
