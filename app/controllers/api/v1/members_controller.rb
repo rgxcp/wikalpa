@@ -5,6 +5,10 @@ class Api::V1::MembersController < ApplicationController
     community = Community.find(params[:community_id])
     member = community.members.build(user: @auth_user)
 
-    unprocessable_entity_response(errors: member.errors.messages) unless member.save
+    if member.save
+      render json: {}, status: :created
+    else
+      unprocessable_entity_response(errors: member.errors.messages)
+    end
   end
 end
