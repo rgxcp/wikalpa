@@ -1,3 +1,19 @@
+# [1.5.0](https://github.com/rgxcp/wikalpa/compare/v1.4.0...v1.5.0) (2021-12-28)
+
+
+### Features
+
+* POST /communities adds auth user into community member when entity valid ([9d80aa4](https://github.com/rgxcp/wikalpa/commit/9d80aa4350d3935a3509e1e6386391e46ff9176b))
+* POST /communities returns 201 status code when entity valid ([9a5b025](https://github.com/rgxcp/wikalpa/commit/9a5b025ead29b4cea20043b8e6d1ee98f9dd1d3b))
+* POST /communities returns 401 status code when user not logged in ([8aea38e](https://github.com/rgxcp/wikalpa/commit/8aea38e9b8af2bd9d730dcc86cfc647f79f46bfd))
+* POST /communities returns 422 status code when entity invalid ([cda7b4d](https://github.com/rgxcp/wikalpa/commit/cda7b4de2b842920012968ed8e31f03ec8561757))
+* POST /communities returns community data when entity valid ([047ce1d](https://github.com/rgxcp/wikalpa/commit/047ce1d3e39660c84eb51d13a77825ccd0f1931b))
+* POST /communities returns created message body when entity valid ([779b87b](https://github.com/rgxcp/wikalpa/commit/779b87bbc917e9e93cc731a2e99a16185d615cc1))
+* POST /communities returns false success body when entity invalid ([d7faac0](https://github.com/rgxcp/wikalpa/commit/d7faac08e7cce142a1f32d741487f92d33320913))
+* POST /communities returns true success body when entity valid ([264dde2](https://github.com/rgxcp/wikalpa/commit/264dde20b79ce24a315f4f2b0028c85b21539ef5))
+* POST /communities returns unprocessable entity message body when entity invalid ([cc64624](https://github.com/rgxcp/wikalpa/commit/cc64624e9a31d8ce2dc1f6674cb93a804f63de51))
+* POST /communities returns validation errors when entity invalid ([4b17db8](https://github.com/rgxcp/wikalpa/commit/4b17db8371524d00c46004dbd279d32f0954d0f7))
+
 # [1.4.0](https://github.com/rgxcp/wikalpa/compare/v1.3.0...v1.4.0) (2021-12-28)
 
 
