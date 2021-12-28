@@ -19,6 +19,9 @@ class Api::V1::MembersController < ApplicationController
     member = community.members.find_by!(user: @auth_user)
     member.destroy
 
-    render json: {}, status: :ok
+    render json: {
+      success: true
+    },
+    status: :ok
   end
 end
