@@ -6,7 +6,8 @@ class Api::V1::CommunitiesController < ApplicationController
 
     if community.save
       render json: {
-        success: true
+        success: true,
+        message: "Created"
       },
       status: :created
     else
