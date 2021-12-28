@@ -90,5 +90,15 @@ RSpec.describe Api::V1::MembersController, type: :request do
         expect(response).to have_http_status(:not_found)
       end
     end
+
+    context "when auth user not a community member" do
+      it "returns 404 status code" do
+        community = create(:community)
+        user = create(:user)
+        token = JsonWebToken.encode({ id: user.id })
+        delete api_v1_community_leave_path(community), headers: { Authorization: "Bearer #{token}" }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
   end
 end
