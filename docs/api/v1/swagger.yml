@@ -235,6 +235,36 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /communities/{community_id}/leave:
+    delete:
+      tags:
+        - Member
+      summary: Leave a community.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCommunity"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      member:
+                        $ref: "#/components/schemas/Member"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /users/{id}:
     put:
       tags:
