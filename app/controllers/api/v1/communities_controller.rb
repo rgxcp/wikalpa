@@ -7,11 +7,9 @@ class Api::V1::CommunitiesController < ApplicationController
     if community.save
       Member.create(community: community, user_id: @auth_id)
 
-      created_response(
-        data: {
-          community: community
-        }
-      )
+      created_response(data: {
+        community: community
+      })
     else
       unprocessable_entity_response(errors: community.errors.messages)
     end
