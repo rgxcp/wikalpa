@@ -4,7 +4,10 @@ class Api::V1::CommunitiesController < ApplicationController
   def create
     community = Community.new(community_params)
 
-    render json: {}, status: :unprocessable_entity unless community.save
+    render json: {
+      success: false
+    },
+    status: :unprocessable_entity unless community.save
   end
 
   private
