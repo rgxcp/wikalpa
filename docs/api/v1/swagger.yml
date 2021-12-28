@@ -21,19 +21,20 @@ paths:
             schema:
               type: object
               required:
-                - username
-                - password
-                - password_confirmation
+                - user
               properties:
-                username:
-                  type: string
-                  example: john.doe
-                password:
-                  type: string
-                  example: super-strong-password
-                password_confirmation:
-                  type: string
-                  example: super-strong-password
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                      example: john.doe
+                    password:
+                      type: string
+                      example: super-strong-password
+                    password_confirmation:
+                      type: string
+                      example: super-strong-password
       responses:
         "201":
           description: Created
@@ -116,15 +117,17 @@ paths:
             schema:
               type: object
               required:
-                - name
-                - description
+                - community
               properties:
-                name:
-                  type: string
-                  example: programmer.humor
-                description:
-                  type: string
-                  example: css is programming language
+                community:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: programmer.humor
+                    description:
+                      type: string
+                      example: css is programming language
       responses:
         "201":
           description: Created
@@ -146,6 +149,58 @@ paths:
                         $ref: "#/components/schemas/Community"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /communities/{id}:
+    put:
+      tags:
+        - Community
+      summary: Update a community.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - community
+              properties:
+                community:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: programmer.humor
+                    description:
+                      type: string
+                      example: css is programming language
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      community:
+                        $ref: "#/components/schemas/Community"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /users/{id}:
