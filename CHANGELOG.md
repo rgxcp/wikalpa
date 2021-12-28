@@ -1,3 +1,16 @@
+# [1.8.0](https://github.com/rgxcp/wikalpa/compare/v1.7.0...v1.8.0) (2021-12-28)
+
+
+### Features
+
+* DELETE /communities/:id/leave returns 200 status code when auth user a community member ([94a08d2](https://github.com/rgxcp/wikalpa/commit/94a08d275198311e6cbfa7648481bb8877dab4d6))
+* DELETE /communities/:id/leave returns 401 status code when user not logged in ([3192609](https://github.com/rgxcp/wikalpa/commit/31926091ae04c4052813402eeb1d8df9e60d9080))
+* DELETE /communities/:id/leave returns 404 status code when auth user not a community member ([7cc540d](https://github.com/rgxcp/wikalpa/commit/7cc540d06556bbf658e3db2ac6cedffa174a49cd))
+* DELETE /communities/:id/leave returns 404 status code when community not exists ([a5b5414](https://github.com/rgxcp/wikalpa/commit/a5b5414439f8b06565a86bb9196469eaa677426f))
+* DELETE /communities/:id/leave returns member data when auth user a community member ([3bdee94](https://github.com/rgxcp/wikalpa/commit/3bdee94f756c25723aafc2933b4143f679dcff64))
+* DELETE /communities/:id/leave returns ok message body when auth user a community member ([54d4cfe](https://github.com/rgxcp/wikalpa/commit/54d4cfede9f05617922515f1f1315ed177388f88))
+* DELETE /communities/:id/leave returns true success body when auth user a community member ([d174871](https://github.com/rgxcp/wikalpa/commit/d17487101b535bfab745b74660104ca91744d8f1))
+
 # [1.7.0](https://github.com/rgxcp/wikalpa/compare/v1.6.0...v1.7.0) (2021-12-28)
 
 
