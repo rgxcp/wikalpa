@@ -1,3 +1,23 @@
+# [1.6.0](https://github.com/rgxcp/wikalpa/compare/v1.5.0...v1.6.0) (2021-12-28)
+
+
+### Features
+
+* load user on authenticate request method ([299013f](https://github.com/rgxcp/wikalpa/commit/299013fcfbd1366fce430654d061f85da732a369))
+* PATCH /communities/:id returns 200 status code when entity valid ([b89e78a](https://github.com/rgxcp/wikalpa/commit/b89e78a9886118060dd7a4bb6b7c8ab54710dca6))
+* PATCH /communities/:id returns 401 status code when user not logged in ([646edc9](https://github.com/rgxcp/wikalpa/commit/646edc9895dbd2f4421e9f0b4c7b16c9a906bc5a))
+* PATCH /communities/:id returns 403 status code when auth user not a community member ([3cb0b94](https://github.com/rgxcp/wikalpa/commit/3cb0b9450b081bf90912eee335f197eb349bf23e))
+* PATCH /communities/:id returns 404 status code when community not exists ([5fdd5e6](https://github.com/rgxcp/wikalpa/commit/5fdd5e6bf2db6efd15459b27ca0fbcb9de0663f2))
+* PATCH /communities/:id returns 422 status code when entity invalid ([344b5ee](https://github.com/rgxcp/wikalpa/commit/344b5ee4e1bcb3199ce56041e007c7ae0e8d8b10))
+* PATCH /communities/:id returns community data when entity valid ([46ef3b7](https://github.com/rgxcp/wikalpa/commit/46ef3b70e89bd59edf54e011af86b004f807888c))
+* PATCH /communities/:id returns false success body when auth user not a community member ([b6ccb82](https://github.com/rgxcp/wikalpa/commit/b6ccb824caf8818c1b0d3dddd5649bd3411ccad3))
+* PATCH /communities/:id returns false success body when entity invalid ([4e7067c](https://github.com/rgxcp/wikalpa/commit/4e7067c69a1b33bf671ec03b6f93839a7e20f5fb))
+* PATCH /communities/:id returns forbidden message body when auth user not a community member ([6ee9480](https://github.com/rgxcp/wikalpa/commit/6ee94805d59d6141651effefd72ea1b1601a1781))
+* PATCH /communities/:id returns ok message body when entity valid ([a3c64a9](https://github.com/rgxcp/wikalpa/commit/a3c64a9a4fbadcc2eb16a3a9b4073dc9881ae307))
+* PATCH /communities/:id returns true success body when entity valid ([d5978dc](https://github.com/rgxcp/wikalpa/commit/d5978dc7f1a94b72f1849453433d49cff385d6b4))
+* PATCH /communities/:id returns unprocessable entity message body when entity invalid ([dedba03](https://github.com/rgxcp/wikalpa/commit/dedba033ad6bf9961725fbd39cb8a7753401d740))
+* PATCH /communities/:id returns validation errors when entity invalid ([de9d123](https://github.com/rgxcp/wikalpa/commit/de9d1233ba375360afebf31e3bcda32e6451e0b0))
+
 # [1.5.0](https://github.com/rgxcp/wikalpa/compare/v1.4.0...v1.5.0) (2021-12-28)
 
 
