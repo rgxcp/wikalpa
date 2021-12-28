@@ -6,14 +6,9 @@ class Api::V1::MembersController < ApplicationController
     member = community.members.build(user: @auth_user)
 
     if member.save
-      render json: {
-        success: true,
-        message: "Created",
-        data: {
-          member: member
-        }
-      },
-      status: :created
+      created_response(data: {
+        member: member
+      })
     else
       unprocessable_entity_response(errors: member.errors.messages)
     end
