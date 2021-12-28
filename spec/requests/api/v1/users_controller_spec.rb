@@ -65,6 +65,11 @@ RSpec.describe Api::V1::UsersController, type: :request do
         result = JSON.parse(response.body)
         expect(result["success"]).to be false
       end
+
+      it "returns unprocessable entity message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Unprocessable Entity")
+      end
     end
   end
 end
