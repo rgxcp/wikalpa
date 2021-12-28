@@ -8,7 +8,8 @@ class Api::V1::UsersController < ApplicationController
 
     if user.update(user_params)
       render json: {
-        success: true
+        success: true,
+        message: "OK"
       },
       status: :ok
     else
