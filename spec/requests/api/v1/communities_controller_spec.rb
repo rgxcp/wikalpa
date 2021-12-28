@@ -168,6 +168,11 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         result = JSON.parse(response.body)
         expect(result["message"]).to eq("OK")
       end
+
+      it "returns community data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["community"]).not_to be_empty
+      end
     end
   end
 end

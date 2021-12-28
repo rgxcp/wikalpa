@@ -24,7 +24,10 @@ class Api::V1::CommunitiesController < ApplicationController
     if community.update(community_params)
       render json: {
         success: true,
-        message: "OK"
+        message: "OK",
+        data: {
+          community: community
+        }
       },
       status: :ok
     else
