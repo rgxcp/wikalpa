@@ -1,7 +1,16 @@
+require "json_web_token"
+
 class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
 
   protected
+
+  def authenticate_request!
+    token = request.headers.fetch("Authorization", "").split.last
+    @auth_id = JsonWebToken.decode(token).first["id"]
+  rescue JWT::DecodeError
+    render json: {}, status: :unauthorized
+  end
 
   def created_response(data:, except: nil)
     render json: {
