@@ -17,8 +17,7 @@ class Api::V1::CommunitiesController < ApplicationController
 
   def update
     community = Community.find(params[:id])
-
-    member = Member.exists?(community: community, user: @auth_user)
+    member = community.members.exists?(user: @auth_user)
     return forbidden_response unless member
 
     if community.update(community_params)
