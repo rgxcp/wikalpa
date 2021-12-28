@@ -33,11 +33,7 @@ class Api::V1::AuthController < ApplicationController
         except: :password_digest
       )
     else
-      render json: {
-        success: false,
-        message: "Unauthorized"
-      },
-      status: :unauthorized
+      unauthorized_response
     end
   end
 
