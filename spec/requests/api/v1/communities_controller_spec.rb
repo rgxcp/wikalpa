@@ -144,7 +144,7 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
     end
 
     context "when entity valid" do
-      it "returns 200 status code" do
+      before do
         member = create(:member)
         token = JsonWebToken.encode({ id: member.user.id })
         patch api_v1_community_path(member.community), headers: { Authorization: "Bearer #{token}" }, params: {
@@ -153,7 +153,15 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
             description: "html is programming language"
           }
         }
+      end
+
+      it "returns 200 status code" do
         expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be true
       end
     end
   end

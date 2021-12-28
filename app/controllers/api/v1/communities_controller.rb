@@ -22,7 +22,10 @@ class Api::V1::CommunitiesController < ApplicationController
     return forbidden_response unless member
 
     if community.update(community_params)
-      render json: {}, status: :ok
+      render json: {
+        success: true
+      },
+      status: :ok
     else
       unprocessable_entity_response(errors: community.errors.messages)
     end
