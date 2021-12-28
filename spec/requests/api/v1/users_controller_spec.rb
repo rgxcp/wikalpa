@@ -40,5 +40,13 @@ RSpec.describe Api::V1::UsersController, type: :request do
         expect(result["message"]).to eq("Forbidden")
       end
     end
+
+    context "when user not exists" do
+      it "returns 404 status code" do
+        token = JsonWebToken.encode({ id: 1 })
+        patch api_v1_user_path(1), headers: { Authorization: "Bearer #{token}" }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
   end
 end
