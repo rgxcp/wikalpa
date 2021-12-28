@@ -1,5 +1,5 @@
 class Api::V1::CommunitiesController < ApplicationController
-  before_action :authenticate_request!, only: [:create, :update]
+  before_action :authenticate_request, only: [:create, :update]
 
   def create
     community = Community.new(community_params)

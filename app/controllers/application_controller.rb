@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
 
   protected
 
-  def authenticate_request!
+  def authenticate_request
     token = request.headers.fetch("Authorization", "").split.last
     id = JsonWebToken.decode(token).first["id"]
     @auth_user = User.find(id)

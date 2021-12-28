@@ -1,5 +1,5 @@
 class Api::V1::MembersController < ApplicationController
-  before_action :authenticate_request!, only: [:join, :leave]
+  before_action :authenticate_request, only: [:join, :leave]
   before_action :set_community, only: [:join, :leave]
 
   def join
