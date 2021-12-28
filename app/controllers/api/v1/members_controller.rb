@@ -1,7 +1,7 @@
 class Api::V1::MembersController < ApplicationController
-  before_action :authenticate_request!, only: :create
+  before_action :authenticate_request!, only: :join
 
-  def create
+  def join
     community = Community.find(params[:community_id])
     member = community.members.build(user: @auth_user)
 

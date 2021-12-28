@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       post "/auth/register", to: "auth#register"
 
       resources :communities, only: [:create, :update] do
-        resources :members, only: :create
+        post "/join", to: "members#join"
       end
       resources :users, only: :update
     end
