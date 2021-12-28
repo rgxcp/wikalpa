@@ -1,3 +1,13 @@
+# [1.3.0](https://github.com/rgxcp/wikalpa/compare/v1.2.0...v1.3.0) (2021-12-28)
+
+
+### Features
+
+* add created response method ([5a38f1a](https://github.com/rgxcp/wikalpa/commit/5a38f1a72d6ca903be787d150d32272b44601a44))
+* add ok response method ([641d376](https://github.com/rgxcp/wikalpa/commit/641d376c58bd3f8c2a9cee2b4015a21ece77c4b7))
+* add unauthorized response method ([8bf22fa](https://github.com/rgxcp/wikalpa/commit/8bf22fa7291fd100aceff128a8f2677d43e94ace))
+* add unprocessable entity response method ([9f68be4](https://github.com/rgxcp/wikalpa/commit/9f68be443c3fea42dc0ad548023eb8cff57b8c23))
+
 # [1.2.0](https://github.com/rgxcp/wikalpa/compare/v1.1.0...v1.2.0) (2021-12-26)
 
 
