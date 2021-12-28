@@ -17,5 +17,8 @@ class Api::V1::MembersController < ApplicationController
   def leave
     community = Community.find(params[:community_id])
     member = community.members.find_by!(user: @auth_user)
+    member.destroy
+
+    render json: {}, status: :ok
   end
 end

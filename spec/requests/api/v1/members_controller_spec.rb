@@ -100,5 +100,14 @@ RSpec.describe Api::V1::MembersController, type: :request do
         expect(response).to have_http_status(:not_found)
       end
     end
+
+    context "when auth user a community member" do
+      it "returns 200 status code" do
+        member = create(:member)
+        token = JsonWebToken.encode({ id: member.user.id })
+        delete api_v1_community_leave_path(member.community), headers: { Authorization: "Bearer #{token}" }
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 end
