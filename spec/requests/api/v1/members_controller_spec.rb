@@ -116,6 +116,11 @@ RSpec.describe Api::V1::MembersController, type: :request do
         result = JSON.parse(response.body)
         expect(result["success"]).to be true
       end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
     end
   end
 end

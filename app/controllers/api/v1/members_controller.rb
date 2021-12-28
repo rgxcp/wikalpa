@@ -20,7 +20,8 @@ class Api::V1::MembersController < ApplicationController
     member.destroy
 
     render json: {
-      success: true
+      success: true,
+      message: "OK"
     },
     status: :ok
   end
