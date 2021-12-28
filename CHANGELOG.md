@@ -1,3 +1,20 @@
+# [1.7.0](https://github.com/rgxcp/wikalpa/compare/v1.6.0...v1.7.0) (2021-12-28)
+
+
+### Features
+
+* add has many 'Member' association on 'Community' ([c6401b8](https://github.com/rgxcp/wikalpa/commit/c6401b80ec63e8e55f8bd921d4acf80d0513626d))
+* POST /communities/:id/members returns 201 status code when entity valid ([b117df7](https://github.com/rgxcp/wikalpa/commit/b117df7981c14594269639c13c15f236111580b0))
+* POST /communities/:id/members returns 401 status code when user not logged in ([b2aa45a](https://github.com/rgxcp/wikalpa/commit/b2aa45a1b2e9dc8d067ca925209300213e06cd94))
+* POST /communities/:id/members returns 404 status code when community not exists ([fe4bcde](https://github.com/rgxcp/wikalpa/commit/fe4bcde266761b5ff9f5568750c44b236d6a5706))
+* POST /communities/:id/members returns 422 status code when entity invalid ([b9cfa4e](https://github.com/rgxcp/wikalpa/commit/b9cfa4e6a2a65d0df3be3c7c478bd57bedf4774a))
+* POST /communities/:id/members returns created message body when entity valid ([9818d44](https://github.com/rgxcp/wikalpa/commit/9818d446d4fcd8f02a95dfaa2855288a24cca082))
+* POST /communities/:id/members returns false success body when entity invalid ([8739f79](https://github.com/rgxcp/wikalpa/commit/8739f791859d02b7aef862884646146c943f81b3))
+* POST /communities/:id/members returns member data when entity valid ([18633ad](https://github.com/rgxcp/wikalpa/commit/18633ad3ae1375f6837c0ef0f50a892e4e438fb5))
+* POST /communities/:id/members returns true success body when entity valid ([86d7384](https://github.com/rgxcp/wikalpa/commit/86d7384ebfdb353781135ee27265297e3e70c2cb))
+* POST /communities/:id/members returns unprocessable entity message body when entity invalid ([89a9ab4](https://github.com/rgxcp/wikalpa/commit/89a9ab442e18ecfe144c3be3b59fb87fa8b625f0))
+* POST /communities/:id/members returns validation errors when entity invalid ([36996e9](https://github.com/rgxcp/wikalpa/commit/36996e950e772ed8ca519e6874be1f9e872c3ce9))
+
 # [1.6.0](https://github.com/rgxcp/wikalpa/compare/v1.5.0...v1.6.0) (2021-12-28)
 
 
