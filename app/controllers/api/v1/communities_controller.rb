@@ -4,12 +4,7 @@ class Api::V1::CommunitiesController < ApplicationController
   def create
     community = Community.new(community_params)
 
-    render json: {
-      success: false,
-      message: "Unprocessable Entity",
-      errors: community.errors.messages
-    },
-    status: :unprocessable_entity unless community.save
+    unprocessable_entity_response(errors: community.errors.messages) unless community.save
   end
 
   private
