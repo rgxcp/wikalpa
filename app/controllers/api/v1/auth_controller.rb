@@ -15,12 +15,7 @@ class Api::V1::AuthController < ApplicationController
         except: :password_digest
       )
     else
-      render json: {
-        success: false,
-        message: "Unprocessable Entity",
-        errors: user.errors.messages
-      },
-      status: :unprocessable_entity
+      unprocessable_entity_response(errors: user.errors.messages)
     end
   end
 
