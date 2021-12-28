@@ -21,10 +21,18 @@ RSpec.describe Api::V1::UsersController, type: :request do
     end
 
     context "when editing someone else account" do
-      it "returns 403 status code" do
+      before do
         token = JsonWebToken.encode({ id: 2 })
         patch api_v1_user_path(1), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 403 status code" do
         expect(response).to have_http_status(:forbidden)
+      end
+
+      it "returns falsey success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be_falsey
       end
     end
   end
