@@ -5,6 +5,8 @@ class Api::V1::CommunitiesController < ApplicationController
     community = Community.new(community_params)
 
     if community.save
+      Member.create(community: community, user_id: @auth_id)
+
       render json: {
         success: true,
         message: "Created",

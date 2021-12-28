@@ -63,6 +63,13 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         result = JSON.parse(response.body)
         expect(result["data"]["community"]).not_to be_empty
       end
+
+      it "adds auth user into community member" do
+        community = Community.first
+        user = User.first
+        member = Member.exists?(community: community, user: user)
+        expect(member).to be_truthy
+      end
     end
   end
 end
