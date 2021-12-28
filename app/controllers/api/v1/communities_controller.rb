@@ -5,7 +5,8 @@ class Api::V1::CommunitiesController < ApplicationController
     community = Community.new(community_params)
 
     render json: {
-      success: false
+      success: false,
+      message: "Unprocessable Entity"
     },
     status: :unprocessable_entity unless community.save
   end
