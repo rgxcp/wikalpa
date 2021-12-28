@@ -136,6 +136,11 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         result = JSON.parse(response.body)
         expect(result["message"]).to eq("Unprocessable Entity")
       end
+
+      it "returns validation errors" do
+        result = JSON.parse(response.body)
+        expect(result["errors"].size).to be_positive
+      end
     end
   end
 end

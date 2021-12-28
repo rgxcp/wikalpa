@@ -23,7 +23,8 @@ class Api::V1::CommunitiesController < ApplicationController
 
     render json: {
       success: false,
-      message: "Unprocessable Entity"
+      message: "Unprocessable Entity",
+      errors: community.errors.messages
     },
     status: :unprocessable_entity unless community.update(community_params)
   end
