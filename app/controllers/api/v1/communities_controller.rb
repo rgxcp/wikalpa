@@ -7,14 +7,11 @@ class Api::V1::CommunitiesController < ApplicationController
     if community.save
       Member.create(community: community, user_id: @auth_id)
 
-      render json: {
-        success: true,
-        message: "Created",
+      created_response(
         data: {
           community: community
         }
-      },
-      status: :created
+      )
     else
       unprocessable_entity_response(errors: community.errors.messages)
     end
