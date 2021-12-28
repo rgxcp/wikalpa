@@ -19,7 +19,10 @@ class Api::V1::CommunitiesController < ApplicationController
     community = Community.find(params[:id])
     member = Member.exists?(community: community, user: @auth_user)
 
-    render json: {}, status: :forbidden unless member
+    render json: {
+      success: false
+    },
+    status: :forbidden unless member
   end
 
   private
