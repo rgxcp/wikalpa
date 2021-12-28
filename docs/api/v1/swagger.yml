@@ -7,89 +7,12 @@ info:
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-security:
-  - BearerAuth: []
-tags:
-  - name: Auth
-    description: Endpoints related for authentication and authorization.
-components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-  schemas:
-    Token:
-      type: string
-      example: eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.GRKevXZcuSlwDfjKYXB_plUM4m5Pu4S_VgPsFj1bxrI
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        username:
-          type: string
-          example: john.doe
-        created_at:
-          type: string
-          example: "2021-12-12 12:12:12"
-        updated_at:
-          type: string
-          example: "2021-12-12 12:12:12"
-  responses:
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                example: false
-              message:
-                type: string
-                example: Not Found
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                example: false
-              message:
-                type: string
-                example: Unauthorized
-    UnprocessableEntity:
-      description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                example: false
-              message:
-                type: string
-                example: Unprocessable Entity
-              errors:
-                type: object
-                properties:
-                  attribute:
-                    type: array
-                    items:
-                      type: string
-                      example: error message
 paths:
   /auth/register:
     post:
       tags:
         - Auth
+      security: []
       summary: Register a new user.
       requestBody:
         required: true
@@ -138,6 +61,7 @@ paths:
     post:
       tags:
         - Auth
+      security: []
       summary: Login into an existing user.
       requestBody:
         required: true
@@ -180,6 +104,161 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+  /users/{id}:
+    put:
+      tags:
+        - User
+      summary: Update a user.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+                - password_confirmation
+              properties:
+                username:
+                  type: string
+                  example: john.doe
+                password:
+                  type: string
+                  example: super-strong-password
+                password_confirmation:
+                  type: string
+                  example: super-strong-password
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        $ref: "#/components/schemas/User"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+security:
+  - BearerAuth: []
+tags:
+  - name: Auth
+    description: Endpoints related for authentication and authorization.
+  - name: User
+    description: Endpoints related for user resources.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Identifier:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: integer
+        example: 1
+  schemas:
+    Token:
+      type: string
+      example: eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.GRKevXZcuSlwDfjKYXB_plUM4m5Pu4S_VgPsFj1bxrI
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        username:
+          type: string
+          example: john.doe
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Forbidden
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Not Found
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Unauthorized
+    UnprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Unprocessable Entity
+              errors:
+                type: object
+                properties:
+                  attribute:
+                    type: array
+                    items:
+                      type: string
+                      example: error message
 servers:
   - url: http://localhost:3000/api/v1
     description: Local server
