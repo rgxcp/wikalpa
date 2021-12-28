@@ -48,5 +48,15 @@ RSpec.describe Api::V1::UsersController, type: :request do
         expect(response).to have_http_status(:not_found)
       end
     end
+
+    context "when entity invalid" do
+      it "returns 422 status code" do
+        user = create(:user)
+        token = JsonWebToken.encode({ id: user.id })
+        entity = attributes_for(:user, :invalid)
+        patch api_v1_user_path(user), headers: { Authorization: "Bearer #{token}" }, params: { user: entity }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 end
