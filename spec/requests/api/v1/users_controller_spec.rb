@@ -34,6 +34,11 @@ RSpec.describe Api::V1::UsersController, type: :request do
         result = JSON.parse(response.body)
         expect(result["success"]).to be_falsey
       end
+
+      it "returns forbidden message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Forbidden")
+      end
     end
   end
 end

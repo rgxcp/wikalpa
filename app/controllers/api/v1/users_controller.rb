@@ -3,7 +3,8 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     render json: {
-      success: false
+      success: false,
+      message: "Forbidden"
     },
     status: :forbidden unless @auth_id == params[:id].to_i
   end
