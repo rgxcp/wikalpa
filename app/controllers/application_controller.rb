@@ -31,6 +31,14 @@ class ApplicationController < ActionController::API
     except: except
   end
 
+  def unauthorized_response
+    render json: {
+      success: false,
+      message: "Unauthorized"
+    },
+    status: :unauthorized
+  end
+
   def unprocessable_entity_response(errors:)
     render json: {
       success: false,
