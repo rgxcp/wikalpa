@@ -5,7 +5,10 @@ class Api::V1::CommunitiesController < ApplicationController
     community = Community.new(community_params)
 
     if community.save
-      render json: {}, status: :created
+      render json: {
+        success: true
+      },
+      status: :created
     else
       unprocessable_entity_response(errors: community.errors.messages)
     end
