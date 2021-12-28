@@ -1,5 +1,5 @@
 class Api::V1::CommunitiesController < ApplicationController
-  before_action :authenticate_request!, only: :create
+  before_action :authenticate_request!, only: [:create, :update]
 
   def create
     community = Community.new(community_params)
@@ -13,6 +13,9 @@ class Api::V1::CommunitiesController < ApplicationController
     else
       unprocessable_entity_response(errors: community.errors.messages)
     end
+  end
+
+  def update
   end
 
   private
