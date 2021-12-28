@@ -7,16 +7,13 @@ class Api::V1::AuthController < ApplicationController
     if user.save
       token = JsonWebToken.encode({ id: user.id })
 
-      render json: {
-        success: true,
-        message: "Created",
+      created_response(
         data: {
           user: user,
           token: token
-        }
-      },
-      status: :created,
-      except: :password_digest
+        },
+        except: :password_digest
+      )
     else
       render json: {
         success: false,
