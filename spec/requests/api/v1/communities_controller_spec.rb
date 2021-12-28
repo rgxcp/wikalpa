@@ -80,5 +80,13 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         expect(response).to have_http_status(:unauthorized)
       end
     end
+
+    context "when community not exists" do
+      it "returns 404 status code" do
+        token = JsonWebToken.encode({ id: 1 })
+        patch api_v1_community_path(0), headers: { Authorization: "Bearer #{token}" }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
   end
 end
