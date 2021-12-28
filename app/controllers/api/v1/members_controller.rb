@@ -15,5 +15,6 @@ class Api::V1::MembersController < ApplicationController
   end
 
   def leave
+    community = Community.find(params[:community_id])
   end
 end
