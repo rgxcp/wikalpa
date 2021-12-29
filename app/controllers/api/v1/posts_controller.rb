@@ -21,8 +21,9 @@ class Api::V1::PostsController < ApplicationController
   def update
     community = Community.find(params[:community_id])
     member = community.members.exists?(user: @auth_user)
+    return forbidden_response unless member
 
-    forbidden_response unless member
+    post = community.posts.find(params[:id])
   end
 
   private

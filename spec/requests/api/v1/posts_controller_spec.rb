@@ -141,5 +141,14 @@ RSpec.describe Api::V1::PostsController, type: :request do
         expect(result["message"]).to eq("Forbidden")
       end
     end
+
+    context "when post not exists" do
+      it "returns 404 status code" do
+        member = create(:member)
+        token = JsonWebToken.encode({ id: member.user.id })
+        patch api_v1_community_post_path(member.community, 0), headers: { Authorization: "Bearer #{token}" }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
   end
 end
