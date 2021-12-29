@@ -265,6 +265,40 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+  /communities/{community_id}/posts:
+    post:
+      tags:
+        - Post
+      summary: Create a new post.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCommunity"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      post:
+                        $ref: "#/components/schemas/Post"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /users/{id}:
     put:
       tags:
@@ -328,6 +362,8 @@ tags:
     description: Endpoints related for community resources.
   - name: Member
     description: Endpoints related for member resources.
+  - name: Post
+    description: Endpoints related for post resources.
   - name: User
     description: Endpoints related for user resources.
 components:
@@ -382,6 +418,27 @@ components:
         user_id:
           type: integer
           example: 1
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        community_id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        body:
+          type: string
+          example: just setting up my wklp
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
