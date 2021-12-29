@@ -40,5 +40,17 @@ RSpec.describe Api::V1::PostsController, type: :request do
         expect(result["message"]).to eq("Forbidden")
       end
     end
+
+    context "when entity invalid" do
+      it "returns 422 status code" do
+        member = create(:member)
+        token = JsonWebToken.encode({ id: member.user.id })
+        post = attributes_for(:post, :invalid)
+        post api_v1_community_posts_path(member.community), headers: { Authorization: "Bearer #{token}" }, params: {
+          post: post
+        }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 end
