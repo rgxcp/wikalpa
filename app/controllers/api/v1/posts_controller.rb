@@ -5,6 +5,9 @@ class Api::V1::PostsController < ApplicationController
     community = Community.find(params[:community_id])
     member = community.members.exists?(user: @auth_user)
 
-    render json: {}, status: :forbidden unless member
+    render json: {
+      success: false
+    },
+    status: :forbidden unless member
   end
 end
