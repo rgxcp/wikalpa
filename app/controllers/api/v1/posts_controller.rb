@@ -10,7 +10,10 @@ class Api::V1::PostsController < ApplicationController
     post.user = @auth_user
 
     if post.save
-      render json: {}, status: :created
+      render json: {
+        success: true
+      },
+      status: :created
     else
       unprocessable_entity_response(errors: post.errors.messages)
     end
