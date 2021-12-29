@@ -70,5 +70,17 @@ RSpec.describe Api::V1::PostsController, type: :request do
         expect(result["errors"].size).to be_positive
       end
     end
+
+    context "when entity valid" do
+      it "returns 201 status code" do
+        member = create(:member)
+        token = JsonWebToken.encode({ id: member.user.id })
+        post = attributes_for(:post)
+        post api_v1_community_posts_path(member.community), headers: { Authorization: "Bearer #{token}" }, params: {
+          post: post
+        }
+        expect(response).to have_http_status(:created)
+      end
+    end
   end
 end
