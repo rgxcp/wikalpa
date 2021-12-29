@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-  before_action :authenticate_request, only: :create
+  before_action :authenticate_request, only: [:create, :update]
 
   def create
     community = Community.find(params[:community_id])
@@ -16,6 +16,9 @@ class Api::V1::PostsController < ApplicationController
     else
       unprocessable_entity_response(errors: post.errors.messages)
     end
+  end
+
+  def update
   end
 
   private

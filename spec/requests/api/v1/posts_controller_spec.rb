@@ -101,4 +101,13 @@ RSpec.describe Api::V1::PostsController, type: :request do
       end
     end
   end
+
+  describe "PATCH /communities/:community_id/posts/:id" do
+    context "when user not logged in" do
+      it "returns 401 status code" do
+        patch api_v1_community_post_path(1, 1)
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+  end
 end

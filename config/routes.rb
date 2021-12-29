@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         post "/join", to: "members#join"
         delete "/leave", to: "members#leave"
 
-        resources :posts, only: :create
+        resources :posts, only: [:create, :update]
       end
       resources :users, only: :update
     end
