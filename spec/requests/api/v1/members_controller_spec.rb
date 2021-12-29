@@ -91,7 +91,7 @@ RSpec.describe Api::V1::MembersController, type: :request do
       end
     end
 
-    context "when auth user not a community member" do
+    context "when user not a community member" do
       it "returns 404 status code" do
         community = create(:community)
         user = create(:user)
@@ -101,7 +101,7 @@ RSpec.describe Api::V1::MembersController, type: :request do
       end
     end
 
-    context "when auth user a community member" do
+    context "when user a community member" do
       before do
         member = create(:member)
         token = JsonWebToken.encode({ id: member.user.id })

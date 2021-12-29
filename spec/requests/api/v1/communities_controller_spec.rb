@@ -90,7 +90,7 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
       end
     end
 
-    context "when auth user not a community member" do
+    context "when user not a community member" do
       before do
         community = create(:community)
         user = create(:user)
