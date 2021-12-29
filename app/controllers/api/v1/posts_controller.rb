@@ -12,7 +12,10 @@ class Api::V1::PostsController < ApplicationController
     if post.save
       render json: {
         success: true,
-        message: "Created"
+        message: "Created",
+        data: {
+          post: post
+        }
       },
       status: :created
     else

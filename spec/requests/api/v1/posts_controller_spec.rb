@@ -94,6 +94,11 @@ RSpec.describe Api::V1::PostsController, type: :request do
         result = JSON.parse(response.body)
         expect(result["message"]).to eq("Created")
       end
+
+      it "returns post data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["post"]).not_to be_empty
+      end
     end
   end
 end
