@@ -9,12 +9,7 @@ class Api::V1::PostsController < ApplicationController
     post = community.posts.build(post_params)
     post.user = @auth_user
 
-    render json: {
-      success: false,
-      message: "Unprocessable Entity",
-      errors: post.errors.messages
-    },
-    status: :unprocessable_entity unless post.save
+    unprocessable_entity_response(errors: post.errors.messages) unless post.save
   end
 
   private
