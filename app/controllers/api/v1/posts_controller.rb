@@ -11,7 +11,8 @@ class Api::V1::PostsController < ApplicationController
 
     render json: {
       success: false,
-      message: "Unprocessable Entity"
+      message: "Unprocessable Entity",
+      errors: post.errors.messages
     },
     status: :unprocessable_entity unless post.save
   end
