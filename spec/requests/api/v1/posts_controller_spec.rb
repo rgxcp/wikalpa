@@ -17,5 +17,15 @@ RSpec.describe Api::V1::PostsController, type: :request do
         expect(response).to have_http_status(:not_found)
       end
     end
+
+    context "when user not a community member" do
+      it "returns 403 status code" do
+        community = create(:community)
+        user = create(:user)
+        token = JsonWebToken.encode({ id: user.id })
+        post api_v1_community_posts_path(community), headers: { Authorization: "Bearer #{token}" }
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
   end
 end
