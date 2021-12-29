@@ -19,6 +19,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
+    community = Community.find(params[:community_id])
   end
 
   private
