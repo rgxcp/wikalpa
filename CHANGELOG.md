@@ -1,3 +1,28 @@
+# [1.9.0](https://github.com/rgxcp/wikalpa/compare/v1.8.0...v1.9.0) (2021-12-29)
+
+
+### Features
+
+* add has many 'Post' association on 'Community' ([a911f15](https://github.com/rgxcp/wikalpa/commit/a911f15ffa20240096a6f421da76744e21273664))
+* POST /communities/:id/posts returns 201 status code when entity valid ([1b42578](https://github.com/rgxcp/wikalpa/commit/1b425781bf59ebc897c87808fa786937aec31891))
+* POST /communities/:id/posts returns 401 status code when user not logged in ([e8c610b](https://github.com/rgxcp/wikalpa/commit/e8c610b6e283fdef463554838e875bf1a8c135fb))
+* POST /communities/:id/posts returns 403 status code when user not a community member ([5627334](https://github.com/rgxcp/wikalpa/commit/5627334a054785207fcccd6895331c8ca72a1f3f))
+* POST /communities/:id/posts returns 404 status code when community not exists ([f027da8](https://github.com/rgxcp/wikalpa/commit/f027da8016698ae63ab9385c02c486def715583f))
+* POST /communities/:id/posts returns 422 status code when entity invalid ([e6bad93](https://github.com/rgxcp/wikalpa/commit/e6bad938f9b0cd0c8ea21888b782311045b1da99))
+* POST /communities/:id/posts returns created message body when entity valid ([338762b](https://github.com/rgxcp/wikalpa/commit/338762bd4a91e9c5330ea58e6f89828e76cf9993))
+* POST /communities/:id/posts returns false success body when entity invalid ([dbd51e9](https://github.com/rgxcp/wikalpa/commit/dbd51e9df52cfdab9729871fc9c3dd5e08e8a900))
+* POST /communities/:id/posts returns false success body when user not a community member ([8e11a73](https://github.com/rgxcp/wikalpa/commit/8e11a738fe7bad26a3e583ff68724e7065b2997a))
+* POST /communities/:id/posts returns forbidden message body when user not a community member ([aa114ea](https://github.com/rgxcp/wikalpa/commit/aa114ea4fb52815c62b337451a7520cf476d2b58))
+* POST /communities/:id/posts returns post data when entity valid ([4c2ecfd](https://github.com/rgxcp/wikalpa/commit/4c2ecfddd940aadb7ac6d11adfaf93b243cc47b5))
+* POST /communities/:id/posts returns true success body when entity valid ([f977d61](https://github.com/rgxcp/wikalpa/commit/f977d61453f89aec07e4121562c6a4c6d5bc2d95))
+* POST /communities/:id/posts returns unprocessable entity message body when entity invalid ([64b080a](https://github.com/rgxcp/wikalpa/commit/64b080a466f2921eed179beb85204828ca290e58))
+* POST /communities/:id/posts returns validation errors when entity invalid ([60ef550](https://github.com/rgxcp/wikalpa/commit/60ef5506c663d4a22787ec113e41de2ae31f297f))
+
+
+### Performance Improvements
+
+* put repetitive finding community into before action method ([5a3d925](https://github.com/rgxcp/wikalpa/commit/5a3d9256102b9776f21fe140d1b459d9d1da84e5))
+
 # [1.8.0](https://github.com/rgxcp/wikalpa/compare/v1.7.0...v1.8.0) (2021-12-28)
 
 
