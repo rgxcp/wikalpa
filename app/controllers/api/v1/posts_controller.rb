@@ -10,7 +10,8 @@ class Api::V1::PostsController < ApplicationController
     post.user = @auth_user
 
     render json: {
-      success: false
+      success: false,
+      message: "Unprocessable Entity"
     },
     status: :unprocessable_entity unless post.save
   end
