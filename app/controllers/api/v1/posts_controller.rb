@@ -25,7 +25,11 @@ class Api::V1::PostsController < ApplicationController
 
     return forbidden_response unless @auth_user.id == post.user_id
 
-    unprocessable_entity_response(errors: post.errors.messages) unless post.update(post_params)
+    if post.update(post_params)
+      ok_response(data: { post: post })
+    else
+      unprocessable_entity_response(errors: post.errors.messages)
+    end
   end
 
   private
