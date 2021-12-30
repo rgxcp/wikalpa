@@ -23,7 +23,9 @@ class Api::V1::PostsController < ApplicationController
 
     post = community.posts.find(params[:id])
 
-    forbidden_response unless @auth_user.id == post.user_id
+    return forbidden_response unless @auth_user.id == post.user_id
+
+    unprocessable_entity_response(errors: post.errors.messages) unless post.update(post_params)
   end
 
   private
