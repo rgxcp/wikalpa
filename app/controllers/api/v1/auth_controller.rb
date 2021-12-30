@@ -6,14 +6,7 @@ class Api::V1::AuthController < ApplicationController
 
     if user.save
       token = JsonWebToken.encode({ id: user.id })
-
-      created_response(
-        data: {
-          user: user,
-          token: token
-        },
-        except: :password_digest
-      )
+      created_response(data: { user: user, token: token }, except: :password_digest)
     else
       unprocessable_entity_response(errors: user.errors.messages)
     end
@@ -24,14 +17,7 @@ class Api::V1::AuthController < ApplicationController
 
     if user.authenticate(params[:password])
       token = JsonWebToken.encode({ id: user.id })
-
-      ok_response(
-        data: {
-          user: user,
-          token: token
-        },
-        except: :password_digest
-      )
+      ok_response(data: { user: user, token: token }, except: :password_digest)
     else
       unauthorized_response
     end
@@ -40,10 +26,6 @@ class Api::V1::AuthController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(
-      :username,
-      :password,
-      :password_confirmation
-    )
+    params.require(:user).permit(:username, :password, :password_confirmation)
   end
 end

@@ -6,9 +6,7 @@ class Api::V1::MembersController < ApplicationController
     member = @community.members.build(user: @auth_user)
 
     if member.save
-      created_response(data: {
-        member: member
-      })
+      created_response(data: { member: member })
     else
       unprocessable_entity_response(errors: member.errors.messages)
     end
@@ -18,9 +16,7 @@ class Api::V1::MembersController < ApplicationController
     member = @community.members.find_by!(user: @auth_user)
     member.destroy
 
-    ok_response(data: {
-      member: member
-    })
+    ok_response(data: { member: member })
   end
 
   private

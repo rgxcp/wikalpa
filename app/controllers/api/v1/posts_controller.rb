@@ -3,16 +3,14 @@ class Api::V1::PostsController < ApplicationController
 
   def create
     community = Community.find(params[:community_id])
-    member = community.members.exists?(user: @auth_user)
-    return forbidden_response unless member
+
+    return forbidden_response unless community.members.exists?(user: @auth_user)
 
     post = community.posts.build(post_params)
     post.user = @auth_user
 
     if post.save
-      created_response(data: {
-        post: post
-      })
+      created_response(data: { post: post })
     else
       unprocessable_entity_response(errors: post.errors.messages)
     end
@@ -20,8 +18,8 @@ class Api::V1::PostsController < ApplicationController
 
   def update
     community = Community.find(params[:community_id])
-    member = community.members.exists?(user: @auth_user)
-    return forbidden_response unless member
+
+    return forbidden_response unless community.members.exists?(user: @auth_user)
 
     post = community.posts.find(params[:id])
   end
