@@ -1,3 +1,15 @@
+# [1.10.0](https://github.com/rgxcp/wikalpa/compare/v1.9.0...v1.10.0) (2021-12-30)
+
+
+### Features
+
+* PATCH /communities/:id/posts/:id returns 401 status code when user not logged in ([55db4cb](https://github.com/rgxcp/wikalpa/commit/55db4cb7c5cfb10f1f41288000462f205d78a8c8))
+* PATCH /communities/:id/posts/:id returns 403 status code when user not a community member ([7a53456](https://github.com/rgxcp/wikalpa/commit/7a53456f37dbc4edd26c63a5510b9b71a14ea6d5))
+* PATCH /communities/:id/posts/:id returns 404 status code when community not exists ([ad9d4ef](https://github.com/rgxcp/wikalpa/commit/ad9d4ef509968b4210fea4ba6e6ac2a7d2cf8c3e))
+* PATCH /communities/:id/posts/:id returns 404 status code when post not exists ([79683d0](https://github.com/rgxcp/wikalpa/commit/79683d0f664924365ef622a5a075d83b6a0df94e))
+* PATCH /communities/:id/posts/:id returns false success body when user not a community member ([1595048](https://github.com/rgxcp/wikalpa/commit/1595048962c14b7816134fa1235b2efdd6475f6b))
+* PATCH /communities/:id/posts/:id returns forbidden message body when user not a community member ([6e9b435](https://github.com/rgxcp/wikalpa/commit/6e9b435ffedff5aa36a3d8ec9269ea123fe38caa))
+
 # [1.9.0](https://github.com/rgxcp/wikalpa/compare/v1.8.0...v1.9.0) (2021-12-29)
 
 
