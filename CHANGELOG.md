@@ -1,3 +1,12 @@
+# [1.11.0](https://github.com/rgxcp/wikalpa/compare/v1.10.0...v1.11.0) (2021-12-30)
+
+
+### Features
+
+* PATCH /communities/:id/posts/:id returns 200 status code when entity valid ([f24b275](https://github.com/rgxcp/wikalpa/commit/f24b275c964bb6a67675a9557420ae5963e09f54))
+* PATCH /communities/:id/posts/:id returns 403 status code when editing someone else post ([c8fe52e](https://github.com/rgxcp/wikalpa/commit/c8fe52e2f59f6415138c4e627bf791997a4ab5fc))
+* PATCH /communities/:id/posts/:id returns 422 status code when entity invalid ([abc31cf](https://github.com/rgxcp/wikalpa/commit/abc31cf4fe7cb418fdf9a4d8e1cc871718cff475))
+
 # [1.10.0](https://github.com/rgxcp/wikalpa/compare/v1.9.0...v1.10.0) (2021-12-30)
 
 
