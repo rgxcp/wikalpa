@@ -3,7 +3,9 @@
 .dockerignore
 .gitattributes
 .gitignore
+.releaserc
 .rspec
+CHANGELOG.md
 docker-compose.yml
 Dockerfile
 LICENSE
