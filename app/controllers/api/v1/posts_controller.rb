@@ -22,6 +22,8 @@ class Api::V1::PostsController < ApplicationController
     return forbidden_response unless community.members.exists?(user: @auth_user)
 
     post = community.posts.find(params[:id])
+
+    forbidden_response unless @auth_user.id == post.user_id
   end
 
   private

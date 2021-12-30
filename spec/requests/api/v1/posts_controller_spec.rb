@@ -211,5 +211,32 @@ RSpec.describe Api::V1::PostsController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when editing someone else post" do
+      before do
+        community = create(:community)
+        user1 = create(:user)
+        user2 = create(:user)
+        create(:member, community: community, user: user1)
+        create(:member, community: community, user: user2)
+        post = create(:post, community: community, user: user2)
+        token = JsonWebToken.encode({ id: user1.id })
+        patch api_v1_community_post_path(community, post), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 403 status code" do
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns forbidden message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Forbidden")
+      end
+    end
   end
 end
