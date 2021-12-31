@@ -1,3 +1,14 @@
+# [2.2.0](https://github.com/rgxcp/wikalpa/compare/v2.1.0...v2.2.0) (2021-12-31)
+
+
+### Features
+
+* PATCH /comments/:id returns 200 status code when entity valid ([a2927f5](https://github.com/rgxcp/wikalpa/commit/a2927f5528ce5147d2289e2b73cea8cf07643a2f))
+* PATCH /comments/:id returns 401 status code when user not logged in ([4e183cd](https://github.com/rgxcp/wikalpa/commit/4e183cda557cd91d0dbf2502c850c5734a4703d1))
+* PATCH /comments/:id returns 403 status code when editing someone else comment ([45f21f4](https://github.com/rgxcp/wikalpa/commit/45f21f40091c339d59e5c48a5bba36cd0cbe87d0))
+* PATCH /comments/:id returns 404 status code when comment not exists ([5445dbe](https://github.com/rgxcp/wikalpa/commit/5445dbec470e94f8bac5605f325f28c3f1c6dea4))
+* PATCH /comments/:id returns 422 status code when entity invalid ([88e8852](https://github.com/rgxcp/wikalpa/commit/88e88525fb7582ae25f6055b9b60cf802bbebfdf))
+
 # [2.1.0](https://github.com/rgxcp/wikalpa/compare/v2.0.0...v2.1.0) (2021-12-31)
 
 
