@@ -333,6 +333,38 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /posts/{post_id}/comments:
+    post:
+      tags:
+        - Comment
+      summary: Create a new comment.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierPost"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      comment:
+                        $ref: "#/components/schemas/Comment"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /users/{id}:
     put:
       tags:
@@ -398,6 +430,8 @@ tags:
     description: Endpoints related for member resources.
   - name: Post
     description: Endpoints related for post resources.
+  - name: Comment
+    description: Endpoints related for comment resources.
   - name: User
     description: Endpoints related for user resources.
 components:
@@ -421,7 +455,35 @@ components:
       schema:
         type: integer
         example: 1
+    IdentifierPost:
+      in: path
+      name: post_id
+      required: true
+      schema:
+        type: integer
+        example: 1
   schemas:
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        post_id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        body:
+          type: string
+          example: just setting up my wklp
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
     Community:
       type: object
       properties:
