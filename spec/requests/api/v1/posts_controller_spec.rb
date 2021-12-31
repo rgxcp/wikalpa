@@ -126,9 +126,9 @@ RSpec.describe Api::V1::PostsController, type: :request do
     end
   end
 
-  describe "PATCH /communities/:community_id/posts/:id" do
+  describe "PATCH /posts/:id" do
     context "when user not logged in" do
-      before { patch api_v1_community_post_path(1, 1) }
+      before { patch api_v1_post_path(1) }
 
       it "returns 401 status code" do
         expect(response).to have_http_status(:unauthorized)
@@ -145,56 +145,11 @@ RSpec.describe Api::V1::PostsController, type: :request do
       end
     end
 
-    context "when community not exists" do
-      before do
-        user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_community_post_path(0, 1), headers: { Authorization: "Bearer #{token}" }
-      end
-
-      it "returns 404 status code" do
-        expect(response).to have_http_status(:not_found)
-      end
-
-      it "returns false success body" do
-        result = JSON.parse(response.body)
-        expect(result["success"]).to be false
-      end
-
-      it "returns not found message body" do
-        result = JSON.parse(response.body)
-        expect(result["message"]).to eq("Not Found")
-      end
-    end
-
-    context "when user not a community member" do
-      before do
-        community = create(:community)
-        user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_community_post_path(community, 1), headers: { Authorization: "Bearer #{token}" }
-      end
-
-      it "returns 403 status code" do
-        expect(response).to have_http_status(:forbidden)
-      end
-
-      it "returns false success body" do
-        result = JSON.parse(response.body)
-        expect(result["success"]).to be false
-      end
-
-      it "returns forbidden message body" do
-        result = JSON.parse(response.body)
-        expect(result["message"]).to eq("Forbidden")
-      end
-    end
-
     context "when post not exists" do
       before do
-        member = create(:member)
-        token = JsonWebToken.encode({ id: member.user.id })
-        patch api_v1_community_post_path(member.community, 0), headers: { Authorization: "Bearer #{token}" }
+        user = create(:user)
+        token = JsonWebToken.encode({ id: user.id })
+        patch api_v1_post_path(0), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 404 status code" do
@@ -217,11 +172,9 @@ RSpec.describe Api::V1::PostsController, type: :request do
         community = create(:community)
         user1 = create(:user)
         user2 = create(:user)
-        create(:member, community: community, user: user1)
-        create(:member, community: community, user: user2)
         post = create(:post, community: community, user: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        patch api_v1_community_post_path(community, post), headers: { Authorization: "Bearer #{token}" }
+        patch api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 403 status code" do
@@ -243,11 +196,10 @@ RSpec.describe Api::V1::PostsController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
         post = create(:post, community: community, user: user)
         token = JsonWebToken.encode({ id: user.id })
         entity = attributes_for(:post, :invalid)
-        patch api_v1_community_post_path(community, post), headers: { Authorization: "Bearer #{token}" }, params: {
+        patch api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }, params: {
           post: entity
         }
       end
@@ -276,11 +228,10 @@ RSpec.describe Api::V1::PostsController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
         post = create(:post, community: community, user: user)
         token = JsonWebToken.encode({ id: user.id })
         entity = attributes_for(:post)
-        patch api_v1_community_post_path(community, post), headers: { Authorization: "Bearer #{token}" }, params: {
+        patch api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }, params: {
           post: entity
         }
       end
