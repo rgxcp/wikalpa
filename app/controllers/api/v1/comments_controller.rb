@@ -19,7 +19,11 @@ class Api::V1::CommentsController < ApplicationController
 
     return forbidden_response unless @auth_user.id == comment.user_id
 
-    unprocessable_entity_response(errors: comment.errors.messages) unless comment.update(comment_params)
+    if comment.update(comment_params)
+      ok_response(data: { comment: comment })
+    else
+      unprocessable_entity_response(errors: comment.errors.messages)
+    end
   end
 
   private
