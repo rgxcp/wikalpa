@@ -1,3 +1,14 @@
+# [2.1.0](https://github.com/rgxcp/wikalpa/compare/v2.0.0...v2.1.0) (2021-12-31)
+
+
+### Features
+
+* add has many 'Comment' association on 'Post' ([9a3fe1e](https://github.com/rgxcp/wikalpa/commit/9a3fe1eac0833507893ae16240f4930abf922130))
+* POST /posts/:id/comments returns 201 status code when entity valid ([45f0541](https://github.com/rgxcp/wikalpa/commit/45f05417d34bfda7011fe7a28d102203eb31d110))
+* POST /posts/:id/comments returns 401 status code when user not logged in ([1df33e9](https://github.com/rgxcp/wikalpa/commit/1df33e9006d0591ff7dfd930d92e8ae8772a6b4e))
+* POST /posts/:id/comments returns 404 status code when post not exists ([28275ab](https://github.com/rgxcp/wikalpa/commit/28275ab7a76e8b00e9682e6bd4a15f97245f5814))
+* POST /posts/:id/comments returns 422 status code when entity invalid ([c0b28cb](https://github.com/rgxcp/wikalpa/commit/c0b28cb0e3f9c95a79cd4d00a1434a9355f2a522))
+
 # [2.0.0](https://github.com/rgxcp/wikalpa/compare/v1.11.0...v2.0.0) (2021-12-31)
 
 
