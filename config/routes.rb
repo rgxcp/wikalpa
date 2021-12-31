@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post "/auth/login", to: "auth#login"
       post "/auth/register", to: "auth#register"
 
+      resources :comments, only: :update
       resources :communities, only: [:create, :update] do
         post "/join", to: "members#join"
         delete "/leave", to: "members#leave"
