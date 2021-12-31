@@ -3,7 +3,6 @@ class Api::V1::PostsController < ApplicationController
 
   def create
     community = Community.find(params[:community_id])
-
     return forbidden_response unless community.members.exists?(user: @auth_user)
 
     post = community.posts.build(post_params)
