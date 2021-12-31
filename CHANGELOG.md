@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/rgxcp/wikalpa/compare/v1.11.0...v2.0.0) (2021-12-31)
+
+
+### Performance Improvements
+
+* change path for edit post to PATCH /posts/:id ([9ca81c4](https://github.com/rgxcp/wikalpa/commit/9ca81c473e15cdfd8475374e28177df0c2cb68bc))
+
+
+### BREAKING CHANGES
+
+* This changes is to prevent cumbersome logic for
+editing a post
+
+Signed-off-by: Rommy Gustiawan <rgcppp@gmail.com>
+
 # [1.11.0](https://github.com/rgxcp/wikalpa/compare/v1.10.0...v1.11.0) (2021-12-30)
 
 
