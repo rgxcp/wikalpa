@@ -7,7 +7,11 @@ class Api::V1::CommentsController < ApplicationController
     comment = post.comments.build(comment_params)
     comment.user = @auth_user
 
-    unprocessable_entity_response(errors: comment.errors.messages) unless comment.save
+    if comment.save
+      created_response(data: { comment: comment })
+    else
+      unprocessable_entity_response(errors: comment.errors.messages)
+    end
   end
 
   private
