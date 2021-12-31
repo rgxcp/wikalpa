@@ -15,6 +15,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def update
+    comment = Comment.find(params[:id])
   end
 
   private
