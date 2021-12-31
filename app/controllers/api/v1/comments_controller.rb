@@ -17,7 +17,9 @@ class Api::V1::CommentsController < ApplicationController
   def update
     comment = Comment.find(params[:id])
 
-    forbidden_response unless @auth_user.id == comment.user_id
+    return forbidden_response unless @auth_user.id == comment.user_id
+
+    unprocessable_entity_response(errors: comment.errors.messages) unless comment.update(comment_params)
   end
 
   private
