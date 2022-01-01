@@ -17,5 +17,8 @@ class Api::V1::BuddiesController < ApplicationController
     user = User.find(params[:user_id])
 
     buddy = @auth_user.buddies.find_by!(buddy: user)
+    buddy.destroy
+
+    ok_response(data: { buddy: buddy })
   end
 end
