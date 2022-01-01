@@ -7,7 +7,11 @@ class Api::V1::RepliesController < ApplicationController
     reply = comment.replies.build(reply_params)
     reply.user = @auth_user
 
-    unprocessable_entity_response(errors: reply.errors.messages) unless reply.save
+    if reply.save
+      created_response(data: { reply: reply })
+    else
+      unprocessable_entity_response(errors: reply.errors.messages)
+    end
   end
 
   private
