@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :replies, only: :update
       resources :users, only: :update do
         post "/follow", to: "buddies#follow"
+        delete "/unfollow", to: "buddies#unfollow"
       end
     end
   end
