@@ -399,6 +399,38 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /comments/{comment_id}/replies:
+    post:
+      tags:
+        - Reply
+      summary: Create a new reply.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      reply:
+                        $ref: "#/components/schemas/Reply"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /users/{id}:
     put:
       tags:
@@ -466,6 +498,8 @@ tags:
     description: Endpoints related for post resources.
   - name: Comment
     description: Endpoints related for comment resources.
+  - name: Reply
+    description: Endpoints related for replies resources.
   - name: User
     description: Endpoints related for user resources.
 components:
@@ -478,6 +512,13 @@ components:
     Identifier:
       in: path
       name: id
+      required: true
+      schema:
+        type: integer
+        example: 1
+    IdentifierComment:
+      in: path
+      name: comment_id
       required: true
       schema:
         type: integer
@@ -561,6 +602,27 @@ components:
           type: integer
           example: 1
         community_id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        body:
+          type: string
+          example: just setting up my wklp
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+    Reply:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        comment_id:
           type: integer
           example: 1
         user_id:
