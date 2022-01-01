@@ -1,3 +1,18 @@
+# [2.6.0](https://github.com/rgxcp/wikalpa/compare/v2.5.0...v2.6.0) (2022-01-01)
+
+
+### Features
+
+* DELETE /users/:id/unfollow returns 200 status code when user a buddy ([5dd8fa0](https://github.com/rgxcp/wikalpa/commit/5dd8fa0a6e5978aed3ab0ce8764ca5a00a6392a7))
+* DELETE /users/:id/unfollow returns 401 status code when user not logged in ([eae60d7](https://github.com/rgxcp/wikalpa/commit/eae60d7b0f93e80b69ff0b0e4e25b0f40354fd2b))
+* DELETE /users/:id/unfollow returns 404 status code when user not a buddy ([27b8e0d](https://github.com/rgxcp/wikalpa/commit/27b8e0d89a843cd070fac139ccd33f607a7875c3))
+* DELETE /users/:id/unfollow returns 404 status code when user not exists ([caf889c](https://github.com/rgxcp/wikalpa/commit/caf889cbc32b6d01118eece3b73bf1dd6e0d97f5))
+
+
+### Performance Improvements
+
+* put repetitive finding user into before action method ([3788024](https://github.com/rgxcp/wikalpa/commit/3788024c7faefa426f3421b1261a3b4499897317))
+
 # [2.5.0](https://github.com/rgxcp/wikalpa/compare/v2.4.0...v2.5.0) (2022-01-01)
 
 
