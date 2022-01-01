@@ -41,5 +41,32 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when entity invalid" do
+      before do
+        user = create(:user)
+        token = JsonWebToken.encode({ id: user.id })
+        post api_v1_user_follow_path(user), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 422 status code" do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns unprocessable entity message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Unprocessable Entity")
+      end
+
+      it "returns validation errors" do
+        result = JSON.parse(response.body)
+        expect(result["errors"].size).to be_positive
+      end
+    end
   end
 end
