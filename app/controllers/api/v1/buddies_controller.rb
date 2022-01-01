@@ -6,6 +6,10 @@ class Api::V1::BuddiesController < ApplicationController
 
     buddy = @auth_user.buddies.build(buddy: user)
 
-    unprocessable_entity_response(errors: buddy.errors.messages) unless buddy.save
+    if buddy.save
+      created_response(data: { buddy: buddy })
+    else
+      unprocessable_entity_response(errors: buddy.errors.messages)
+    end
   end
 end
