@@ -1,5 +1,5 @@
 class Api::V1::RepliesController < ApplicationController
-  before_action :authenticate_request, only: :create
+  before_action :authenticate_request, only: [:create, :update]
 
   def create
     comment = Comment.find(params[:comment_id])
@@ -12,6 +12,9 @@ class Api::V1::RepliesController < ApplicationController
     else
       unprocessable_entity_response(errors: reply.errors.messages)
     end
+  end
+
+  def update
   end
 
   private

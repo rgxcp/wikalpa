@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :posts, only: :update do
         resources :comments, only: :create
       end
+      resources :replies, only: :update
       resources :users, only: :update
     end
   end
