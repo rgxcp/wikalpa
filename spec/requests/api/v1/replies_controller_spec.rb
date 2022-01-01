@@ -176,5 +176,39 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         expect(result["message"]).to eq("Forbidden")
       end
     end
+
+    context "when entity invalid" do
+      before do
+        community = create(:community)
+        user = create(:user)
+        post = create(:post, community: community, user: user)
+        comment = create(:comment, post: post, user: user)
+        reply = create(:reply, comment: comment, user: user)
+        token = JsonWebToken.encode({ id: user.id })
+        entity = attributes_for(:reply, :invalid)
+        patch api_v1_reply_path(reply), headers: { Authorization: "Bearer #{token}" }, params: {
+          reply: entity
+        }
+      end
+
+      it "returns 422 status code" do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns unprocessable entity message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Unprocessable Entity")
+      end
+
+      it "returns validation errors" do
+        result = JSON.parse(response.body)
+        expect(result["errors"].size).to be_positive
+      end
+    end
   end
 end
