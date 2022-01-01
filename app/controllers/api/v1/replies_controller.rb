@@ -18,7 +18,11 @@ class Api::V1::RepliesController < ApplicationController
     reply = Reply.find(params[:id])
     return forbidden_response unless @auth_user.id == reply.user_id
 
-    unprocessable_entity_response(errors: reply.errors.messages) unless reply.update(reply_params)
+    if reply.update(reply_params)
+      ok_response(data: { reply: reply })
+    else
+      unprocessable_entity_response(errors: reply.errors.messages)
+    end
   end
 
   private

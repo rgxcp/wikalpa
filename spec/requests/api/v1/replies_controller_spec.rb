@@ -210,5 +210,39 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         expect(result["errors"].size).to be_positive
       end
     end
+
+    context "when entity valid" do
+      before do
+        community = create(:community)
+        user = create(:user)
+        post = create(:post, community: community, user: user)
+        comment = create(:comment, post: post, user: user)
+        reply = create(:reply, comment: comment, user: user)
+        token = JsonWebToken.encode({ id: user.id })
+        entity = attributes_for(:reply)
+        patch api_v1_reply_path(reply), headers: { Authorization: "Bearer #{token}" }, params: {
+          reply: entity
+        }
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be true
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns reply data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["reply"]).not_to be_empty
+      end
+    end
   end
 end
