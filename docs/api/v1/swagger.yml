@@ -609,6 +609,38 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /users/{user_id}/follow:
+    post:
+      tags:
+        - Buddy
+      summary: Follow a user.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      buddy:
+                        $ref: "#/components/schemas/Buddy"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
 security:
   - BearerAuth: []
 tags:
@@ -626,6 +658,8 @@ tags:
     description: Endpoints related for replies resources.
   - name: User
     description: Endpoints related for user resources.
+  - name: Buddy
+    description: Endpoints related for buddy resources.
 components:
   securitySchemes:
     BearerAuth:
@@ -661,7 +695,32 @@ components:
       schema:
         type: integer
         example: 1
+    IdentifierUser:
+      in: path
+      name: user_id
+      required: true
+      schema:
+        type: integer
+        example: 1
   schemas:
+    Buddy:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        buddy_id:
+          type: integer
+          example: 1
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
     Comment:
       type: object
       properties:
