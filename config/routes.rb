@@ -18,7 +18,9 @@ Rails.application.routes.draw do
         resources :comments, only: :create
       end
       resources :replies, only: :update
-      resources :users, only: :update
+      resources :users, only: :update do
+        post "/follow", to: "buddies#follow"
+      end
     end
   end
 end
