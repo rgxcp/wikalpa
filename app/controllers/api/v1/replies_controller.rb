@@ -15,6 +15,7 @@ class Api::V1::RepliesController < ApplicationController
   end
 
   def update
+    reply = Reply.find(params[:id])
   end
 
   private
