@@ -1,10 +1,9 @@
 class Api::V1::BuddiesController < ApplicationController
   before_action :authenticate_request, only: [:follow, :unfollow]
+  before_action :set_user, only: [:follow, :unfollow]
 
   def follow
-    user = User.find(params[:user_id])
-
-    buddy = @auth_user.buddies.build(buddy: user)
+    buddy = @auth_user.buddies.build(buddy: @user)
 
     if buddy.save
       created_response(data: { buddy: buddy })
@@ -14,11 +13,15 @@ class Api::V1::BuddiesController < ApplicationController
   end
 
   def unfollow
-    user = User.find(params[:user_id])
-
-    buddy = @auth_user.buddies.find_by!(buddy: user)
+    buddy = @auth_user.buddies.find_by!(buddy: @user)
     buddy.destroy
 
     ok_response(data: { buddy: buddy })
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end
