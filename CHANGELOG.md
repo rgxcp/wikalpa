@@ -1,3 +1,14 @@
+# [2.5.0](https://github.com/rgxcp/wikalpa/compare/v2.4.0...v2.5.0) (2022-01-01)
+
+
+### Features
+
+* add has many 'Buddy' association on 'User' ([d425c2e](https://github.com/rgxcp/wikalpa/commit/d425c2e53096290af90d71d182e6f5f07f50e992))
+* POST /users/:id/follow returns 201 status code when entity valid ([45d6a87](https://github.com/rgxcp/wikalpa/commit/45d6a87114ce3c952789f5ef700b8d03ef9f368a))
+* POST /users/:id/follow returns 401 status code when user not logged in ([82dc14f](https://github.com/rgxcp/wikalpa/commit/82dc14f9039588b15464a83309cbcc8e4ce73e63))
+* POST /users/:id/follow returns 404 status code when user not exists ([39ee13b](https://github.com/rgxcp/wikalpa/commit/39ee13bd0aa10a70f2c461d2c8d47421e4ba8235))
+* POST /users/:id/follow returns 422 status code when entity invalid ([ea53576](https://github.com/rgxcp/wikalpa/commit/ea53576efbb562f27448c8f5bfdc806237027cfb))
+
 # [2.4.0](https://github.com/rgxcp/wikalpa/compare/v2.3.0...v2.4.0) (2022-01-01)
 
 
