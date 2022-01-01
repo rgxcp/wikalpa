@@ -15,5 +15,7 @@ class Api::V1::BuddiesController < ApplicationController
 
   def unfollow
     user = User.find(params[:user_id])
+
+    buddy = @auth_user.buddies.find_by!(buddy: user)
   end
 end
