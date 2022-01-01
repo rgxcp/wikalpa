@@ -272,6 +272,21 @@ paths:
       summary: Create a new post.
       parameters:
         - $ref: "#/components/parameters/IdentifierCommunity"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - post
+              properties:
+                post:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+                      example: just setting up my wklp
       responses:
         "201":
           description: Created
@@ -306,6 +321,21 @@ paths:
       summary: Update a post.
       parameters:
         - $ref: "#/components/parameters/Identifier"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - post
+              properties:
+                post:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+                      example: just setting up my wklp
       responses:
         "200":
           description: OK
@@ -340,6 +370,21 @@ paths:
       summary: Create a new comment.
       parameters:
         - $ref: "#/components/parameters/IdentifierPost"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - comment
+              properties:
+                comment:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+                      example: just setting up my wklp
       responses:
         "201":
           description: Created
@@ -372,6 +417,21 @@ paths:
       summary: Update a comment.
       parameters:
         - $ref: "#/components/parameters/Identifier"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - comment
+              properties:
+                comment:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+                      example: just setting up my wklp
       responses:
         "200":
           description: OK
@@ -406,6 +466,21 @@ paths:
       summary: Create a new reply.
       parameters:
         - $ref: "#/components/parameters/IdentifierComment"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - reply
+              properties:
+                reply:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+                      example: just setting up my wklp
       responses:
         "201":
           description: Created
@@ -427,6 +502,55 @@ paths:
                         $ref: "#/components/schemas/Reply"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /replies/{id}:
+    put:
+      tags:
+        - Reply
+      summary: Update a reply.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - reply
+              properties:
+                reply:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+                      example: just setting up my wklp
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      reply:
+                        $ref: "#/components/schemas/Reply"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
