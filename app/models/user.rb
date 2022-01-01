@@ -3,6 +3,8 @@ require "regex"
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :buddies
+
   validate :password_equality
   validates :username, format: { with: REGEX::NAME }
   validates :username, length: { in: 5..15 }
