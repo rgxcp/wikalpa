@@ -3,7 +3,7 @@ class Api::V1::BuddiesController < ApplicationController
   before_action :set_user, only: [:follow, :unfollow]
 
   def follow
-    buddy = @auth_user.buddies.build(buddy: @user)
+    buddy = @auth_user.buddies.new(buddy: @user)
 
     if buddy.save
       created_response(data: { buddy: buddy })

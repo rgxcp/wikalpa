@@ -3,7 +3,7 @@ class Api::V1::MembersController < ApplicationController
   before_action :set_community, only: [:join, :leave]
 
   def join
-    member = @community.members.build(user: @auth_user)
+    member = @community.members.new(user: @auth_user)
 
     if member.save
       created_response(data: { member: member })

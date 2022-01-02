@@ -4,7 +4,7 @@ class Api::V1::CommentsController < ApplicationController
   def create
     post = Post.find(params[:post_id])
 
-    comment = post.comments.build(comment_params)
+    comment = post.comments.new(comment_params)
     comment.user = @auth_user
 
     if comment.save
