@@ -4,7 +4,7 @@ class Api::V1::RepliesController < ApplicationController
   def create
     comment = Comment.find(params[:comment_id])
 
-    reply = comment.replies.new(reply_params)
+    reply = comment.replies.build(reply_params)
     reply.user = @auth_user
 
     if reply.save

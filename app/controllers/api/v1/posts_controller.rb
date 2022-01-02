@@ -5,7 +5,7 @@ class Api::V1::PostsController < ApplicationController
     community = Community.find(params[:community_id])
     return forbidden_response unless community.members.exists?(user: @auth_user)
 
-    post = community.posts.new(post_params)
+    post = community.posts.build(post_params)
     post.user = @auth_user
 
     if post.save
