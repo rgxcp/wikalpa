@@ -47,8 +47,8 @@ RSpec.describe Api::V1::CommentsController, type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         comment = attributes_for(:comment, :invalid)
+        token = JsonWebToken.encode({ id: user.id })
         post api_v1_post_comments_path(post), headers: { Authorization: "Bearer #{token}" }, params: {
           comment: comment
         }
@@ -79,8 +79,8 @@ RSpec.describe Api::V1::CommentsController, type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         comment = attributes_for(:comment)
+        token = JsonWebToken.encode({ id: user.id })
         post api_v1_post_comments_path(post), headers: { Authorization: "Bearer #{token}" }, params: {
           comment: comment
         }
@@ -180,8 +180,8 @@ RSpec.describe Api::V1::CommentsController, type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         entity = attributes_for(:comment, :invalid)
+        token = JsonWebToken.encode({ id: user.id })
         patch api_v1_comment_path(comment), headers: { Authorization: "Bearer #{token}" }, params: {
           comment: entity
         }
@@ -213,8 +213,8 @@ RSpec.describe Api::V1::CommentsController, type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         entity = attributes_for(:comment)
+        token = JsonWebToken.encode({ id: user.id })
         patch api_v1_comment_path(comment), headers: { Authorization: "Bearer #{token}" }, params: {
           comment: entity
         }

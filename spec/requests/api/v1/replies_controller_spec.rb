@@ -48,8 +48,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         reply = attributes_for(:reply, :invalid)
+        token = JsonWebToken.encode({ id: user.id })
         post api_v1_comment_replies_path(comment), headers: { Authorization: "Bearer #{token}" }, params: {
           reply: reply
         }
@@ -81,8 +81,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         reply = attributes_for(:reply)
+        token = JsonWebToken.encode({ id: user.id })
         post api_v1_comment_replies_path(comment), headers: { Authorization: "Bearer #{token}" }, params: {
           reply: reply
         }
@@ -184,8 +184,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         reply = create(:reply, comment: comment, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         entity = attributes_for(:reply, :invalid)
+        token = JsonWebToken.encode({ id: user.id })
         patch api_v1_reply_path(reply), headers: { Authorization: "Bearer #{token}" }, params: {
           reply: entity
         }
@@ -218,8 +218,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         reply = create(:reply, comment: comment, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         entity = attributes_for(:reply)
+        token = JsonWebToken.encode({ id: user.id })
         patch api_v1_reply_path(reply), headers: { Authorization: "Bearer #{token}" }, params: {
           reply: entity
         }

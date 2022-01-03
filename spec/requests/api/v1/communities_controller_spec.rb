@@ -23,8 +23,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
     context "when entity invalid" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
         community = attributes_for(:community, :invalid)
+        token = JsonWebToken.encode({ id: user.id })
         post api_v1_communities_path, headers: { Authorization: "Bearer #{token}" }, params: { community: community }
       end
 
@@ -51,8 +51,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
     context "when entity valid" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
         community = attributes_for(:community)
+        token = JsonWebToken.encode({ id: user.id })
         post api_v1_communities_path, headers: { Authorization: "Bearer #{token}" }, params: { community: community }
       end
 
@@ -150,11 +150,13 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
 
     context "when entity invalid" do
       before do
-        member = create(:member)
-        token = JsonWebToken.encode({ id: member.user.id })
-        community = attributes_for(:community, :invalid)
-        patch api_v1_community_path(member.community), headers: { Authorization: "Bearer #{token}" }, params: {
-          community: community 
+        community = create(:community)
+        user = create(:user)
+        create(:member, community: community, user: user)
+        entity = attributes_for(:community, :invalid)
+        token = JsonWebToken.encode({ id: user.id })
+        patch api_v1_community_path(community), headers: { Authorization: "Bearer #{token}" }, params: {
+          community: entity 
         }
       end
 
@@ -180,13 +182,13 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
 
     context "when entity valid" do
       before do
-        member = create(:member)
-        token = JsonWebToken.encode({ id: member.user.id })
-        patch api_v1_community_path(member.community), headers: { Authorization: "Bearer #{token}" }, params: {
-          community: {
-            name: "programmer_humor",
-            description: "html is programming language"
-          }
+        community = create(:community)
+        user = create(:user)
+        create(:member, community: community, user: user)
+        entity = attributes_for(:community)
+        token = JsonWebToken.encode({ id: user.id })
+        patch api_v1_community_path(community), headers: { Authorization: "Bearer #{token}" }, params: {
+          community: entity
         }
       end
 

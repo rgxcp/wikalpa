@@ -46,8 +46,8 @@ RSpec.describe Api::V1::UsersController, type: :request do
     context "when entity invalid" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
         entity = attributes_for(:user, :invalid)
+        token = JsonWebToken.encode({ id: user.id })
         patch api_v1_user_path(user), headers: { Authorization: "Bearer #{token}" }, params: { user: entity }
       end
 

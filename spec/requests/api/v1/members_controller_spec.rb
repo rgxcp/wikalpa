@@ -44,9 +44,11 @@ RSpec.describe Api::V1::MembersController, type: :request do
 
     context "when entity invalid" do
       before do
-        member = create(:member)
-        token = JsonWebToken.encode({ id: member.user.id })
-        post api_v1_community_join_path(member.community), headers: { Authorization: "Bearer #{token}" }
+        community = create(:community)
+        user = create(:user)
+        create(:member, community: community, user: user)
+        token = JsonWebToken.encode({ id: user.id })
+        post api_v1_community_join_path(community), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 422 status code" do
@@ -164,9 +166,11 @@ RSpec.describe Api::V1::MembersController, type: :request do
 
     context "when user a community member" do
       before do
-        member = create(:member)
-        token = JsonWebToken.encode({ id: member.user.id })
-        delete api_v1_community_leave_path(member.community), headers: { Authorization: "Bearer #{token}" }
+        community = create(:community)
+        user = create(:user)
+        create(:member, community: community, user: user)
+        token = JsonWebToken.encode({ id: user.id })
+        delete api_v1_community_leave_path(community), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 200 status code" do

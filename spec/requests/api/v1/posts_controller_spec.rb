@@ -67,10 +67,12 @@ RSpec.describe Api::V1::PostsController, type: :request do
 
     context "when entity invalid" do
       before do
-        member = create(:member)
-        token = JsonWebToken.encode({ id: member.user.id })
+        community = create(:community)
+        user = create(:user)
+        create(:member, community: community, user: user)
         post = attributes_for(:post, :invalid)
-        post api_v1_community_posts_path(member.community), headers: { Authorization: "Bearer #{token}" }, params: {
+        token = JsonWebToken.encode({ id: user.id })
+        post api_v1_community_posts_path(community), headers: { Authorization: "Bearer #{token}" }, params: {
           post: post
         }
       end
@@ -97,10 +99,12 @@ RSpec.describe Api::V1::PostsController, type: :request do
 
     context "when entity valid" do
       before do
-        member = create(:member)
-        token = JsonWebToken.encode({ id: member.user.id })
+        community = create(:community)
+        user = create(:user)
+        create(:member, community: community, user: user)
         post = attributes_for(:post)
-        post api_v1_community_posts_path(member.community), headers: { Authorization: "Bearer #{token}" }, params: {
+        token = JsonWebToken.encode({ id: user.id })
+        post api_v1_community_posts_path(community), headers: { Authorization: "Bearer #{token}" }, params: {
           post: post
         }
       end
@@ -197,8 +201,8 @@ RSpec.describe Api::V1::PostsController, type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         entity = attributes_for(:post, :invalid)
+        token = JsonWebToken.encode({ id: user.id })
         patch api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }, params: {
           post: entity
         }
@@ -229,8 +233,8 @@ RSpec.describe Api::V1::PostsController, type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        token = JsonWebToken.encode({ id: user.id })
         entity = attributes_for(:post)
+        token = JsonWebToken.encode({ id: user.id })
         patch api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }, params: {
           post: entity
         }
