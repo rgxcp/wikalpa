@@ -609,7 +609,7 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
-  /users/{user_id}/follow:
+  /users/{user_id}/buddies:
     post:
       tags:
         - Buddy
