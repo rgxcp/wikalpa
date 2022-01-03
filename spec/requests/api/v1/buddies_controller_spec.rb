@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe Api::V1::BuddiesController, type: :request do
   describe "POST /users/:user_id/follow" do
     context "when user not logged in" do
-      before { post api_v1_user_follow_path(1) }
+      before { post api_v1_user_buddies_path(1) }
 
       it "returns 401 status code" do
         expect(response).to have_http_status(:unauthorized)
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_user_follow_path(0), headers: { Authorization: "Bearer #{token}" }
+        post api_v1_user_buddies_path(0), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 404 status code" do
@@ -46,7 +46,7 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_user_follow_path(user), headers: { Authorization: "Bearer #{token}" }
+        post api_v1_user_buddies_path(user), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 422 status code" do
@@ -74,7 +74,7 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
         user1 = create(:user)
         user2 = create(:user)
         token = JsonWebToken.encode({ id: user2.id })
-        post api_v1_user_follow_path(user1), headers: { Authorization: "Bearer #{token}" }
+        post api_v1_user_buddies_path(user1), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 201 status code" do

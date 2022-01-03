@@ -1,8 +1,8 @@
 class Api::V1::BuddiesController < ApplicationController
-  before_action :authenticate_request, only: [:follow, :unfollow]
-  before_action :set_user, only: [:follow, :unfollow]
+  before_action :authenticate_request, only: [:create, :unfollow]
+  before_action :set_user, only: [:create, :unfollow]
 
-  def follow
+  def create
     buddy = @auth_user.buddies.build(buddy: @user)
 
     if buddy.save
