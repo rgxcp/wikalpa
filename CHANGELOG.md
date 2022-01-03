@@ -1,3 +1,24 @@
+# [3.0.0](https://github.com/rgxcp/wikalpa/compare/v2.6.0...v3.0.0) (2022-01-03)
+
+
+### Features
+
+* move path for joining community ([dc1fe18](https://github.com/rgxcp/wikalpa/commit/dc1fe18a7c12cd8024177f88ce7cd53c4cf045a0))
+
+
+### Reverts
+
+* change .new back to .build ([0c1a33d](https://github.com/rgxcp/wikalpa/commit/0c1a33dc977e4f526acbb8a1d815ccd66186d36c))
+
+
+### BREAKING CHANGES
+
+* Path for joining community from `POST
+/communities/:id/join` was moved to `POST /communities/:id/members`.
+The reason behind this changes was to follow the REST-way.
+
+Signed-off-by: Rommy Gustiawan <rgcppp@gmail.com>
+
 # [2.6.0](https://github.com/rgxcp/wikalpa/compare/v2.5.0...v2.6.0) (2022-01-01)
 
 
