@@ -1,3 +1,19 @@
+# [4.0.0](https://github.com/rgxcp/wikalpa/compare/v3.0.0...v4.0.0) (2022-01-03)
+
+
+### Features
+
+* move path for following user ([bdcd459](https://github.com/rgxcp/wikalpa/commit/bdcd459ead51fe0ff19e4f12af645d79031fea01))
+
+
+### BREAKING CHANGES
+
+* Path for following user from `POST /users/:id/follow`
+was moved to `POST /users/:id/buddies`. The reason behind this changes
+was to follow the REST-way.
+
+Signed-off-by: Rommy Gustiawan <rgcppp@gmail.com>
+
 # [3.0.0](https://github.com/rgxcp/wikalpa/compare/v2.6.0...v3.0.0) (2022-01-03)
 
 
