@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post "/auth/login", to: "auth#login"
       post "/auth/register", to: "auth#register"
 
+      resources :buddies, only: :destroy
       resources :comments, only: :update do
         resources :replies, only: :create
       end
@@ -18,8 +19,6 @@ Rails.application.routes.draw do
       end
       resources :replies, only: :update
       resources :users, only: :update do
-        delete "/unfollow", to: "buddies#unfollow"
-
         resources :buddies, only: :create
       end
     end

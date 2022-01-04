@@ -98,9 +98,9 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
     end
   end
 
-  describe "DELETE /users/:user_id/unfollow" do
+  describe "DELETE /buddies/:id" do
     context "when user not logged in" do
-      before { delete api_v1_user_unfollow_path(1) }
+      before { delete api_v1_buddy_path(1) }
 
       it "returns 401 status code" do
         expect(response).to have_http_status(:unauthorized)
@@ -117,11 +117,11 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
       end
     end
 
-    context "when user not exists" do
+    context "when user not a buddy" do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_user_unfollow_path(0), headers: { Authorization: "Bearer #{token}" }
+        delete api_v1_buddy_path(0), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 404 status code" do
@@ -139,15 +139,18 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
       end
     end
 
-    context "when user not a buddy" do
+    context "when unfollow someone else buddy" do
       before do
-        user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_user_unfollow_path(user), headers: { Authorization: "Bearer #{token}" }
+        user1 = create(:user)
+        user2 = create(:user)
+        user3 = create(:user)
+        buddy = create(:buddy, user: user3, buddy: user2)
+        token = JsonWebToken.encode({ id: user1.id })
+        delete api_v1_buddy_path(buddy), headers: { Authorization: "Bearer #{token}" }
       end
 
-      it "returns 404 status code" do
-        expect(response).to have_http_status(:not_found)
+      it "returns 403 status code" do
+        expect(response).to have_http_status(:forbidden)
       end
 
       it "returns false success body" do
@@ -155,9 +158,9 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
         expect(result["success"]).to be false
       end
 
-      it "returns not found message body" do
+      it "returns forbidden message body" do
         result = JSON.parse(response.body)
-        expect(result["message"]).to eq("Not Found")
+        expect(result["message"]).to eq("Forbidden")
       end
     end
 
@@ -165,9 +168,9 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
       before do
         user1 = create(:user)
         user2 = create(:user)
-        create(:buddy, user: user1, buddy: user2)
+        buddy = create(:buddy, user: user1, buddy: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        delete api_v1_user_unfollow_path(user2), headers: { Authorization: "Bearer #{token}" }
+        delete api_v1_buddy_path(buddy), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 200 status code" do
