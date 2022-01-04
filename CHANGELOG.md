@@ -1,3 +1,19 @@
+# [6.0.0](https://github.com/rgxcp/wikalpa/compare/v5.0.0...v6.0.0) (2022-01-04)
+
+
+### Features
+
+* move path for unfollowing user ([fd630f8](https://github.com/rgxcp/wikalpa/commit/fd630f82dad6714274eae0f0f5206856716eae6e))
+
+
+### BREAKING CHANGES
+
+* Path for unfollowing user from `DELETE
+/users/:id/unfollow` was moved to `DELETE /buddies/:id`. The reason
+behind this changes was to follow the REST-way.
+
+Signed-off-by: Rommy Gustiawan <rgcppp@gmail.com>
+
 # [5.0.0](https://github.com/rgxcp/wikalpa/compare/v4.0.0...v5.0.0) (2022-01-04)
 
 
