@@ -141,6 +141,31 @@ RSpec.describe Api::V1::MembersController, type: :request do
       end
     end
 
+    context "when leaving someone else from a community" do
+      before do
+        community = create(:community)
+        user1 = create(:user)
+        user2 = create(:user)
+        member = create(:member, community: community, user: user2)
+        token = JsonWebToken.encode({ id: user1.id })
+        delete api_v1_member_path(member), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 403 status code" do
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns forbidden message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Forbidden")
+      end
+    end
+
     context "when user a community member" do
       before do
         community = create(:community)
