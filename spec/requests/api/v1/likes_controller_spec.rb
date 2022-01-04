@@ -71,5 +71,34 @@ RSpec.describe Api::V1::LikesController, type: :request do
         expect(result["errors"].size).to be_positive
       end
     end
+
+    context "when entity valid" do
+      before do
+        community = create(:community)
+        user = create(:user)
+        post = create(:post, community: community, user: user)
+        token = JsonWebToken.encode({ id: user.id })
+        post api_v1_post_likes_path(post), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 201 status code" do
+        expect(response).to have_http_status(:created)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be true
+      end
+
+      it "returns created message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Created")
+      end
+
+      it "returns like data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["like"]).not_to be_empty
+      end
+    end
   end
 end
