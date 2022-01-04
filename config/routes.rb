@@ -9,11 +9,10 @@ Rails.application.routes.draw do
         resources :replies, only: :create
       end
       resources :communities, only: [:create, :update] do
-        delete "/leave", to: "members#leave"
-
         resources :members, only: :create
         resources :posts, only: :create
       end
+      resources :members, only: :destroy
       resources :posts, only: :update do
         resources :comments, only: :create
       end

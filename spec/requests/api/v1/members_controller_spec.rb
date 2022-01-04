@@ -100,9 +100,9 @@ RSpec.describe Api::V1::MembersController, type: :request do
     end
   end
 
-  describe "DELETE /communities/:community_id/leave" do
+  describe "DELETE /members/:id" do
     context "when user not logged in" do
-      before { delete api_v1_community_leave_path(1) }
+      before { delete api_v1_member_path(1) }
 
       it "returns 401 status code" do
         expect(response).to have_http_status(:unauthorized)
@@ -119,34 +119,11 @@ RSpec.describe Api::V1::MembersController, type: :request do
       end
     end
 
-    context "when community not exists" do
-      before do
-        user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_community_leave_path(0), headers: { Authorization: "Bearer #{token}" }
-      end
-
-      it "returns 404 status code" do
-        expect(response).to have_http_status(:not_found)
-      end
-
-      it "returns false success body" do
-        result = JSON.parse(response.body)
-        expect(result["success"]).to be false
-      end
-
-      it "returns not found message body" do
-        result = JSON.parse(response.body)
-        expect(result["message"]).to eq("Not Found")
-      end
-    end
-
     context "when user not a community member" do
       before do
-        community = create(:community)
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_community_leave_path(community), headers: { Authorization: "Bearer #{token}" }
+        delete api_v1_member_path(0), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 404 status code" do
@@ -168,9 +145,9 @@ RSpec.describe Api::V1::MembersController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
+        member = create(:member, community: community, user: user)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_community_leave_path(community), headers: { Authorization: "Bearer #{token}" }
+        delete api_v1_member_path(member), headers: { Authorization: "Bearer #{token}" }
       end
 
       it "returns 200 status code" do

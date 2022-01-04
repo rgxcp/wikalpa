@@ -1,9 +1,10 @@
 class Api::V1::MembersController < ApplicationController
-  before_action :authenticate_request, only: [:create, :leave]
-  before_action :set_community, only: [:create, :leave]
+  before_action :authenticate_request, only: [:create, :destroy]
 
   def create
-    member = @community.members.build(user: @auth_user)
+    community = Community.find(params[:community_id])
+
+    member = community.members.build(user: @auth_user)
 
     if member.save
       created_response(data: { member: member })
@@ -12,16 +13,12 @@ class Api::V1::MembersController < ApplicationController
     end
   end
 
-  def leave
-    member = @community.members.find_by!(user: @auth_user)
+  def destroy
+    member = Member.find(params[:id])
+    return forbidden_response unless @auth_user.id == member.user_id
+
     member.destroy
 
     ok_response(data: { member: member })
-  end
-
-  private
-
-  def set_community
-    @community = Community.find(params[:community_id])
   end
 end
