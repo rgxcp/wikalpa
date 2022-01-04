@@ -1,3 +1,19 @@
+# [5.0.0](https://github.com/rgxcp/wikalpa/compare/v4.0.0...v5.0.0) (2022-01-04)
+
+
+### Features
+
+* move path for leaving community ([444cf79](https://github.com/rgxcp/wikalpa/commit/444cf796795222ff2f2bdcf69a6496e9e730612f))
+
+
+### BREAKING CHANGES
+
+* Path for leaving community from `DELETE
+/communities/:id/leave` was moved to `DELETE /members/:id`. The reason
+behind this changes was to follow the REST-way.
+
+Signed-off-by: Rommy Gustiawan <rgcppp@gmail.com>
+
 # [4.0.0](https://github.com/rgxcp/wikalpa/compare/v3.0.0...v4.0.0) (2022-01-03)
 
 
