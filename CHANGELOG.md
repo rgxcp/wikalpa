@@ -1,3 +1,11 @@
+# [6.3.0](https://github.com/rgxcp/wikalpa/compare/v6.2.0...v6.3.0) (2022-01-05)
+
+
+### Features
+
+* add has many 'Like' polymorphic association on 'Reply' ([2b5aaf4](https://github.com/rgxcp/wikalpa/commit/2b5aaf45f0769e18226556fe56b3152bdfda0b18))
+* POST /replies/:reply_id/likes likes a reply ([17709c0](https://github.com/rgxcp/wikalpa/commit/17709c039bca6b96e10f2d05824d8147bddf02cb))
+
 # [6.2.0](https://github.com/rgxcp/wikalpa/compare/v6.1.0...v6.2.0) (2022-01-05)
 
 
