@@ -19,7 +19,9 @@ Rails.application.routes.draw do
         resources :comments, only: :create
         resources :likes, only: :create, module: "post"
       end
-      resources :replies, only: :update
+      resources :replies, only: :update do
+        resources :likes, only: :create, module: "reply"
+      end
       resources :users, only: :update do
         resources :buddies, only: :create
       end
