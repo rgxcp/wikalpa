@@ -99,6 +99,11 @@ RSpec.describe Api::V1::LikesController, type: :request do
         result = JSON.parse(response.body)
         expect(result["data"]["like"]).not_to be_empty
       end
+
+      it "returns post as the likeable type" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["like"]["likeable_type"]).to eq("Post")
+      end
     end
   end
 
