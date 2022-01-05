@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
       resources :buddies, only: :destroy
       resources :comments, only: :update do
+        resources :likes, only: :create, module: "comment"
         resources :replies, only: :create
       end
       resources :communities, only: [:create, :update] do
