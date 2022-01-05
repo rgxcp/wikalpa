@@ -619,6 +619,38 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /replies/{reply_id}/likes:
+    post:
+      tags:
+        - Reply Like
+      summary: Like a reply.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierReply"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      like:
+                        $ref: "#/components/schemas/Like"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /users/{id}:
     put:
       tags:
@@ -754,6 +786,8 @@ tags:
     description: Endpoints related for comment like resources.
   - name: Reply
     description: Endpoints related for replies resources.
+  - name: Reply Like
+    description: Endpoints related for reply like resources.
   - name: User
     description: Endpoints related for user resources.
   - name: Buddy
@@ -789,6 +823,13 @@ components:
     IdentifierPost:
       in: path
       name: post_id
+      required: true
+      schema:
+        type: integer
+        example: 1
+    IdentifierReply:
+      in: path
+      name: reply_id
       required: true
       schema:
         type: integer
@@ -872,6 +913,7 @@ components:
           enum:
             - Comment
             - Post
+            - Reply
         likeable_id:
           type: integer
           example: 1
