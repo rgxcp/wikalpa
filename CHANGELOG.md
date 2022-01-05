@@ -1,3 +1,14 @@
+# [6.1.0](https://github.com/rgxcp/wikalpa/compare/v6.0.0...v6.1.0) (2022-01-05)
+
+
+### Features
+
+* add has many 'Like' polymorphic association on 'Post' ([fec6f2e](https://github.com/rgxcp/wikalpa/commit/fec6f2e7f5ec79e8aeac9c6e243bcebc9f0ffe9c))
+* POST /posts/:post_id/likes returns 201 status code when entity valid ([4e66168](https://github.com/rgxcp/wikalpa/commit/4e66168b508e0b14031dd1d41163cccade481e56))
+* POST /posts/:post_id/likes returns 401 status code when user not logged in ([4851259](https://github.com/rgxcp/wikalpa/commit/48512599eeffde37260a0893e2acc6391a68e9c5))
+* POST /posts/:post_id/likes returns 404 status code when post not exists ([ca77525](https://github.com/rgxcp/wikalpa/commit/ca775257c9669ddfd6cd3938e2478cb3412a3078))
+* POST /posts/:post_id/likes returns 422 status code when entity invalid ([5239ff3](https://github.com/rgxcp/wikalpa/commit/5239ff3f9599c19c5be12b33cf7ec624142c5823))
+
 # [6.0.0](https://github.com/rgxcp/wikalpa/compare/v5.0.0...v6.0.0) (2022-01-04)
 
 
