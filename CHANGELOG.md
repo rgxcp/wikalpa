@@ -1,3 +1,11 @@
+# [6.2.0](https://github.com/rgxcp/wikalpa/compare/v6.1.0...v6.2.0) (2022-01-05)
+
+
+### Features
+
+* add has many 'Like' polymorphic association on 'Comment' ([f8a0fb5](https://github.com/rgxcp/wikalpa/commit/f8a0fb5a69908ad34e6986af0edb0c10ad72d856))
+* POST /comments/:comment_id/likes likes a comment ([9c9edb5](https://github.com/rgxcp/wikalpa/commit/9c9edb5e5d017c0a7ab0f8c2d141d1bbbf3e96fe))
+
 # [6.1.0](https://github.com/rgxcp/wikalpa/compare/v6.0.0...v6.1.0) (2022-01-05)
 
 
