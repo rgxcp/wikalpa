@@ -1,3 +1,16 @@
+# [6.9.0](https://github.com/rgxcp/wikalpa/compare/v6.8.0...v6.9.0) (2022-01-06)
+
+
+### Features
+
+* GET /replies/:id returns 200 status code when reply exists ([a047634](https://github.com/rgxcp/wikalpa/commit/a04763459362fb5675c1d48d7acd82ab6dd1ce6a))
+* GET /replies/:id returns 404 status code when reply not exists ([6051ba1](https://github.com/rgxcp/wikalpa/commit/6051ba1c0857340e00da142fed7060d2af846fc8))
+
+
+### Performance Improvements
+
+* put repetitive finding reply into before action method ([98b2c2b](https://github.com/rgxcp/wikalpa/commit/98b2c2bbd6501fa98d457f22321503a6030d498d))
+
 # [6.8.0](https://github.com/rgxcp/wikalpa/compare/v6.7.0...v6.8.0) (2022-01-06)
 
 
