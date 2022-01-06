@@ -499,6 +499,33 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /comments/{id}:
+    get:
+      tags:
+        - Comment
+      summary: Show a specific comment.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      comment:
+                        $ref: "#/components/schemas/Comment"
+        "404":
+          $ref: "#/components/responses/NotFound"
     put:
       tags:
         - Comment
