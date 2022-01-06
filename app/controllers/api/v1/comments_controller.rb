@@ -3,6 +3,8 @@ class Api::V1::CommentsController < ApplicationController
 
   def show
     comment = Comment.find(params[:id])
+
+    ok_response(data: { comment: comment })
   end
 
   def create
