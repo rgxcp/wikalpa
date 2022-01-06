@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         resources :members, only: :create
         resources :posts, only: :create
       end
+      resources :likes, only: :destroy
       resources :members, only: :destroy
       resources :posts, only: :update do
         resources :comments, only: :create
