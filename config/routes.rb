@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         resources :likes, only: :create, module: "comment"
         resources :replies, only: :create
       end
-      resources :communities, only: [:create, :update] do
+      resources :communities, only: [:show, :create, :update] do
         resources :members, only: :create
         resources :posts, only: :create
       end
