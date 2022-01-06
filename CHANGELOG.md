@@ -1,3 +1,13 @@
+# [6.4.0](https://github.com/rgxcp/wikalpa/compare/v6.3.0...v6.4.0) (2022-01-06)
+
+
+### Features
+
+* DELETE /likes/:id returns 200 status code when like exists ([def640f](https://github.com/rgxcp/wikalpa/commit/def640f6e9628c0504b59f4039c080ecf5573d77))
+* DELETE /likes/:id returns 401 status code when user not logged in ([6dd60e7](https://github.com/rgxcp/wikalpa/commit/6dd60e7b5e5d4819d05b4908dd31ed4bbefc1662))
+* DELETE /likes/:id returns 403 status code when deleting someone else like ([e09b936](https://github.com/rgxcp/wikalpa/commit/e09b936eafe55879b0720e6db32a7f992e15ea36))
+* DELETE /likes/:id returns 404 status code when like not exists ([ddc8a40](https://github.com/rgxcp/wikalpa/commit/ddc8a40df14a8145b93fe2a7450b6ff5ac4807c9))
+
 # [6.3.0](https://github.com/rgxcp/wikalpa/compare/v6.2.0...v6.3.0) (2022-01-05)
 
 
