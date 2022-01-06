@@ -1,10 +1,9 @@
 class Api::V1::PostsController < ApplicationController
   before_action :authenticate_request, only: [:create, :update]
+  before_action :set_post, only: [:show, :update]
 
   def show
-    post = Post.find(params[:id])
-
-    ok_response(data: { post: post })
+    ok_response(data: { post: @post })
   end
 
   def create
@@ -22,17 +21,20 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-    return forbidden_response unless @auth_user.id == post.user_id
+    return forbidden_response unless @auth_user.id == @post.user_id
 
-    if post.update(post_params)
-      ok_response(data: { post: post })
+    if @post.update(post_params)
+      ok_response(data: { post: @post })
     else
-      unprocessable_entity_response(errors: post.errors.messages)
+      unprocessable_entity_response(errors: @post.errors.messages)
     end
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:body)
