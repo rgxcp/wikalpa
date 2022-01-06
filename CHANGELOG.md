@@ -1,3 +1,16 @@
+# [6.7.0](https://github.com/rgxcp/wikalpa/compare/v6.6.0...v6.7.0) (2022-01-06)
+
+
+### Features
+
+* GET /posts/:id returns 200 status code when post exists ([f081013](https://github.com/rgxcp/wikalpa/commit/f081013a9d2c1a422ab64a4e8f34897ba8aa2a32))
+* GET /posts/:id returns 404 status code when post not exists ([4e2d214](https://github.com/rgxcp/wikalpa/commit/4e2d21412103d3b38cada3384fe017fc34e7e50a))
+
+
+### Performance Improvements
+
+* put repetitive finding post into before action method ([b44b333](https://github.com/rgxcp/wikalpa/commit/b44b333031354c8ee51982f68442d8bff55746e5))
+
 # [6.6.0](https://github.com/rgxcp/wikalpa/compare/v6.5.0...v6.6.0) (2022-01-06)
 
 
