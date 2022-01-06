@@ -1,3 +1,16 @@
+# [6.8.0](https://github.com/rgxcp/wikalpa/compare/v6.7.0...v6.8.0) (2022-01-06)
+
+
+### Features
+
+* GET /comments/:id returns 200 status code when comment exists ([5798708](https://github.com/rgxcp/wikalpa/commit/57987083d9f01eb341db8f3ef1e033dea2bdaaed))
+* GET /comments/:id returns 404 status code when comment not exists ([dd90b09](https://github.com/rgxcp/wikalpa/commit/dd90b09e69daa9159299e40fbc97de30733ac4f3))
+
+
+### Performance Improvements
+
+* put repetitive finding comment into before action method ([8ade233](https://github.com/rgxcp/wikalpa/commit/8ade2330d5f3e29f5abab3209b15589e87b8d4b3))
+
 # [6.7.0](https://github.com/rgxcp/wikalpa/compare/v6.6.0...v6.7.0) (2022-01-06)
 
 
