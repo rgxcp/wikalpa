@@ -3,6 +3,8 @@ class Api::V1::CommunitiesController < ApplicationController
 
   def show
     community = Community.find(params[:id])
+
+    ok_response(data: { community: community })
   end
 
   def create
