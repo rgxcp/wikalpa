@@ -1,3 +1,12 @@
+# [6.5.0](https://github.com/rgxcp/wikalpa/compare/v6.4.0...v6.5.0) (2022-01-06)
+
+
+### Features
+
+* GET /users/:id excludes password digest on user data ([5a7461e](https://github.com/rgxcp/wikalpa/commit/5a7461e6bf77d7afa3ff9ab3099c54732c659849))
+* GET /users/:id returns 200 status code when user exists ([3edb462](https://github.com/rgxcp/wikalpa/commit/3edb4622110dc3454ed2e7e13748568f8a9b98ee))
+* GET /users/:id returns 404 status code when user not exists ([a501617](https://github.com/rgxcp/wikalpa/commit/a501617f04983cbd3a22b9a6e554f803ef313879))
+
 # [6.4.0](https://github.com/rgxcp/wikalpa/compare/v6.3.0...v6.4.0) (2022-01-06)
 
 
