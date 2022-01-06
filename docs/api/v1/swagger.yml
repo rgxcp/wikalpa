@@ -654,6 +654,33 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /replies/{id}:
+    get:
+      tags:
+        - Reply
+      summary: Show a specific reply.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      reply:
+                        $ref: "#/components/schemas/Reply"
+        "404":
+          $ref: "#/components/responses/NotFound"
     put:
       tags:
         - Reply
