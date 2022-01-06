@@ -1,10 +1,9 @@
 class Api::V1::RepliesController < ApplicationController
   before_action :authenticate_request, only: [:create, :update]
+  before_action :set_reply, only: [:show, :update]
 
   def show
-    reply = Reply.find(params[:id])
-
-    ok_response(data: { reply: reply })
+    ok_response(data: { reply: @reply })
   end
 
   def create
@@ -21,17 +20,20 @@ class Api::V1::RepliesController < ApplicationController
   end
 
   def update
-    reply = Reply.find(params[:id])
-    return forbidden_response unless @auth_user.id == reply.user_id
+    return forbidden_response unless @auth_user.id == @reply.user_id
 
-    if reply.update(reply_params)
-      ok_response(data: { reply: reply })
+    if @reply.update(reply_params)
+      ok_response(data: { reply: @reply })
     else
-      unprocessable_entity_response(errors: reply.errors.messages)
+      unprocessable_entity_response(errors: @reply.errors.messages)
     end
   end
 
   private
+
+  def set_reply
+    @reply = Reply.find(params[:id])
+  end
 
   def reply_params
     params.require(:reply).permit(:body)
