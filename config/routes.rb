@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       resources :replies, only: :update do
         resources :likes, only: :create, module: "reply"
       end
-      resources :users, only: :update do
+      resources :users, only: [:show, :update] do
         resources :buddies, only: :create
       end
     end
