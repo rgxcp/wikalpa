@@ -1,3 +1,16 @@
+# [6.6.0](https://github.com/rgxcp/wikalpa/compare/v6.5.0...v6.6.0) (2022-01-06)
+
+
+### Features
+
+* GET /communities/:id returns 200 status code when community exists ([5f19a85](https://github.com/rgxcp/wikalpa/commit/5f19a858cd7884e8100256aff275acbb3c558b05))
+* GET /communities/:id returns 404 status code when community not exists ([369b161](https://github.com/rgxcp/wikalpa/commit/369b161c7703b0f5459a356543f99c3be7cc1d70))
+
+
+### Performance Improvements
+
+* put repetitive finding community into before action method ([563b733](https://github.com/rgxcp/wikalpa/commit/563b733f9e2f3dfe1940d0692a9cb0b313445fa5))
+
 # [6.5.0](https://github.com/rgxcp/wikalpa/compare/v6.4.0...v6.5.0) (2022-01-06)
 
 
