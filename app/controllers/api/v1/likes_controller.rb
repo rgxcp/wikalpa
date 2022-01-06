@@ -13,5 +13,6 @@ class Api::V1::LikesController < ApplicationController
   end
 
   def destroy
+    like = Like.find(params[:id])
   end
 end
