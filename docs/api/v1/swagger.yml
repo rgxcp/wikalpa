@@ -344,6 +344,33 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /posts/{id}:
+    get:
+      tags:
+        - Post
+      summary: Show a specific post.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      post:
+                        $ref: "#/components/schemas/Post"
+        "404":
+          $ref: "#/components/responses/NotFound"
     put:
       tags:
         - Post
