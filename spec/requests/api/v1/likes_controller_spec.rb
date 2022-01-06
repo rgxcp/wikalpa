@@ -391,5 +391,35 @@ RSpec.describe Api::V1::LikesController, type: :request do
         expect(result["message"]).to eq("Forbidden")
       end
     end
+
+    context "when like exists" do
+      before do
+        community = create(:community)
+        user = create(:user)
+        post = create(:post, community: community, user: user)
+        like = create(:like, user: user, likeable: post)
+        token = JsonWebToken.encode({ id: user.id })
+        delete api_v1_like_path(like), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be true
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns like data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["like"]).not_to be_empty
+      end
+    end
   end
 end
