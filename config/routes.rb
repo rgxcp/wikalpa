@@ -20,7 +20,7 @@ Rails.application.routes.draw do
         resources :comments, only: :create
         resources :likes, only: :create, module: "post"
       end
-      resources :replies, only: :update do
+      resources :replies, only: [:show, :update] do
         resources :likes, only: :create, module: "reply"
       end
       resources :users, only: [:show, :update] do

@@ -1,6 +1,10 @@
 class Api::V1::RepliesController < ApplicationController
   before_action :authenticate_request, only: [:create, :update]
 
+  def show
+    reply = Reply.find(params[:id])
+  end
+
   def create
     comment = Comment.find(params[:comment_id])
 
