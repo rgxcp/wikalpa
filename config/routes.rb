@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       post "/auth/register", to: "auth#register"
 
       resources :buddies, only: :destroy
-      resources :comments, only: :update do
+      resources :comments, only: [:show, :update] do
         resources :likes, only: :create, module: "comment"
         resources :replies, only: :create
       end
