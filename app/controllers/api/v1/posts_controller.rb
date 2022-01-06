@@ -1,6 +1,10 @@
 class Api::V1::PostsController < ApplicationController
   before_action :authenticate_request, only: [:create, :update]
 
+  def show
+    post = Post.find(params[:id])
+  end
+
   def create
     community = Community.find(params[:community_id])
     return forbidden_response unless community.members.exists?(user: @auth_user)

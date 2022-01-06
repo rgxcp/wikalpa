@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       end
       resources :likes, only: :destroy
       resources :members, only: :destroy
-      resources :posts, only: :update do
+      resources :posts, only: [:show, :update] do
         resources :comments, only: :create
         resources :likes, only: :create, module: "post"
       end
