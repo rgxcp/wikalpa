@@ -19,6 +19,32 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when reply exists" do
+      before do
+        reply = create(:reply)
+        get api_v1_reply_path(reply)
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be true
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns reply data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["reply"]).not_to be_empty
+      end
+    end
   end
 
   describe "POST /comments/:comment_id/replies" do

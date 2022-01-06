@@ -3,6 +3,8 @@ class Api::V1::RepliesController < ApplicationController
 
   def show
     reply = Reply.find(params[:id])
+
+    ok_response(data: { reply: reply })
   end
 
   def create
