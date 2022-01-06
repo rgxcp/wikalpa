@@ -3,6 +3,8 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     post = Post.find(params[:id])
+
+    ok_response(data: { post: post })
   end
 
   def create
