@@ -4,7 +4,11 @@ class Api::V1::UsersController < ApplicationController
   def index
     users = User.all
 
-    not_found_response unless users.size.positive?
+    if users.size.positive?
+      ok_response(data: { users: users })
+    else
+      not_found_response
+    end
   end
 
   def show
