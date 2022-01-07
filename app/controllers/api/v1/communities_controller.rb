@@ -5,7 +5,11 @@ class Api::V1::CommunitiesController < ApplicationController
   def index
     communities = Community.all
 
-    not_found_response unless communities.size.positive?
+    if communities.size.positive?
+      ok_response(data: { communities: communities })
+    else
+      not_found_response
+    end
   end
 
   def show
