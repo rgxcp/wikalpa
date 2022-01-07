@@ -106,6 +106,33 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
   /communities:
+    get:
+      tags:
+        - Community
+      summary: Retrieve all communities.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      communities:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Community"
+        "404":
+          $ref: "#/components/responses/NotFound"
     post:
       tags:
         - Community
@@ -818,7 +845,7 @@ paths:
                       users:
                         type: array
                         items:
-                          $ref: "#/components/schemas/Reply"
+                          $ref: "#/components/schemas/User"
         "404":
           $ref: "#/components/responses/NotFound"
   /users/{id}:
