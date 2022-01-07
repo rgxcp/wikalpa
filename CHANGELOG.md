@@ -1,3 +1,16 @@
+# [6.10.0](https://github.com/rgxcp/wikalpa/compare/v6.9.0...v6.10.0) (2022-01-07)
+
+
+### Features
+
+* GET /communities returns 200 status code when communities exist ([6b68e82](https://github.com/rgxcp/wikalpa/commit/6b68e826e8aea9e9f148e8ab695dee8eb656392a))
+* GET /communities returns 404 status code when communities not exist ([78e9369](https://github.com/rgxcp/wikalpa/commit/78e9369d1400660a386bb169f111b6bb3f8780c8))
+* GET /posts returns 200 status code when posts exist ([ce65d08](https://github.com/rgxcp/wikalpa/commit/ce65d084827e595f4bdd845e3273f55150ec524d))
+* GET /posts returns 404 status code when posts not exist ([fa71558](https://github.com/rgxcp/wikalpa/commit/fa71558cf2d3a283ea3b5e1ecadcf364f077fe7a))
+* GET /users excludes password digest on users data ([c5f0488](https://github.com/rgxcp/wikalpa/commit/c5f04884c21c3b1ec80d6ec39755f9a40a82e4ab))
+* GET /users returns 200 status code when users exist ([9bb7d4a](https://github.com/rgxcp/wikalpa/commit/9bb7d4a5e2a3027586dee227b53bbcb2605bd57a))
+* GET /users returns 404 status code when users not exist ([6e2f43c](https://github.com/rgxcp/wikalpa/commit/6e2f43cd0b2223acfc771839655f1be34839dbfb))
+
 # [6.9.0](https://github.com/rgxcp/wikalpa/compare/v6.8.0...v6.9.0) (2022-01-06)
 
 
