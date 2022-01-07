@@ -2,6 +2,12 @@ class Api::V1::PostsController < ApplicationController
   before_action :authenticate_request, only: [:create, :update]
   before_action :set_post, only: [:show, :update]
 
+  def index
+    posts = Post.all
+
+    not_found_response unless posts.size.positive?
+  end
+
   def show
     ok_response(data: { post: @post })
   end
