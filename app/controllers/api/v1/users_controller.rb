@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     users = User.all
 
     if users.size.positive?
-      ok_response(data: { users: users })
+      ok_response(data: { users: users }, except: :password_digest)
     else
       not_found_response
     end

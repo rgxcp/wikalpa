@@ -44,6 +44,11 @@ RSpec.describe Api::V1::UsersController, type: :request do
         result = JSON.parse(response.body)
         expect(result["data"]["users"]).not_to be_empty
       end
+
+      it "excludes password digest on users data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["users"][0]["password_digest"]).to be_nil
+      end
     end
   end
 
