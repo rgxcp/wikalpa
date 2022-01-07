@@ -2,6 +2,12 @@ class Api::V1::CommunitiesController < ApplicationController
   before_action :authenticate_request, only: [:create, :update]
   before_action :set_community, only: [:show, :update]
 
+  def index
+    communities = Community.all
+
+    not_found_response unless communities.size.positive?
+  end
+
   def show
     ok_response(data: { community: @community })
   end
