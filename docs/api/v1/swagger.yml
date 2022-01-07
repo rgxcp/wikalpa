@@ -793,6 +793,34 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /users:
+    get:
+      tags:
+        - User
+      summary: Retrieve all users.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      users:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Reply"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /users/{id}:
     get:
       tags:
