@@ -1,6 +1,12 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate_request, only: :update
 
+  def index
+    users = User.all
+
+    not_found_response unless users.size.positive?
+  end
+
   def show
     user = User.find(params[:id])
 
