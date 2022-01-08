@@ -260,7 +260,7 @@ paths:
   /communities/{community_id}/members:
     post:
       tags:
-        - Member
+        - Community Member
       summary: Join a community.
       parameters:
         - $ref: "#/components/parameters/IdentifierCommunity"
@@ -324,8 +324,8 @@ paths:
   /communities/{community_id}/posts:
     post:
       tags:
-        - Post
-      summary: Create a new post.
+        - Community Post
+      summary: Create a new community post.
       parameters:
         - $ref: "#/components/parameters/IdentifierCommunity"
       requestBody:
@@ -477,8 +477,8 @@ paths:
   /posts/{post_id}/comments:
     post:
       tags:
-        - Comment
-      summary: Create a new comment.
+        - Post Comment
+      summary: Create a new post comment.
       parameters:
         - $ref: "#/components/parameters/IdentifierPost"
       requestBody:
@@ -664,8 +664,8 @@ paths:
   /comments/{comment_id}/replies:
     post:
       tags:
-        - Reply
-      summary: Create a new reply.
+        - Comment Reply
+      summary: Create a new comment reply.
       parameters:
         - $ref: "#/components/parameters/IdentifierComment"
       requestBody:
@@ -958,9 +958,36 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /users/{user_id}/buddies:
+    get:
+      tags:
+        - User Buddy
+      summary: Retrieve all user buddies.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      buddies:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Buddy"
+        "404":
+          $ref: "#/components/responses/NotFound"
     post:
       tags:
-        - Buddy
+        - User Buddy
       summary: Follow a user.
       parameters:
         - $ref: "#/components/parameters/IdentifierUser"
@@ -1028,16 +1055,24 @@ tags:
     description: Endpoints related for authentication and authorization.
   - name: Community
     description: Endpoints related for community resources.
+  - name: Community Member
+    description: Endpoints related for community member resources.
   - name: Member
     description: Endpoints related for member resources.
   - name: Post
     description: Endpoints related for post resources.
+  - name: Community Post
+    description: Endpoints related for community post resources.
   - name: Post Like
     description: Endpoints related for post like resources.
+  - name: Post Comment
+    description: Endpoints related for post comment resources.
   - name: Comment
     description: Endpoints related for comment resources.
   - name: Comment Like
     description: Endpoints related for comment like resources.
+  - name: Comment Reply
+    description: Endpoints related for comment reply resources.
   - name: Reply
     description: Endpoints related for replies resources.
   - name: Reply Like
@@ -1046,6 +1081,8 @@ tags:
     description: Endpoints related for like resources.
   - name: User
     description: Endpoints related for user resources.
+  - name: User Buddy
+    description: Endpoints related for user buddy resources.
   - name: Buddy
     description: Endpoints related for buddy resources.
 components:
