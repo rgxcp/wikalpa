@@ -1,3 +1,15 @@
+# [6.11.0](https://github.com/rgxcp/wikalpa/compare/v6.10.0...v6.11.0) (2022-01-08)
+
+
+### Features
+
+* GET /communities/:id/members returns 200 status code when members exist ([51ee9cb](https://github.com/rgxcp/wikalpa/commit/51ee9cb47e00c6cbee52dfa01b3bd59d19b11591))
+* GET /communities/:id/members returns 404 status code when community not exists ([cb99a5d](https://github.com/rgxcp/wikalpa/commit/cb99a5db24f75aef4c8a48c3ab88fa99ff7787c0))
+* GET /communities/:id/members returns 404 status code when members not exist ([ab59532](https://github.com/rgxcp/wikalpa/commit/ab5953253d99cf9384cd8aa7c05f0649b7dd23c2))
+* GET /users/:id/buddies returns 200 status code when buddies exist ([e1a8149](https://github.com/rgxcp/wikalpa/commit/e1a8149bae80d3b5c1d7e82e7455654137baddb0))
+* GET /users/:id/buddies returns 404 status code when buddies not exist ([7baaee3](https://github.com/rgxcp/wikalpa/commit/7baaee34e8122bd401900d7f824f2e45b64f9671))
+* GET /users/:id/buddies returns 404 status code when user not exists ([1f05a8a](https://github.com/rgxcp/wikalpa/commit/1f05a8acd5dcbbe402d0b646ee2e0ed89b3851cf))
+
 # [6.10.0](https://github.com/rgxcp/wikalpa/compare/v6.9.0...v6.10.0) (2022-01-07)
 
 
