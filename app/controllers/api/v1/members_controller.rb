@@ -1,10 +1,9 @@
 class Api::V1::MembersController < ApplicationController
   before_action :authenticate_request, only: [:create, :destroy]
+  before_action :set_community, only: [:index, :create]
 
   def index
-    community = Community.find(params[:community_id])
-
-    members = community.members
+    members = @community.members
 
     if members.size.positive?
       ok_response(data: { members: members })
@@ -14,9 +13,7 @@ class Api::V1::MembersController < ApplicationController
   end
 
   def create
-    community = Community.find(params[:community_id])
-
-    member = community.members.build(user: @auth_user)
+    member = @community.members.build(user: @auth_user)
 
     if member.save
       created_response(data: { member: member })
@@ -32,5 +29,11 @@ class Api::V1::MembersController < ApplicationController
     member.destroy
 
     ok_response(data: { member: member })
+  end
+
+  private
+
+  def set_community
+    @community = Community.find(params[:community_id])
   end
 end
