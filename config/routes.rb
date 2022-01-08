@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resources :replies, only: :create
       end
       resources :communities, except: :destroy do
-        resources :members, only: :create
+        resources :members, only: [:index, :create]
         resources :posts, only: :create
       end
       resources :likes, only: :destroy
