@@ -258,6 +258,33 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /communities/{community_id}/members:
+    get:
+      tags:
+        - Community Member
+      summary: Retrieve all community members.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      members:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Member"
+        "404":
+          $ref: "#/components/responses/NotFound"
     post:
       tags:
         - Community Member
