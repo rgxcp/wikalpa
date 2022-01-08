@@ -1,10 +1,9 @@
 class Api::V1::BuddiesController < ApplicationController
   before_action :authenticate_request, only: [:create, :destroy]
+  before_action :set_user, only: [:index, :create]
 
   def index
-    user = User.find(params[:user_id])
-
-    buddies = user.buddies
+    buddies = @user.buddies
 
     if buddies.size.positive?
       ok_response(data: { buddies: buddies })
@@ -14,9 +13,7 @@ class Api::V1::BuddiesController < ApplicationController
   end
 
   def create
-    user = User.find(params[:user_id])
-
-    buddy = @auth_user.buddies.build(buddy: user)
+    buddy = @auth_user.buddies.build(buddy: @user)
 
     if buddy.save
       created_response(data: { buddy: buddy })
@@ -32,5 +29,11 @@ class Api::V1::BuddiesController < ApplicationController
     buddy.destroy
 
     ok_response(data: { buddy: buddy })
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end
