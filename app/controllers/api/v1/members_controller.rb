@@ -6,7 +6,11 @@ class Api::V1::MembersController < ApplicationController
 
     members = community.members
 
-    not_found_response unless members.size.positive?
+    if members.size.positive?
+      ok_response(data: { members: members })
+    else
+      not_found_response
+    end
   end
 
   def create
