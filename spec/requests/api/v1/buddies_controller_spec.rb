@@ -40,6 +40,34 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when buddies exist" do
+      before do
+        user1 = create(:user)
+        user2 = create(:user)
+        create(:buddy, user: user1, buddy: user2)
+        get api_v1_user_buddies_path(user1)
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be true
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns buddies data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["buddies"]).not_to be_empty
+      end
+    end
   end
 
   describe "POST /users/:user_id/follow" do

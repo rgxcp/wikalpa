@@ -6,7 +6,11 @@ class Api::V1::BuddiesController < ApplicationController
 
     buddies = user.buddies
 
-    not_found_response unless buddies.size.positive?
+    if buddies.size.positive?
+      ok_response(data: { buddies: buddies })
+    else
+      not_found_response
+    end
   end
 
   def create
