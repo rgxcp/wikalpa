@@ -3,6 +3,10 @@ class Api::V1::BuddiesController < ApplicationController
 
   def index
     user = User.find(params[:user_id])
+
+    buddies = user.buddies
+
+    not_found_response unless buddies.size.positive?
   end
 
   def create
