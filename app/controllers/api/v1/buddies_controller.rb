@@ -1,6 +1,10 @@
 class Api::V1::BuddiesController < ApplicationController
   before_action :authenticate_request, only: [:create, :destroy]
 
+  def index
+    user = User.find(params[:user_id])
+  end
+
   def create
     user = User.find(params[:user_id])
 

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         resources :likes, only: :create, module: "reply"
       end
       resources :users, only: [:index, :show, :update] do
-        resources :buddies, only: :create
+        resources :buddies, only: [:index, :create]
       end
     end
   end
