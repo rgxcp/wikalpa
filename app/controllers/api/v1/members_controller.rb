@@ -3,6 +3,10 @@ class Api::V1::MembersController < ApplicationController
 
   def index
     community = Community.find(params[:community_id])
+
+    members = community.members
+
+    not_found_response unless members.size.positive?
   end
 
   def create

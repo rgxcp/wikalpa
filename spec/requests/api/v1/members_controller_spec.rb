@@ -19,6 +19,27 @@ RSpec.describe Api::V1::MembersController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when members not exist" do
+      before do
+        community = create(:community)
+        get api_v1_community_members_path(community)
+      end
+
+      it "returns 404 status code" do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns not found message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Not Found")
+      end
+    end
   end
 
   describe "POST /communities/:community_id/join" do
