@@ -1,10 +1,9 @@
 class Api::V1::Post::CommentsController < Api::V1::CommentsController
   before_action :authenticate_request, only: :create
+  before_action :set_post, only: [:index, :create]
 
   def index
-    post = Post.find(params[:post_id])
-
-    comments = post.comments
+    comments = @post.comments
 
     if comments.size.positive?
       ok_response(data: { comments: comments })
@@ -14,9 +13,7 @@ class Api::V1::Post::CommentsController < Api::V1::CommentsController
   end
 
   def create
-    post = Post.find(params[:post_id])
-
-    comment = post.comments.build(comment_params)
+    comment = @post.comments.build(comment_params)
     comment.user = @auth_user
 
     if comment.save
@@ -24,5 +21,11 @@ class Api::V1::Post::CommentsController < Api::V1::CommentsController
     else
       unprocessable_entity_response(errors: comment.errors.messages)
     end
+  end
+
+  private
+
+  def set_post
+    @post = Post.find(params[:post_id])
   end
 end
