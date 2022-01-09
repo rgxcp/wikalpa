@@ -6,7 +6,11 @@ class Api::V1::Post::CommentsController < Api::V1::CommentsController
 
     comments = post.comments
 
-    not_found_response unless comments.size.positive?
+    if comments.size.positive?
+      ok_response(data: { comments: comments })
+    else
+      not_found_response
+    end
   end
 
   def create
