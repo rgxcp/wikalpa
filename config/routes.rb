@@ -21,7 +21,7 @@ Rails.application.routes.draw do
         resources :likes, only: [:index, :create], module: "post"
       end
       resources :replies, only: [:show, :update] do
-        resources :likes, only: :create, module: "reply"
+        resources :likes, only: [:index, :create], module: "reply"
       end
       resources :users, only: [:index, :show, :update] do
         resources :buddies, only: [:index, :create], module: "user"
