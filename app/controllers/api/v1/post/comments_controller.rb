@@ -1,6 +1,10 @@
 class Api::V1::Post::CommentsController < Api::V1::CommentsController
   before_action :authenticate_request, only: :create
 
+  def index
+    post = Post.find(params[:post_id])
+  end
+
   def create
     post = Post.find(params[:post_id])
 
