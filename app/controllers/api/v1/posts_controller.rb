@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-  before_action :authenticate_request, only: [:create, :update]
+  before_action :authenticate_request, only: :update
   before_action :set_post, only: [:show, :update]
 
   def index
@@ -14,20 +14,6 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     ok_response(data: { post: @post })
-  end
-
-  def create
-    community = Community.find(params[:community_id])
-    return forbidden_response unless community.members.exists?(user: @auth_user)
-
-    post = community.posts.build(post_params)
-    post.user = @auth_user
-
-    if post.save
-      created_response(data: { post: post })
-    else
-      unprocessable_entity_response(errors: post.errors.messages)
-    end
   end
 
   def update

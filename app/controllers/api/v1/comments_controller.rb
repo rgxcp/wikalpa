@@ -1,22 +1,9 @@
 class Api::V1::CommentsController < ApplicationController
-  before_action :authenticate_request, only: [:create, :update]
+  before_action :authenticate_request, only: :update
   before_action :set_comment, only: [:show, :update]
 
   def show
     ok_response(data: { comment: @comment })
-  end
-
-  def create
-    post = Post.find(params[:post_id])
-
-    comment = post.comments.build(comment_params)
-    comment.user = @auth_user
-
-    if comment.save
-      created_response(data: { comment: comment })
-    else
-      unprocessable_entity_response(errors: comment.errors.messages)
-    end
   end
 
   def update
