@@ -1,3 +1,12 @@
+# [6.13.0](https://github.com/rgxcp/wikalpa/compare/v6.12.0...v6.13.0) (2022-01-09)
+
+
+### Features
+
+* GET /comments/:id/replies returns not found response when comment not exists ([18cefce](https://github.com/rgxcp/wikalpa/commit/18cefce91fa1d5e5e58dfc53647f7a9400a28c46))
+* GET /comments/:id/replies returns not found response when replies not exist ([dc8f847](https://github.com/rgxcp/wikalpa/commit/dc8f8472d9f2961a837b72bedd5fab10120ed70f))
+* GET /comments/:id/replies returns ok response when replies exist ([f95c2a1](https://github.com/rgxcp/wikalpa/commit/f95c2a19a85c1be1048e601e88f806690ce65287))
+
 # [6.12.0](https://github.com/rgxcp/wikalpa/compare/v6.11.0...v6.12.0) (2022-01-09)
 
 
