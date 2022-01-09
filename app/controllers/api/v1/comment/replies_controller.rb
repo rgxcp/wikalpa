@@ -1,6 +1,10 @@
 class Api::V1::Comment::RepliesController < Api::V1::RepliesController
   before_action :authenticate_request, only: :create
 
+  def index
+    comment = Comment.find(params[:comment_id])
+  end
+
   def create
     comment = Comment.find(params[:comment_id])
 

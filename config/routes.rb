@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :buddies, only: :destroy
       resources :comments, only: [:show, :update] do
         resources :likes, only: :create, module: "comment"
-        resources :replies, only: :create, module: "comment"
+        resources :replies, only: [:index, :create], module: "comment"
       end
       resources :communities, except: :destroy do
         resources :members, only: [:index, :create], module: "community"
