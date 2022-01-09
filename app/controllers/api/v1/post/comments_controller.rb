@@ -3,6 +3,10 @@ class Api::V1::Post::CommentsController < Api::V1::CommentsController
 
   def index
     post = Post.find(params[:post_id])
+
+    comments = post.comments
+
+    not_found_response unless comments.size.positive?
   end
 
   def create

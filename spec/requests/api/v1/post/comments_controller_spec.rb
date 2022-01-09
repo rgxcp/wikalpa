@@ -19,6 +19,27 @@ RSpec.describe Api::V1::Post::CommentsController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when comments not exist" do
+      before do
+        post = create(:post)
+        get api_v1_post_comments_path(post)
+      end
+
+      it "returns 404 status code" do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns not found message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Not Found")
+      end
+    end
   end
 
   describe "POST /posts/:post_id/comments" do
