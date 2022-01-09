@@ -349,6 +349,33 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
   /communities/{community_id}/posts:
+    get:
+      tags:
+        - Community Post
+      summary: Retrieve all community posts.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      posts:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Post"
+        "404":
+          $ref: "#/components/responses/NotFound"
     post:
       tags:
         - Community Post
