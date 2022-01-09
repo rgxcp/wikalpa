@@ -4,7 +4,11 @@ class Api::V1::Post::LikesController < Api::V1::LikesController
   def index
     likes = @likeable.likes
 
-    not_found_response unless likes.size.positive?
+    if likes.size.positive?
+      ok_response(data: { likes: likes })
+    else
+      not_found_response
+    end
   end
 
   private
