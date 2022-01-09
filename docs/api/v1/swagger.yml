@@ -603,6 +603,33 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /posts/{post_id}/likes:
+    get:
+      tags:
+        - Post Like
+      summary: Retrieve all post likes.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      likes:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Like"
+        "404":
+          $ref: "#/components/responses/NotFound"
     post:
       tags:
         - Post Like
