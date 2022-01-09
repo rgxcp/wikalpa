@@ -6,7 +6,11 @@ class Api::V1::Community::PostsController < Api::V1::PostsController
 
     posts = community.posts
 
-    not_found_response unless posts.size.positive?
+    if posts.size.positive?
+      ok_response(data: { posts: posts })
+    else
+      not_found_response
+    end
   end
 
   def create
