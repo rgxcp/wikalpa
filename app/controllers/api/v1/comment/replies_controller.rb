@@ -6,7 +6,11 @@ class Api::V1::Comment::RepliesController < Api::V1::RepliesController
 
     replies = comment.replies
 
-    not_found_response unless replies.size.positive?
+    if replies.size.positive?
+      ok_response(data: { replies: replies })
+    else
+      not_found_response
+    end
   end
 
   def create
