@@ -3,6 +3,10 @@ class Api::V1::Community::PostsController < Api::V1::PostsController
 
   def index
     community = Community.find(params[:community_id])
+
+    posts = community.posts
+
+    not_found_response unless posts.size.positive?
   end
 
   def create
