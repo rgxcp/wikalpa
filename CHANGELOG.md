@@ -1,3 +1,18 @@
+# [6.14.0](https://github.com/rgxcp/wikalpa/compare/v6.13.0...v6.14.0) (2022-01-09)
+
+
+### Features
+
+* GET /comments/:id/likes returns not found response when comment not exists ([318cada](https://github.com/rgxcp/wikalpa/commit/318cadab29c250713ff83f6e807bbffc427ffafc))
+* GET /comments/:id/likes returns not found response when likes not exist ([8fb25b0](https://github.com/rgxcp/wikalpa/commit/8fb25b0cca83f77d843b921ca551fe6abd080937))
+* GET /comments/:id/likes returns ok response when likes exist ([69b4e57](https://github.com/rgxcp/wikalpa/commit/69b4e573c4abc688e698a0b29c826e98528dd00e))
+* GET /posts/:id/likes returns not found response when likes not exist ([4adc644](https://github.com/rgxcp/wikalpa/commit/4adc64449392654e935820b0fd1c7c26f8f00046))
+* GET /posts/:id/likes returns not found response when post not exists ([edea234](https://github.com/rgxcp/wikalpa/commit/edea23456497126988318503a27038a6fd72dbe6))
+* GET /posts/:id/likes returns ok response when likes exist ([05cec20](https://github.com/rgxcp/wikalpa/commit/05cec209140875f385af01f5f55833f5d86fec03))
+* GET /replies/:id/likes returns not found response when likes not exist ([156c440](https://github.com/rgxcp/wikalpa/commit/156c44090e0f2f6b34910ee2f5b131ac15e6b76e))
+* GET /replies/:id/likes returns not found response when reply not exists ([ef57741](https://github.com/rgxcp/wikalpa/commit/ef577416abcd38b25b24efedd4c9563192a9414d))
+* GET /replies/:id/likes returns ok response when likes exist ([40a2a0a](https://github.com/rgxcp/wikalpa/commit/40a2a0a455adf3fd9007a3563503ace618609316))
+
 # [6.13.0](https://github.com/rgxcp/wikalpa/compare/v6.12.0...v6.13.0) (2022-01-09)
 
 
