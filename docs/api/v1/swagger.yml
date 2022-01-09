@@ -738,6 +738,33 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /comments/{comment_id}/likes:
+    get:
+      tags:
+        - Comment Like
+      summary: Retrieve all comment likes.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      likes:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Like"
+        "404":
+          $ref: "#/components/responses/NotFound"
     post:
       tags:
         - Comment Like
