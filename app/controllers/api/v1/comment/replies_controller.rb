@@ -3,6 +3,10 @@ class Api::V1::Comment::RepliesController < Api::V1::RepliesController
 
   def index
     comment = Comment.find(params[:comment_id])
+
+    replies = comment.replies
+
+    not_found_response unless replies.size.positive?
   end
 
   def create
