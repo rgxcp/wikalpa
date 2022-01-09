@@ -1,10 +1,9 @@
 class Api::V1::Community::PostsController < Api::V1::PostsController
   before_action :authenticate_request, only: :create
+  before_action :set_community, only: [:index, :create]
 
   def index
-    community = Community.find(params[:community_id])
-
-    posts = community.posts
+    posts = @community.posts
 
     if posts.size.positive?
       ok_response(data: { posts: posts })
@@ -14,10 +13,9 @@ class Api::V1::Community::PostsController < Api::V1::PostsController
   end
 
   def create
-    community = Community.find(params[:community_id])
-    return forbidden_response unless community.members.exists?(user: @auth_user)
+    return forbidden_response unless @community.members.exists?(user: @auth_user)
 
-    post = community.posts.build(post_params)
+    post = @community.posts.build(post_params)
     post.user = @auth_user
 
     if post.save
@@ -25,5 +23,11 @@ class Api::V1::Community::PostsController < Api::V1::PostsController
     else
       unprocessable_entity_response(errors: post.errors.messages)
     end
+  end
+
+  private
+
+  def set_community
+    @community = Community.find(params[:community_id])
   end
 end
