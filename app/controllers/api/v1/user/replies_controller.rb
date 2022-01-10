@@ -4,6 +4,10 @@ class Api::V1::User::RepliesController < ApplicationController
 
     replies = user.replies
 
-    not_found_response unless replies.size.positive?
+    if replies.size.positive?
+      ok_response(data: { replies: replies })
+    else
+      not_found_response
+    end
   end
 end
