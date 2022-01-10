@@ -4,6 +4,10 @@ class Api::V1::User::PostsController < ApplicationController
 
     posts = user.posts
 
-    not_found_response unless posts.size.positive?
+    if posts.size.positive?
+      ok_response(data: { posts: posts })
+    else
+      not_found_response
+    end
   end
 end
