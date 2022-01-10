@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         resources :comments, only: :index, module: "user"
         resources :communities, only: :index, module: "user"
         resources :posts, only: :index, module: "user"
+        resources :replies, only: :index, module: "user"
       end
     end
   end
