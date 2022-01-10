@@ -1,3 +1,25 @@
+# [6.15.0](https://github.com/rgxcp/wikalpa/compare/v6.14.0...v6.15.0) (2022-01-10)
+
+
+### Features
+
+* add has many 'Comment' association on 'User' ([67933e6](https://github.com/rgxcp/wikalpa/commit/67933e6af28ddcb734472cb3987142abfba9b29e))
+* add has many 'Community' through 'Member' association on 'User' ([76cea9c](https://github.com/rgxcp/wikalpa/commit/76cea9c4229ce2b9c932933b63caa38e4bf423b4))
+* add has many 'Post' association on 'User' ([98e33fc](https://github.com/rgxcp/wikalpa/commit/98e33fce39b819a5bad437f802a36262877517e2))
+* add has many 'Reply' association on 'User' ([006f055](https://github.com/rgxcp/wikalpa/commit/006f0558ed7af3a3277548019d6c8a70b1466f65))
+* GET /users/:id/comments returns not found response when comments not exist ([2d3be40](https://github.com/rgxcp/wikalpa/commit/2d3be40aafd157d193a99ff0f723e019131b5e0f))
+* GET /users/:id/comments returns not found response when user not exists ([3cc7f2c](https://github.com/rgxcp/wikalpa/commit/3cc7f2c833405dea1dc18993872bf56cf8dae890))
+* GET /users/:id/comments returns ok response when comments exist ([3b46f06](https://github.com/rgxcp/wikalpa/commit/3b46f06be76fb2a8b71bba7ef4bf74a14d04cbf7))
+* GET /users/:id/communities returns not found response when communities not exist ([7474648](https://github.com/rgxcp/wikalpa/commit/7474648775c8191bd762e184353608be05bbd5b1))
+* GET /users/:id/communities returns not found response when user not exists ([37aeeb2](https://github.com/rgxcp/wikalpa/commit/37aeeb29dd337e77665cfd33cd6dfbd796c84233))
+* GET /users/:id/communities returns ok response when communities exist ([c082c7e](https://github.com/rgxcp/wikalpa/commit/c082c7ea8d92c2ab1c1a35221e8d3e5a53cb350a))
+* GET /users/:id/posts returns not found response when posts not exist ([920f211](https://github.com/rgxcp/wikalpa/commit/920f2116d387254b7a9a5f6fb0cf96dae053f9c1))
+* GET /users/:id/posts returns not found response when user not exists ([f8d0a60](https://github.com/rgxcp/wikalpa/commit/f8d0a60b00e3ddd81705b169727720d11df8872e))
+* GET /users/:id/posts returns ok response when posts exist ([dd3078d](https://github.com/rgxcp/wikalpa/commit/dd3078d098f0d9d9a81097eb1e2f7b6cc2b49b8a))
+* GET /users/:id/replies returns not found response when replies not exist ([5279aa2](https://github.com/rgxcp/wikalpa/commit/5279aa2fe0ee714250c319ecfd95a59a5cc803a1))
+* GET /users/:id/replies returns not found response when user not exists ([713acfc](https://github.com/rgxcp/wikalpa/commit/713acfc83f8005f27a1046fa5663f86f9bd18d47))
+* GET /users/:id/replies returns ok response when replies exist ([b4b3f1e](https://github.com/rgxcp/wikalpa/commit/b4b3f1e50eab6aa963a13d92086ac4cf5fce6a6d))
+
 # [6.14.0](https://github.com/rgxcp/wikalpa/compare/v6.13.0...v6.14.0) (2022-01-09)
 
 
