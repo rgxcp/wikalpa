@@ -1209,7 +1209,7 @@ paths:
     get:
       tags:
         - User Comment
-      summary: Retrieve all user comment.
+      summary: Retrieve all user comments.
       responses:
         "200":
           description: OK
@@ -1231,6 +1231,34 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/Comment"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /users/{user_id}/communities:
+    get:
+      tags:
+        - User Community
+      summary: Retrieve all user communities.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      communities:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Community"
         "404":
           $ref: "#/components/responses/NotFound"
   /buddies/{id}:
@@ -1302,6 +1330,8 @@ tags:
     description: Endpoints related for user buddy resources.
   - name: User Comment
     description: Endpoints related for user comment resources.
+  - name: User Community
+    description: Endpoints related for user community resources.
   - name: Buddy
     description: Endpoints related for buddy resources.
 components:
