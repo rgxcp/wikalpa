@@ -4,6 +4,10 @@ class Api::V1::User::CommentsController < ApplicationController
 
     comments = user.comments
 
-    not_found_response unless comments.size.positive?
+    if comments.size.positive?
+      ok_response(data: { comments: comments })
+    else
+      not_found_response
+    end
   end
 end
