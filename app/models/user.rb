@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :buddies
+  has_many :comments
 
   validate :password_equality
   validates :username, format: { with: REGEX::NAME }
