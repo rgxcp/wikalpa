@@ -1289,6 +1289,34 @@ paths:
                           $ref: "#/components/schemas/Post"
         "404":
           $ref: "#/components/responses/NotFound"
+  /users/{user_id}/replies:
+    get:
+      tags:
+        - User Reply
+      summary: Retrieve all user replies.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      replies:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Reply"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /buddies/{id}:
     delete:
       tags:
@@ -1362,6 +1390,8 @@ tags:
     description: Endpoints related for user community resources.
   - name: User Post
     description: Endpoints related for user post resources.
+  - name: User Reply
+    description: Endpoints related for user reply resources.
   - name: Buddy
     description: Endpoints related for buddy resources.
 components:
