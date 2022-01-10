@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :members
   has_many :posts
+  has_many :replies
   has_many :communities, through: :members
 
   validate :password_equality

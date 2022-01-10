@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:members) }
   it { is_expected.to have_many(:posts) }
+  it { is_expected.to have_many(:replies) }
   it { is_expected.to have_many(:communities).through(:members) }
   it { is_expected.not_to allow_value("! john.doe !").for(:username) }
   it { is_expected.to validate_length_of(:username).is_at_least(5).is_at_most(15) }
