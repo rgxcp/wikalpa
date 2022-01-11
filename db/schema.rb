@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_102622) do
+ActiveRecord::Schema.define(version: 2022_01_11_050216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 2021_12_20_102622) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "visitors", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "visitable_type", null: false
+    t.bigint "visitable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_visitors_on_user_id"
+    t.index ["visitable_type", "visitable_id"], name: "index_visitors_on_visitable"
+  end
+
   add_foreign_key "buddies", "users"
   add_foreign_key "buddies", "users", column: "buddy_id"
   add_foreign_key "comments", "posts"
@@ -100,4 +110,5 @@ ActiveRecord::Schema.define(version: 2021_12_20_102622) do
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "comments"
   add_foreign_key "replies", "users"
+  add_foreign_key "visitors", "users"
 end
