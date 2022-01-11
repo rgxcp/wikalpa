@@ -109,6 +109,7 @@ paths:
     get:
       tags:
         - Community
+      security: []
       summary: Retrieve all communities.
       responses:
         "200":
@@ -182,6 +183,7 @@ paths:
     get:
       tags:
         - Community
+      security: []
       summary: Show a specific community.
       parameters:
         - $ref: "#/components/parameters/Identifier"
@@ -261,6 +263,7 @@ paths:
     get:
       tags:
         - Community Member
+      security: []
       summary: Retrieve all community members.
       responses:
         "200":
@@ -352,6 +355,7 @@ paths:
     get:
       tags:
         - Community Post
+      security: []
       summary: Retrieve all community posts.
       responses:
         "200":
@@ -428,6 +432,7 @@ paths:
     get:
       tags:
         - Post
+      security: []
       summary: Retrieve all posts.
       responses:
         "200":
@@ -456,6 +461,7 @@ paths:
     get:
       tags:
         - Post
+      security: []
       summary: Show a specific post.
       parameters:
         - $ref: "#/components/parameters/Identifier"
@@ -532,6 +538,7 @@ paths:
     get:
       tags:
         - Post Comment
+      security: []
       summary: Retrieve all post comments.
       responses:
         "200":
@@ -606,6 +613,7 @@ paths:
     get:
       tags:
         - Post Like
+      security: []
       summary: Retrieve all post likes.
       responses:
         "200":
@@ -665,6 +673,7 @@ paths:
     get:
       tags:
         - Comment
+      security: []
       summary: Show a specific comment.
       parameters:
         - $ref: "#/components/parameters/Identifier"
@@ -741,6 +750,7 @@ paths:
     get:
       tags:
         - Comment Like
+      security: []
       summary: Retrieve all comment likes.
       responses:
         "200":
@@ -800,6 +810,7 @@ paths:
     get:
       tags:
         - Comment Reply
+      security: []
       summary: Retrieve all comment replies.
       responses:
         "200":
@@ -874,6 +885,7 @@ paths:
     get:
       tags:
         - Reply
+      security: []
       summary: Show a specific reply.
       parameters:
         - $ref: "#/components/parameters/Identifier"
@@ -950,6 +962,7 @@ paths:
     get:
       tags:
         - Reply Like
+      security: []
       summary: Retrieve all reply likes.
       responses:
         "200":
@@ -1041,6 +1054,7 @@ paths:
     get:
       tags:
         - User
+      security: []
       summary: Retrieve all users.
       responses:
         "200":
@@ -1069,6 +1083,7 @@ paths:
     get:
       tags:
         - User
+      security: []
       summary: Show a specific user.
       parameters:
         - $ref: "#/components/parameters/Identifier"
@@ -1150,6 +1165,7 @@ paths:
     get:
       tags:
         - User Buddy
+      security: []
       summary: Retrieve all user buddies.
       responses:
         "200":
@@ -1209,6 +1225,7 @@ paths:
     get:
       tags:
         - User Comment
+      security: []
       summary: Retrieve all user comments.
       responses:
         "200":
@@ -1237,6 +1254,7 @@ paths:
     get:
       tags:
         - User Community
+      security: []
       summary: Retrieve all user communities.
       responses:
         "200":
@@ -1265,6 +1283,7 @@ paths:
     get:
       tags:
         - User Post
+      security: []
       summary: Retrieve all user posts.
       responses:
         "200":
@@ -1293,6 +1312,7 @@ paths:
     get:
       tags:
         - User Reply
+      security: []
       summary: Retrieve all user replies.
       responses:
         "200":
