@@ -39,7 +39,7 @@ MAINTAINING
 7. Docker Compose (_Optional_)
 8. Postman (_Optional_)
 
-## 🥋 How To
+## 🥋 How to
 
 ### 🔭 Setup Project
 
