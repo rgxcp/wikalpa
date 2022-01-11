@@ -91,6 +91,6 @@ MAINTAINING
    - WIKALPA_DATABASE_PASSWORD=
    ```
 3. Run the container.
-   ```bash
+   ```
    $ sudo docker-compose up -d
    ```
