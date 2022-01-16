@@ -1,3 +1,12 @@
+# [6.16.0](https://github.com/rgxcp/wikalpa/compare/v6.15.0...v6.16.0) (2022-01-16)
+
+
+### Features
+
+* add belongs to 'User' association on 'Visitor' ([43cb0ee](https://github.com/rgxcp/wikalpa/commit/43cb0ee1d818ac976e157da66e8379486de139b9))
+* add polymorphic belongs to 'Visitable' association on 'Visitor' ([73b828f](https://github.com/rgxcp/wikalpa/commit/73b828f0208b46dab5a16756365cc81916c4d7da))
+* validate presence of 'User' on 'Visitor' ([bdc1cc5](https://github.com/rgxcp/wikalpa/commit/bdc1cc5eec6f81afcb82faf1a40139cee6154a6d))
+
 # [6.15.0](https://github.com/rgxcp/wikalpa/compare/v6.14.0...v6.15.0) (2022-01-10)
 
 
