@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments
   has_many :likes, as: :likeable
+  has_many :visitors, as: :visitable
 
   validates :community, presence: true
   validates :user, presence: true
