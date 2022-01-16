@@ -34,10 +34,11 @@ MAINTAINING
 2. Ruby
 3. Bundler
 4. PostgreSQL
-5. SQLite3
-6. Docker (_Optional_)
-7. Docker Compose (_Optional_)
-8. Postman (_Optional_)
+5. Redis
+6. SQLite3
+7. Docker (_Optional_)
+8. Docker Compose (_Optional_)
+9. Postman (_Optional_)
 
 ## 🥋 How to
 
@@ -80,6 +81,10 @@ MAINTAINING
    ```
    $ bin/rails s
    ```
+5. Run Sidekiq.
+   ```
+   $ bundle exec sidekiq
+   ```
 
 ### 🚢 Run Dockerized App
 
@@ -93,4 +98,12 @@ MAINTAINING
 3. Run the container.
    ```
    $ sudo docker-compose up -d
+   ```
+4. Setup the database.
+   ```
+   $ sudo docker exec wikalpa_api bin/rails db:setup
+   ```
+5. Run Sidekiq.
+   ```
+   $ sudo docker exec wikalpa_api bundle exec sidekiq
    ```
