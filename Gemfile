@@ -49,6 +49,8 @@ group :test do
   ##########
   # ADD-ON #
   ##########
+  # RSpec matchers for Sidekiq
+  gem "rspec-sidekiq"
   # Test matchers
   gem "shoulda-matchers", "~> 5.0"
   # Code coverage generator
