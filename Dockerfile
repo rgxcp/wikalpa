@@ -1,5 +1,7 @@
 FROM ruby:3.0.1
 
+ENV TZ=Asia/Jakarta
+
 RUN mkdir /app
 
 WORKDIR /app
