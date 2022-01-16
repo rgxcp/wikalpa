@@ -1,3 +1,13 @@
+# [6.17.0](https://github.com/rgxcp/wikalpa/compare/v6.16.0...v6.17.0) (2022-01-16)
+
+
+### Features
+
+* add has many 'Visitor' polymorphic association on 'Community' ([83cc7f5](https://github.com/rgxcp/wikalpa/commit/83cc7f5dcf1389d9673fc54e0921d198807f0d72))
+* add has many 'Visitor' polymorphic association on 'Post' ([3a23cf7](https://github.com/rgxcp/wikalpa/commit/3a23cf7209073b1fb4c31aede69fbef73e29dade))
+* add has many 'Visitor' polymorphic association on 'User' ([3f11861](https://github.com/rgxcp/wikalpa/commit/3f11861120ad160f3ff98992335a6ef673f8756b))
+* validate visiting self visitable ([dd8b85d](https://github.com/rgxcp/wikalpa/commit/dd8b85d1a38fb0646d291ba907091b12a78ff57a))
+
 # [6.16.0](https://github.com/rgxcp/wikalpa/compare/v6.15.0...v6.16.0) (2022-01-16)
 
 
