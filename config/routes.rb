@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :communities, except: :destroy do
         resources :members, only: [:index, :create], module: "community"
         resources :posts, only: [:index, :create], module: "community"
+        resources :visitors, only: :index, module: "community"
       end
       resources :likes, only: :destroy
       resources :members, only: :destroy
