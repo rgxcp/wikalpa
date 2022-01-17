@@ -708,6 +708,37 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /posts/{post_id}/visitors:
+    get:
+      tags:
+        - Post Visitor
+      security: []
+      summary: Retrieve all post visitors.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierPost"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      visitors:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Visitor"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /comments/{id}:
     get:
       tags:
@@ -1445,6 +1476,8 @@ tags:
     description: Endpoints related for post comment resources.
   - name: Post Like
     description: Endpoints related for post like resources.
+  - name: Post Visitor
+    description: Endpoints related for post visitor resources.
   - name: Comment
     description: Endpoints related for comment resources.
   - name: Comment Like
@@ -1691,7 +1724,9 @@ components:
           example: 1
         visitable_type:
           type: string
-          example: "Community"
+          enum:
+            - Community
+            - Post
         visitable_id:
           type: integer
           example: 1
