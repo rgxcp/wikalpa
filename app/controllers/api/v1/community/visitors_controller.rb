@@ -1,13 +1,7 @@
-class Api::V1::Community::VisitorsController < ApplicationController
-  def index
-    community = Community.find(params[:community_id])
+class Api::V1::Community::VisitorsController < Api::V1::VisitorsController
+  private
 
-    visitors = community.visitors
-
-    if visitors.size.positive?
-      ok_response(data: { visitors: visitors })
-    else
-      not_found_response
-    end
+  def set_visitable
+    @visitable = Community.find(params[:community_id])
   end
 end

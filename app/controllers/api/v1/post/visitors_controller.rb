@@ -1,13 +1,7 @@
-class Api::V1::Post::VisitorsController < ApplicationController
-  def index
-    post = Post.find(params[:post_id])
+class Api::V1::Post::VisitorsController < Api::V1::VisitorsController
+  private
 
-    visitors = post.visitors
-
-    if visitors.size.positive?
-      ok_response(data: { visitors: visitors })
-    else
-      not_found_response
-    end
+  def set_visitable
+    @visitable = Post.find(params[:post_id])
   end
 end

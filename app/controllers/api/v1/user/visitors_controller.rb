@@ -1,13 +1,7 @@
-class Api::V1::User::VisitorsController < ApplicationController
-  def index
-    user = User.find(params[:user_id])
+class Api::V1::User::VisitorsController < Api::V1::VisitorsController
+  private
 
-    visitors = user.visitors
-
-    if visitors.size.positive?
-      ok_response(data: { visitors: visitors })
-    else
-      not_found_response
-    end
+  def set_visitable
+    @visitable = User.find(params[:user_id])
   end
 end
