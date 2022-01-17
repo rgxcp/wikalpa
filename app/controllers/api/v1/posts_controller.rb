@@ -1,4 +1,5 @@
 class Api::V1::PostsController < ApplicationController
+  before_action :parse_auth_id, only: :show
   before_action :authenticate_request, only: :update
   before_action :set_post, only: [:show, :update]
 
@@ -13,6 +14,8 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
+    VisitorWorker.perform_async("Post", @post.id, @auth_id) if @auth_id
+
     ok_response(data: { post: @post })
   end
 

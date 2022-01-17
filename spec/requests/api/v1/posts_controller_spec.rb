@@ -91,6 +91,16 @@ RSpec.describe Api::V1::PostsController, type: :request do
         expect(result["data"]["post"]).not_to be_empty
       end
     end
+
+    context "when visiting post while user logged in" do
+      it "enqueues visitor worker job in background" do
+        auth = create(:user)
+        post = create(:post)
+        token = JsonWebToken.encode({ id: auth.id })
+        expect(VisitorWorker).to receive(:perform_async).with("Post", post.id, auth.id)
+        get api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }
+      end
+    end
   end
 
   describe "PATCH /posts/:id" do
