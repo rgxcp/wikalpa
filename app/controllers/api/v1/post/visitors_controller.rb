@@ -4,6 +4,10 @@ class Api::V1::Post::VisitorsController < ApplicationController
 
     visitors = post.visitors
 
-    not_found_response unless visitors.size.positive?
+    if visitors.size.positive?
+      ok_response(data: { visitors: visitors })
+    else
+      not_found_response
+    end
   end
 end
