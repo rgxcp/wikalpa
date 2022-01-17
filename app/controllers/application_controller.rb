@@ -5,11 +5,17 @@ class ApplicationController < ActionController::API
 
   protected
 
-  def authenticate_request
+  def parse_auth_id
     token = request.headers.fetch("Authorization", "").split.last
-    id = JsonWebToken.decode(token).first["id"]
+    @auth_id = JsonWebToken.decode(token).first["id"]
+  rescue JWT::DecodeError
+    nil
+  end
+
+  def authenticate_request
+    id = parse_auth_id
     @auth_user = User.find(id)
-  rescue JWT::DecodeError, ActiveRecord::RecordNotFound
+  rescue ActiveRecord::RecordNotFound
     unauthorized_response
   end
 
