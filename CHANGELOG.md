@@ -1,3 +1,14 @@
+# [6.18.0](https://github.com/rgxcp/wikalpa/compare/v6.17.0...v6.18.0) (2022-01-17)
+
+
+### Features
+
+* allow VisitorWorker.perform_async to be enqueued into background job ([7c6fb18](https://github.com/rgxcp/wikalpa/commit/7c6fb182132f5ba9d7cfafbaf2dddffd6b712c52))
+* enqueues visitor worker job in background when visiting community while user logged in ([757579c](https://github.com/rgxcp/wikalpa/commit/757579c50c3b83f0639f6c09e55881ea8b871bef))
+* enqueues visitor worker job in background when visiting post while user logged in ([7b53d01](https://github.com/rgxcp/wikalpa/commit/7b53d01833df733505cd009559c5e3eb2f7d449b))
+* enqueues visitor worker job in background when visiting user while user logged in ([ec445f3](https://github.com/rgxcp/wikalpa/commit/ec445f3728760daef26b64e4c5df01f1f1180ef7))
+* VisitorWorker.perform adds visitable visitor by one ([31d7d06](https://github.com/rgxcp/wikalpa/commit/31d7d060a9a1fb13f992d69ff4a553298284bc07))
+
 # [6.17.0](https://github.com/rgxcp/wikalpa/compare/v6.16.0...v6.17.0) (2022-01-16)
 
 
