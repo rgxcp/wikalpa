@@ -1,6 +1,16 @@
 class Api::V1::LikesController < ApplicationController
   before_action :authenticate_request, only: [:create, :destroy]
-  before_action :set_likeable, only: :create
+  before_action :set_likeable, only: [:index, :create]
+
+  def index
+    likes = @likeable.likes
+
+    if likes.size.positive?
+      ok_response(data: { likes: likes })
+    else
+      not_found_response
+    end
+  end
 
   def create
     like = @likeable.likes.build(user: @auth_user)
