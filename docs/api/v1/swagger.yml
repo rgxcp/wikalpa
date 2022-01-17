@@ -265,6 +265,8 @@ paths:
         - Community Member
       security: []
       summary: Retrieve all community members.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCommunity"
       responses:
         "200":
           description: OK
@@ -319,44 +321,14 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
-  /members/{id}:
-    delete:
-      tags:
-        - Member
-      summary: Leave a community.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      member:
-                        $ref: "#/components/schemas/Member"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
   /communities/{community_id}/posts:
     get:
       tags:
         - Community Post
       security: []
       summary: Retrieve all community posts.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCommunity"
       responses:
         "200":
           description: OK
@@ -428,6 +400,69 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /communities/{community_id}/visitors:
+    get:
+      tags:
+        - Community Visitor
+      security: []
+      summary: Retrieve all community visitors.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCommunity"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      visitors:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Visitor"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /members/{id}:
+    delete:
+      tags:
+        - Member
+      summary: Leave a community.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      member:
+                        $ref: "#/components/schemas/Member"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /posts:
     get:
       tags:
@@ -540,6 +575,8 @@ paths:
         - Post Comment
       security: []
       summary: Retrieve all post comments.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierPost"
       responses:
         "200":
           description: OK
@@ -615,6 +652,8 @@ paths:
         - Post Like
       security: []
       summary: Retrieve all post likes.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierPost"
       responses:
         "200":
           description: OK
@@ -752,6 +791,8 @@ paths:
         - Comment Like
       security: []
       summary: Retrieve all comment likes.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
       responses:
         "200":
           description: OK
@@ -812,6 +853,8 @@ paths:
         - Comment Reply
       security: []
       summary: Retrieve all comment replies.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
       responses:
         "200":
           description: OK
@@ -964,6 +1007,8 @@ paths:
         - Reply Like
       security: []
       summary: Retrieve all reply likes.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierReply"
       responses:
         "200":
           description: OK
@@ -1018,38 +1063,6 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
-  /likes/{id}:
-    delete:
-      tags:
-        - Like
-      summary: Delete a like.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      like:
-                        $ref: "#/components/schemas/Like"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
   /users:
     get:
       tags:
@@ -1167,6 +1180,8 @@ paths:
         - User Buddy
       security: []
       summary: Retrieve all user buddies.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
       responses:
         "200":
           description: OK
@@ -1227,6 +1242,8 @@ paths:
         - User Comment
       security: []
       summary: Retrieve all user comments.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
       responses:
         "200":
           description: OK
@@ -1256,6 +1273,8 @@ paths:
         - User Community
       security: []
       summary: Retrieve all user communities.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
       responses:
         "200":
           description: OK
@@ -1285,6 +1304,8 @@ paths:
         - User Post
       security: []
       summary: Retrieve all user posts.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
       responses:
         "200":
           description: OK
@@ -1314,6 +1335,8 @@ paths:
         - User Reply
       security: []
       summary: Retrieve all user replies.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
       responses:
         "200":
           description: OK
@@ -1369,6 +1392,38 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /likes/{id}:
+    delete:
+      tags:
+        - Like
+      summary: Delete a like.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      like:
+                        $ref: "#/components/schemas/Like"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
 security:
   - BearerAuth: []
 tags:
@@ -1378,16 +1433,18 @@ tags:
     description: Endpoints related for community resources.
   - name: Community Member
     description: Endpoints related for community member resources.
+  - name: Community Post
+    description: Endpoints related for community post resources.
+  - name: Community Visitor
+    description: Endpoints related for community visitor resources.
   - name: Member
     description: Endpoints related for member resources.
   - name: Post
     description: Endpoints related for post resources.
-  - name: Community Post
-    description: Endpoints related for community post resources.
-  - name: Post Like
-    description: Endpoints related for post like resources.
   - name: Post Comment
     description: Endpoints related for post comment resources.
+  - name: Post Like
+    description: Endpoints related for post like resources.
   - name: Comment
     description: Endpoints related for comment resources.
   - name: Comment Like
@@ -1398,8 +1455,6 @@ tags:
     description: Endpoints related for replies resources.
   - name: Reply Like
     description: Endpoints related for reply like resources.
-  - name: Like
-    description: Endpoints related for like resources.
   - name: User
     description: Endpoints related for user resources.
   - name: User Buddy
@@ -1414,6 +1469,8 @@ tags:
     description: Endpoints related for user reply resources.
   - name: Buddy
     description: Endpoints related for buddy resources.
+  - name: Like
+    description: Endpoints related for like resources.
 components:
   securitySchemes:
     BearerAuth:
@@ -1617,6 +1674,27 @@ components:
         username:
           type: string
           example: john.doe
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+    Visitor:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        visitable_type:
+          type: string
+          example: "Community"
+        visitable_id:
+          type: integer
+          example: 1
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
