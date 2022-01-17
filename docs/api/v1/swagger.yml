@@ -1391,6 +1391,37 @@ paths:
                           $ref: "#/components/schemas/Reply"
         "404":
           $ref: "#/components/responses/NotFound"
+  /users/{user_id}/visitors:
+    get:
+      tags:
+        - User Visitor
+      security: []
+      summary: Retrieve all user visitors.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      visitors:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Visitor"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /buddies/{id}:
     delete:
       tags:
@@ -1500,6 +1531,8 @@ tags:
     description: Endpoints related for user post resources.
   - name: User Reply
     description: Endpoints related for user reply resources.
+  - name: User Visitor
+    description: Endpoints related for user visitor resources.
   - name: Buddy
     description: Endpoints related for buddy resources.
   - name: Like
@@ -1727,6 +1760,7 @@ components:
           enum:
             - Community
             - Post
+            - User
         visitable_id:
           type: integer
           example: 1
