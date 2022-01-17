@@ -1,3 +1,23 @@
+# [6.19.0](https://github.com/rgxcp/wikalpa/compare/v6.18.0...v6.19.0) (2022-01-17)
+
+
+### Features
+
+* GET /communities/:id/visitors returns not found response when community not exists ([03488b5](https://github.com/rgxcp/wikalpa/commit/03488b548c9f69bf489926ccc6908d6209117c26))
+* GET /communities/:id/visitors returns not found response when visitors not exist ([ad1fc84](https://github.com/rgxcp/wikalpa/commit/ad1fc84e96e1e838386b2df6a2d86e72c71d4916))
+* GET /communities/:id/visitors returns ok response when visitors exist ([bd14173](https://github.com/rgxcp/wikalpa/commit/bd141738ebf6fb44174e3bc97f0b2d3fddee547f))
+* GET /posts/:id/visitors returns not found response when post not exists ([d7b7e06](https://github.com/rgxcp/wikalpa/commit/d7b7e0690039adbb95842749085314f3700f1cd9))
+* GET /posts/:id/visitors returns not found response when visitors not exist ([4c9ef3c](https://github.com/rgxcp/wikalpa/commit/4c9ef3c1ec2871a46d60d380c682afcc6c2b7098))
+* GET /posts/:id/visitors returns ok response when visitors exist ([a33ffce](https://github.com/rgxcp/wikalpa/commit/a33ffceb587a3c62c7bb9b3649b097723c858a85))
+* GET /users/:id/visitors returns not found response when user not exists ([47b041b](https://github.com/rgxcp/wikalpa/commit/47b041b06931c6f963c085af40941208644070c6))
+* GET /users/:id/visitors returns not found response when visitors not exist ([75ff815](https://github.com/rgxcp/wikalpa/commit/75ff8155667529457d150aa43ede6588362063df))
+* GET /users/:id/visitors returns ok response when visitors exist ([3e554b0](https://github.com/rgxcp/wikalpa/commit/3e554b02329f2b3355fc6afdeca0ad7528646ac3))
+
+
+### Reverts
+
+* validate visiting self visitable ([7019610](https://github.com/rgxcp/wikalpa/commit/70196109d6c8cf278b607ad02954a51375ee31d0))
+
 # [6.18.0](https://github.com/rgxcp/wikalpa/compare/v6.17.0...v6.18.0) (2022-01-17)
 
 
