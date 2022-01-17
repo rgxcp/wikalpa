@@ -101,6 +101,16 @@ RSpec.describe Api::V1::UsersController, type: :request do
         expect(result["data"]["user"]["password_digest"]).to be_nil
       end
     end
+
+    context "when visiting user while user logged in" do
+      it "enqueues visitor worker job in background" do
+        auth = create(:user)
+        user = create(:user)
+        token = JsonWebToken.encode({ id: auth.id })
+        expect(VisitorWorker).to receive(:perform_async).with("User", user.id, auth.id)
+        get api_v1_user_path(user), headers: { Authorization: "Bearer #{token}" }
+      end
+    end
   end
 
   describe "PATCH /users/:id" do

@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :parse_auth_id, only: :show
   before_action :authenticate_request, only: :update
 
   def index
@@ -13,6 +14,8 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
+
+    VisitorWorker.perform_async("User", user.id, @auth_id) if @auth_id
 
     ok_response(data: { user: user }, except: :password_digest)
   end
