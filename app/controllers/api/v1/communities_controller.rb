@@ -1,4 +1,5 @@
 class Api::V1::CommunitiesController < ApplicationController
+  before_action :parse_auth_id, only: :show
   before_action :authenticate_request, only: [:create, :update]
   before_action :set_community, only: [:show, :update]
 
@@ -13,6 +14,8 @@ class Api::V1::CommunitiesController < ApplicationController
   end
 
   def show
+    VisitorWorker.perform_async("Community", @community.id, @auth_id) if @auth_id
+
     ok_response(data: { community: @community })
   end
 

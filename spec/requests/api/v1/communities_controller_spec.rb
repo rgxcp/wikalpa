@@ -91,6 +91,16 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         expect(result["data"]["community"]).not_to be_empty
       end
     end
+
+    context "when visiting community while user logged in" do
+      it "enqueues visitor worker job in background" do
+        auth = create(:user)
+        community = create(:community)
+        token = JsonWebToken.encode({ id: auth.id })
+        expect(VisitorWorker).to receive(:perform_async).with("Community", community.id, auth.id)
+        get api_v1_community_path(community), headers: { Authorization: "Bearer #{token}" }
+      end
+    end
   end
 
   describe "POST /communities" do
