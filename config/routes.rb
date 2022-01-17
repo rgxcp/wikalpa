@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         resources :communities, only: :index, module: "user"
         resources :posts, only: :index, module: "user"
         resources :replies, only: :index, module: "user"
+        resources :visitors, only: :index, module: "user"
       end
     end
   end
