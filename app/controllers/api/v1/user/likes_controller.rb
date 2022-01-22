@@ -1,13 +1,7 @@
-class Api::V1::User::LikesController < ApplicationController
-  def index
-    user = User.find(params[:user_id])
+class Api::V1::User::LikesController < Api::V1::LikesController
+  private
 
-    likes = user.likes
-
-    if likes.size.positive?
-      ok_response(data: { likes: likes })
-    else
-      not_found_response
-    end
+  def set_likeable
+    @likeable = User.find(params[:user_id])
   end
 end
