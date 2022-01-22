@@ -1329,6 +1329,37 @@ paths:
                           $ref: "#/components/schemas/Community"
         "404":
           $ref: "#/components/responses/NotFound"
+  /users/{user_id}/likes:
+    get:
+      tags:
+        - User Like
+      security: []
+      summary: Retrieve all user likes.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      likes:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Like"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /users/{user_id}/posts:
     get:
       tags:
@@ -1527,6 +1558,8 @@ tags:
     description: Endpoints related for user comment resources.
   - name: User Community
     description: Endpoints related for user community resources.
+  - name: User Like
+    description: Endpoints related for user like resources.
   - name: User Post
     description: Endpoints related for user post resources.
   - name: User Reply
