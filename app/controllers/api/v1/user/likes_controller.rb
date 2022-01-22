@@ -4,6 +4,10 @@ class Api::V1::User::LikesController < ApplicationController
 
     likes = user.likes
 
-    not_found_response unless likes.size.positive?
+    if likes.size.positive?
+      ok_response(data: { likes: likes })
+    else
+      not_found_response
+    end
   end
 end
