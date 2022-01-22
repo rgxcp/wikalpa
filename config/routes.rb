@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         resources :buddies, only: [:index, :create], module: "user"
         resources :comments, only: :index, module: "user"
         resources :communities, only: :index, module: "user"
+        resources :likes, only: :index, module: "user"
         resources :posts, only: :index, module: "user"
         resources :replies, only: :index, module: "user"
         resources :visitors, only: :index, module: "user"
