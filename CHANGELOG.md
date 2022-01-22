@@ -1,3 +1,13 @@
+# [6.20.0](https://github.com/rgxcp/wikalpa/compare/v6.19.0...v6.20.0) (2022-01-22)
+
+
+### Features
+
+* add has many 'Like' association on 'User' ([96602d4](https://github.com/rgxcp/wikalpa/commit/96602d4bb80599d952f71175a7909f0dbd9babc5))
+* GET /users/:id/likes returns not found response when likes not exist ([5e13e4f](https://github.com/rgxcp/wikalpa/commit/5e13e4fdda3165eab8a2b3cc1e1ca3d340e977ae))
+* GET /users/:id/likes returns not found response when user not exists ([7631425](https://github.com/rgxcp/wikalpa/commit/7631425ce4cdc3e8ac790e5b3e6db5e43953afc8))
+* GET /users/:id/likes returns ok response when likes exist ([30e96d1](https://github.com/rgxcp/wikalpa/commit/30e96d11a42cb9f9fef49c0e6213728a7851d0ab))
+
 # [6.19.0](https://github.com/rgxcp/wikalpa/compare/v6.18.0...v6.19.0) (2022-01-17)
 
 
