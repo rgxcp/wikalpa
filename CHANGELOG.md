@@ -1,3 +1,37 @@
+# [6.21.0](https://github.com/rgxcp/wikalpa/compare/v6.20.0...v6.21.0) (2022-01-23)
+
+
+### Features
+
+* add belongs to 'User' association on 'Bookmark' ([1afd086](https://github.com/rgxcp/wikalpa/commit/1afd086cf30a9be72b8107f52b49622cb6ab3e9d))
+* add has many 'Bookmark' association on 'User' ([364e742](https://github.com/rgxcp/wikalpa/commit/364e7428dac49626dca951ae53abe802057a035c))
+* add has many 'Bookmark' polymorphic association on 'Comment' ([fe147c1](https://github.com/rgxcp/wikalpa/commit/fe147c139303c219635e27456c0ad00be93c67d7))
+* add has many 'Bookmark' polymorphic association on 'Post' ([3238dcf](https://github.com/rgxcp/wikalpa/commit/3238dcf80dfd52d8502709e6c44858d5c13f8c3d))
+* add has many 'Bookmark' polymorphic association on 'Reply' ([2faa123](https://github.com/rgxcp/wikalpa/commit/2faa1236bc9ff97c13ea8af95e1d941f4d994206))
+* add polymorphic belongs bookmarkable association on 'Bookmark' ([f25b5b6](https://github.com/rgxcp/wikalpa/commit/f25b5b689ad606da02570cad6c0ae2dc26d3a4b7))
+* DELETE /bookmarks/:id returns forbidden response when deleting someone else bookmark ([7f476de](https://github.com/rgxcp/wikalpa/commit/7f476de3dfe7d7ed0f59a1734818fb5aeff132f8))
+* DELETE /bookmarks/:id returns not found response when bookmark not exists ([759caf8](https://github.com/rgxcp/wikalpa/commit/759caf80692b9eae2640c1ad8a90edba4367c939))
+* DELETE /bookmarks/:id returns ok response when bookmark exists ([2d129d6](https://github.com/rgxcp/wikalpa/commit/2d129d677dcdc47756b2ed59fb2354352985bc3f))
+* DELETE /bookmarks/:id returns unauthorized response when user not logged in ([9ba3510](https://github.com/rgxcp/wikalpa/commit/9ba35100b7c34206967591239609e4ff44689662))
+* GET /users/:id/bookmarks returns forbidden response when viewing someone else bookmarks ([5ff86df](https://github.com/rgxcp/wikalpa/commit/5ff86df1c494310f3942827e473349d5713a1ae7))
+* GET /users/:id/bookmarks returns not found response when bookmarks not exist ([4ab3c51](https://github.com/rgxcp/wikalpa/commit/4ab3c51b65a8ac0cbb7dc48eb12790e699ceda9c))
+* GET /users/:id/bookmarks returns ok response when bookmarks exist ([eff441a](https://github.com/rgxcp/wikalpa/commit/eff441aece6218454eadc41ef9b969f164298369))
+* GET /users/:id/bookmarks returns unauthorized response when user not logged in ([883f2e4](https://github.com/rgxcp/wikalpa/commit/883f2e4f0137c11dcc659532c9f83c18267db6cb))
+* POST /comments/:id/bookmarks returns created response when valid ([7af7a0c](https://github.com/rgxcp/wikalpa/commit/7af7a0c0c2cbccc1e0229b7feec56378010587b1))
+* POST /comments/:id/bookmarks returns not found response when comment not exists ([d15a66c](https://github.com/rgxcp/wikalpa/commit/d15a66c0408a4ae7a46951fd6b007eec35fa02e4))
+* POST /comments/:id/bookmarks returns unauthorized response when user not logged in ([c7200c3](https://github.com/rgxcp/wikalpa/commit/c7200c3d3dff2bf6c2e71d08e10d5b152c5d4c72))
+* POST /comments/:id/bookmarks returns unprocessable entity response when entity invalid ([1e17767](https://github.com/rgxcp/wikalpa/commit/1e17767c156ac5c0d613c7822c1c02761d65ee56))
+* POST /posts/:id/bookmarks returns created response when entity valid ([576b650](https://github.com/rgxcp/wikalpa/commit/576b6506dc717a37921d2b5c5bdbc3809cdc0dda))
+* POST /posts/:id/bookmarks returns not found response when post not exists ([3b46c1b](https://github.com/rgxcp/wikalpa/commit/3b46c1bedcf36df4bab51169663c80262853a02d))
+* POST /posts/:id/bookmarks returns unauthorized response when user not logged in ([54f57f3](https://github.com/rgxcp/wikalpa/commit/54f57f3c45e20ebc9fe22dea661e3efa2bfee5eb))
+* POST /posts/:id/bookmarks returns unprocessable entity response when entity invalid ([aef42e5](https://github.com/rgxcp/wikalpa/commit/aef42e5439908ae2a37c349f53853ba3aca6ef37))
+* POST /replies/:id/bookmarks returns created response when entity valid ([b258632](https://github.com/rgxcp/wikalpa/commit/b2586328a5554e4d830e3cdb9aaad3c933518978))
+* POST /replies/:id/bookmarks returns not found response when reply not exists ([3ff82ee](https://github.com/rgxcp/wikalpa/commit/3ff82ee6e8bbba6e3042a46d1eaa8abfb4c2b268))
+* POST /replies/:id/bookmarks returns unauthorized response when user not logged in ([baaafee](https://github.com/rgxcp/wikalpa/commit/baaafeed5571bb1edba87603973bfcf5f3f7788d))
+* POST /replies/:id/bookmarks returns unprocessable entity response when entity invalid ([e51edc9](https://github.com/rgxcp/wikalpa/commit/e51edc96df78ed1be14b5b99d9c67c5b37b0fcba))
+* validate presence of 'User' on 'Bookmark' ([fbe8fcf](https://github.com/rgxcp/wikalpa/commit/fbe8fcf8dc3e136923f9d9be69c3caf066d4bf77))
+* validate uniqueness of 'Bookmark' user scoped to bookmarkable_type & bookmarkable_id ([52db432](https://github.com/rgxcp/wikalpa/commit/52db43295edd32e72c3756e05cc679764c9c6fd0))
+
 # [6.20.0](https://github.com/rgxcp/wikalpa/compare/v6.19.0...v6.20.0) (2022-01-22)
 
 
