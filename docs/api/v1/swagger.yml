@@ -1301,6 +1301,40 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /users/{user_id}/bookmarks:
+    get:
+      tags:
+        - User Bookmark
+      summary: Retrieve all user bookmarks.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      bookmarks:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Bookmark"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /users/{user_id}/buddies:
     get:
       tags:
@@ -1654,6 +1688,8 @@ tags:
     description: Endpoints related for reply like resources.
   - name: User
     description: Endpoints related for user resources.
+  - name: User Bookmark
+    description: Endpoints related for user bookmark resources.
   - name: User Buddy
     description: Endpoints related for user buddy resources.
   - name: User Comment
