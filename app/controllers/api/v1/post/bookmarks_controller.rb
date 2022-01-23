@@ -6,6 +6,10 @@ class Api::V1::Post::BookmarksController < ApplicationController
 
     bookmark = post.bookmarks.build(user: @auth_user)
 
-    unprocessable_entity_response(errors: bookmark.errors.messages) unless bookmark.save
+    if bookmark.save
+      created_response(data: { bookmark: bookmark })
+    else
+      unprocessable_entity_response(errors: bookmark.errors.messages)
+    end
   end
 end
