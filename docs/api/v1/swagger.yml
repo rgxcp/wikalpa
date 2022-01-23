@@ -1583,6 +1583,38 @@ paths:
                           $ref: "#/components/schemas/Visitor"
         "404":
           $ref: "#/components/responses/NotFound"
+  /bookmarks/{id}:
+    delete:
+      tags:
+        - Bookmark
+      summary: Delete a bookmark.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      bookmark:
+                        $ref: "#/components/schemas/Bookmark"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /buddies/{id}:
     delete:
       tags:
@@ -1704,6 +1736,8 @@ tags:
     description: Endpoints related for user reply resources.
   - name: User Visitor
     description: Endpoints related for user visitor resources.
+  - name: Bookmark
+    description: Endpoints related for bookmark resources.
   - name: Buddy
     description: Endpoints related for buddy resources.
   - name: Like
