@@ -42,5 +42,27 @@ RSpec.describe Api::V1::User::BookmarksController, type: :request do
         expect(result["message"]).to eq("Forbidden")
       end
     end
+
+    context "when bookmarks not exist" do
+      before do
+        user = create(:user)
+        token = JsonWebToken.encode({ id: user.id })
+        get api_v1_user_bookmarks_path(user), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 404 status code" do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns not found message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Not Found")
+      end
+    end
   end
 end
