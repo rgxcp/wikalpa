@@ -6,6 +6,10 @@ class Api::V1::User::BookmarksController < ApplicationController
 
     bookmarks = @auth_user.bookmarks
 
-    not_found_response unless bookmarks.size.positive?
+    if bookmarks.size.positive?
+      ok_response(data: { bookmarks: bookmarks })
+    else
+      not_found_response
+    end
   end
 end
