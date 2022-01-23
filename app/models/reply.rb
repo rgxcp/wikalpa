@@ -1,6 +1,7 @@
 class Reply < ApplicationRecord
   belongs_to :comment
   belongs_to :user
+  has_many :bookmarks, as: :bookmarkable
   has_many :likes, as: :likeable
 
   validates :comment, presence: true
