@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :community
   belongs_to :user
+  has_many :bookmarks, as: :bookmarkable
   has_many :comments
   has_many :likes, as: :likeable
   has_many :visitors, as: :visitable
