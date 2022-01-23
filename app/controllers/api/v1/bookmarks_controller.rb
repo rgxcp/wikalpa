@@ -13,5 +13,6 @@ class Api::V1::BookmarksController < ApplicationController
   end
 
   def destroy
+    bookmark = Bookmark.find(params[:id])
   end
 end
