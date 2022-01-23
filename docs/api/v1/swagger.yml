@@ -848,6 +848,38 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /comments/{comment_id}/bookmarks:
+    post:
+      tags:
+        - Comment Bookmark
+      summary: Bookmark a comment.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      bookmark:
+                        $ref: "#/components/schemas/Bookmark"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /comments/{comment_id}/likes:
     get:
       tags:
@@ -1576,6 +1608,8 @@ tags:
     description: Endpoints related for post visitor resources.
   - name: Comment
     description: Endpoints related for comment resources.
+  - name: Comment Bookmark
+    description: Endpoints related for comment bookmark resources.
   - name: Comment Like
     description: Endpoints related for comment like resources.
   - name: Comment Reply
@@ -1665,7 +1699,9 @@ components:
           example: 1
         bookmarkable_type:
           type: string
-          example: Post
+          enum:
+            - Comment
+            - Post
         bookmarkable_id:
           type: integer
           example: 1
