@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         resources :visitors, only: :index, module: "post"
       end
       resources :replies, only: [:show, :update] do
+        resources :bookmarks, only: :create, module: "reply"
         resources :likes, only: [:index, :create], module: "reply"
       end
       resources :users, only: [:index, :show, :update] do
