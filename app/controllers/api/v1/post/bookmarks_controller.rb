@@ -1,15 +1,7 @@
-class Api::V1::Post::BookmarksController < ApplicationController
-  before_action :authenticate_request, only: :create
+class Api::V1::Post::BookmarksController < Api::V1::BookmarksController
+  private
 
-  def create
-    post = Post.find(params[:post_id])
-
-    bookmark = post.bookmarks.build(user: @auth_user)
-
-    if bookmark.save
-      created_response(data: { bookmark: bookmark })
-    else
-      unprocessable_entity_response(errors: bookmark.errors.messages)
-    end
+  def set_bookmarkable
+    @bookmarkable = Post.find(params[:post_id])
   end
 end

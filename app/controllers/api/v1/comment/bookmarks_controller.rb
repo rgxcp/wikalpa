@@ -1,15 +1,7 @@
-class Api::V1::Comment::BookmarksController < ApplicationController
-  before_action :authenticate_request, only: :create
+class Api::V1::Comment::BookmarksController < Api::V1::BookmarksController
+  private
 
-  def create
-    comment = Comment.find(params[:comment_id])
-
-    bookmark = comment.bookmarks.build(user: @auth_user)
-
-    if bookmark.save
-      created_response(data: { bookmark: bookmark })
-    else
-      unprocessable_entity_response(errors: bookmark.errors.messages)
-    end
+  def set_bookmarkable
+    @bookmarkable = Comment.find(params[:comment_id])
   end
 end
