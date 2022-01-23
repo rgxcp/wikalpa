@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post "/auth/login", to: "auth#login"
       post "/auth/register", to: "auth#register"
 
+      resources :bookmarks, only: :destroy
       resources :buddies, only: :destroy
       resources :comments, only: [:show, :update] do
         resources :bookmarks, only: :create, module: "comment"
