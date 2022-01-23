@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_11_050216) do
+ActiveRecord::Schema.define(version: 2022_01_23_003222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "bookmarkable_type", null: false
+    t.bigint "bookmarkable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bookmarkable_type", "bookmarkable_id"], name: "index_bookmarks_on_bookmarkable"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
 
   create_table "buddies", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -81,6 +91,16 @@ ActiveRecord::Schema.define(version: 2022_01_11_050216) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
+  create_table "saves", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "saveable_type", null: false
+    t.bigint "saveable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["saveable_type", "saveable_id"], name: "index_saves_on_saveable"
+    t.index ["user_id"], name: "index_saves_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", limit: 15, null: false
     t.string "password_digest", limit: 60, null: false
@@ -99,6 +119,7 @@ ActiveRecord::Schema.define(version: 2022_01_11_050216) do
     t.index ["visitable_type", "visitable_id"], name: "index_visitors_on_visitable"
   end
 
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "buddies", "users"
   add_foreign_key "buddies", "users", column: "buddy_id"
   add_foreign_key "comments", "posts"
@@ -110,5 +131,6 @@ ActiveRecord::Schema.define(version: 2022_01_11_050216) do
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "comments"
   add_foreign_key "replies", "users"
+  add_foreign_key "saves", "users"
   add_foreign_key "visitors", "users"
 end
