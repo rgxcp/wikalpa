@@ -41,5 +41,31 @@ RSpec.describe Api::V1::BookmarksController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when deleting someone else bookmark" do
+      before do
+        community = create(:community)
+        user1 = create(:user)
+        user2 = create(:user)
+        post = create(:post, community: community, user: user1)
+        bookmark = create(:bookmark, user: user2, bookmarkable: post)
+        token = JsonWebToken.encode({ id: user1.id })
+        delete api_v1_bookmark_path(bookmark), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 403 status code" do
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns forbidden message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Forbidden")
+      end
+    end
   end
 end
