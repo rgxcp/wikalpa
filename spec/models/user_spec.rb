@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   subject(:user) { build(:user) }
 
   it { is_expected.to have_secure_password }
+  it { is_expected.to have_many(:bookmarks) }
   it { is_expected.to have_many(:buddies) }
   it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:likes) }
