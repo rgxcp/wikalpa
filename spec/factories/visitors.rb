@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :visitor do
     user
-    visitable { association :post }
+    visitable { association :community }
   end
 end
