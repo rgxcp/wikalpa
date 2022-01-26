@@ -1,3 +1,23 @@
+# [6.23.0](https://github.com/rgxcp/wikalpa/compare/v6.22.0...v6.23.0) (2022-01-26)
+
+
+### Features
+
+* accept nested attributes for collection items on 'Collection' ([dca795a](https://github.com/rgxcp/wikalpa/commit/dca795ad519c6a20ad984eea521e77e14afbae15))
+* add belongs to 'Collection' association on 'CollectionItem' ([87fe06a](https://github.com/rgxcp/wikalpa/commit/87fe06a36858836231daa2f448dd20c2406683a2))
+* add belongs to 'User' association on 'Collection' ([9938004](https://github.com/rgxcp/wikalpa/commit/993800455e47976123f6ee7fb2c330855c0b083c))
+* add has many 'CollectionItem' association on 'Collection' ([d1eb67f](https://github.com/rgxcp/wikalpa/commit/d1eb67f3b39243b72c1dd1074e01a8d0093dd27d))
+* add polymorphic belongs to collectable association on 'Collection' ([a5f0d0c](https://github.com/rgxcp/wikalpa/commit/a5f0d0c39e03e46225465e74991f054814009b86))
+* remove name trailing spaces before validation on 'Collection' ([0168a67](https://github.com/rgxcp/wikalpa/commit/0168a672363ee68287228420f0389fd81dc8ad47))
+* validate length of name is at least 5 on 'Collection' ([2045e0b](https://github.com/rgxcp/wikalpa/commit/2045e0b1752e0a0aac147e732c0a23ffd6580c33))
+* validate length of name is at most 50 on 'Collection' ([3efbd13](https://github.com/rgxcp/wikalpa/commit/3efbd13bf702d1ae70614c30a0d11321e4ef81fe))
+* validate presence of collection items on 'Collection' create context ([c1c0c02](https://github.com/rgxcp/wikalpa/commit/c1c0c02ccab5b3d98422d50ebafdfed16ed387ba))
+* validate presence of collection on 'CollectionItem' ([17950cf](https://github.com/rgxcp/wikalpa/commit/17950cfd6fc31318a5e089f9d5baa284e7a73e73))
+* validate presence of name on 'Collection' ([d144014](https://github.com/rgxcp/wikalpa/commit/d1440143c7b27e906936ca325dd9834315f2d316))
+* validate presence of user on 'Collection' ([30decbd](https://github.com/rgxcp/wikalpa/commit/30decbd011f0566490c0676038e0d14621606ae7))
+* validate uniqueness of collectable_id scoped to collection_id on 'CollectionItem' ([fc4b937](https://github.com/rgxcp/wikalpa/commit/fc4b9376eeca66a21fa68613b1d0692ed0cd1e33))
+* validate uniqueness of name scoped to user_id on 'Collection' ([a87625a](https://github.com/rgxcp/wikalpa/commit/a87625ab234827b2d34f122c93b25f8f35ef5e21))
+
 # [6.22.0](https://github.com/rgxcp/wikalpa/compare/v6.21.0...v6.22.0) (2022-01-26)
 
 
