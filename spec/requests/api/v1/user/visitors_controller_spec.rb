@@ -42,6 +42,29 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
       end
     end
 
+    context "when viewing someone else visitors" do
+      before do
+        user1 = create(:user)
+        user2 = create(:user)
+        token = JsonWebToken.encode({ id: user2.id })
+        get api_v1_user_visitors_path(user1), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 403 status code" do
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns forbidden message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Forbidden")
+      end
+    end
+
     context "when visitors not exist" do
       before do
         user = create(:user)
