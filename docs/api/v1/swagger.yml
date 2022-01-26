@@ -1556,7 +1556,6 @@ paths:
     get:
       tags:
         - User Visitor
-      security: []
       summary: Retrieve all user visitors.
       parameters:
         - $ref: "#/components/parameters/IdentifierUser"
@@ -1581,6 +1580,8 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/Visitor"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
   /bookmarks/{id}:
