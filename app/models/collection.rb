@@ -5,4 +5,8 @@ class Collection < ApplicationRecord
   validates :name, length: { in: 5..50 }
   validates :name, presence: true
   validates :name, uniqueness: { scope: :user_id }
+
+  before_validation do
+    self.name = name.strip if name.present?
+  end
 end
