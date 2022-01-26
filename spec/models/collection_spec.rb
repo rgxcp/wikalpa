@@ -10,6 +10,7 @@ RSpec.describe Collection, type: :model do
   it { is_expected.to validate_length_of(:name).is_at_least(5).is_at_most(50) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_uniqueness_of(:name).scoped_to(:user_id) }
+  it { is_expected.to validate_presence_of(:collection_items).on(:create) }
 
   describe "before validation" do
     context "when name contain trailing spaces" do
