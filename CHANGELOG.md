@@ -1,3 +1,11 @@
+# [6.22.0](https://github.com/rgxcp/wikalpa/compare/v6.21.0...v6.22.0) (2022-01-26)
+
+
+### Features
+
+* GET /users/:id/visitors returns forbidden response when viewing someone else visitors ([07e825d](https://github.com/rgxcp/wikalpa/commit/07e825db892757bceaadfcd388e58a58eb9abcac))
+* GET /users/:id/visitors returns unauthorized response when user not logged in ([74be778](https://github.com/rgxcp/wikalpa/commit/74be7781bf408590ee4e57fc0ed0c9224c56ad4b))
+
 # [6.21.0](https://github.com/rgxcp/wikalpa/compare/v6.20.0...v6.21.0) (2022-01-23)
 
 
