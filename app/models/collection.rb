@@ -1,5 +1,6 @@
 class Collection < ApplicationRecord
   belongs_to :user
+  has_many :collection_items
 
   validates :user, presence: true
   validates :name, length: { in: 5..50 }
