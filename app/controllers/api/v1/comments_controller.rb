@@ -7,7 +7,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def update
-    return forbidden_response unless @auth_user.id == @comment.user_id
+    return forbidden_response unless @auth_id == @comment.user_id
 
     if @comment.update(comment_params)
       ok_response(data: { comment: @comment })

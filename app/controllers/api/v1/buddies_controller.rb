@@ -3,7 +3,7 @@ class Api::V1::BuddiesController < ApplicationController
 
   def destroy
     buddy = Buddy.find(params[:id])
-    return forbidden_response unless @auth_user.id == buddy.user_id
+    return forbidden_response unless @auth_id == buddy.user_id
 
     buddy.destroy
 

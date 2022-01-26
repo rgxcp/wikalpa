@@ -24,7 +24,7 @@ class Api::V1::LikesController < ApplicationController
 
   def destroy
     like = Like.find(params[:id])
-    return forbidden_response unless @auth_user.id == like.user_id
+    return forbidden_response unless @auth_id == like.user_id
 
     like.destroy
 

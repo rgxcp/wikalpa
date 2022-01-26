@@ -3,7 +3,7 @@ class Api::V1::MembersController < ApplicationController
 
   def destroy
     member = Member.find(params[:id])
-    return forbidden_response unless @auth_user.id == member.user_id
+    return forbidden_response unless @auth_id == member.user_id
 
     member.destroy
 

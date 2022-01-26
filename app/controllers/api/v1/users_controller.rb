@@ -21,7 +21,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    return forbidden_response unless @auth_user.id == params[:id].to_i
+    return forbidden_response unless @auth_id == params[:id].to_i
 
     if @auth_user.update(user_params)
       ok_response(data: { user: @auth_user }, except: :password_digest)
