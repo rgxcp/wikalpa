@@ -13,6 +13,7 @@ class Api::V1::CollectionsController < ApplicationController
   end
 
   def update
+    collection = Collection.find(params[:id])
   end
 
   private
