@@ -121,5 +121,30 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when editing someone else collection" do
+      before do
+        user1 = create(:user)
+        user2 = create(:user)
+        community = create(:community)
+        collection = create(:collection, user: user2, collection_items_attributes: [{ collectable: community }])
+        token = JsonWebToken.encode({ id: user1.id })
+        patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 403 status code" do
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns forbidden message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Forbidden")
+      end
+    end
   end
 end

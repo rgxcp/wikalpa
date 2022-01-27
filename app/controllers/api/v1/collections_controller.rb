@@ -14,6 +14,8 @@ class Api::V1::CollectionsController < ApplicationController
 
   def update
     collection = Collection.find(params[:id])
+
+    forbidden_response unless @auth_id == collection.user_id
   end
 
   private
