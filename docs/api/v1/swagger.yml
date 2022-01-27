@@ -1650,6 +1650,60 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /collections:
+    post:
+      tags:
+        - Collection
+      summary: Create a new collection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - collection
+              properties:
+                collection:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Must Join Communities
+                    collection_items_attributes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          collectable_type:
+                            type: string
+                            example: Community
+                          collectable_id:
+                            type: integer
+                            example: 1
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      collection:
+                        $ref: "#/components/schemas/Collection"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /likes/{id}:
     delete:
       tags:
@@ -1743,6 +1797,8 @@ tags:
     description: Endpoints related for bookmark resources.
   - name: Buddy
     description: Endpoints related for buddy resources.
+  - name: Collection
+    description: Endpoints related for collection resources.
   - name: Like
     description: Endpoints related for like resources.
 components:
@@ -1831,6 +1887,24 @@ components:
         buddy_id:
           type: integer
           example: 1
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+    Collection:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Must Join Communities
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
