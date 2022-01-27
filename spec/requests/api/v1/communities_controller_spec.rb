@@ -20,7 +20,7 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
       end
     end
 
-    context "when communities exists" do
+    context "when communities exist" do
       before do
         create(:community)
         get api_v1_communities_path
