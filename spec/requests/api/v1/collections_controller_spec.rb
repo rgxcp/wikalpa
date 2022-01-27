@@ -178,5 +178,37 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         expect(result["errors"].size).to be_positive
       end
     end
+
+    context "when entity valid" do
+      before do
+        user = create(:user)
+        community = create(:community)
+        collection = create(:collection, user: user, collection_items_attributes: [{ collectable: community }])
+        entity = attributes_for(:collection)
+        token = JsonWebToken.encode({ id: user.id })
+        patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }, params: {
+          collection: entity
+        }
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be true
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns collection data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["collection"]).not_to be_empty
+      end
+    end
   end
 end

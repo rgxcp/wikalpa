@@ -16,7 +16,11 @@ class Api::V1::CollectionsController < ApplicationController
     collection = Collection.find(params[:id])
     return forbidden_response unless @auth_id == collection.user_id
 
-    unprocessable_entity_response(errors: collection.errors.messages) unless collection.update(collection_update_params)
+    if collection.update(collection_update_params)
+      ok_response(data: { collection: collection })
+    else
+      unprocessable_entity_response(errors: collection.errors.messages)
+    end
   end
 
   private
