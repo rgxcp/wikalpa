@@ -1704,6 +1704,54 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+    put:
+      tags:
+        - Collection
+      summary: Update a collection.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - collection
+              properties:
+                collection:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Must Join Communities
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collection:
+                        $ref: "#/components/schemas/Collection"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /likes/{id}:
     delete:
       tags:
