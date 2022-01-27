@@ -1,5 +1,5 @@
 class Api::V1::CollectionsController < ApplicationController
-  before_action :authenticate_request, only: :create
+  before_action :authenticate_request, only: [:create, :update]
 
   def create
     collection = Collection.new(collection_params)
@@ -10,6 +10,9 @@ class Api::V1::CollectionsController < ApplicationController
     else
       unprocessable_entity_response(errors: collection.errors.messages)
     end
+  end
+
+  def update
   end
 
   private

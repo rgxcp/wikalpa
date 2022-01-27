@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
       resources :bookmarks, only: :destroy
       resources :buddies, only: :destroy
-      resources :collections, only: :create
+      resources :collections, only: [:create, :update]
       resources :comments, only: [:show, :update] do
         resources :bookmarks, only: :create, module: "comment"
         resources :likes, only: [:index, :create], module: "comment"
