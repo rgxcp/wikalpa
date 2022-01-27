@@ -1,3 +1,12 @@
+# [6.24.0](https://github.com/rgxcp/wikalpa/compare/v6.23.0...v6.24.0) (2022-01-27)
+
+
+### Features
+
+* POST /collections returns created response when valid ([df27fe9](https://github.com/rgxcp/wikalpa/commit/df27fe92184b70a161cd3ffbdad07bddf49666a4))
+* POST /collections returns unauthorized response when user not logged in ([e583b1a](https://github.com/rgxcp/wikalpa/commit/e583b1a077a170f5ba6515b5d98f3cf18efb97ee))
+* POST /collections returns unprocessable entity response when entity invalid ([038d1be](https://github.com/rgxcp/wikalpa/commit/038d1be6a6e4fce88e6e77c9817bb90b52698555))
+
 # [6.23.0](https://github.com/rgxcp/wikalpa/compare/v6.22.0...v6.23.0) (2022-01-26)
 
 
