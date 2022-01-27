@@ -1,3 +1,14 @@
+# [6.25.0](https://github.com/rgxcp/wikalpa/compare/v6.24.0...v6.25.0) (2022-01-27)
+
+
+### Features
+
+* PATCH /collections/:id returns forbidden response when editing someone else collection ([ec5fb87](https://github.com/rgxcp/wikalpa/commit/ec5fb87b2f1b7009d6a0fd575ac033c0c17a7329))
+* PATCH /collections/:id returns not found response when collection not exists ([fa5fb45](https://github.com/rgxcp/wikalpa/commit/fa5fb45a1310baffef4cdfba632efc3b86754f3f))
+* PATCH /collections/:id returns ok response when entity valid ([c5d7b16](https://github.com/rgxcp/wikalpa/commit/c5d7b1680461289d8f31bf1d00a67bf7e83e72d3))
+* PATCH /collections/:id returns unauthorized response when user not logged in ([687388d](https://github.com/rgxcp/wikalpa/commit/687388dae7e55013cc060e614b351aa75cd88ea2))
+* PATCH /collections/:id returns unprocessable entity response when entity invalid ([014752e](https://github.com/rgxcp/wikalpa/commit/014752e49e096411d9e19e931179482add68e22e))
+
 # [6.24.0](https://github.com/rgxcp/wikalpa/compare/v6.23.0...v6.24.0) (2022-01-27)
 
 
