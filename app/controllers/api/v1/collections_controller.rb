@@ -4,7 +4,11 @@ class Api::V1::CollectionsController < ApplicationController
   def index
     collections = Collection.all
 
-    not_found_response unless collections.size.positive?
+    if collections.size.positive?
+      ok_response(data: { collections: collections })
+    else
+      not_found_response
+    end
   end
 
   def create
