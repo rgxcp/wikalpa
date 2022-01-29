@@ -1,6 +1,26 @@
 require "rails_helper"
 
 RSpec.describe Api::V1::CollectionsController, type: :request do
+  describe "GET /collections" do
+    context "when collections not exist" do
+      before { get api_v1_collections_path }
+
+      it "returns 404 status code" do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns not found message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Not Found")
+      end
+    end
+  end
+
   describe "POST /collections" do
     context "when user not logged in" do
       before { post api_v1_collections_path }

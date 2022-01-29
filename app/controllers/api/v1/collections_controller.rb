@@ -1,6 +1,12 @@
 class Api::V1::CollectionsController < ApplicationController
   before_action :authenticate_request, only: [:create, :update]
 
+  def index
+    collections = Collection.all
+
+    not_found_response unless collections.size.positive?
+  end
+
   def create
     collection = Collection.new(collection_params)
     collection.user = @auth_user
