@@ -13,6 +13,8 @@ class Api::V1::CollectionsController < ApplicationController
 
   def show
     collection = Collection.find(params[:id])
+
+    ok_response(data: { collection: collection })
   end
 
   def create
