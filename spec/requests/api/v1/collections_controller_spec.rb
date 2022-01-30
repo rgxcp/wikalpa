@@ -91,6 +91,16 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         expect(result["data"]["collection"]).not_to be_empty
       end
     end
+
+    context "when visiting collection while user logged in" do
+      it "enqueues visitor worker job in background" do
+        auth = create(:user)
+        collection = create(:collection)
+        token = JsonWebToken.encode({ id: auth.id })
+        expect(VisitorWorker).to receive(:perform_async).with("Collection", collection.id, auth.id)
+        get api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }
+      end
+    end
   end
 
   describe "POST /collections" do

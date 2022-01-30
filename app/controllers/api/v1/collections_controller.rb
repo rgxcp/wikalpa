@@ -1,4 +1,5 @@
 class Api::V1::CollectionsController < ApplicationController
+  before_action :parse_auth_id, only: :show
   before_action :authenticate_request, only: [:create, :update]
   before_action :set_collection, only: [:show, :update]
 
@@ -13,6 +14,8 @@ class Api::V1::CollectionsController < ApplicationController
   end
 
   def show
+    VisitorWorker.perform_async("Collection", @collection.id, @auth_id) if @auth_id
+
     ok_response(data: { collection: @collection })
   end
 
