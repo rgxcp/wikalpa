@@ -1705,7 +1705,12 @@ paths:
                         properties:
                           collectable_type:
                             type: string
-                            example: Community
+                            enum:
+                              - Comment
+                              - Community
+                              - Post
+                              - Reply
+                              - User
                           collectable_id:
                             type: integer
                             example: 1
@@ -1968,6 +1973,7 @@ components:
         bookmarkable_type:
           type: string
           enum:
+            - Collection
             - Comment
             - Post
             - Reply
@@ -2067,6 +2073,7 @@ components:
         likeable_type:
           type: string
           enum:
+            - Collection
             - Comment
             - Post
             - Reply
@@ -2169,6 +2176,7 @@ components:
         visitable_type:
           type: string
           enum:
+            - Collection
             - Community
             - Post
             - User
