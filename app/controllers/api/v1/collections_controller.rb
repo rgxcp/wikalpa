@@ -1,5 +1,6 @@
 class Api::V1::CollectionsController < ApplicationController
   before_action :authenticate_request, only: [:create, :update]
+  before_action :set_collection, only: [:show, :update]
 
   def index
     collections = Collection.all
@@ -12,9 +13,7 @@ class Api::V1::CollectionsController < ApplicationController
   end
 
   def show
-    collection = Collection.find(params[:id])
-
-    ok_response(data: { collection: collection })
+    ok_response(data: { collection: @collection })
   end
 
   def create
@@ -29,17 +28,20 @@ class Api::V1::CollectionsController < ApplicationController
   end
 
   def update
-    collection = Collection.find(params[:id])
-    return forbidden_response unless @auth_id == collection.user_id
+    return forbidden_response unless @auth_id == @collection.user_id
 
-    if collection.update(collection_update_params)
-      ok_response(data: { collection: collection })
+    if @collection.update(collection_update_params)
+      ok_response(data: { collection: @collection })
     else
-      unprocessable_entity_response(errors: collection.errors.messages)
+      unprocessable_entity_response(errors: @collection.errors.messages)
     end
   end
 
   private
+
+  def set_collection
+    @collection = Collection.find(params[:id])
+  end
 
   def collection_params
     params.require(:collection).permit(:name, collection_items_attributes: [:collectable_type, :collectable_id])
