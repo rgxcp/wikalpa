@@ -4,4 +4,5 @@ class Bookmark < ApplicationRecord
 
   validates :user, presence: true
   validates :user, uniqueness: { scope: [:bookmarkable_type, :bookmarkable_id] }
+  validates :bookmarkable_type, inclusion: { in: ["Collection", "Comment", "Post", "Reply"] }
 end
