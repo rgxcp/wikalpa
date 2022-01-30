@@ -208,7 +208,7 @@ paths:
                         $ref: "#/components/schemas/Community"
         "404":
           $ref: "#/components/responses/NotFound"
-    put:
+    patch:
       tags:
         - Community
       summary: Update a community.
@@ -521,7 +521,7 @@ paths:
                         $ref: "#/components/schemas/Post"
         "404":
           $ref: "#/components/responses/NotFound"
-    put:
+    patch:
       tags:
         - Post
       summary: Update a post.
@@ -800,7 +800,7 @@ paths:
                         $ref: "#/components/schemas/Comment"
         "404":
           $ref: "#/components/responses/NotFound"
-    put:
+    patch:
       tags:
         - Comment
       summary: Update a comment.
@@ -1048,7 +1048,7 @@ paths:
                         $ref: "#/components/schemas/Reply"
         "404":
           $ref: "#/components/responses/NotFound"
-    put:
+    patch:
       tags:
         - Reply
       summary: Update a reply.
@@ -1248,7 +1248,7 @@ paths:
                         $ref: "#/components/schemas/User"
         "404":
           $ref: "#/components/responses/NotFound"
-    put:
+    patch:
       tags:
         - User
       summary: Update a user.
@@ -1733,7 +1733,7 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /collections/{id}:
-    put:
+    patch:
       tags:
         - Collection
       summary: Update a collection.
