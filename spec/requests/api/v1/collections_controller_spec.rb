@@ -47,6 +47,26 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
     end
   end
 
+  describe "GET /collections/:id" do
+    context "when collection not exists" do
+      before { get api_v1_collection_path(0) }
+
+      it "returns 404 status code" do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns not found message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Not Found")
+      end
+    end
+  end
+
   describe "POST /collections" do
     context "when user not logged in" do
       before { post api_v1_collections_path }
@@ -96,11 +116,11 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
 
     context "when entity valid" do
       before do
-        community = create(:community)
+        collection = create(:collection)
         user = create(:user)
         collection = attributes_for(:collection, collection_items_attributes: [{
           collectable_type: "Community",
-          collectable_id: community.id
+          collectable_id: collection.id
         }])
         token = JsonWebToken.encode({ id: user.id })
         post api_v1_collections_path, headers: { Authorization: "Bearer #{token}" }, params: { collection: collection }
@@ -172,8 +192,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
       before do
         user1 = create(:user)
         user2 = create(:user)
-        community = create(:community)
-        collection = create(:collection, user: user2, collection_items_attributes: [{ collectable: community }])
+        collection = create(:collection)
+        collection = create(:collection, user: user2, collection_items_attributes: [{ collectable: collection }])
         token = JsonWebToken.encode({ id: user1.id })
         patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }
       end
@@ -196,8 +216,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
     context "when entity invalid" do
       before do
         user = create(:user)
-        community = create(:community)
-        collection = create(:collection, user: user, collection_items_attributes: [{ collectable: community }])
+        collection = create(:collection)
+        collection = create(:collection, user: user, collection_items_attributes: [{ collectable: collection }])
         entity = attributes_for(:collection, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }, params: {
@@ -228,8 +248,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
     context "when entity valid" do
       before do
         user = create(:user)
-        community = create(:community)
-        collection = create(:collection, user: user, collection_items_attributes: [{ collectable: community }])
+        collection = create(:collection)
+        collection = create(:collection, user: user, collection_items_attributes: [{ collectable: collection }])
         entity = attributes_for(:collection)
         token = JsonWebToken.encode({ id: user.id })
         patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }, params: {
