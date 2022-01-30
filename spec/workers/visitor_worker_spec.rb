@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe VisitorWorker, type: :worker do
+  it { is_expected.to be_retryable false }
+
   describe ".perform_async" do
     it do
       VisitorWorker.perform_async("VisitableType", 1, 1)
