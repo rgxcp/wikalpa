@@ -7,7 +7,11 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
 
     collection_item = collection.collection_items.build(collection_item_params)
 
-    unprocessable_entity_response(errors: collection_item.errors.messages) unless collection_item.save
+    if collection_item.save
+      created_response(data: { collection_item: collection_item })
+    else
+      unprocessable_entity_response(errors: collection_item.errors.messages)
+    end
   end
 
   private
