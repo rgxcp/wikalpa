@@ -1711,6 +1711,7 @@ paths:
                               - Post
                               - Reply
                               - User
+                            example: Community
                           collectable_id:
                             type: integer
                             example: 1
@@ -1814,6 +1815,64 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /collections/{collection_id}/collection-items:
+    post:
+      tags:
+        - Collection Item
+      summary: Create a new collection item.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - collection_item
+              properties:
+                collection_item:
+                  type: object
+                  properties:
+                    collectable_type:
+                      type: string
+                      enum:
+                        - Comment
+                        - Community
+                        - Post
+                        - Reply
+                        - User
+                      example: Community
+                    collectable_id:
+                      type: integer
+                      example: 1
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      collection_item:
+                        $ref: "#/components/schemas/CollectionItem"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /likes/{id}:
     delete:
       tags:
@@ -1909,6 +1968,8 @@ tags:
     description: Endpoints related for buddy resources.
   - name: Collection
     description: Endpoints related for collection resources.
+  - name: Collection Item
+    description: Endpoints related for collection item resources.
   - name: Like
     description: Endpoints related for like resources.
 components:
@@ -1921,6 +1982,13 @@ components:
     Identifier:
       in: path
       name: id
+      required: true
+      schema:
+        type: integer
+        example: 1
+    IdentifierCollection:
+      in: path
+      name: collection_id
       required: true
       schema:
         type: integer
@@ -1977,6 +2045,7 @@ components:
             - Comment
             - Post
             - Reply
+          example: Post
         bookmarkable_id:
           type: integer
           example: 1
@@ -2016,6 +2085,33 @@ components:
         name:
           type: string
           example: Must Join Communities
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+    CollectionItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        collection_id:
+          type: integer
+          example: 1
+        collectable_type:
+          type: string
+          enum:
+            - Comment
+            - Community
+            - Post
+            - Reply
+            - User
+          example: Community
+        collectable_id:
+          type: integer
+          example: 1
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
@@ -2077,6 +2173,7 @@ components:
             - Comment
             - Post
             - Reply
+          example: Post
         likeable_id:
           type: integer
           example: 1
@@ -2180,6 +2277,7 @@ components:
             - Community
             - Post
             - User
+          example: Community
         visitable_id:
           type: integer
           example: 1
