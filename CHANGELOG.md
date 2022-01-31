@@ -1,3 +1,20 @@
+# [6.28.0](https://github.com/rgxcp/wikalpa/compare/v6.27.0...v6.28.0) (2022-01-31)
+
+
+### Features
+
+* GET /collections/:id enqueues visitor worker job in background when visiting collection while user logged in ([cccad3e](https://github.com/rgxcp/wikalpa/commit/cccad3e2de56953c21cba2e44e7ef9c7a323aeb2))
+* POST /collections/:id/collection-items returns created response when entity valid ([4e5aa65](https://github.com/rgxcp/wikalpa/commit/4e5aa65be2605e4b6e3efe49c619f25fa2904a57))
+* POST /collections/:id/collection-items returns forbidden response when adding collection item on someone else collection ([911d6b9](https://github.com/rgxcp/wikalpa/commit/911d6b96e0bbb2c6b6a8b5bfb3ec29c1a208528c))
+* POST /collections/:id/collection-items returns not found response when collection not exists ([131d543](https://github.com/rgxcp/wikalpa/commit/131d54316741959cd891fcc5dfed26a07ba95efc))
+* POST /collections/:id/collection-items returns unauthorized response when user not logged in ([a0cfc30](https://github.com/rgxcp/wikalpa/commit/a0cfc30e7b1fdee2bd686bdef58c2487a1d63dcf))
+* POST /collections/:id/collection-items returns unprocessable entity response when entity invalid ([8eb75a8](https://github.com/rgxcp/wikalpa/commit/8eb75a86c2e148ec0944eba4fb81ddf8eb4b0d38))
+* restrict VisitorWorker from retrying when job failed ([6da898d](https://github.com/rgxcp/wikalpa/commit/6da898d5d6bf88156eadf3e10c8593cc78d2210a))
+* validate inclusion of bookmarkable type on 'Bookmark' ([2799b8f](https://github.com/rgxcp/wikalpa/commit/2799b8fb97f017374f07ebf8e16196f2248b1b72))
+* validate inclusion of collectable type on 'CollectionItem' ([105dfe5](https://github.com/rgxcp/wikalpa/commit/105dfe596d962a20b2c744d6877b115290cbedbb))
+* validate inclusion of likeable type on 'Like' ([1b7a2cd](https://github.com/rgxcp/wikalpa/commit/1b7a2cd32e350c0a2d4655c469e60d8e88124de6))
+* validate inclusion of visitable type on 'Visitor' ([6d6d478](https://github.com/rgxcp/wikalpa/commit/6d6d478760cce2e9045d279f178a767650e271ee))
+
 # [6.27.0](https://github.com/rgxcp/wikalpa/compare/v6.26.0...v6.27.0) (2022-01-30)
 
 
