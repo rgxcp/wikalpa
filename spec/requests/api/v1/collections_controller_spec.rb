@@ -152,11 +152,11 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
 
     context "when entity valid" do
       before do
-        collection = create(:collection)
+        community = create(:community)
         user = create(:user)
         collection = attributes_for(:collection, collection_items_attributes: [{
           collectable_type: "Community",
-          collectable_id: collection.id
+          collectable_id: community.id
         }])
         token = JsonWebToken.encode({ id: user.id })
         post api_v1_collections_path, headers: { Authorization: "Bearer #{token}" }, params: { collection: collection }
@@ -228,8 +228,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
       before do
         user1 = create(:user)
         user2 = create(:user)
-        collection = create(:collection)
-        collection = create(:collection, user: user2, collection_items_attributes: [{ collectable: collection }])
+        community = create(:community)
+        collection = create(:collection, user: user2, collection_items_attributes: [{ collectable: community }])
         token = JsonWebToken.encode({ id: user1.id })
         patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }
       end
@@ -252,8 +252,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
     context "when entity invalid" do
       before do
         user = create(:user)
-        collection = create(:collection)
-        collection = create(:collection, user: user, collection_items_attributes: [{ collectable: collection }])
+        community = create(:community)
+        collection = create(:collection, user: user, collection_items_attributes: [{ collectable: community }])
         entity = attributes_for(:collection, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }, params: {
@@ -284,8 +284,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
     context "when entity valid" do
       before do
         user = create(:user)
-        collection = create(:collection)
-        collection = create(:collection, user: user, collection_items_attributes: [{ collectable: collection }])
+        community = create(:community)
+        collection = create(:collection, user: user, collection_items_attributes: [{ collectable: community }])
         entity = attributes_for(:collection)
         token = JsonWebToken.encode({ id: user.id })
         patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }, params: {
