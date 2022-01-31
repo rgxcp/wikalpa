@@ -19,5 +19,27 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         expect(result["message"]).to eq("Unauthorized")
       end
     end
+
+    context "when collection not exists" do
+      before do
+        user = create(:user)
+        token = JsonWebToken.encode({ id: user.id })
+        post api_v1_collection_collection_items_path(0), headers: { Authorization: "Bearer #{token}" }
+      end
+
+      it "returns 404 status code" do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be false
+      end
+
+      it "returns not found message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Not Found")
+      end
+    end
   end
 end
