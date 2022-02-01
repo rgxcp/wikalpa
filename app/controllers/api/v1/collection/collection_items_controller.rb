@@ -16,8 +16,9 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
 
   def destroy
     collection = Collection.find(params[:collection_id])
+    return forbidden_response unless @auth_id == collection.user_id
 
-    forbidden_response unless @auth_id == collection.user_id
+    collection_item = collection.collection_items.find(params[:id])
   end
 
   private
