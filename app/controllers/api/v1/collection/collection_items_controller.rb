@@ -1,5 +1,5 @@
 class Api::V1::Collection::CollectionItemsController < ApplicationController
-  before_action :authenticate_request, only: :create
+  before_action :authenticate_request, only: [:create, :destroy]
 
   def create
     collection = Collection.find(params[:collection_id])
@@ -12,6 +12,9 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
     else
       unprocessable_entity_response(errors: collection_item.errors.messages)
     end
+  end
+
+  def destroy
   end
 
   private

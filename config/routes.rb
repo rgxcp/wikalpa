@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :bookmarks, only: :destroy
       resources :buddies, only: :destroy
       resources :collections, except: :destroy do
-        resources :collection_items, only: :create, module: "collection", path: "collection-items"
+        resources :collection_items, only: [:create, :destroy], module: "collection", path: "collection-items"
       end
       resources :comments, only: [:show, :update] do
         resources :bookmarks, only: :create, module: "comment"
