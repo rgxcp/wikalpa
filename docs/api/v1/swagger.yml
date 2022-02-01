@@ -1873,6 +1873,39 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /collections/{collection_id}/collection-items/{id}:
+    delete:
+      tags:
+        - Collection Item
+      summary: Delete a collection item.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collection_item:
+                        $ref: "#/components/schemas/CollectionItem"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /likes/{id}:
     delete:
       tags:
