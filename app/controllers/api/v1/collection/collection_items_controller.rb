@@ -19,6 +19,9 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
     return forbidden_response unless @auth_id == collection.user_id
 
     collection_item = collection.collection_items.find(params[:id])
+    collection_item.destroy
+
+    ok_response(data: { collection_item: collection_item })
   end
 
   private
