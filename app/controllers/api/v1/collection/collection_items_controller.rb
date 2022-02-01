@@ -1,11 +1,11 @@
 class Api::V1::Collection::CollectionItemsController < ApplicationController
   before_action :authenticate_request, only: [:create, :destroy]
+  before_action :set_collection, only: [:create, :destroy]
 
   def create
-    collection = Collection.find(params[:collection_id])
-    return forbidden_response unless @auth_id == collection.user_id
+    return forbidden_response unless @auth_id == @collection.user_id
 
-    collection_item = collection.collection_items.build(collection_item_params)
+    collection_item = @collection.collection_items.build(collection_item_params)
 
     if collection_item.save
       created_response(data: { collection_item: collection_item })
@@ -15,16 +15,19 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   end
 
   def destroy
-    collection = Collection.find(params[:collection_id])
-    return forbidden_response unless @auth_id == collection.user_id
+    return forbidden_response unless @auth_id == @collection.user_id
 
-    collection_item = collection.collection_items.find(params[:id])
+    collection_item = @collection.collection_items.find(params[:id])
     collection_item.destroy
 
     ok_response(data: { collection_item: collection_item })
   end
 
   private
+
+  def set_collection
+    @collection = Collection.find(params[:collection_id])
+  end
 
   def collection_item_params
     params.require(:collection_item).permit(:collectable_type, :collectable_id)
