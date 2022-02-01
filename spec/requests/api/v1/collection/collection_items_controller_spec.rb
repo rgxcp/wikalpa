@@ -238,6 +238,7 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         collection_item = create(:collection_item, collection: collection)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
+        expect(CollectionWorker).to receive(:perform_async).with(collection.id)
         delete api_v1_collection_collection_item_path(collection, collection_item), headers: headers
       end
 

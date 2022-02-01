@@ -20,6 +20,8 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
     collection_item = @collection.collection_items.find(params[:id])
     collection_item.destroy
 
+    CollectionWorker.perform_async(@collection.id)
+
     ok_response(data: { collection_item: collection_item })
   end
 
