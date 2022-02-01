@@ -186,7 +186,7 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         community = Community.first
         user = User.first
         member = community.members.exists?(user: user)
-        expect(member).to be_truthy
+        expect(member).to be true
       end
     end
   end
