@@ -15,6 +15,7 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   end
 
   def destroy
+    collection = Collection.find(params[:collection_id])
   end
 
   private
