@@ -127,9 +127,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         entity = attributes_for(:reply, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        patch api_v1_reply_path(reply), headers: headers, params: {
-          reply: entity
-        }
+        params = { reply: entity }
+        patch api_v1_reply_path(reply), headers: headers, params: params
       end
 
       it "returns 422 status code" do
@@ -162,9 +161,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         entity = attributes_for(:reply)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        patch api_v1_reply_path(reply), headers: headers, params: {
-          reply: entity
-        }
+        params = { reply: entity }
+        patch api_v1_reply_path(reply), headers: headers, params: params
       end
 
       it "returns 200 status code" do

@@ -74,12 +74,13 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         collection = create(:collection, user: user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_collection_collection_items_path(collection), headers: headers, params: {
+        params = {
           collection_item: {
             collectable_type: "",
             collectable_id: nil
           }
         }
+        post api_v1_collection_collection_items_path(collection), headers: headers, params: params
       end
 
       it "returns 422 status code" do
@@ -109,12 +110,13 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         community = create(:community)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_collection_collection_items_path(collection), headers: headers, params: {
+        params = {
           collection_item: {
             collectable_type: "Community",
             collectable_id: community.id
           }
         }
+        post api_v1_collection_collection_items_path(collection), headers: headers, params: params
       end
 
       it "returns 201 status code" do

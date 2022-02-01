@@ -129,7 +129,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         community = attributes_for(:community, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_communities_path, headers: headers, params: { community: community }
+        params = { community: community }
+        post api_v1_communities_path, headers: headers, params: params
       end
 
       it "returns 422 status code" do
@@ -158,7 +159,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         community = attributes_for(:community)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_communities_path, headers: headers, params: { community: community }
+        params = { community: community }
+        post api_v1_communities_path, headers: headers, params: params
       end
 
       it "returns 201 status code" do
@@ -263,9 +265,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         entity = attributes_for(:community, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        patch api_v1_community_path(community), headers: headers, params: {
-          community: entity 
-        }
+        params = { community: entity }
+        patch api_v1_community_path(community), headers: headers, params: params
       end
 
       it "returns 422 status code" do
@@ -296,9 +297,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         entity = attributes_for(:community)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        patch api_v1_community_path(community), headers: headers, params: {
-          community: entity
-        }
+        params = { community: entity }
+        patch api_v1_community_path(community), headers: headers, params: params
       end
 
       it "returns 200 status code" do

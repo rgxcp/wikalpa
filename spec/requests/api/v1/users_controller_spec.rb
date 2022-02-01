@@ -163,7 +163,8 @@ RSpec.describe Api::V1::UsersController, type: :request do
         entity = attributes_for(:user, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        patch api_v1_user_path(user), headers: headers, params: { user: entity }
+        params = { user: entity }
+        patch api_v1_user_path(user), headers: headers, params: params
       end
 
       it "returns 422 status code" do
@@ -191,12 +192,13 @@ RSpec.describe Api::V1::UsersController, type: :request do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        patch api_v1_user_path(user), headers: headers, params: {
+        params = {
           user: {
             username: "john_doe",
             password: "87654321"
           }
         }
+        patch api_v1_user_path(user), headers: headers, params: params
       end
 
       it "returns 200 status code" do

@@ -121,9 +121,8 @@ RSpec.describe Api::V1::Post::CommentsController, type: :request do
         comment = attributes_for(:comment, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_post_comments_path(post), headers: headers, params: {
-          comment: comment
-        }
+        params = { comment: comment }
+        post api_v1_post_comments_path(post), headers: headers, params: params
       end
 
       it "returns 422 status code" do
@@ -154,9 +153,8 @@ RSpec.describe Api::V1::Post::CommentsController, type: :request do
         comment = attributes_for(:comment)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_post_comments_path(post), headers: headers, params: {
-          comment: comment
-        }
+        params = { comment: comment }
+        post api_v1_post_comments_path(post), headers: headers, params: params
       end
 
       it "returns 201 status code" do

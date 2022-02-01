@@ -129,7 +129,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         collection = attributes_for(:collection, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_collections_path, headers: headers, params: { collection: collection }
+        params = { collection: collection }
+        post api_v1_collections_path, headers: headers, params: params
       end
 
       it "returns 422 status code" do
@@ -162,7 +163,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         }])
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_collections_path, headers: headers, params: { collection: collection }
+        params = { collection: collection }
+        post api_v1_collections_path, headers: headers, params: params
       end
 
       it "returns 201 status code" do
@@ -262,9 +264,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         entity = attributes_for(:collection, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        patch api_v1_collection_path(collection), headers: headers, params: {
-          collection: entity
-        }
+        params = { collection: entity }
+        patch api_v1_collection_path(collection), headers: headers, params: params
       end
 
       it "returns 422 status code" do
@@ -295,9 +296,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         entity = attributes_for(:collection)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        patch api_v1_collection_path(collection), headers: headers, params: {
-          collection: entity
-        }
+        params = { collection: entity }
+        patch api_v1_collection_path(collection), headers: headers, params: params
       end
 
       it "returns 200 status code" do

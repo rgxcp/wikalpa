@@ -144,9 +144,8 @@ RSpec.describe Api::V1::Community::PostsController, type: :request do
         post = attributes_for(:post, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_community_posts_path(community), headers: headers, params: {
-          post: post
-        }
+        params = { post: post }
+        post api_v1_community_posts_path(community), headers: headers, params: params
       end
 
       it "returns 422 status code" do
@@ -177,9 +176,8 @@ RSpec.describe Api::V1::Community::PostsController, type: :request do
         post = attributes_for(:post)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_community_posts_path(community), headers: headers, params: {
-          post: post
-        }
+        params = { post: post }
+        post api_v1_community_posts_path(community), headers: headers, params: params
       end
 
       it "returns 201 status code" do
