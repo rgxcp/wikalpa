@@ -1,3 +1,16 @@
+# [6.29.0](https://github.com/rgxcp/wikalpa/compare/v6.28.0...v6.29.0) (2022-02-01)
+
+
+### Features
+
+* CollectionWorker#perform deletes collection when collection items count equal to zero ([a7aa2f8](https://github.com/rgxcp/wikalpa/commit/a7aa2f831ed37532df62eb50099bbc6d59e47ea2))
+* DELETE /collections/:id/collection-items/:id enqueues collection worker job in background when collection item exists ([9fd3669](https://github.com/rgxcp/wikalpa/commit/9fd3669394d8021d48ae22ee06a1a96ac541772c))
+* DELETE /collections/:id/collection-items/:id returns forbidden response when deleting collection item on someone else collection ([5ed4454](https://github.com/rgxcp/wikalpa/commit/5ed4454b5dcc4b6d5b0832e911459c44c88dedce))
+* DELETE /collections/:id/collection-items/:id returns not found response when collection item not exists ([b374022](https://github.com/rgxcp/wikalpa/commit/b37402229c97c944ecb513439e9352054e5c7f0e))
+* DELETE /collections/:id/collection-items/:id returns not found response when collection not exists ([3ac63e8](https://github.com/rgxcp/wikalpa/commit/3ac63e86393db3f2d930418069e467ffd5e5777c))
+* DELETE /collections/:id/collection-items/:id returns ok response when collection item exists ([e0db81f](https://github.com/rgxcp/wikalpa/commit/e0db81fe6a1bc92261fff138342863a92940bf76))
+* DELETE /collections/:id/collection-items/:id returns unauthorized response when user not logged in ([32dbfe8](https://github.com/rgxcp/wikalpa/commit/32dbfe845db188844c679c1c703b028485444e41))
+
 # [6.28.0](https://github.com/rgxcp/wikalpa/compare/v6.27.0...v6.28.0) (2022-01-31)
 
 
