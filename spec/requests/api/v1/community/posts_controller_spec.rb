@@ -93,7 +93,8 @@ RSpec.describe Api::V1::Community::PostsController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_community_posts_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_community_posts_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -116,7 +117,8 @@ RSpec.describe Api::V1::Community::PostsController, type: :request do
         community = create(:community)
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_community_posts_path(community), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_community_posts_path(community), headers: headers
       end
 
       it "returns 403 status code" do
@@ -141,7 +143,8 @@ RSpec.describe Api::V1::Community::PostsController, type: :request do
         create(:member, community: community, user: user)
         post = attributes_for(:post, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_community_posts_path(community), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_community_posts_path(community), headers: headers, params: {
           post: post
         }
       end
@@ -173,7 +176,8 @@ RSpec.describe Api::V1::Community::PostsController, type: :request do
         create(:member, community: community, user: user)
         post = attributes_for(:post)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_community_posts_path(community), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_community_posts_path(community), headers: headers, params: {
           post: post
         }
       end

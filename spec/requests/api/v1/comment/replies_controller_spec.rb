@@ -95,7 +95,8 @@ RSpec.describe Api::V1::Comment::RepliesController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_comment_replies_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_comment_replies_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -121,7 +122,8 @@ RSpec.describe Api::V1::Comment::RepliesController, type: :request do
         comment = create(:comment, post: post, user: user)
         reply = attributes_for(:reply, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_comment_replies_path(comment), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_comment_replies_path(comment), headers: headers, params: {
           reply: reply
         }
       end
@@ -154,7 +156,8 @@ RSpec.describe Api::V1::Comment::RepliesController, type: :request do
         comment = create(:comment, post: post, user: user)
         reply = attributes_for(:reply)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_comment_replies_path(comment), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_comment_replies_path(comment), headers: headers, params: {
           reply: reply
         }
       end

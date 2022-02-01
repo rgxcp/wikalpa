@@ -95,7 +95,8 @@ RSpec.describe Api::V1::Comment::LikesController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_comment_likes_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_comment_likes_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -121,7 +122,8 @@ RSpec.describe Api::V1::Comment::LikesController, type: :request do
         comment = create(:comment, post: post, user: user)
         create(:like, user: user, likeable: comment)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_comment_likes_path(comment), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_comment_likes_path(comment), headers: headers
       end
 
       it "returns 422 status code" do
@@ -151,7 +153,8 @@ RSpec.describe Api::V1::Comment::LikesController, type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_comment_likes_path(comment), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_comment_likes_path(comment), headers: headers
       end
 
       it "returns 201 status code" do

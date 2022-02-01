@@ -24,7 +24,8 @@ RSpec.describe Api::V1::MembersController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_member_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_member_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -49,7 +50,8 @@ RSpec.describe Api::V1::MembersController, type: :request do
         user2 = create(:user)
         member = create(:member, community: community, user: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        delete api_v1_member_path(member), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_member_path(member), headers: headers
       end
 
       it "returns 403 status code" do
@@ -73,7 +75,8 @@ RSpec.describe Api::V1::MembersController, type: :request do
         user = create(:user)
         member = create(:member, community: community, user: user)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_member_path(member), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_member_path(member), headers: headers
       end
 
       it "returns 200 status code" do

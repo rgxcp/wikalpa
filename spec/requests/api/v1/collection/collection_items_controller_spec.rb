@@ -24,7 +24,8 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_collection_collection_items_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_collection_collection_items_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -48,7 +49,8 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         user2 = create(:user)
         collection = create(:collection, user: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        post api_v1_collection_collection_items_path(collection), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_collection_collection_items_path(collection), headers: headers
       end
 
       it "returns 403 status code" do
@@ -71,7 +73,8 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         user = create(:user)
         collection = create(:collection, user: user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_collection_collection_items_path(collection), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_collection_collection_items_path(collection), headers: headers, params: {
           collection_item: {
             collectable_type: "",
             collectable_id: nil
@@ -105,7 +108,8 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         collection = create(:collection, user: user)
         community = create(:community)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_collection_collection_items_path(collection), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_collection_collection_items_path(collection), headers: headers, params: {
           collection_item: {
             collectable_type: "Community",
             collectable_id: community.id
@@ -157,7 +161,8 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_collection_collection_item_path(0, 1), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_collection_collection_item_path(0, 1), headers: headers
       end
 
       it "returns 404 status code" do
@@ -181,7 +186,8 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         user2 = create(:user)
         collection = create(:collection, user: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        delete api_v1_collection_collection_item_path(collection, 1), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_collection_collection_item_path(collection, 1), headers: headers
       end
 
       it "returns 403 status code" do
@@ -204,7 +210,8 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         user = create(:user)
         collection = create(:collection, user: user)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_collection_collection_item_path(collection, 0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_collection_collection_item_path(collection, 0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -228,7 +235,8 @@ RSpec.describe Api::V1::Collection::CollectionItemsController, type: :request do
         collection = create(:collection, user: user)
         collection_item = create(:collection_item, collection: collection)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_collection_collection_item_path(collection, collection_item), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_collection_collection_item_path(collection, collection_item), headers: headers
       end
 
       it "returns 200 status code" do

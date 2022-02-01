@@ -107,8 +107,9 @@ RSpec.describe Api::V1::UsersController, type: :request do
         auth = create(:user)
         user = create(:user)
         token = JsonWebToken.encode({ id: auth.id })
+        headers = { Authorization: "Bearer #{token}" }
         expect(VisitorWorker).to receive(:perform_async).with("User", user.id, auth.id)
-        get api_v1_user_path(user), headers: { Authorization: "Bearer #{token}" }
+        get api_v1_user_path(user), headers: headers
       end
     end
   end
@@ -137,7 +138,8 @@ RSpec.describe Api::V1::UsersController, type: :request do
         user1 = create(:user)
         user2 = create(:user)
         token = JsonWebToken.encode({ id: user2.id })
-        patch api_v1_user_path(user1), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_user_path(user1), headers: headers
       end
 
       it "returns 403 status code" do
@@ -160,7 +162,8 @@ RSpec.describe Api::V1::UsersController, type: :request do
         user = create(:user)
         entity = attributes_for(:user, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_user_path(user), headers: { Authorization: "Bearer #{token}" }, params: { user: entity }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_user_path(user), headers: headers, params: { user: entity }
       end
 
       it "returns 422 status code" do
@@ -187,7 +190,8 @@ RSpec.describe Api::V1::UsersController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_user_path(user), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_user_path(user), headers: headers, params: {
           user: {
             username: "john_doe",
             password: "87654321"

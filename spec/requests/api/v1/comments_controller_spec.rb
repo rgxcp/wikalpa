@@ -70,7 +70,8 @@ RSpec.describe Api::V1::CommentsController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_comment_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_comment_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -96,7 +97,8 @@ RSpec.describe Api::V1::CommentsController, type: :request do
         post = create(:post, community: community, user: user1)
         comment = create(:comment, post: post, user: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        patch api_v1_comment_path(comment), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_comment_path(comment), headers: headers
       end
 
       it "returns 403 status code" do
@@ -122,7 +124,8 @@ RSpec.describe Api::V1::CommentsController, type: :request do
         comment = create(:comment, post: post, user: user)
         entity = attributes_for(:comment, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_comment_path(comment), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_comment_path(comment), headers: headers, params: {
           comment: entity
         }
       end
@@ -155,7 +158,8 @@ RSpec.describe Api::V1::CommentsController, type: :request do
         comment = create(:comment, post: post, user: user)
         entity = attributes_for(:comment)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_comment_path(comment), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_comment_path(comment), headers: headers, params: {
           comment: entity
         }
       end

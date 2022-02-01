@@ -97,8 +97,9 @@ RSpec.describe Api::V1::PostsController, type: :request do
         auth = create(:user)
         post = create(:post)
         token = JsonWebToken.encode({ id: auth.id })
+        headers = { Authorization: "Bearer #{token}" }
         expect(VisitorWorker).to receive(:perform_async).with("Post", post.id, auth.id)
-        get api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }
+        get api_v1_post_path(post), headers: headers
       end
     end
   end
@@ -126,7 +127,8 @@ RSpec.describe Api::V1::PostsController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_post_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_post_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -151,7 +153,8 @@ RSpec.describe Api::V1::PostsController, type: :request do
         user2 = create(:user)
         post = create(:post, community: community, user: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        patch api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_post_path(post), headers: headers
       end
 
       it "returns 403 status code" do
@@ -176,7 +179,8 @@ RSpec.describe Api::V1::PostsController, type: :request do
         post = create(:post, community: community, user: user)
         entity = attributes_for(:post, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_post_path(post), headers: headers, params: {
           post: entity
         }
       end
@@ -208,7 +212,8 @@ RSpec.describe Api::V1::PostsController, type: :request do
         post = create(:post, community: community, user: user)
         entity = attributes_for(:post)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_post_path(post), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_post_path(post), headers: headers, params: {
           post: entity
         }
       end

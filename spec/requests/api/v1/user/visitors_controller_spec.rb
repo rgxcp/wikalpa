@@ -24,7 +24,8 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        get api_v1_user_visitors_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        get api_v1_user_visitors_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -47,7 +48,8 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
         user1 = create(:user)
         user2 = create(:user)
         token = JsonWebToken.encode({ id: user2.id })
-        get api_v1_user_visitors_path(user1), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        get api_v1_user_visitors_path(user1), headers: headers
       end
 
       it "returns 403 status code" do
@@ -69,7 +71,8 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        get api_v1_user_visitors_path(user), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        get api_v1_user_visitors_path(user), headers: headers
       end
 
       it "returns 404 status code" do
@@ -92,7 +95,8 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
         user = create(:user)
         create(:visitor, user: user, visitable: user)
         token = JsonWebToken.encode({ id: user.id })
-        get api_v1_user_visitors_path(user), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        get api_v1_user_visitors_path(user), headers: headers
       end
 
       it "returns 200 status code" do

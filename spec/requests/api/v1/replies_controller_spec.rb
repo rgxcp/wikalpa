@@ -70,7 +70,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_reply_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_reply_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -97,7 +98,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         comment = create(:comment, post: post, user: user1)
         reply = create(:reply, comment: comment, user: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        patch api_v1_reply_path(reply), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_reply_path(reply), headers: headers
       end
 
       it "returns 403 status code" do
@@ -124,7 +126,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         reply = create(:reply, comment: comment, user: user)
         entity = attributes_for(:reply, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_reply_path(reply), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_reply_path(reply), headers: headers, params: {
           reply: entity
         }
       end
@@ -158,7 +161,8 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         reply = create(:reply, comment: comment, user: user)
         entity = attributes_for(:reply)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_reply_path(reply), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_reply_path(reply), headers: headers, params: {
           reply: entity
         }
       end

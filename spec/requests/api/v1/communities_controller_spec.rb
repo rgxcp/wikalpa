@@ -97,8 +97,9 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         auth = create(:user)
         community = create(:community)
         token = JsonWebToken.encode({ id: auth.id })
+        headers = { Authorization: "Bearer #{token}" }
         expect(VisitorWorker).to receive(:perform_async).with("Community", community.id, auth.id)
-        get api_v1_community_path(community), headers: { Authorization: "Bearer #{token}" }
+        get api_v1_community_path(community), headers: headers
       end
     end
   end
@@ -127,7 +128,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         user = create(:user)
         community = attributes_for(:community, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_communities_path, headers: { Authorization: "Bearer #{token}" }, params: { community: community }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_communities_path, headers: headers, params: { community: community }
       end
 
       it "returns 422 status code" do
@@ -155,7 +157,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         user = create(:user)
         community = attributes_for(:community)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_communities_path, headers: { Authorization: "Bearer #{token}" }, params: { community: community }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_communities_path, headers: headers, params: { community: community }
       end
 
       it "returns 201 status code" do
@@ -209,7 +212,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_community_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_community_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -232,7 +236,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         community = create(:community)
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_community_path(community), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_community_path(community), headers: headers
       end
 
       it "returns 403 status code" do
@@ -257,7 +262,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         create(:member, community: community, user: user)
         entity = attributes_for(:community, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_community_path(community), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_community_path(community), headers: headers, params: {
           community: entity 
         }
       end
@@ -289,7 +295,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
         create(:member, community: community, user: user)
         entity = attributes_for(:community)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_community_path(community), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_community_path(community), headers: headers, params: {
           community: entity
         }
       end

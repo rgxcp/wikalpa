@@ -24,7 +24,8 @@ RSpec.describe Api::V1::Post::BookmarksController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_post_bookmarks_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_post_bookmarks_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -49,7 +50,8 @@ RSpec.describe Api::V1::Post::BookmarksController, type: :request do
         post = create(:post, community: community, user: user)
         create(:bookmark, user: user, bookmarkable: post)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_post_bookmarks_path(post), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_post_bookmarks_path(post), headers: headers
       end
 
       it "returns 422 status code" do
@@ -78,7 +80,8 @@ RSpec.describe Api::V1::Post::BookmarksController, type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_post_bookmarks_path(post), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_post_bookmarks_path(post), headers: headers
       end
 
       it "returns 201 status code" do

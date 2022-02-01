@@ -24,7 +24,8 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_buddy_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_buddy_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -49,7 +50,8 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
         user3 = create(:user)
         buddy = create(:buddy, user: user3, buddy: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        delete api_v1_buddy_path(buddy), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_buddy_path(buddy), headers: headers
       end
 
       it "returns 403 status code" do
@@ -73,7 +75,8 @@ RSpec.describe Api::V1::BuddiesController, type: :request do
         user2 = create(:user)
         buddy = create(:buddy, user: user1, buddy: user2)
         token = JsonWebToken.encode({ id: user1.id })
-        delete api_v1_buddy_path(buddy), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_buddy_path(buddy), headers: headers
       end
 
       it "returns 200 status code" do

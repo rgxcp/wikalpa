@@ -97,8 +97,9 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         auth = create(:user)
         collection = create(:collection)
         token = JsonWebToken.encode({ id: auth.id })
+        headers = { Authorization: "Bearer #{token}" }
         expect(VisitorWorker).to receive(:perform_async).with("Collection", collection.id, auth.id)
-        get api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }
+        get api_v1_collection_path(collection), headers: headers
       end
     end
   end
@@ -127,7 +128,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         user = create(:user)
         collection = attributes_for(:collection, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_collections_path, headers: { Authorization: "Bearer #{token}" }, params: { collection: collection }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_collections_path, headers: headers, params: { collection: collection }
       end
 
       it "returns 422 status code" do
@@ -159,7 +161,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
           collectable_id: community.id
         }])
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_collections_path, headers: { Authorization: "Bearer #{token}" }, params: { collection: collection }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_collections_path, headers: headers, params: { collection: collection }
       end
 
       it "returns 201 status code" do
@@ -206,7 +209,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_collection_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_collection_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -231,7 +235,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         community = create(:community)
         collection = create(:collection, user: user2, collection_items_attributes: [{ collectable: community }])
         token = JsonWebToken.encode({ id: user1.id })
-        patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_collection_path(collection), headers: headers
       end
 
       it "returns 403 status code" do
@@ -256,7 +261,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         collection = create(:collection, user: user, collection_items_attributes: [{ collectable: community }])
         entity = attributes_for(:collection, :invalid)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_collection_path(collection), headers: headers, params: {
           collection: entity
         }
       end
@@ -288,7 +294,8 @@ RSpec.describe Api::V1::CollectionsController, type: :request do
         collection = create(:collection, user: user, collection_items_attributes: [{ collectable: community }])
         entity = attributes_for(:collection)
         token = JsonWebToken.encode({ id: user.id })
-        patch api_v1_collection_path(collection), headers: { Authorization: "Bearer #{token}" }, params: {
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_collection_path(collection), headers: headers, params: {
           collection: entity
         }
       end

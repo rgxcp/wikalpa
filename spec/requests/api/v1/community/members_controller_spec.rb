@@ -93,7 +93,8 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_community_members_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_community_members_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -117,7 +118,8 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
         user = create(:user)
         create(:member, community: community, user: user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_community_members_path(community), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_community_members_path(community), headers: headers
       end
 
       it "returns 422 status code" do
@@ -145,7 +147,8 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
         community = create(:community)
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        post api_v1_community_members_path(community), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_community_members_path(community), headers: headers
       end
 
       it "returns 201 status code" do

@@ -24,7 +24,8 @@ RSpec.describe Api::V1::BookmarksController, type: :request do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_bookmark_path(0), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_bookmark_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -50,7 +51,8 @@ RSpec.describe Api::V1::BookmarksController, type: :request do
         post = create(:post, community: community, user: user1)
         bookmark = create(:bookmark, user: user2, bookmarkable: post)
         token = JsonWebToken.encode({ id: user1.id })
-        delete api_v1_bookmark_path(bookmark), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_bookmark_path(bookmark), headers: headers
       end
 
       it "returns 403 status code" do
@@ -75,7 +77,8 @@ RSpec.describe Api::V1::BookmarksController, type: :request do
         post = create(:post, community: community, user: user)
         bookmark = create(:bookmark, user: user, bookmarkable: post)
         token = JsonWebToken.encode({ id: user.id })
-        delete api_v1_bookmark_path(bookmark), headers: { Authorization: "Bearer #{token}" }
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_bookmark_path(bookmark), headers: headers
       end
 
       it "returns 200 status code" do
