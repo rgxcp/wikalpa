@@ -1,3 +1,11 @@
+# [6.30.0](https://github.com/rgxcp/wikalpa/compare/v6.29.0...v6.30.0) (2022-02-02)
+
+
+### Features
+
+* GET /collections/:id/collection-items returns not found response when collection not exists ([d1246fd](https://github.com/rgxcp/wikalpa/commit/d1246fdf7e0d6cf35da2c0caa50b606c9a1bb44d))
+* GET /collections/:id/collection-items returns ok response when collection items exist ([9896ed2](https://github.com/rgxcp/wikalpa/commit/9896ed20ced5d513f88030b846f950c5c4ca5ba0))
+
 # [6.29.0](https://github.com/rgxcp/wikalpa/compare/v6.28.0...v6.29.0) (2022-02-01)
 
 
