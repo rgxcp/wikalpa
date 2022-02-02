@@ -1,6 +1,9 @@
 class Api::V1::Collection::CollectionItemsController < ApplicationController
   before_action :authenticate_request, only: [:create, :destroy]
-  before_action :set_collection, only: [:create, :destroy]
+  before_action :set_collection, only: [:index, :create, :destroy]
+
+  def index
+  end
 
   def create
     return forbidden_response unless @auth_id == @collection.user_id
