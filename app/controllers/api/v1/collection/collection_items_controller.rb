@@ -1,6 +1,6 @@
 class Api::V1::Collection::CollectionItemsController < ApplicationController
   before_action :authenticate_request, only: [:create, :destroy]
-  before_action :set_collection, only: [:index, :create, :destroy]
+  before_action :set_collection, except: [:show, :update]
 
   def index
     collection_items = @collection.collection_items
