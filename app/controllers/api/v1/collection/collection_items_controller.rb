@@ -3,6 +3,9 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   before_action :set_collection, only: [:index, :create, :destroy]
 
   def index
+    collection_items = @collection.collection_items
+
+    ok_response(data: { collection_items: collection_items })
   end
 
   def create
