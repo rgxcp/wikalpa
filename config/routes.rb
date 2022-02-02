@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       end
       resources :likes, only: :destroy
       resources :members, only: :destroy
-      resources :posts, only: [:index, :show, :update] do
+      resources :posts, except: [:create, :destroy] do
         resources :bookmarks, only: :create, module: "post"
         resources :comments, only: [:index, :create], module: "post"
         resources :likes, only: [:index, :create], module: "post"
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
         resources :bookmarks, only: :create, module: "reply"
         resources :likes, only: [:index, :create], module: "reply"
       end
-      resources :users, only: [:index, :show, :update] do
+      resources :users, except: [:create, :destroy] do
         resources :bookmarks, only: :index, module: "user"
         resources :buddies, only: [:index, :create], module: "user"
         resources :comments, only: :index, module: "user"
