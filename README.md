@@ -1,6 +1,6 @@
 # 🌵 Wikalpa
 
-A wild wild west of Indonesian community driven discussions platform.
+A wild wild west of Indonesian community driven discussion platform.
 
 ## 🚦 Status
 
