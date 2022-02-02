@@ -1816,6 +1816,36 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /collections/{collection_id}/collection-items:
+    get:
+      tags:
+        - Collection Item
+      security: []
+      summary: Retrieve all collection items.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collection_items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CollectionItem"
+        "404":
+          $ref: "#/components/responses/NotFound"
     post:
       tags:
         - Collection Item
