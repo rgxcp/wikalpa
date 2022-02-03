@@ -1,5 +1,6 @@
 class Collection < ApplicationRecord
   belongs_to :user
+  has_many :bookmarks, as: :bookmarkable
   has_many :collection_items
 
   accepts_nested_attributes_for :collection_items
