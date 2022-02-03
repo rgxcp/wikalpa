@@ -1936,6 +1936,38 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /collections/{collection_id}/bookmarks:
+    post:
+      tags:
+        - Collection Bookmark
+      summary: Bookmark a collection.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      bookmark:
+                        $ref: "#/components/schemas/Bookmark"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /likes/{id}:
     delete:
       tags:
@@ -2033,6 +2065,8 @@ tags:
     description: Endpoints related for collection resources.
   - name: Collection Item
     description: Endpoints related for collection item resources.
+  - name: Collection Bookmark
+    description: Endpoints related for collection bookmark resources.
   - name: Like
     description: Endpoints related for like resources.
 components:
