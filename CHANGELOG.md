@@ -1,3 +1,14 @@
+# [6.31.0](https://github.com/rgxcp/wikalpa/compare/v6.30.0...v6.31.0) (2022-02-03)
+
+
+### Features
+
+* add polymorphic has many 'Bookmark' association on 'Collection' ([fe8f746](https://github.com/rgxcp/wikalpa/commit/fe8f746c037414a2134330583f524db43378cc4a))
+* POST /collections/:id/bookmarks returns created response when entity valid ([19a78ca](https://github.com/rgxcp/wikalpa/commit/19a78cabed9f424e64d21fdac44f445c4063f7ff))
+* POST /collections/:id/bookmarks returns not found response when collection not exists ([801b631](https://github.com/rgxcp/wikalpa/commit/801b6316852b92007f9ec9e53e294977b019ddb7))
+* POST /collections/:id/bookmarks returns unauthorized response when user not logged in ([eb7a5e0](https://github.com/rgxcp/wikalpa/commit/eb7a5e0b976df3f2f4e711618f43c63585e859c9))
+* POST /collections/:id/bookmarks returns unprocessable entity response when entity invalid ([3967a8a](https://github.com/rgxcp/wikalpa/commit/3967a8a735c2a1e7ce6fd3273e9ab7062aa35018))
+
 # [6.30.0](https://github.com/rgxcp/wikalpa/compare/v6.29.0...v6.30.0) (2022-02-02)
 
 
