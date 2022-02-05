@@ -6,6 +6,10 @@ class Api::V1::Collection::LikesController < ApplicationController
 
     like = collection.likes.build(user: @auth_user)
 
-    unprocessable_entity_response(errors: like.errors.messages) unless like.save
+    if like.save
+      created_response(data: { like: like })
+    else
+      unprocessable_entity_response(errors: like.errors.messages)
+    end
   end
 end
