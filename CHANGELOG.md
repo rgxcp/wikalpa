@@ -1,3 +1,14 @@
+# [6.32.0](https://github.com/rgxcp/wikalpa/compare/v6.31.0...v6.32.0) (2022-02-05)
+
+
+### Features
+
+* add polymorphic has many 'Like' association on 'Collection' ([7602249](https://github.com/rgxcp/wikalpa/commit/76022493b03e8a0bf5f1ec7fd122e87550804e2d))
+* POST /collections/:id/likes returns created response when entity valid ([cf75d69](https://github.com/rgxcp/wikalpa/commit/cf75d696692faf3e7f98d8f582c5143cdb4a4bc2))
+* POST /collections/:id/likes returns not found response when collection not exists ([0170994](https://github.com/rgxcp/wikalpa/commit/0170994fe4512ea4a4e5c7aa99f590f2a934f601))
+* POST /collections/:id/likes returns unauthorized response when user not logged in ([44fa137](https://github.com/rgxcp/wikalpa/commit/44fa137f553ead3d41a48281022706eb0d70b33e))
+* POST /collections/:id/likes returns unprocessable entity response when entity invalid ([e3045dc](https://github.com/rgxcp/wikalpa/commit/e3045dc4676c6eb0ca42ca5c9d7f79bb19637003))
+
 # [6.31.0](https://github.com/rgxcp/wikalpa/compare/v6.30.0...v6.31.0) (2022-02-03)
 
 
