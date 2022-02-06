@@ -1,5 +1,3 @@
-require "json_web_token"
-
 class Api::V1::AuthController < ApplicationController
   def register
     user = User.new(user_params)
