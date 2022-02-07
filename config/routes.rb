@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       end
       resources :comments, only: [:show, :update] do
         resources :bookmarks, only: :create, module: "comment"
+        resources :collections, only: :index, module: "comment"
         resources :likes, only: [:index, :create], module: "comment"
         resources :replies, only: [:index, :create], module: "comment"
       end
