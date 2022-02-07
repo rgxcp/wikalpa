@@ -2030,6 +2030,37 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /collections/{collection_id}/visitors:
+    get:
+      tags:
+        - Collection Visitor
+      security: []
+      summary: Retrieve all collection visitors.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      visitors:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Visitor"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /likes/{id}:
     delete:
       tags:
@@ -2131,6 +2162,8 @@ tags:
     description: Endpoints related for collection bookmark resources.
   - name: Collection Like
     description: Endpoints related for collection like resources.
+  - name: Collection Visitor
+    description: Endpoints related for collection visitor resources.
   - name: Like
     description: Endpoints related for like resources.
 components:
