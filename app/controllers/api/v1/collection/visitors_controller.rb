@@ -1,13 +1,7 @@
-class Api::V1::Collection::VisitorsController < ApplicationController
-  def index
-    collection = Collection.find(params[:collection_id])
+class Api::V1::Collection::VisitorsController < Api::V1::VisitorsController
+  private
 
-    visitors = collection.visitors
-
-    if visitors.size.positive?
-      ok_response(data: { visitors: visitors })
-    else
-      not_found_response
-    end
+  def set_visitable
+    @visitable = Collection.find(params[:collection_id])
   end
 end
