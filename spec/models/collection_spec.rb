@@ -7,6 +7,7 @@ RSpec.describe Collection, type: :model do
   it { is_expected.to have_many(:bookmarks) }
   it { is_expected.to have_many(:collection_items) }
   it { is_expected.to have_many(:likes) }
+  it { is_expected.to have_many(:visitors) }
   it { is_expected.to accept_nested_attributes_for(:collection_items) }
   it { is_expected.to validate_presence_of(:user) }
   it { is_expected.to validate_length_of(:name).is_at_least(5).is_at_most(50) }
