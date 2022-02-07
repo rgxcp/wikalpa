@@ -1,3 +1,14 @@
+# [6.33.0](https://github.com/rgxcp/wikalpa/compare/v6.32.0...v6.33.0) (2022-02-07)
+
+
+### Features
+
+* add polymorphic has many 'Visitor' association on 'Collection' ([9626edb](https://github.com/rgxcp/wikalpa/commit/9626edb9659f2f858e78a686d90a2cbdeb9f70ca))
+* GET /collections/:id/likes retrieve all likes from a collection ([483a8c9](https://github.com/rgxcp/wikalpa/commit/483a8c965b50ecfc666c0179c902d306242c6d5d))
+* GET /collections/:id/visitors returns not found response when collection not exists ([33b4b11](https://github.com/rgxcp/wikalpa/commit/33b4b1113ec2f4edcbf81bd3e6ae2cbc75a9f8f9))
+* GET /collections/:id/visitors returns not found response when visitors not exist ([39456b5](https://github.com/rgxcp/wikalpa/commit/39456b554548baf3cacf450854773608ecaa103e))
+* GET /collections/:id/visitors returns ok response when visitors exist ([1aab49d](https://github.com/rgxcp/wikalpa/commit/1aab49d01a89f291057c1621d627df4275cc6462))
+
 # [6.32.0](https://github.com/rgxcp/wikalpa/compare/v6.31.0...v6.32.0) (2022-02-05)
 
 
