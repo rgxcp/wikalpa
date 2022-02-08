@@ -4,8 +4,10 @@ RSpec.describe Comment, type: :model do
   it { is_expected.to belong_to(:post) }
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:bookmarks) }
+  it { is_expected.to have_many(:collection_items) }
   it { is_expected.to have_many(:likes) }
   it { is_expected.to have_many(:replies) }
+  it { is_expected.to have_many(:collections).through(:collection_items) }
   it { is_expected.to validate_presence_of(:post) }
   it { is_expected.to validate_presence_of(:user) }
   it { is_expected.to validate_length_of(:body).is_at_most(255) }
