@@ -40,5 +40,32 @@ RSpec.describe Api::V1::Comment::CollectionsController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when collections exist" do
+      before do
+        comment = create(:comment)
+        create(:collection, collection_items_attributes: [{ collectable: comment }])
+        get api_v1_comment_collections_path(comment)
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be true
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns collections data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["collections"]).not_to be_empty
+      end
+    end
   end
 end
