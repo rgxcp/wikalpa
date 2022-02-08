@@ -1,3 +1,13 @@
+# [6.34.0](https://github.com/rgxcp/wikalpa/compare/v6.33.0...v6.34.0) (2022-02-08)
+
+
+### Features
+
+* add has many 'Collection' through 'CollectionItem' association on 'Comment' ([df2e506](https://github.com/rgxcp/wikalpa/commit/df2e506001ddf0c83e4bcc40cfe9b73a83787db8))
+* GET /comments/:id/collections returns not found response when collections not exist ([1e90a0b](https://github.com/rgxcp/wikalpa/commit/1e90a0be2e88538939ba3fb0dffc6d64933909d6))
+* GET /comments/:id/collections returns not found response when comment not exists ([a3c970a](https://github.com/rgxcp/wikalpa/commit/a3c970a722d38d2d8c6bfd385ef384784b9c7c8d))
+* GET /comments/:id/collections returns ok response when collections exist ([dc9814d](https://github.com/rgxcp/wikalpa/commit/dc9814de22957abfc4133992519b19f0471865a0))
+
 # [6.33.0](https://github.com/rgxcp/wikalpa/compare/v6.32.0...v6.33.0) (2022-02-07)
 
 
