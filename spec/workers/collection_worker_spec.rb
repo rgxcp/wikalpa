@@ -14,7 +14,7 @@ RSpec.describe CollectionWorker, type: :worker do
       collection_item = collection.collection_items.first
       collection_item.destroy
       collection = CollectionWorker.new.perform(collection.id)
-      expect(collection.destroyed?).to be true
+      expect(collection.destroyed?).to be(true)
     end
   end
 end

@@ -11,7 +11,7 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
 
       it "returns false success body" do
         result = JSON.parse(response.body)
-        expect(result["success"]).to be false
+        expect(result["success"]).to be(false)
       end
 
       it "returns unauthorized message body" do
@@ -34,7 +34,7 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
 
       it "returns false success body" do
         result = JSON.parse(response.body)
-        expect(result["success"]).to be false
+        expect(result["success"]).to be(false)
       end
 
       it "returns not found message body" do
@@ -58,7 +58,7 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
 
       it "returns false success body" do
         result = JSON.parse(response.body)
-        expect(result["success"]).to be false
+        expect(result["success"]).to be(false)
       end
 
       it "returns forbidden message body" do
@@ -81,7 +81,7 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
 
       it "returns false success body" do
         result = JSON.parse(response.body)
-        expect(result["success"]).to be false
+        expect(result["success"]).to be(false)
       end
 
       it "returns not found message body" do
@@ -105,7 +105,7 @@ RSpec.describe Api::V1::User::VisitorsController, type: :request do
 
       it "returns true success body" do
         result = JSON.parse(response.body)
-        expect(result["success"]).to be true
+        expect(result["success"]).to be(true)
       end
 
       it "returns ok message body" do
