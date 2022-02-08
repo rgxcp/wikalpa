@@ -880,6 +880,37 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /comments/{comment_id}/collections:
+    get:
+      tags:
+        - Comment Collection
+      security: []
+      summary: Retrieve all comment collections.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Collection"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /comments/{comment_id}/likes:
     get:
       tags:
@@ -2122,6 +2153,8 @@ tags:
     description: Endpoints related for comment resources.
   - name: Comment Bookmark
     description: Endpoints related for comment bookmark resources.
+  - name: Comment Collection
+    description: Endpoints related for comment collection resources.
   - name: Comment Like
     description: Endpoints related for comment like resources.
   - name: Comment Reply
