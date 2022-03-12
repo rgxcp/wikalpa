@@ -259,6 +259,37 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /communities/{community_id}/collections:
+    get:
+      tags:
+        - Community Collection
+      security: []
+      summary: Retrieve all community collections.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCommunity"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Collection"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /communities/{community_id}/members:
     get:
       tags:
@@ -2131,6 +2162,8 @@ tags:
     description: Endpoints related for authentication and authorization.
   - name: Community
     description: Endpoints related for community resources.
+  - name: Community Collection
+    description: Endpoints related for community collection resources.
   - name: Community Member
     description: Endpoints related for community member resources.
   - name: Community Post
