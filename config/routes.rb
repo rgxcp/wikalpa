@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         resources :replies, only: [:index, :create], module: "comment"
       end
       resources :communities, except: :destroy do
+        resources :collections, only: :index, module: "community"
         resources :members, only: [:index, :create], module: "community"
         resources :posts, only: [:index, :create], module: "community"
         resources :visitors, only: :index, module: "community"
