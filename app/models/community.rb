@@ -1,9 +1,11 @@
 require "regex"
 
 class Community < ApplicationRecord
+  has_many :collection_items, as: :collectable
   has_many :members
   has_many :posts
   has_many :visitors, as: :visitable
+  has_many :collections, through: :collection_items
 
   validates :name, format: { with: REGEX::NAME }
   validates :name, length: { in: 5..20 }
