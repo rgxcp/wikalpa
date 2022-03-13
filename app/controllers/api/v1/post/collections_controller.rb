@@ -4,6 +4,10 @@ class Api::V1::Post::CollectionsController < ApplicationController
 
     collections = post.collections
 
-    not_found_response unless collections.size.positive?
+    if collections.size.positive?
+      ok_response(data: { collections: collections })
+    else
+      not_found_response
+    end
   end
 end
