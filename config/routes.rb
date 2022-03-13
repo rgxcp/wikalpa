@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :members, only: :destroy
       resources :posts, except: [:create, :destroy] do
         resources :bookmarks, only: :create, module: "post"
+        resources :collections, only: :index, module: "post"
         resources :comments, only: [:index, :create], module: "post"
         resources :likes, only: [:index, :create], module: "post"
         resources :visitors, only: :index, module: "post"
