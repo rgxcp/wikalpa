@@ -632,6 +632,37 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /posts/{post_id}/collections:
+    get:
+      tags:
+        - Post Collection
+      security: []
+      summary: Retrieve all post collections.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierPost"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Collection"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /posts/{post_id}/comments:
     get:
       tags:
@@ -2176,6 +2207,8 @@ tags:
     description: Endpoints related for post resources.
   - name: Post Bookmark
     description: Endpoints related for post bookmark resources.
+  - name: Post Collection
+    description: Endpoints related for post collection resources.
   - name: Post Comment
     description: Endpoints related for post comment resources.
   - name: Post Like
