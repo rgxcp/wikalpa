@@ -1521,6 +1521,37 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /users/{user_id}/collections:
+    get:
+      tags:
+        - User Collection
+      security: []
+      summary: Retrieve all user collections.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Collection"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /users/{user_id}/comments:
     get:
       tags:
@@ -2270,6 +2301,8 @@ tags:
     description: Endpoints related for user bookmark resources.
   - name: User Buddy
     description: Endpoints related for user buddy resources.
+  - name: User Collection
+    description: Endpoints related for user collection resources.
   - name: User Comment
     description: Endpoints related for user comment resources.
   - name: User Community
