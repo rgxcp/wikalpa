@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_many :bookmarks
   has_many :buddies
+  has_many :collections
   has_many :comments
   has_many :likes
   has_many :members
