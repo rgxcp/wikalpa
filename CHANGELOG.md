@@ -1,3 +1,13 @@
+# [6.38.0](https://github.com/rgxcp/wikalpa/compare/v6.37.0...v6.38.0) (2022-03-14)
+
+
+### Features
+
+* add has many 'Collection' association on 'User' ([1f4bc86](https://github.com/rgxcp/wikalpa/commit/1f4bc86312cc68a4f75eeff8e12a4aa28ee82e3b))
+* GET /users/:id/collections returns not found response when collections not exist ([d0b26e4](https://github.com/rgxcp/wikalpa/commit/d0b26e4e339149bb5d0ff9a96d17d6e1a7208bef))
+* GET /users/:id/collections returns not found response when user not exists ([60de8af](https://github.com/rgxcp/wikalpa/commit/60de8afe281494d66bef889f26a7d7a042b878b4))
+* GET /users/:id/collections returns ok response when collections exist ([1d0f5bb](https://github.com/rgxcp/wikalpa/commit/1d0f5bb2498d9897e4768c0354ad12377d784e9a))
+
 # [6.37.0](https://github.com/rgxcp/wikalpa/compare/v6.36.0...v6.37.0) (2022-03-14)
 
 
