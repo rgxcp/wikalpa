@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       resources :users, except: [:create, :destroy] do
         resources :bookmarks, only: :index, module: "user"
         resources :buddies, only: [:index, :create], module: "user"
+        resources :collections, only: :index, module: "user"
         resources :comments, only: :index, module: "user"
         resources :communities, only: :index, module: "user"
         resources :likes, only: :index, module: "user"
