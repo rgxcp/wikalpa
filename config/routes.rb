@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       end
       resources :replies, only: [:show, :update] do
         resources :bookmarks, only: :create, module: "reply"
+        resources :collections, only: :index, module: "reply"
         resources :likes, only: [:index, :create], module: "reply"
       end
       resources :users, except: [:create, :destroy] do
