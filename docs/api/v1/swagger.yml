@@ -1221,6 +1221,37 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /replies/{reply_id}/collections:
+    get:
+      tags:
+        - Reply Collection
+      security: []
+      summary: Retrieve all reply collections.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierReply"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Collection"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /replies/{reply_id}/likes:
     get:
       tags:
@@ -2229,6 +2260,8 @@ tags:
     description: Endpoints related for replies resources.
   - name: Reply Bookmark
     description: Endpoints related for reply bookmark resources.
+  - name: Reply Collection
+    description: Endpoints related for reply collection resources.
   - name: Reply Like
     description: Endpoints related for reply like resources.
   - name: User
