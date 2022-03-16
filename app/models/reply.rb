@@ -3,8 +3,8 @@ class Reply < ApplicationRecord
   belongs_to :user
   has_many :bookmarks, as: :bookmarkable
   has_many :collection_items, as: :collectable
-  has_many :upvotes, as: :upvoteable
   has_many :collections, through: :collection_items
+  has_many :upvotes, as: :upvoteable
 
   validates :comment, presence: true
   validates :user, presence: true
