@@ -1,3 +1,18 @@
+# [7.0.0](https://github.com/rgxcp/wikalpa/compare/v6.38.0...v7.0.0) (2022-03-16)
+
+
+### Features
+
+* rename "Like" resource to "Upvote" ([0f331e0](https://github.com/rgxcp/wikalpa/commit/0f331e0da8bac824dd875e998a6e82fea619fb59))
+
+
+### BREAKING CHANGES
+
+* In order to be more "Reddit-like", the "Like" resource
+is now renamed to "Upvote".
+
+Signed-off-by: Rommy Gustiawan <rgcppp@gmail.com>
+
 # [6.38.0](https://github.com/rgxcp/wikalpa/compare/v6.37.0...v6.38.0) (2022-03-14)
 
 
