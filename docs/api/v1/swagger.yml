@@ -740,12 +740,12 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
-  /posts/{post_id}/likes:
+  /posts/{post_id}/upvotes:
     get:
       tags:
-        - Post Like
+        - Post Upvote
       security: []
-      summary: Retrieve all post likes.
+      summary: Retrieve all post upvotes.
       parameters:
         - $ref: "#/components/parameters/IdentifierPost"
       responses:
@@ -765,16 +765,16 @@ paths:
                   data:
                     type: object
                     properties:
-                      likes:
+                      upvotes:
                         type: array
                         items:
-                          $ref: "#/components/schemas/Like"
+                          $ref: "#/components/schemas/Upvote"
         "404":
           $ref: "#/components/responses/NotFound"
     post:
       tags:
-        - Post Like
-      summary: Like a post.
+        - Post Upvote
+      summary: Upvote a post.
       parameters:
         - $ref: "#/components/parameters/IdentifierPost"
       responses:
@@ -794,8 +794,8 @@ paths:
                   data:
                     type: object
                     properties:
-                      like:
-                        $ref: "#/components/schemas/Like"
+                      upvote:
+                        $ref: "#/components/schemas/Upvote"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -973,68 +973,6 @@ paths:
                           $ref: "#/components/schemas/Collection"
         "404":
           $ref: "#/components/responses/NotFound"
-  /comments/{comment_id}/likes:
-    get:
-      tags:
-        - Comment Like
-      security: []
-      summary: Retrieve all comment likes.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierComment"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      likes:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Like"
-        "404":
-          $ref: "#/components/responses/NotFound"
-    post:
-      tags:
-        - Comment Like
-      summary: Like a comment.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierComment"
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      like:
-                        $ref: "#/components/schemas/Like"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
   /comments/{comment_id}/replies:
     get:
       tags:
@@ -1106,6 +1044,68 @@ paths:
                     properties:
                       reply:
                         $ref: "#/components/schemas/Reply"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /comments/{comment_id}/upvotes:
+    get:
+      tags:
+        - Comment Upvote
+      security: []
+      summary: Retrieve all comment upvotes.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      upvotes:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Upvote"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      tags:
+        - Comment Upvote
+      summary: Upvote a comment.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      upvote:
+                        $ref: "#/components/schemas/Upvote"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -1252,12 +1252,12 @@ paths:
                           $ref: "#/components/schemas/Collection"
         "404":
           $ref: "#/components/responses/NotFound"
-  /replies/{reply_id}/likes:
+  /replies/{reply_id}/upvotes:
     get:
       tags:
-        - Reply Like
+        - Reply Upvote
       security: []
-      summary: Retrieve all reply likes.
+      summary: Retrieve all reply upvotes.
       parameters:
         - $ref: "#/components/parameters/IdentifierReply"
       responses:
@@ -1277,16 +1277,16 @@ paths:
                   data:
                     type: object
                     properties:
-                      likes:
+                      upvotes:
                         type: array
                         items:
-                          $ref: "#/components/schemas/Like"
+                          $ref: "#/components/schemas/Upvote"
         "404":
           $ref: "#/components/responses/NotFound"
     post:
       tags:
-        - Reply Like
-      summary: Like a reply.
+        - Reply Upvote
+      summary: Upvote a reply.
       parameters:
         - $ref: "#/components/parameters/IdentifierReply"
       responses:
@@ -1306,8 +1306,8 @@ paths:
                   data:
                     type: object
                     properties:
-                      like:
-                        $ref: "#/components/schemas/Like"
+                      upvote:
+                        $ref: "#/components/schemas/Upvote"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -1614,37 +1614,6 @@ paths:
                           $ref: "#/components/schemas/Community"
         "404":
           $ref: "#/components/responses/NotFound"
-  /users/{user_id}/likes:
-    get:
-      tags:
-        - User Like
-      security: []
-      summary: Retrieve all user likes.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierUser"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      likes:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Like"
-        "404":
-          $ref: "#/components/responses/NotFound"
   /users/{user_id}/posts:
     get:
       tags:
@@ -1705,6 +1674,37 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/Reply"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /users/{user_id}/upvotes:
+    get:
+      tags:
+        - User Upvote
+      security: []
+      summary: Retrieve all user upvotes.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      upvotes:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Upvote"
         "404":
           $ref: "#/components/responses/NotFound"
   /users/{user_id}/visitors:
@@ -2123,12 +2123,12 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
-  /collections/{collection_id}/likes:
+  /collections/{collection_id}/upvotes:
     get:
       tags:
-        - Collection Like
+        - Collection Upvote
       security: []
-      summary: Retrieve all collection likes.
+      summary: Retrieve all collection upvotes.
       parameters:
         - $ref: "#/components/parameters/IdentifierCollection"
       responses:
@@ -2148,16 +2148,16 @@ paths:
                   data:
                     type: object
                     properties:
-                      likes:
+                      upvotes:
                         type: array
                         items:
-                          $ref: "#/components/schemas/Like"
+                          $ref: "#/components/schemas/Upvote"
         "404":
           $ref: "#/components/responses/NotFound"
     post:
       tags:
-        - Collection Like
-      summary: Like a collection.
+        - Collection Upvote
+      summary: Upvote a collection.
       parameters:
         - $ref: "#/components/parameters/IdentifierCollection"
       responses:
@@ -2177,8 +2177,8 @@ paths:
                   data:
                     type: object
                     properties:
-                      like:
-                        $ref: "#/components/schemas/Like"
+                      upvote:
+                        $ref: "#/components/schemas/Upvote"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -2216,11 +2216,11 @@ paths:
                           $ref: "#/components/schemas/Visitor"
         "404":
           $ref: "#/components/responses/NotFound"
-  /likes/{id}:
+  /upvotes/{id}:
     delete:
       tags:
-        - Like
-      summary: Delete a like.
+        - Upvote
+      summary: Delete a upvote.
       parameters:
         - $ref: "#/components/parameters/Identifier"
       responses:
@@ -2240,8 +2240,8 @@ paths:
                   data:
                     type: object
                     properties:
-                      like:
-                        $ref: "#/components/schemas/Like"
+                      upvote:
+                        $ref: "#/components/schemas/Upvote"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -2273,8 +2273,8 @@ tags:
     description: Endpoints related for post collection resources.
   - name: Post Comment
     description: Endpoints related for post comment resources.
-  - name: Post Like
-    description: Endpoints related for post like resources.
+  - name: Post Upvote
+    description: Endpoints related for post upvote resources.
   - name: Post Visitor
     description: Endpoints related for post visitor resources.
   - name: Comment
@@ -2283,18 +2283,18 @@ tags:
     description: Endpoints related for comment bookmark resources.
   - name: Comment Collection
     description: Endpoints related for comment collection resources.
-  - name: Comment Like
-    description: Endpoints related for comment like resources.
   - name: Comment Reply
     description: Endpoints related for comment reply resources.
+  - name: Comment Upvote
+    description: Endpoints related for comment upvote resources.
   - name: Reply
     description: Endpoints related for replies resources.
   - name: Reply Bookmark
     description: Endpoints related for reply bookmark resources.
   - name: Reply Collection
     description: Endpoints related for reply collection resources.
-  - name: Reply Like
-    description: Endpoints related for reply like resources.
+  - name: Reply Upvote
+    description: Endpoints related for reply upvote resources.
   - name: User
     description: Endpoints related for user resources.
   - name: User Bookmark
@@ -2307,12 +2307,12 @@ tags:
     description: Endpoints related for user comment resources.
   - name: User Community
     description: Endpoints related for user community resources.
-  - name: User Like
-    description: Endpoints related for user like resources.
   - name: User Post
     description: Endpoints related for user post resources.
   - name: User Reply
     description: Endpoints related for user reply resources.
+  - name: User Upvote
+    description: Endpoints related for user upvote resources.
   - name: User Visitor
     description: Endpoints related for user visitor resources.
   - name: Bookmark
@@ -2325,12 +2325,12 @@ tags:
     description: Endpoints related for collection item resources.
   - name: Collection Bookmark
     description: Endpoints related for collection bookmark resources.
-  - name: Collection Like
-    description: Endpoints related for collection like resources.
+  - name: Collection Upvote
+    description: Endpoints related for collection upvote resources.
   - name: Collection Visitor
     description: Endpoints related for collection visitor resources.
-  - name: Like
-    description: Endpoints related for like resources.
+  - name: Upvote
+    description: Endpoints related for upvote resources.
 components:
   securitySchemes:
     BearerAuth:
@@ -2516,32 +2516,6 @@ components:
         updated_at:
           type: string
           example: "2021-12-12 12:12:12"
-    Like:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        user_id:
-          type: integer
-          example: 1
-        likeable_type:
-          type: string
-          enum:
-            - Collection
-            - Comment
-            - Post
-            - Reply
-          example: Post
-        likeable_id:
-          type: integer
-          example: 1
-        created_at:
-          type: string
-          example: "2021-12-12 12:12:12"
-        updated_at:
-          type: string
-          example: "2021-12-12 12:12:12"
     Member:
       type: object
       properties:
@@ -2605,6 +2579,32 @@ components:
     Token:
       type: string
       example: eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.GRKevXZcuSlwDfjKYXB_plUM4m5Pu4S_VgPsFj1bxrI
+    Upvote:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        upvoteable_type:
+          type: string
+          enum:
+            - Collection
+            - Comment
+            - Post
+            - Reply
+          example: Post
+        upvoteable_id:
+          type: integer
+          example: 1
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
     User:
       type: object
       properties:

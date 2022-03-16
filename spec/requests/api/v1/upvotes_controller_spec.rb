@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::LikesController, type: :request do
-  describe "DELETE /likes/:id" do
+RSpec.describe Api::V1::UpvotesController, type: :request do
+  describe "DELETE /upvotes/:id" do
     context "when user not logged in" do
-      before { delete api_v1_like_path(1) }
+      before { delete api_v1_upvote_path(1) }
 
       it "returns 401 status code" do
         expect(response).to have_http_status(:unauthorized)
@@ -20,12 +20,12 @@ RSpec.describe Api::V1::LikesController, type: :request do
       end
     end
 
-    context "when like not exists" do
+    context "when upvote not exists" do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        delete api_v1_like_path(0), headers: headers
+        delete api_v1_upvote_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -43,16 +43,16 @@ RSpec.describe Api::V1::LikesController, type: :request do
       end
     end
 
-    context "when deleting someone else like" do
+    context "when deleting someone else upvote" do
       before do
         community = create(:community)
         user1 = create(:user)
         user2 = create(:user)
         post = create(:post, community: community, user: user1)
-        like = create(:like, user: user2, likeable: post)
+        upvote = create(:upvote, user: user2, upvoteable: post)
         token = JsonWebToken.encode({ id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
-        delete api_v1_like_path(like), headers: headers
+        delete api_v1_upvote_path(upvote), headers: headers
       end
 
       it "returns 403 status code" do
@@ -70,15 +70,15 @@ RSpec.describe Api::V1::LikesController, type: :request do
       end
     end
 
-    context "when like exists" do
+    context "when upvote exists" do
       before do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        like = create(:like, user: user, likeable: post)
+        upvote = create(:upvote, user: user, upvoteable: post)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        delete api_v1_like_path(like), headers: headers
+        delete api_v1_upvote_path(upvote), headers: headers
       end
 
       it "returns 200 status code" do
@@ -95,9 +95,9 @@ RSpec.describe Api::V1::LikesController, type: :request do
         expect(result["message"]).to eq("OK")
       end
 
-      it "returns like data" do
+      it "returns upvote data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["like"]).not_to be_empty
+        expect(result["data"]["upvote"]).not_to be_empty
       end
     end
   end

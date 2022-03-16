@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Reply::LikesController, type: :request do
-  describe "GET /replies/:reply_id/likes" do
-    context "when reply not exists" do
-      before { get api_v1_reply_likes_path(0) }
+RSpec.describe Api::V1::Post::UpvotesController, type: :request do
+  describe "GET /posts/:post_id/upvotes" do
+    context "when post not exists" do
+      before { get api_v1_post_upvotes_path(0) }
 
       it "returns 404 status code" do
         expect(response).to have_http_status(:not_found)
@@ -20,10 +20,10 @@ RSpec.describe Api::V1::Reply::LikesController, type: :request do
       end
     end
 
-    context "when likes not exist" do
+    context "when upvotes not exist" do
       before do
-        reply = create(:reply)
-        get api_v1_reply_likes_path(reply)
+        post = create(:post)
+        get api_v1_post_upvotes_path(post)
       end
 
       it "returns 404 status code" do
@@ -41,15 +41,13 @@ RSpec.describe Api::V1::Reply::LikesController, type: :request do
       end
     end
 
-    context "when likes exist" do
+    context "when upvotes exist" do
       before do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        comment = create(:comment, post: post, user: user)
-        reply = create(:reply, comment: comment, user: user)
-        create(:like, user: user, likeable: reply)
-        get api_v1_reply_likes_path(reply)
+        create(:upvote, user: user, upvoteable: post)
+        get api_v1_post_upvotes_path(post)
       end
 
       it "returns 200 status code" do
@@ -66,16 +64,16 @@ RSpec.describe Api::V1::Reply::LikesController, type: :request do
         expect(result["message"]).to eq("OK")
       end
 
-      it "returns likes data" do
+      it "returns upvotes data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["likes"]).not_to be_empty
+        expect(result["data"]["upvotes"]).not_to be_empty
       end
     end
   end
 
-  describe "POST /replies/:reply_id/likes" do
+  describe "POST /posts/:post_id/upvotes" do
     context "when user not logged in" do
-      before { post api_v1_reply_likes_path(1) }
+      before { post api_v1_post_upvotes_path(1) }
 
       it "returns 401 status code" do
         expect(response).to have_http_status(:unauthorized)
@@ -92,12 +90,12 @@ RSpec.describe Api::V1::Reply::LikesController, type: :request do
       end
     end
 
-    context "when reply not exists" do
+    context "when post not exists" do
       before do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_reply_likes_path(0), headers: headers
+        post api_v1_post_upvotes_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -120,12 +118,10 @@ RSpec.describe Api::V1::Reply::LikesController, type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        comment = create(:comment, post: post, user: user)
-        reply = create(:reply, comment: comment, user: user)
-        create(:like, user: user, likeable: reply)
+        create(:upvote, user: user, upvoteable: post)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_reply_likes_path(reply), headers: headers
+        post api_v1_post_upvotes_path(post), headers: headers
       end
 
       it "returns 422 status code" do
@@ -153,11 +149,9 @@ RSpec.describe Api::V1::Reply::LikesController, type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        comment = create(:comment, post: post, user: user)
-        reply = create(:reply, comment: comment, user: user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_reply_likes_path(reply), headers: headers
+        post api_v1_post_upvotes_path(post), headers: headers
       end
 
       it "returns 201 status code" do
@@ -174,14 +168,14 @@ RSpec.describe Api::V1::Reply::LikesController, type: :request do
         expect(result["message"]).to eq("Created")
       end
 
-      it "returns like data" do
+      it "returns upvote data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["like"]).not_to be_empty
+        expect(result["data"]["upvote"]).not_to be_empty
       end
 
-      it "returns reply as the likeable type" do
+      it "returns post as the upvoteable type" do
         result = JSON.parse(response.body)
-        expect(result["data"]["like"]["likeable_type"]).to eq("Reply")
+        expect(result["data"]["upvote"]["upvoteable_type"]).to eq("Post")
       end
     end
   end

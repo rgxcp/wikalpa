@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::User::LikesController, type: :request do
-  describe "GET /users/:user_id/likes" do
+RSpec.describe Api::V1::User::UpvotesController, type: :request do
+  describe "GET /users/:user_id/upvotes" do
     context "when user not exists" do
-      before { get api_v1_user_likes_path(0) }
+      before { get api_v1_user_upvotes_path(0) }
 
       it "returns 404 status code" do
         expect(response).to have_http_status(:not_found)
@@ -20,10 +20,10 @@ RSpec.describe Api::V1::User::LikesController, type: :request do
       end
     end
 
-    context "when likes not exist" do
+    context "when upvotes not exist" do
       before do
         user = create(:user)
-        get api_v1_user_likes_path(user)
+        get api_v1_user_upvotes_path(user)
       end
 
       it "returns 404 status code" do
@@ -41,13 +41,13 @@ RSpec.describe Api::V1::User::LikesController, type: :request do
       end
     end
 
-    context "when likes exist" do
+    context "when upvotes exist" do
       before do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        create(:like, user: user, likeable: post)
-        get api_v1_user_likes_path(user)
+        create(:upvote, user: user, upvoteable: post)
+        get api_v1_user_upvotes_path(user)
       end
 
       it "returns 200 status code" do
@@ -64,9 +64,9 @@ RSpec.describe Api::V1::User::LikesController, type: :request do
         expect(result["message"]).to eq("OK")
       end
 
-      it "returns likes data" do
+      it "returns upvotes data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["likes"]).not_to be_empty
+        expect(result["data"]["upvotes"]).not_to be_empty
       end
     end
   end

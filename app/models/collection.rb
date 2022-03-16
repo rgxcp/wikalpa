@@ -2,7 +2,7 @@ class Collection < ApplicationRecord
   belongs_to :user
   has_many :bookmarks, as: :bookmarkable
   has_many :collection_items
-  has_many :likes, as: :likeable
+  has_many :upvotes, as: :upvoteable
   has_many :visitors, as: :visitable
 
   accepts_nested_attributes_for :collection_items
