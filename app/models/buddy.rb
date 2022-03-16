@@ -1,6 +1,6 @@
 class Buddy < ApplicationRecord
-  belongs_to :user
   belongs_to :buddy, class_name: "User"
+  belongs_to :user
 
   validate :adding_self_as_buddy, if: -> { buddy.present? && user.present? }
   validates :user, presence: true
