@@ -11,6 +11,7 @@ RSpec.describe Reply, type: :model do
   it { is_expected.to validate_presence_of(:user) }
   it { is_expected.to validate_length_of(:body).is_at_most(255) }
   it { is_expected.to validate_presence_of(:body) }
+  it { is_expected.not_to allow_value(nil).for(:is_spoiler) }
 
   describe "before validation" do
     context "when body contain trailing spaces" do

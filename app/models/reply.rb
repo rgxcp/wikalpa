@@ -10,6 +10,7 @@ class Reply < ApplicationRecord
   validates :user, presence: true
   validates :body, length: { maximum: 255 }
   validates :body, presence: true
+  validates :is_spoiler, inclusion: { in: [true, false] }
 
   before_validation do
     self.body = body.strip if body.present?
