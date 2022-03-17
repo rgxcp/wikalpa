@@ -238,8 +238,9 @@ RSpec.describe Api::V1::PostsController, type: :request do
 
     context "when is_spoiler params set to true" do
       it "returns post data with true is_spoiler value" do
+        community = create(:community)
         user = create(:user)
-        post = create(:post, user: user)
+        post = create(:post, community: community, user: user)
         entity = attributes_for(:post, is_spoiler: true)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
