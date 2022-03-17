@@ -1,3 +1,15 @@
+# [7.1.0](https://github.com/rgxcp/wikalpa/compare/v7.0.0...v7.1.0) (2022-03-17)
+
+
+### Features
+
+* allow 'is_spoiler' on 'comment_params' ([e1c63bb](https://github.com/rgxcp/wikalpa/commit/e1c63bbb083833081678d3c31e33f3cc71b7944f))
+* allow 'is_spoiler' on 'post_params' ([e4844e6](https://github.com/rgxcp/wikalpa/commit/e4844e63ef765cc2237f1321f88731f4d432a091))
+* allow 'is_spoiler' on 'reply_params' ([ecac7f6](https://github.com/rgxcp/wikalpa/commit/ecac7f6dd391ce0e44deace421ecb56bc6c84fda))
+* validate inclusion of 'is_spoiler' on 'Comment' ([0e797ec](https://github.com/rgxcp/wikalpa/commit/0e797ecfd5790969987cfb18a6aff22c12b05f3d))
+* validate inclusion of 'is_spoiler' on 'Post' ([1dfc320](https://github.com/rgxcp/wikalpa/commit/1dfc3209426d4d2995cd55b80742ea82f9dc29a4))
+* validate inclusion of 'is_spoiler' on 'Reply' ([75ba5b3](https://github.com/rgxcp/wikalpa/commit/75ba5b31d65a1d822f0569437576432a23900d54))
+
 # [7.0.0](https://github.com/rgxcp/wikalpa/compare/v6.38.0...v7.0.0) (2022-03-16)
 
 
