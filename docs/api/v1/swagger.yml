@@ -404,6 +404,10 @@ paths:
                     body:
                       type: string
                       example: just setting up my wklp
+                    is_spoiler:
+                      type: boolean
+                      example: true
+                      description: This property is optional.
       responses:
         "201":
           description: Created
@@ -573,6 +577,10 @@ paths:
                     body:
                       type: string
                       example: just setting up my wklp
+                    is_spoiler:
+                      type: boolean
+                      example: true
+                      description: This property is optional.
       responses:
         "200":
           description: OK
@@ -2549,6 +2557,9 @@ components:
         body:
           type: string
           example: just setting up my wklp
+        is_spoiler:
+          type: boolean
+          example: true
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
