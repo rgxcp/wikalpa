@@ -235,5 +235,19 @@ RSpec.describe Api::V1::PostsController, type: :request do
         expect(result["data"]["post"]).not_to be_empty
       end
     end
+
+    context "when is_spoiler params set to true" do
+      it "returns post data with true is_spoiler value" do
+        user = create(:user)
+        post = create(:post, user: user)
+        entity = attributes_for(:post, is_spoiler: true)
+        token = JsonWebToken.encode({ id: user.id })
+        headers = { Authorization: "Bearer #{token}" }
+        params = { post: entity }
+        patch api_v1_post_path(post), headers: headers, params: params
+        result = JSON.parse(response.body)
+        expect(result["data"]["post"]["is_spoiler"]).to be(true)
+      end
+    end
   end
 end
