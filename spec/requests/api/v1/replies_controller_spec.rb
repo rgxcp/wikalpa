@@ -184,5 +184,22 @@ RSpec.describe Api::V1::RepliesController, type: :request do
         expect(result["data"]["reply"]).not_to be_empty
       end
     end
+
+    context "when is_spoiler params set to true" do
+      it "returns reply data with true is_spoiler value" do
+        community = create(:community)
+        user = create(:user)
+        post = create(:post, community: community, user: user)
+        comment = create(:comment, post: post, user: user)
+        reply = create(:reply, comment: comment, user: user)
+        entity = attributes_for(:reply, is_spoiler: true)
+        token = JsonWebToken.encode({ id: user.id })
+        headers = { Authorization: "Bearer #{token}" }
+        params = { reply: entity }
+        patch api_v1_reply_path(reply), headers: headers, params: params
+        result = JSON.parse(response.body)
+        expect(result["data"]["reply"]["is_spoiler"]).to be(true)
+      end
+    end
   end
 end

@@ -23,6 +23,6 @@ class Api::V1::RepliesController < ApplicationController
   end
 
   def reply_params
-    params.require(:reply).permit(:body)
+    params.require(:reply).permit(:body, :is_spoiler)
   end
 end
