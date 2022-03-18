@@ -185,8 +185,8 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
       it "adds auth user into community member" do
         community = Community.first
         user = User.first
-        member = community.members.exists?(user: user)
-        expect(member).to be(true)
+        community_member = community.community_members.exists?(user: user)
+        expect(community_member).to be(true)
       end
     end
   end
@@ -261,7 +261,7 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
+        create(:community_member, community: community, user: user)
         entity = attributes_for(:community, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
@@ -293,7 +293,7 @@ RSpec.describe Api::V1::CommunitiesController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
+        create(:community_member, community: community, user: user)
         entity = attributes_for(:community)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }

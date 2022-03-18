@@ -5,7 +5,7 @@ RSpec.describe Community, type: :model do
 
   it { is_expected.to have_many(:collection_items) }
   it { is_expected.to have_many(:collections).through(:collection_items) }
-  it { is_expected.to have_many(:members) }
+  it { is_expected.to have_many(:community_members) }
   it { is_expected.to have_many(:posts) }
   it { is_expected.to have_many(:visitors) }
   it { is_expected.not_to allow_value("! programmer.humor !").for(:name) }

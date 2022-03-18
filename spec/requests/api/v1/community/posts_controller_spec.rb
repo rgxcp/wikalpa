@@ -140,7 +140,7 @@ RSpec.describe Api::V1::Community::PostsController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
+        create(:community_member, community: community, user: user)
         post = attributes_for(:post, :invalid)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
@@ -172,7 +172,7 @@ RSpec.describe Api::V1::Community::PostsController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
+        create(:community_member, community: community, user: user)
         post = attributes_for(:post)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
@@ -204,7 +204,7 @@ RSpec.describe Api::V1::Community::PostsController, type: :request do
       it "returns post data with true is_spoiler value" do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
+        create(:community_member, community: community, user: user)
         post = attributes_for(:post, is_spoiler: true)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }

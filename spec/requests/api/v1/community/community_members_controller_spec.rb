@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Community::MembersController, type: :request do
-  describe "GET /communities/:community_id/members" do
+RSpec.describe Api::V1::Community::CommunityMembersController, type: :request do
+  describe "GET /communities/:community_id/community-members" do
     context "when community not exists" do
-      before { get api_v1_community_members_path(0) }
+      before { get api_v1_community_community_members_path(0) }
 
       it "returns 404 status code" do
         expect(response).to have_http_status(:not_found)
@@ -20,10 +20,10 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
       end
     end
 
-    context "when members not exist" do
+    context "when community members not exist" do
       before do
         community = create(:community)
-        get api_v1_community_members_path(community)
+        get api_v1_community_community_members_path(community)
       end
 
       it "returns 404 status code" do
@@ -41,12 +41,12 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
       end
     end
 
-    context "when members exist" do
+    context "when community members exist" do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
-        get api_v1_community_members_path(community)
+        create(:community_member, community: community, user: user)
+        get api_v1_community_community_members_path(community)
       end
 
       it "returns 200 status code" do
@@ -63,16 +63,16 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
         expect(result["message"]).to eq("OK")
       end
 
-      it "returns members data" do
+      it "returns community members data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["members"]).not_to be_empty
+        expect(result["data"]["community_members"]).not_to be_empty
       end
     end
   end
 
-  describe "POST /communities/:community_id/members" do
+  describe "POST /communities/:community_id/community-members" do
     context "when user not logged in" do
-      before { post api_v1_community_members_path(1) }
+      before { post api_v1_community_community_members_path(1) }
 
       it "returns 401 status code" do
         expect(response).to have_http_status(:unauthorized)
@@ -94,7 +94,7 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_community_members_path(0), headers: headers
+        post api_v1_community_community_members_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -116,10 +116,10 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
+        create(:community_member, community: community, user: user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_community_members_path(community), headers: headers
+        post api_v1_community_community_members_path(community), headers: headers
       end
 
       it "returns 422 status code" do
@@ -148,7 +148,7 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        post api_v1_community_members_path(community), headers: headers
+        post api_v1_community_community_members_path(community), headers: headers
       end
 
       it "returns 201 status code" do
@@ -165,9 +165,9 @@ RSpec.describe Api::V1::Community::MembersController, type: :request do
         expect(result["message"]).to eq("Created")
       end
 
-      it "returns member data" do
+      it "returns community member data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["member"]).not_to be_empty
+        expect(result["data"]["community_member"]).not_to be_empty
       end
     end
   end

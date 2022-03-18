@@ -45,7 +45,7 @@ RSpec.describe Api::V1::User::CommunitiesController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        create(:member, community: community, user: user)
+        create(:community_member, community: community, user: user)
         get api_v1_user_communities_path(user)
       end
 

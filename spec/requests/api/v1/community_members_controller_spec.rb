@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::MembersController, type: :request do
-  describe "DELETE /members/:id" do
+RSpec.describe Api::V1::CommunityMembersController, type: :request do
+  describe "DELETE /community-members/:id" do
     context "when user not logged in" do
-      before { delete api_v1_member_path(1) }
+      before { delete api_v1_community_member_path(1) }
 
       it "returns 401 status code" do
         expect(response).to have_http_status(:unauthorized)
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::MembersController, type: :request do
         user = create(:user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        delete api_v1_member_path(0), headers: headers
+        delete api_v1_community_member_path(0), headers: headers
       end
 
       it "returns 404 status code" do
@@ -48,10 +48,10 @@ RSpec.describe Api::V1::MembersController, type: :request do
         community = create(:community)
         user1 = create(:user)
         user2 = create(:user)
-        member = create(:member, community: community, user: user2)
+        community_member = create(:community_member, community: community, user: user2)
         token = JsonWebToken.encode({ id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
-        delete api_v1_member_path(member), headers: headers
+        delete api_v1_community_member_path(community_member), headers: headers
       end
 
       it "returns 403 status code" do
@@ -73,10 +73,10 @@ RSpec.describe Api::V1::MembersController, type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        member = create(:member, community: community, user: user)
+        community_member = create(:community_member, community: community, user: user)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        delete api_v1_member_path(member), headers: headers
+        delete api_v1_community_member_path(community_member), headers: headers
       end
 
       it "returns 200 status code" do
@@ -93,9 +93,9 @@ RSpec.describe Api::V1::MembersController, type: :request do
         expect(result["message"]).to eq("OK")
       end
 
-      it "returns member data" do
+      it "returns community member data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["member"]).not_to be_empty
+        expect(result["data"]["community_member"]).not_to be_empty
       end
     end
   end

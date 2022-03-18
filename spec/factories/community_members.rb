@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :member do
+  factory :community_member do
     community
     user
   end

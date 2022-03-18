@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :buddies
   has_many :collections
   has_many :comments
-  has_many :members
-  has_many :communities, through: :members
+  has_many :community_members
+  has_many :communities, through: :community_members
   has_many :posts
   has_many :replies
   has_many :upvotes

@@ -21,11 +21,11 @@ Rails.application.routes.draw do
       end
       resources :communities, except: :destroy do
         resources :collections, only: :index, module: "community"
-        resources :members, only: [:index, :create], module: "community"
+        resources :community_members, only: [:index, :create], module: "community", path: "community-members"
         resources :posts, only: [:index, :create], module: "community"
         resources :visitors, only: :index, module: "community"
       end
-      resources :members, only: :destroy
+      resources :community_members, only: :destroy, path: "community-members"
       resources :posts, except: [:create, :destroy] do
         resources :bookmarks, only: :create, module: "post"
         resources :collections, only: :index, module: "post"
