@@ -1,3 +1,19 @@
+# [8.0.0](https://github.com/rgxcp/wikalpa/compare/v7.1.0...v8.0.0) (2022-03-18)
+
+
+### Features
+
+* rename "Member" resource to "CommunityMember" ([ac55616](https://github.com/rgxcp/wikalpa/commit/ac55616ef0e903fcece88afaa4da4ff7c8e20edb))
+
+
+### BREAKING CHANGES
+
+* In order to create a better relationship, "Member"
+resource is now renamed to "CommunityMember". Any paths that contain
+"/members" are moved to "/community-members".
+
+Signed-off-by: Rommy Gustiawan <rgcppp@gmail.com>
+
 # [7.1.0](https://github.com/rgxcp/wikalpa/compare/v7.0.0...v7.1.0) (2022-03-17)
 
 
