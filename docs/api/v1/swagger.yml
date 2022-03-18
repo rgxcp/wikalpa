@@ -290,7 +290,7 @@ paths:
                           $ref: "#/components/schemas/Collection"
         "404":
           $ref: "#/components/responses/NotFound"
-  /communities/{community_id}/members:
+  /communities/{community_id}/community-members:
     get:
       tags:
         - Community Member
@@ -315,10 +315,10 @@ paths:
                   data:
                     type: object
                     properties:
-                      members:
+                      community_members:
                         type: array
                         items:
-                          $ref: "#/components/schemas/Member"
+                          $ref: "#/components/schemas/CommunityMember"
         "404":
           $ref: "#/components/responses/NotFound"
     post:
@@ -344,8 +344,8 @@ paths:
                   data:
                     type: object
                     properties:
-                      member:
-                        $ref: "#/components/schemas/Member"
+                      community_member:
+                        $ref: "#/components/schemas/CommunityMember"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -466,10 +466,10 @@ paths:
                           $ref: "#/components/schemas/Visitor"
         "404":
           $ref: "#/components/responses/NotFound"
-  /members/{id}:
+  /community-members/{id}:
     delete:
       tags:
-        - Member
+        - Community Member
       summary: Leave a community.
       parameters:
         - $ref: "#/components/parameters/Identifier"
@@ -490,8 +490,8 @@ paths:
                   data:
                     type: object
                     properties:
-                      member:
-                        $ref: "#/components/schemas/Member"
+                      community_member:
+                        $ref: "#/components/schemas/CommunityMember"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -2279,16 +2279,14 @@ tags:
     description: Endpoints related for authentication and authorization.
   - name: Community
     description: Endpoints related for community resources.
-  - name: Community Collection
-    description: Endpoints related for community collection resources.
   - name: Community Member
     description: Endpoints related for community member resources.
+  - name: Community Collection
+    description: Endpoints related for community collection resources.
   - name: Community Post
     description: Endpoints related for community post resources.
   - name: Community Visitor
     description: Endpoints related for community visitor resources.
-  - name: Member
-    description: Endpoints related for member resources.
   - name: Post
     description: Endpoints related for post resources.
   - name: Post Bookmark
@@ -2543,7 +2541,7 @@ components:
         updated_at:
           type: string
           example: "2021-12-12 12:12:12"
-    Member:
+    CommunityMember:
       type: object
       properties:
         id:
