@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_17_110551) do
+ActiveRecord::Schema.define(version: 2022_03_20_131307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,16 @@ ActiveRecord::Schema.define(version: 2022_03_17_110551) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["community_id"], name: "index_community_members_on_community_id"
     t.index ["user_id"], name: "index_community_members_on_user_id"
+  end
+
+  create_table "downvotes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "downvoteable_type", null: false
+    t.bigint "downvoteable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["downvoteable_type", "downvoteable_id"], name: "index_downvotes_on_downvoteable"
+    t.index ["user_id"], name: "index_downvotes_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -149,6 +159,7 @@ ActiveRecord::Schema.define(version: 2022_03_17_110551) do
   add_foreign_key "comments", "users"
   add_foreign_key "community_members", "communities"
   add_foreign_key "community_members", "users"
+  add_foreign_key "downvotes", "users"
   add_foreign_key "posts", "communities"
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "comments"
