@@ -1,3 +1,16 @@
+# [8.1.0](https://github.com/rgxcp/wikalpa/compare/v8.0.0...v8.1.0) (2022-04-03)
+
+
+### Features
+
+* add belongs to 'User' association on 'Downvote' ([49e1714](https://github.com/rgxcp/wikalpa/commit/49e1714dd2c09a5ab876f4172489f68bfd82d61d))
+* add polymorphic belongs to downvoteable association on 'Downvote' ([5bcd3e6](https://github.com/rgxcp/wikalpa/commit/5bcd3e6bac31483a508a9423413f84227725a6b6))
+* delete 'Downvote' if exists before create 'Upvote' ([9b74a23](https://github.com/rgxcp/wikalpa/commit/9b74a23678432879c899b85966e7fde32b2bbf63))
+* delete 'Upvote' if exists before create 'Downvote' ([7b3d7e3](https://github.com/rgxcp/wikalpa/commit/7b3d7e3a69421b50017b4c9d7fe589b3d6137ba0))
+* validate inclusion of downvoteable_type on 'Downvote' ([2763fc7](https://github.com/rgxcp/wikalpa/commit/2763fc72780e4b205e2351eb1753c436af56fa69))
+* validate presence of 'User' on 'Downvote' ([f5d8712](https://github.com/rgxcp/wikalpa/commit/f5d871280af79146207d68571c1bb6694480781c))
+* validate uniqueness of downvoteable_type scoped to downvoteable_id on 'Downvote' ([b4b46da](https://github.com/rgxcp/wikalpa/commit/b4b46da24f254a466621a854404c91fb303f05a1))
+
 # [8.0.0](https://github.com/rgxcp/wikalpa/compare/v7.1.0...v8.0.0) (2022-03-18)
 
 
