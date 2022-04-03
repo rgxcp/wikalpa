@@ -14,7 +14,6 @@ RSpec.describe Buddy, type: :model do
       it "is not valid" do
         user = create(:user)
         buddy = build(:buddy, user: user, buddy: user)
-        buddy.validate
         expect(buddy).not_to be_valid
       end
     end

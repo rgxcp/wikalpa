@@ -24,7 +24,6 @@ RSpec.describe User, type: :model do
     context "when password equal to username" do
       it "is not valid" do
         user.password = user.username
-        user.validate
         expect(user).not_to be_valid
       end
     end
