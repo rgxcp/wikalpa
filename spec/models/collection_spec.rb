@@ -15,7 +15,7 @@ RSpec.describe Collection, type: :model do
   it { is_expected.to validate_uniqueness_of(:name).scoped_to(:user_id) }
   it { is_expected.to validate_presence_of(:collection_items).on(:create) }
 
-  describe "before validation" do
+  describe "#before_validation" do
     context "when name contain trailing spaces" do
       it "is removed before validation" do
         collection = build(:collection, :unformatted)

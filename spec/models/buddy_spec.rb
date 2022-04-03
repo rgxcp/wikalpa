@@ -9,7 +9,7 @@ RSpec.describe Buddy, type: :model do
   it { is_expected.to validate_presence_of(:buddy) }
   it { is_expected.to validate_uniqueness_of(:buddy).scoped_to(:user_id) }
 
-  describe "custom validation" do
+  describe "#validate" do
     context "when adding self as buddy" do
       it "is not valid" do
         user = create(:user)

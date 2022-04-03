@@ -15,7 +15,7 @@ RSpec.describe Post, type: :model do
   it { is_expected.to validate_presence_of(:body) }
   it { is_expected.not_to allow_value(nil).for(:is_spoiler) }
 
-  describe "before validation" do
+  describe "#before_validation" do
     context "when body contain trailing spaces" do
       it "is removed before validation" do
         post = build(:post, :unformatted)
