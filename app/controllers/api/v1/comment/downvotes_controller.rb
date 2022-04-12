@@ -3,5 +3,9 @@ class Api::V1::Comment::DownvotesController < ApplicationController
 
   def create
     comment = Comment.find(params[:comment_id])
+
+    downvote = comment.downvotes.build(user: @auth_user)
+
+    unprocessable_entity_response(errors: downvote.errors.messages) unless downvote.save
   end
 end
