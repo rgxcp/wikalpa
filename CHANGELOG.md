@@ -1,3 +1,14 @@
+# [8.2.0](https://github.com/rgxcp/wikalpa/compare/v8.1.0...v8.2.0) (2022-04-12)
+
+
+### Features
+
+* add polymorphic has many 'Downvote' association on 'Comment' ([669c599](https://github.com/rgxcp/wikalpa/commit/669c59969fee891996795cbe36fd2222629539fa))
+* POST /comments/:id/downvotes returns created response when entity valid ([df415bc](https://github.com/rgxcp/wikalpa/commit/df415bcfa5dec23aaf36e2cb19f40a384ccdda6f))
+* POST /comments/:id/downvotes returns not found response when comment not exists ([16848c2](https://github.com/rgxcp/wikalpa/commit/16848c2e4ac284c9c329c641b2ea55616d195335))
+* POST /comments/:id/downvotes returns unauthorized response when user not logged in ([823d842](https://github.com/rgxcp/wikalpa/commit/823d8421872f1265da3ff8848932437d4aef067c))
+* POST /comments/:id/downvotes returns unprocessable entity response when entity invalid ([9ffc5d4](https://github.com/rgxcp/wikalpa/commit/9ffc5d4923bd59ac06e42ebd66cbb37714232463))
+
 # [8.1.0](https://github.com/rgxcp/wikalpa/compare/v8.0.0...v8.1.0) (2022-04-03)
 
 
