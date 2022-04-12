@@ -6,6 +6,10 @@ class Api::V1::Comment::DownvotesController < ApplicationController
 
     downvote = comment.downvotes.build(user: @auth_user)
 
-    unprocessable_entity_response(errors: downvote.errors.messages) unless downvote.save
+    if downvote.save
+      created_response(data: { downvote: downvote })
+    else
+      unprocessable_entity_response(errors: downvote.errors.messages)
+    end
   end
 end
