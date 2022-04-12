@@ -41,6 +41,8 @@ group :development do
   ###########
   # Listen to file modifications
   gem "listen", "~> 3.3"
+  # Debugger
+  gem "pry", "~> 0.13.1"
   # Keep application running in the background
   gem "spring"
 end
