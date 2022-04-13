@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         resources :bookmarks, only: :create, module: "post"
         resources :collections, only: :index, module: "post"
         resources :comments, only: [:index, :create], module: "post"
+        resources :downvotes, only: [:index, :create], module: "post"
         resources :upvotes, only: [:index, :create], module: "post"
         resources :visitors, only: :index, module: "post"
       end
