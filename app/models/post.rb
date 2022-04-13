@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :collection_items, as: :collectable
   has_many :collections, through: :collection_items
   has_many :comments
+  has_many :downvotes, as: :downvoteable
   has_many :upvotes, as: :upvoteable
   has_many :visitors, as: :visitable
 
