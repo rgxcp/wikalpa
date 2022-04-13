@@ -73,5 +73,40 @@ RSpec.describe Api::V1::Post::DownvotesController, type: :request do
         expect(result["errors"].size).to be_positive
       end
     end
+
+    context "when entity valid" do
+      before do
+        community = create(:community)
+        user = create(:user)
+        post = create(:post, community: community, user: user)
+        token = JsonWebToken.encode({ id: user.id })
+        headers = { Authorization: "Bearer #{token}" }
+        post api_v1_post_downvotes_path(post), headers: headers
+      end
+
+      it "returns 201 status code" do
+        expect(response).to have_http_status(:created)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(true)
+      end
+
+      it "returns created message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Created")
+      end
+
+      it "returns downvote data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["downvote"]).not_to be_empty
+      end
+
+      it "returns post as the downvoteable type" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["downvote"]["downvoteable_type"]).to eq("Post")
+      end
+    end
   end
 end
