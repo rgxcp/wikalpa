@@ -752,6 +752,38 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /posts/{post_id}/downvotes:
+    post:
+      tags:
+        - Post Downvote
+      summary: Downvote a post.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierPost"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      downvote:
+                        $ref: "#/components/schemas/Downvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /posts/{post_id}/upvotes:
     get:
       tags:
@@ -2327,6 +2359,8 @@ tags:
     description: Endpoints related for post collection resources.
   - name: Post Comment
     description: Endpoints related for post comment resources.
+  - name: Post Downvote
+    description: Endpoints related for post downvote resources.
   - name: Post Upvote
     description: Endpoints related for post upvote resources.
   - name: Post Visitor
@@ -2604,7 +2638,10 @@ components:
           example: 1
         downvoteable_type:
           type: string
-          example: Comment
+          enum:
+            - Comment
+            - Post
+          example: Post
         downvoteable_id:
           type: integer
           example: 1
