@@ -1,3 +1,14 @@
+# [8.3.0](https://github.com/rgxcp/wikalpa/compare/v8.2.0...v8.3.0) (2022-04-13)
+
+
+### Features
+
+* add polymorphic has many 'Downvote' association on 'Post' ([5e6dea1](https://github.com/rgxcp/wikalpa/commit/5e6dea13dc595f9efea6922e070a5f6e59905035))
+* POST /posts/:id/downvotes returns created response when entity valid ([bc9d838](https://github.com/rgxcp/wikalpa/commit/bc9d838a870ced734069d447be3ee393717c85e8))
+* POST /posts/:id/downvotes returns not found response when post not exists ([7c442ac](https://github.com/rgxcp/wikalpa/commit/7c442ac20724df425bf0c22314e5a97092fbcc3c))
+* POST /posts/:id/downvotes returns unauthorized response when user not logged in ([f07ace4](https://github.com/rgxcp/wikalpa/commit/f07ace477591479a3d84b97dc6b09365801f91c5))
+* POST /posts/:id/downvotes returns unprocessable entity response when entity invalid ([8a16a91](https://github.com/rgxcp/wikalpa/commit/8a16a91559c050950cabfae360603841c051cac7))
+
 # [8.2.0](https://github.com/rgxcp/wikalpa/compare/v8.1.0...v8.2.0) (2022-04-12)
 
 
