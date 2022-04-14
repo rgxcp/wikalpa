@@ -6,6 +6,7 @@ RSpec.describe Reply, type: :model do
   it { is_expected.to have_many(:bookmarks) }
   it { is_expected.to have_many(:collection_items) }
   it { is_expected.to have_many(:collections).through(:collection_items) }
+  it { is_expected.to have_many(:downvotes) }
   it { is_expected.to have_many(:upvotes) }
   it { is_expected.to validate_presence_of(:comment) }
   it { is_expected.to validate_presence_of(:user) }
