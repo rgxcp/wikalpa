@@ -6,6 +6,7 @@ RSpec.describe Collection, type: :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:bookmarks) }
   it { is_expected.to have_many(:collection_items) }
+  it { is_expected.to have_many(:downvotes) }
   it { is_expected.to have_many(:upvotes) }
   it { is_expected.to have_many(:visitors) }
   it { is_expected.to accept_nested_attributes_for(:collection_items) }

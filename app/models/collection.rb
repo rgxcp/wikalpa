@@ -2,6 +2,7 @@ class Collection < ApplicationRecord
   belongs_to :user
   has_many :bookmarks, as: :bookmarkable
   has_many :collection_items
+  has_many :downvotes, as: :downvoteable
   has_many :upvotes, as: :upvoteable
   has_many :visitors, as: :visitable
 
