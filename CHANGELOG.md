@@ -1,3 +1,19 @@
+# [8.4.0](https://github.com/rgxcp/wikalpa/compare/v8.3.0...v8.4.0) (2022-04-14)
+
+
+### Features
+
+* add polymorphic has many 'Downvote' association on 'Collection' ([3a0162e](https://github.com/rgxcp/wikalpa/commit/3a0162ebbc5f274925f23fa18bd38af413a72d1b))
+* add polymorphic has many 'Downvote' association on 'Reply' ([76928fc](https://github.com/rgxcp/wikalpa/commit/76928fc3dfba89c3463406c41eabcdb74c49527c))
+* POST /collections/:id/downvotes returns created response when entity valid ([f73f1fb](https://github.com/rgxcp/wikalpa/commit/f73f1fba7b21790f26c69706b333e91aecee5536))
+* POST /collections/:id/downvotes returns not found response when collection not exists ([8a392ff](https://github.com/rgxcp/wikalpa/commit/8a392ffa9351921c6f1be1cecede7f5a2862467f))
+* POST /collections/:id/downvotes returns unauthorized response when user not logged in ([ad2633e](https://github.com/rgxcp/wikalpa/commit/ad2633e829864075ef7f7c78d649c75ca3dbede3))
+* POST /collections/:id/downvotes returns unprocessable entity response when entity invalid ([d7d5c9d](https://github.com/rgxcp/wikalpa/commit/d7d5c9d8622e1b38b4cee3407ed0d9620e452006))
+* POST /replies/:id/downvotes returns created response when entity valid ([856a474](https://github.com/rgxcp/wikalpa/commit/856a474dddc26c61494e9fa0a96d2f319eb89ec9))
+* POST /replies/:id/downvotes returns not found response when reply not exists ([8b5009a](https://github.com/rgxcp/wikalpa/commit/8b5009aad3cc8774abe34186b6ede9ef0c29d5bf))
+* POST /replies/:id/downvotes returns unauthorized response when user not logged in ([76fe796](https://github.com/rgxcp/wikalpa/commit/76fe796480684f540e5f6a891d0a79c94cf03d24))
+* POST /replies/:id/downvotes returns unprocessable entity response when entity invalid ([3a9ba6f](https://github.com/rgxcp/wikalpa/commit/3a9ba6fc90410860b759cff447bc52b41b200edf))
+
 # [8.3.0](https://github.com/rgxcp/wikalpa/compare/v8.2.0...v8.3.0) (2022-04-13)
 
 
