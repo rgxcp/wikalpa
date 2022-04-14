@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :collections, except: :destroy do
         resources :bookmarks, only: :create, module: "collection"
         resources :collection_items, except: [:show, :update], module: "collection", path: "collection-items"
+        resources :downvotes, only: :create, module: "collection"
         resources :upvotes, only: [:index, :create], module: "collection"
         resources :visitors, only: :index, module: "collection"
       end
