@@ -31,14 +31,14 @@ Rails.application.routes.draw do
         resources :bookmarks, only: :create, module: "post"
         resources :collections, only: :index, module: "post"
         resources :comments, only: [:index, :create], module: "post"
-        resources :downvotes, only: [:index, :create], module: "post"
+        resources :downvotes, only: :create, module: "post"
         resources :upvotes, only: [:index, :create], module: "post"
         resources :visitors, only: :index, module: "post"
       end
       resources :replies, only: [:show, :update] do
         resources :bookmarks, only: :create, module: "reply"
         resources :collections, only: :index, module: "reply"
-        resources :downvotes, only: [:index, :create], module: "reply"
+        resources :downvotes, only: :create, module: "reply"
         resources :upvotes, only: [:index, :create], module: "reply"
       end
       resources :upvotes, only: :destroy
