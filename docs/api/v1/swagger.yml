@@ -1340,6 +1340,38 @@ paths:
                           $ref: "#/components/schemas/Collection"
         "404":
           $ref: "#/components/responses/NotFound"
+  /replies/{reply_id}/downvotes:
+    post:
+      tags:
+        - Reply Downvote
+      summary: Downvote a reply.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierReply"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      downvote:
+                        $ref: "#/components/schemas/Downvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /replies/{reply_id}/upvotes:
     get:
       tags:
@@ -2383,6 +2415,8 @@ tags:
     description: Endpoints related for reply bookmark resources.
   - name: Reply Collection
     description: Endpoints related for reply collection resources.
+  - name: Reply Downvote
+    description: Endpoints related for reply downvote resources.
   - name: Reply Upvote
     description: Endpoints related for reply upvote resources.
   - name: User
@@ -2641,6 +2675,7 @@ components:
           enum:
             - Comment
             - Post
+            - Reply
           example: Post
         downvoteable_id:
           type: integer
