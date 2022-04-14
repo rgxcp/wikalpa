@@ -2243,6 +2243,38 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /collections/{collection_id}/downvotes:
+    post:
+      tags:
+        - Collection Downvote
+      summary: Downvote a collection.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      downvote:
+                        $ref: "#/components/schemas/Downvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /collections/{collection_id}/upvotes:
     get:
       tags:
@@ -2449,6 +2481,8 @@ tags:
     description: Endpoints related for collection item resources.
   - name: Collection Bookmark
     description: Endpoints related for collection bookmark resources.
+  - name: Collection Downvote
+    description: Endpoints related for collection downvote resources.
   - name: Collection Upvote
     description: Endpoints related for collection upvote resources.
   - name: Collection Visitor
@@ -2673,6 +2707,7 @@ components:
         downvoteable_type:
           type: string
           enum:
+            - Collection
             - Comment
             - Post
             - Reply
