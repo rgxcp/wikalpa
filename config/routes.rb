@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       resources :replies, only: [:show, :update] do
         resources :bookmarks, only: :create, module: "reply"
         resources :collections, only: :index, module: "reply"
+        resources :downvotes, only: [:index, :create], module: "reply"
         resources :upvotes, only: [:index, :create], module: "reply"
       end
       resources :upvotes, only: :destroy
