@@ -1734,6 +1734,40 @@ paths:
                           $ref: "#/components/schemas/Community"
         "404":
           $ref: "#/components/responses/NotFound"
+  /users/{user_id}/downvotes:
+    get:
+      tags:
+        - User Downvote
+      summary: Retrieve all user downvotes.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      downvotes:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Downvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /users/{user_id}/posts:
     get:
       tags:
@@ -2495,6 +2529,8 @@ tags:
     description: Endpoints related for user comment resources.
   - name: User Community
     description: Endpoints related for user community resources.
+  - name: User Downvote
+    description: Endpoints related for user downvote resources.
   - name: User Post
     description: Endpoints related for user post resources.
   - name: User Reply
