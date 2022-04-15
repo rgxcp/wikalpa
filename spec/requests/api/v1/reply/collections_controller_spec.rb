@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Reply::CollectionsController, type: :request do
+RSpec.describe "Api::V1::Reply::CollectionsController", type: :request do
   describe "GET /replies/:reply_id/collections" do
     context "when reply not exists" do
       before { get api_v1_reply_collections_path(0) }

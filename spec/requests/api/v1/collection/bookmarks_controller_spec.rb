@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Collection::BookmarksController, type: :request do
+RSpec.describe "Api::V1::Collection::BookmarksController", type: :request do
   describe "POST /collections/:collection_id/bookmarks" do
     context "when user not logged in" do
       before { post api_v1_collection_bookmarks_path(1) }

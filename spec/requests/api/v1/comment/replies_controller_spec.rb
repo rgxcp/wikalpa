@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Comment::RepliesController, type: :request do
+RSpec.describe "Api::V1::Comment::RepliesController", type: :request do
   describe "GET /comments/:comment_id/replies" do
     context "when comment not exists" do
       before { get api_v1_comment_replies_path(0) }

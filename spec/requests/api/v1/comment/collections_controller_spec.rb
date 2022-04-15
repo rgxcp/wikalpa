@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Comment::CollectionsController, type: :request do
+RSpec.describe "Api::V1::Comment::CollectionsController", type: :request do
   describe "GET /comments/:comment_id/collections" do
     context "when comment not exists" do
       before { get api_v1_comment_collections_path(0) }

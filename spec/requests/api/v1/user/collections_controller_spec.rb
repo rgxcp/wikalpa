@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::User::CollectionsController, type: :request do
+RSpec.describe "Api::V1::User::CollectionsController", type: :request do
   describe "GET /users/:user_id/collections" do
     context "when user not exists" do
       before { get api_v1_user_collections_path(0) }

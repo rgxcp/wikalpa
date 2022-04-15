@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::User::BookmarksController, type: :request do
+RSpec.describe "Api::V1::User::BookmarksController", type: :request do
   describe "GET /users/:user_id/bookmarks" do
     context "when user not logged in" do
       before { get api_v1_user_bookmarks_path(1) }

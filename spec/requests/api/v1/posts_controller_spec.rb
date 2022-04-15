@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::PostsController, type: :request do
+RSpec.describe "Api::V1::PostsController", type: :request do
   describe "GET /posts" do
     context "when posts not exist" do
       before { get api_v1_posts_path }

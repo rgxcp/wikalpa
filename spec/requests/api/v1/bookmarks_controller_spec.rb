@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::BookmarksController, type: :request do
+RSpec.describe "Api::V1::BookmarksController", type: :request do
   describe "DELETE /bookmarks/:id" do
     context "when user not logged in" do
       before { delete api_v1_bookmark_path(1) }

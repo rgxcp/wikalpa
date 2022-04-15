@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Community::PostsController, type: :request do
+RSpec.describe "Api::V1::Community::PostsController", type: :request do
   describe "GET /communities/:community_id/posts" do
     context "when community not exists" do
       before { get api_v1_community_posts_path(0) }

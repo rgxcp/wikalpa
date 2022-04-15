@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Collection::UpvotesController, type: :request do
+RSpec.describe "Api::V1::Collection::UpvotesController", type: :request do
   describe "GET /collections/:collection_id/upvotes" do
     context "when collection not exists" do
       before { get api_v1_collection_upvotes_path(0) }

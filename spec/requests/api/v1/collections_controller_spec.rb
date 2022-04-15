@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::CollectionsController, type: :request do
+RSpec.describe "Api::V1::CollectionsController", type: :request do
   describe "GET /collections" do
     context "when collections not exist" do
       before { get api_v1_collections_path }

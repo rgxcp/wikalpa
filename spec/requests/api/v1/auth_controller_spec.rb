@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::AuthController, type: :request do
+RSpec.describe "Api::V1::AuthController", type: :request do
   describe "POST /auth/register" do
     context "when entity invalid" do
       before do

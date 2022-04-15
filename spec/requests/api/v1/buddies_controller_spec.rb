@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::BuddiesController, type: :request do
+RSpec.describe "Api::V1::BuddiesController", type: :request do
   describe "DELETE /buddies/:id" do
     context "when user not logged in" do
       before { delete api_v1_buddy_path(1) }

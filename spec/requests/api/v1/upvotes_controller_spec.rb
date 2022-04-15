@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::UpvotesController, type: :request do
+RSpec.describe "Api::V1::UpvotesController", type: :request do
   describe "DELETE /upvotes/:id" do
     context "when user not logged in" do
       before { delete api_v1_upvote_path(1) }

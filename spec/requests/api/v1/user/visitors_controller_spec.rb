@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::User::VisitorsController, type: :request do
+RSpec.describe "Api::V1::User::VisitorsController", type: :request do
   describe "GET /users/:user_id/visitors" do
     context "when user not logged in" do
       before { get api_v1_user_visitors_path(1) }

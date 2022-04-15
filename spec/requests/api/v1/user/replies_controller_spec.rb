@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::User::RepliesController, type: :request do
+RSpec.describe "Api::V1::User::RepliesController", type: :request do
   describe "GET /users/:user_id/replies" do
     context "when user not exists" do
       before { get api_v1_user_replies_path(0) }

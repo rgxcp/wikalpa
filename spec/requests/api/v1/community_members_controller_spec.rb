@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::CommunityMembersController, type: :request do
+RSpec.describe "Api::V1::CommunityMembersController", type: :request do
   describe "DELETE /community-members/:id" do
     context "when user not logged in" do
       before { delete api_v1_community_member_path(1) }

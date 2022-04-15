@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Collection::VisitorsController, type: :request do
+RSpec.describe "Api::V1::Collection::VisitorsController", type: :request do
   describe "GET /collections/:collection_id/visitors" do
     context "when collection not exists" do
       before { get api_v1_collection_visitors_path(0) }

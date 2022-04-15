@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::Post::UpvotesController, type: :request do
+RSpec.describe "Api::V1::Post::UpvotesController", type: :request do
   describe "GET /posts/:post_id/upvotes" do
     context "when post not exists" do
       before { get api_v1_post_upvotes_path(0) }

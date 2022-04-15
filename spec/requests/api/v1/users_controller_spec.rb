@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::UsersController, type: :request do
+RSpec.describe "Api::V1::UsersController", type: :request do
   describe "GET /users" do
     context "when users not exist" do
       before { get api_v1_users_path }
