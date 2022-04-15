@@ -1,3 +1,14 @@
+# [8.6.0](https://github.com/rgxcp/wikalpa/compare/v8.5.0...v8.6.0) (2022-04-15)
+
+
+### Features
+
+* add has many 'Downvote' association on 'User' ([7d3e592](https://github.com/rgxcp/wikalpa/commit/7d3e59274de2d83fe270321b40e300ed9ca5b370))
+* GET /users/:id/downvotes returns forbidden response when viewing someone else downvotes ([4055c58](https://github.com/rgxcp/wikalpa/commit/4055c582dd0892a6016483c5d1cd649821cf4d05))
+* GET /users/:id/downvotes returns not found response when downvotes not exist ([8f3b259](https://github.com/rgxcp/wikalpa/commit/8f3b2595f9cec81ac3b936b7fc6e739f853035bf))
+* GET /users/:id/downvotes returns ok response when downvotes exist ([26688f0](https://github.com/rgxcp/wikalpa/commit/26688f02333acc373e7ed86154d2ca0df3bf8a84))
+* GET /users/:id/downvotes returns unauthorized response when user not logged in ([3ae8df8](https://github.com/rgxcp/wikalpa/commit/3ae8df88db55be9281674d00f6e859dc3d80e264))
+
 # [8.5.0](https://github.com/rgxcp/wikalpa/compare/v8.4.0...v8.5.0) (2022-04-15)
 
 
