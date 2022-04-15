@@ -10,6 +10,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:community_members) }
   it { is_expected.to have_many(:communities).through(:community_members) }
+  it { is_expected.to have_many(:downvotes) }
   it { is_expected.to have_many(:posts) }
   it { is_expected.to have_many(:replies) }
   it { is_expected.to have_many(:upvotes) }

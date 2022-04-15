@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :community_members
   has_many :communities, through: :community_members
+  has_many :downvotes
   has_many :posts
   has_many :replies
   has_many :upvotes
