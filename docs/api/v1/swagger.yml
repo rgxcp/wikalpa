@@ -2400,6 +2400,38 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /downvotes/{id}:
+    delete:
+      tags:
+        - Downvote
+      summary: Delete a downvote.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      downvote:
+                        $ref: "#/components/schemas/Downvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
 security:
   - BearerAuth: []
 tags:
@@ -2489,6 +2521,8 @@ tags:
     description: Endpoints related for collection visitor resources.
   - name: Upvote
     description: Endpoints related for upvote resources.
+  - name: Downvote
+    description: Endpoints related for downvote resources.
 components:
   securitySchemes:
     BearerAuth:
