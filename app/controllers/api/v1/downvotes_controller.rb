@@ -14,7 +14,10 @@ class Api::V1::DownvotesController < ApplicationController
 
   def destroy
     downvote = Downvote.find(params[:id])
+    return forbidden_response unless @auth_id == downvote.user_id
 
-    forbidden_response unless @auth_id == downvote.user_id
+    downvote.destroy
+
+    ok_response(data: { downvote: downvote })
   end
 end
