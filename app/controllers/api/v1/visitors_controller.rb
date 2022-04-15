@@ -4,7 +4,7 @@ class Api::V1::VisitorsController < ApplicationController
   def index
     visitors = @visitable.visitors
 
-    if visitors.size.positive?
+    if visitors.present?
       ok_response(data: { visitors: visitors })
     else
       not_found_response

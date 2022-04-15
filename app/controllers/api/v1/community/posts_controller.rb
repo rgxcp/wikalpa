@@ -5,7 +5,7 @@ class Api::V1::Community::PostsController < Api::V1::PostsController
   def index
     posts = @community.posts
 
-    if posts.size.positive?
+    if posts.present?
       ok_response(data: { posts: posts })
     else
       not_found_response

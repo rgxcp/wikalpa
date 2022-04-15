@@ -6,7 +6,7 @@ class Api::V1::PostsController < ApplicationController
   def index
     posts = Post.all
 
-    if posts.size.positive?
+    if posts.present?
       ok_response(data: { posts: posts })
     else
       not_found_response

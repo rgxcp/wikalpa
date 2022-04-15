@@ -4,7 +4,7 @@ class Api::V1::Community::CollectionsController < ApplicationController
 
     collections = community.collections
 
-    if collections.size.positive?
+    if collections.present?
       ok_response(data: { collections: collections })
     else
       not_found_response

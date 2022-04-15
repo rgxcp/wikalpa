@@ -5,7 +5,7 @@ class Api::V1::Community::CommunityMembersController < ApplicationController
   def index
     community_members = @community.community_members
 
-    if community_members.size.positive?
+    if community_members.present?
       ok_response(data: { community_members: community_members })
     else
       not_found_response

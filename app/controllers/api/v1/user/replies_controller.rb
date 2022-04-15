@@ -4,7 +4,7 @@ class Api::V1::User::RepliesController < ApplicationController
 
     replies = user.replies
 
-    if replies.size.positive?
+    if replies.present?
       ok_response(data: { replies: replies })
     else
       not_found_response

@@ -5,7 +5,7 @@ class Api::V1::User::BuddiesController < ApplicationController
   def index
     buddies = @user.buddies
 
-    if buddies.size.positive?
+    if buddies.present?
       ok_response(data: { buddies: buddies })
     else
       not_found_response

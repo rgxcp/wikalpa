@@ -5,7 +5,7 @@ class Api::V1::Comment::RepliesController < Api::V1::RepliesController
   def index
     replies = @comment.replies
 
-    if replies.size.positive?
+    if replies.present?
       ok_response(data: { replies: replies })
     else
       not_found_response

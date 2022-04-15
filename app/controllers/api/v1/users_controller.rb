@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
   def index
     users = User.all
 
-    if users.size.positive?
+    if users.present?
       ok_response(data: { users: users }, except: :password_digest)
     else
       not_found_response

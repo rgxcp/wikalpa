@@ -4,7 +4,7 @@ class Api::V1::Post::CollectionsController < ApplicationController
 
     collections = post.collections
 
-    if collections.size.positive?
+    if collections.present?
       ok_response(data: { collections: collections })
     else
       not_found_response

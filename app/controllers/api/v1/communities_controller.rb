@@ -6,7 +6,7 @@ class Api::V1::CommunitiesController < ApplicationController
   def index
     communities = Community.all
 
-    if communities.size.positive?
+    if communities.present?
       ok_response(data: { communities: communities })
     else
       not_found_response

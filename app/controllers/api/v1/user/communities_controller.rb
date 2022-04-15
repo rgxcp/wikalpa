@@ -4,7 +4,7 @@ class Api::V1::User::CommunitiesController < ApplicationController
 
     communities = user.communities
 
-    if communities.size.positive?
+    if communities.present?
       ok_response(data: { communities: communities })
     else
       not_found_response

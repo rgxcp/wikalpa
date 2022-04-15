@@ -6,7 +6,7 @@ class Api::V1::CollectionsController < ApplicationController
   def index
     collections = Collection.all
 
-    if collections.size.positive?
+    if collections.present?
       ok_response(data: { collections: collections })
     else
       not_found_response

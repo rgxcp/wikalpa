@@ -5,7 +5,7 @@ class Api::V1::UpvotesController < ApplicationController
   def index
     upvotes = @upvoteable.upvotes
 
-    if upvotes.size.positive?
+    if upvotes.present?
       ok_response(data: { upvotes: upvotes })
     else
       not_found_response
