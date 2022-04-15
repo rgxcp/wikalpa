@@ -42,5 +42,32 @@ RSpec.describe "Api::V1::DownvotesController", type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when deleting someone else downvote" do
+      before do
+        community = create(:community)
+        user1 = create(:user)
+        user2 = create(:user)
+        post = create(:post, community: community, user: user1)
+        downvote = create(:downvote, user: user2, downvoteable: post)
+        token = JsonWebToken.encode({ id: user1.id })
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_downvote_path(downvote), headers: headers
+      end
+
+      it "returns 403 status code" do
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(false)
+      end
+
+      it "returns forbidden message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Forbidden")
+      end
+    end
   end
 end
