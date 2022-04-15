@@ -1,3 +1,13 @@
+# [8.5.0](https://github.com/rgxcp/wikalpa/compare/v8.4.0...v8.5.0) (2022-04-15)
+
+
+### Features
+
+* DELETE /downvotes/:id returns forbidden response when deleting someone else downvote ([dd0582f](https://github.com/rgxcp/wikalpa/commit/dd0582ff85ed85e0d00282d28dea5b8367787f69))
+* DELETE /downvotes/:id returns not found response when downvote not exists ([2a03633](https://github.com/rgxcp/wikalpa/commit/2a0363327d9251f55553d9bdd0e75c9867a729b0))
+* DELETE /downvotes/:id returns ok response when downvote exists ([9963a8e](https://github.com/rgxcp/wikalpa/commit/9963a8e65a2e2426788691e81fb0e1fbb1f4ff19))
+* DELETE /downvotes/:id returns unauthorized response when user not logged in ([07a810a](https://github.com/rgxcp/wikalpa/commit/07a810a051ec0e701dc5dd66a04905101da8a0eb))
+
 # [8.4.0](https://github.com/rgxcp/wikalpa/compare/v8.3.0...v8.4.0) (2022-04-14)
 
 
