@@ -6,6 +6,10 @@ class Api::V1::User::DownvotesController < ApplicationController
 
     downvotes = @auth_user.downvotes
 
-    not_found_response if downvotes.empty?
+    if downvotes.present?
+      ok_response(data: { downvotes: downvotes })
+    else
+      not_found_response
+    end
   end
 end

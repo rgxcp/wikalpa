@@ -66,5 +66,36 @@ RSpec.describe "Api::V1::User::DownvotesController", type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when downvotes exist" do
+      before do
+        community = create(:community)
+        user = create(:user)
+        post = create(:post, community: community, user: user)
+        create(:downvote, user: user, downvoteable: post)
+        token = JsonWebToken.encode({ id: user.id })
+        headers = { Authorization: "Bearer #{token}" }
+        get api_v1_user_downvotes_path(user), headers: headers
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(true)
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns downvotes data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["downvotes"]).not_to be_empty
+      end
+    end
   end
 end
