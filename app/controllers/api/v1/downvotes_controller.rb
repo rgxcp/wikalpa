@@ -13,5 +13,6 @@ class Api::V1::DownvotesController < ApplicationController
   end
 
   def destroy
+    downvote = Downvote.find(params[:id])
   end
 end
