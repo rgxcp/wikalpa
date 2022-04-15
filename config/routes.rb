@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         resources :visitors, only: :index, module: "community"
       end
       resources :community_members, only: :destroy, path: "community-members"
+      resources :downvotes, only: :destroy
       resources :posts, except: [:create, :destroy] do
         resources :bookmarks, only: :create, module: "post"
         resources :collections, only: :index, module: "post"
