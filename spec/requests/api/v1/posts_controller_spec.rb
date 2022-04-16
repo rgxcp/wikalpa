@@ -241,7 +241,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        entity = attributes_for(:post, is_spoiler: true)
+        entity = attributes_for(:post, :spoiler)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { post: entity }
