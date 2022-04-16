@@ -182,7 +182,7 @@ RSpec.describe "Api::V1::Post::CommentsController", type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        comment = attributes_for(:comment, is_spoiler: true)
+        comment = attributes_for(:comment, :spoiler)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { comment: comment }
