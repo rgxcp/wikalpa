@@ -3,6 +3,14 @@ FactoryBot.define do
     association :user, :admin
     sequence(:name) { |n| "ALLOW_USERS_TO_DELETE_ACCOUNT#{n}" }
 
+    trait :off do
+      status { :off }
+    end
+
+    trait :on do
+      status { :on }
+    end
+
     trait :unformatted do
       name { " allow_users_to_delete_account " }
     end
