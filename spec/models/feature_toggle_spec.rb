@@ -60,4 +60,13 @@ RSpec.describe FeatureToggle, type: :model do
       end
     end
   end
+
+  describe ".on?" do
+    context "when status is 1 (on)" do
+      it "returns true" do
+        feature_toggle = create(:feature_toggle, :on)
+        expect(FeatureToggle.on?(feature_toggle.name)).to be(true)
+      end
+    end
+  end
 end

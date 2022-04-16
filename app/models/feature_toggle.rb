@@ -20,6 +20,10 @@ class FeatureToggle < ApplicationRecord
     find_by(name: name).off?
   end
 
+  def self.on?(name)
+    true
+  end
+
   private
 
   def user_role
