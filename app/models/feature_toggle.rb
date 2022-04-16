@@ -16,6 +16,10 @@ class FeatureToggle < ApplicationRecord
     self.name = name.strip.upcase if name.present?
   end
 
+  def self.off?(name)
+    true
+  end
+
   private
 
   def user_role
