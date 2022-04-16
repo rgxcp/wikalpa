@@ -192,7 +192,7 @@ RSpec.describe "Api::V1::RepliesController", type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         reply = create(:reply, comment: comment, user: user)
-        entity = attributes_for(:reply, is_spoiler: true)
+        entity = attributes_for(:reply, :spoiler)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { reply: entity }
