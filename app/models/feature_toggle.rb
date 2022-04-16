@@ -17,7 +17,7 @@ class FeatureToggle < ApplicationRecord
   end
 
   def self.off?(name)
-    find_by(name: name).off?
+    find_by(name: name.upcase).off?
   end
 
   def self.on?(name)
