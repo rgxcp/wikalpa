@@ -84,4 +84,12 @@ RSpec.describe FeatureToggle, type: :model do
       expect(FeatureToggle.off?(feature_toggle.name)).to be(true)
     end
   end
+
+  describe ".on!" do
+    it "updates the status to 1 (on)" do
+      feature_toggle = create(:feature_toggle, :off)
+      FeatureToggle.on!(feature_toggle.name)
+      expect(FeatureToggle.on?(feature_toggle.name)).to be(true)
+    end
+  end
 end
