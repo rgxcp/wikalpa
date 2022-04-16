@@ -4,6 +4,10 @@ FactoryBot.define do
     user
     body { "just setting up my wklp" }
 
+    trait :spoiler do
+      is_spoiler { true }
+    end
+
     trait :invalid do
       body { "" }
     end
