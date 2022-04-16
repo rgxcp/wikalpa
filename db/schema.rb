@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_20_131307) do
+ActiveRecord::Schema.define(version: 2022_04_15_231529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,16 @@ ActiveRecord::Schema.define(version: 2022_03_20_131307) do
     t.index ["user_id"], name: "index_downvotes_on_user_id"
   end
 
+  create_table "feature_toggles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", limit: 50, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_feature_toggles_on_name", unique: true
+    t.index ["user_id"], name: "index_feature_toggles_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.bigint "community_id", null: false
     t.bigint "user_id", null: false
@@ -160,6 +170,7 @@ ActiveRecord::Schema.define(version: 2022_03_20_131307) do
   add_foreign_key "community_members", "communities"
   add_foreign_key "community_members", "users"
   add_foreign_key "downvotes", "users"
+  add_foreign_key "feature_toggles", "users"
   add_foreign_key "posts", "communities"
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "comments"
