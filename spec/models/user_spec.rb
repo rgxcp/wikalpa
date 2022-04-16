@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
+  context "enums" do
+    it { is_expected.to define_enum_for(:role).with_values(regular: 0, admin: 1) }
+  end
+
   subject(:user) { build(:user) }
 
   it { is_expected.to have_secure_password }

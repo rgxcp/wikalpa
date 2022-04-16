@@ -1,6 +1,8 @@
 require "regex"
 
 class User < ApplicationRecord
+  enum role: { regular: 0, admin: 1 }
+
   has_secure_password
 
   has_many :bookmarks
