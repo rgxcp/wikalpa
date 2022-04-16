@@ -18,6 +18,14 @@ RSpec.describe FeatureToggle, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
 
+    context "when user is not admin" do
+      it "is not valid" do
+        user = create(:user)
+        feature_toggle = build(:feature_toggle, user: user)
+        expect(feature_toggle).not_to be_valid
+      end
+    end
+
     describe "#before_validation" do
       subject(:feature_toggle) { build(:feature_toggle, :unformatted) }
 
