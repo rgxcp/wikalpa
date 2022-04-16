@@ -80,6 +80,11 @@ RSpec.describe FeatureToggle, type: :model do
         expect(FeatureToggle.on?(feature_toggle.name)).to be(false)
       end
     end
+
+    it "search the name in case insensitive" do
+      feature_toggle = create(:feature_toggle, :on)
+      expect(FeatureToggle.on?(feature_toggle.name.downcase)).to be(true)
+    end
   end
 
   describe ".off!" do
