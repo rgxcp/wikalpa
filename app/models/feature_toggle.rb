@@ -1,7 +1,10 @@
+require "regex"
+
 class FeatureToggle < ApplicationRecord
   belongs_to :user
 
   validates :user, presence: true
+  validates :name, format: { with: REGEX::FEATURE_TOGGLE_NAME }
   validates :name, length: { in: 5..50 }
   validates :name, presence: true
   validates :name, uniqueness: true
