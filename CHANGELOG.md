@@ -1,3 +1,21 @@
+# [8.7.0](https://github.com/rgxcp/wikalpa/compare/v8.6.0...v8.7.0) (2022-04-16)
+
+
+### Features
+
+* add belongs to user association on feature toggle ([ceb7290](https://github.com/rgxcp/wikalpa/commit/ceb7290334c3bae38d9990944e432e609077ef42))
+* add role enum on user ([ab3fc9a](https://github.com/rgxcp/wikalpa/commit/ab3fc9a468ff70e1a894cad054214fec4a0a6a8d))
+* add status enum on feature toggle ([01bfda7](https://github.com/rgxcp/wikalpa/commit/01bfda75ddf607d2b8af2525e564f23649e03a4e))
+* convert name into uppercase before validation on feature toggle ([7313617](https://github.com/rgxcp/wikalpa/commit/7313617a6f92490bbec5a7135ee59f01cf0a71b1))
+* remove name trailing spaces before validation on feature toggle ([5a43edc](https://github.com/rgxcp/wikalpa/commit/5a43edc977dbc7855cf4891128bddf10de0e55c7))
+* validate format of name on feature toggle ([75f96f8](https://github.com/rgxcp/wikalpa/commit/75f96f8289cfd1d7ce5263fbf68cd3bafa1d25e7))
+* validate length of name is at least 5 on feature toggle ([c268190](https://github.com/rgxcp/wikalpa/commit/c268190d0461f72a6baf03897d74b35cef022194))
+* validate length of name is at most 50 on feature toggle ([bdac60b](https://github.com/rgxcp/wikalpa/commit/bdac60b76b0f011854ba316738840d6bf04e8383))
+* validate presence of name on feature toggle ([5e06069](https://github.com/rgxcp/wikalpa/commit/5e060699975b2bef2347174eccc266e04bd7c9fa))
+* validate presence of user on feature toggle ([d2e3674](https://github.com/rgxcp/wikalpa/commit/d2e367453f1a2f72571b53caef3c61f9b976b547))
+* validate uniqueness of name on feature toggle ([8ee5905](https://github.com/rgxcp/wikalpa/commit/8ee59058f7db50dffa902d209620a042a7a473ea))
+* validate user role on feature toggle ([d26fea4](https://github.com/rgxcp/wikalpa/commit/d26fea429069046bd4b8d32e8a57c63a2694f1e6))
+
 # [8.6.0](https://github.com/rgxcp/wikalpa/compare/v8.5.0...v8.6.0) (2022-04-15)
 
 
