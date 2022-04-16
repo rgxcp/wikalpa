@@ -7,6 +7,6 @@ class FeatureToggle < ApplicationRecord
   validates :name, uniqueness: true
 
   before_validation do
-    self.name = name.strip if name.present?
+    self.name = name.strip.upcase if name.present?
   end
 end
