@@ -1,3 +1,13 @@
+# [8.8.0](https://github.com/rgxcp/wikalpa/compare/v8.7.0...v8.8.0) (2022-04-16)
+
+
+### Features
+
+* FeatureToggle.off? returns false when status is 1 (on) ([ac3e366](https://github.com/rgxcp/wikalpa/commit/ac3e3663e736d904a8485f4d11140c7797b7d763))
+* FeatureToggle.off? returns true when status is 0 (off) ([fe3e8e3](https://github.com/rgxcp/wikalpa/commit/fe3e8e30acac42bb4af8bc51dce87712a0be80ed))
+* FeatureToggle.on? returns false when status is 0 (off) ([484485a](https://github.com/rgxcp/wikalpa/commit/484485a77c855fe63e644fe119aa870ad7fa32a8))
+* FeatureToggle.on? returns true when status is 1 (on) ([d0ecf6e](https://github.com/rgxcp/wikalpa/commit/d0ecf6ecb4eabc20111621bb0bcb2c89ef87cd49))
+
 # [8.7.0](https://github.com/rgxcp/wikalpa/compare/v8.6.0...v8.7.0) (2022-04-16)
 
 
