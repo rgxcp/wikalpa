@@ -4,7 +4,7 @@ FactoryBot.define do
     sequence(:name) { |n| "ALLOW_USERS_TO_DELETE_ACCOUNT#{n}" }
 
     trait :unformatted do
-      name { " ALLOW_USERS_TO_DELETE_ACCOUNT " }
+      name { " allow_users_to_delete_account " }
     end
   end
 end
