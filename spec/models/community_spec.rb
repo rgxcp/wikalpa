@@ -1,34 +1,39 @@
 require "rails_helper"
 
 RSpec.describe Community, type: :model do
-  subject(:community) { build(:community) }
+  context "relations" do
+    it { is_expected.to have_many(:collection_items) }
+    it { is_expected.to have_many(:collections).through(:collection_items) }
+    it { is_expected.to have_many(:community_members) }
+    it { is_expected.to have_many(:posts) }
+    it { is_expected.to have_many(:visitors) }
+  end
 
-  it { is_expected.to have_many(:collection_items) }
-  it { is_expected.to have_many(:collections).through(:collection_items) }
-  it { is_expected.to have_many(:community_members) }
-  it { is_expected.to have_many(:posts) }
-  it { is_expected.to have_many(:visitors) }
-  it { is_expected.not_to allow_value("! programmer.humor !").for(:name) }
-  it { is_expected.to validate_length_of(:name).is_at_least(5).is_at_most(20) }
-  it { is_expected.to validate_presence_of(:name) }
-  it { is_expected.to validate_uniqueness_of(:name) }
-  it { is_expected.to validate_length_of(:description).is_at_most(255) }
-  it { is_expected.to validate_presence_of(:description) }
+  context "validations" do
+    subject(:community) { build(:community) }
 
-  describe "#before_validation" do
-    subject(:community) { build(:community, :unformatted) }
+    it { is_expected.not_to allow_value("! programmer.humor !").for(:name) }
+    it { is_expected.to validate_length_of(:name).is_at_least(5).is_at_most(20) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name) }
+    it { is_expected.to validate_length_of(:description).is_at_most(255) }
+    it { is_expected.to validate_presence_of(:description) }
 
-    before { community.validate }
+    describe "#before_validation" do
+      subject(:community) { build(:community, :unformatted) }
 
-    context "when name contain trailing spaces" do
-      it "is removed before validation" do
-        expect(community.name).to eq("programmer.humor")
+      before { community.validate }
+
+      context "when name contain trailing spaces" do
+        it "is removed before validation" do
+          expect(community.name).to eq("programmer.humor")
+        end
       end
-    end
 
-    context "when description contain trailing spaces" do
-      it "is removed before validation" do
-        expect(community.description).to eq("css is programming language")
+      context "when description contain trailing spaces" do
+        it "is removed before validation" do
+          expect(community.description).to eq("css is programming language")
+        end
       end
     end
   end
