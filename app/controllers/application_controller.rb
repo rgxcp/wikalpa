@@ -19,6 +19,13 @@ class ApplicationController < ActionController::API
     unauthorized_response
   end
 
+  def authenticate_admin_request
+    id = parse_auth_id
+    @auth_admin = User.admin.find(id)
+  rescue ActiveRecord::RecordNotFound
+    unauthorized_response
+  end
+
   def created_response(data:, except: nil)
     render json: {
       success: true,
