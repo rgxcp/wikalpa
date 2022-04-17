@@ -11,6 +11,10 @@ FactoryBot.define do
       status { :on }
     end
 
+    trait :invalid do
+      name { "" }
+    end
+
     trait :unformatted do
       name { " allow_users_to_delete_account " }
     end
