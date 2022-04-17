@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       post "/auth/login", to: "auth#login"
       post "/auth/register", to: "auth#register"
 
+      namespace :admin do
+        resources :feature_toggles, only: :create, path: "feature-toggles"
+      end
+
       resources :bookmarks, only: :destroy
       resources :buddies, only: :destroy
       resources :collections, except: :destroy do
