@@ -1,3 +1,17 @@
+# [8.9.0](https://github.com/rgxcp/wikalpa/compare/v8.8.0...v8.9.0) (2022-04-17)
+
+
+### Features
+
+* add authenticate admin request method on application controller ([1aaa0a7](https://github.com/rgxcp/wikalpa/commit/1aaa0a78f0441ac1474e3eeef764e87d8cab5c09))
+* FeatureToggle.off! updates the status to 0 (off) ([4db992f](https://github.com/rgxcp/wikalpa/commit/4db992fbeccee6a01237cfbf995e1bed146ac261))
+* FeatureToggle.off? search the name in case insensitive ([df79308](https://github.com/rgxcp/wikalpa/commit/df7930892eca9d1d93b424c831edf08ebc5456bc))
+* FeatureToggle.on! updates the status to 1 (on) ([dda4ecc](https://github.com/rgxcp/wikalpa/commit/dda4ecc3f4bcbb8d9639f237cadc58e0d024f6ce))
+* FeatureToggle.on? search the name in case insensitive ([0402a64](https://github.com/rgxcp/wikalpa/commit/0402a64143e4d1e06b965ccd86948164887d514d))
+* POST /admin/feature-toggles returns created response when entity valid ([f086a0b](https://github.com/rgxcp/wikalpa/commit/f086a0b56bcfe45245b229f93f03385ef0f29500))
+* POST /admin/feature-toggles returns unauthorized response when admin not logged in ([0c0f44c](https://github.com/rgxcp/wikalpa/commit/0c0f44c1ce38c2ce313e0c2dd15dfaf504c092dc))
+* POST /admin/feature-toggles returns unprocessable entity response when entity invalid ([e197373](https://github.com/rgxcp/wikalpa/commit/e1973733bc4999625120c8f4b431821f20ab46d4))
+
 # [8.8.0](https://github.com/rgxcp/wikalpa/compare/v8.7.0...v8.8.0) (2022-04-16)
 
 
