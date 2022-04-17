@@ -105,6 +105,49 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+  /admin/feature-toggles:
+    post:
+      tags:
+        - Admin Feature Toggle
+      summary: Create a new feature toggle.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - feature_toggle
+              properties:
+                feature_toggle:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: ALLOW_USERS_TO_DELETE_ACCOUNT
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      feature_toggle:
+                        $ref: "#/components/schemas/FeatureToggle"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /communities:
     get:
       tags:
@@ -2471,6 +2514,8 @@ security:
 tags:
   - name: Auth
     description: Endpoints related for authentication and authorization.
+  - name: Admin Feature Toggle
+    description: Endpoints related for admin feature toggle resources.
   - name: Community
     description: Endpoints related for community resources.
   - name: Community Member
@@ -2791,6 +2836,30 @@ components:
         updated_at:
           type: string
           example: "2021-12-12 12:12:12"
+    FeatureToggle:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: ALLOW_USERS_TO_DELETE_ACCOUNT
+        status:
+          type: string
+          enum:
+            - off
+            - on
+          example: off
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
     Post:
       type: object
       properties:
@@ -2877,6 +2946,12 @@ components:
         username:
           type: string
           example: john.doe
+        role:
+          type: string
+          enum:
+            - regular
+            - admin
+          example: regular
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
