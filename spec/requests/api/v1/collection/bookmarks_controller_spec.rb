@@ -69,7 +69,7 @@ RSpec.describe "Api::V1::Collection::BookmarksController", type: :request do
 
       it "returns validation errors" do
         result = JSON.parse(response.body)
-        expect(result["errors"].size).to be_positive
+        expect(result["errors"].present?).to be(true)
       end
     end
 
