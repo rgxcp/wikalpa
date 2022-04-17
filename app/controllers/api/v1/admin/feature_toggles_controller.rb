@@ -5,7 +5,11 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
     feature_toggle = FeatureToggle.new(feature_toggle_params)
     feature_toggle.user = @auth_admin
 
-    unprocessable_entity_response(errors: feature_toggle.errors.messages) unless feature_toggle.save
+    if feature_toggle.save
+      created_response(data: { feature_toggle: feature_toggle })
+    else
+      unprocessable_entity_response(errors: feature_toggle.errors.messages)
+    end
   end
 
   private
