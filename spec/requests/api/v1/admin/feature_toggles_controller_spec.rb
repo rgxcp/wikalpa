@@ -19,5 +19,35 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
         expect(result["message"]).to eq("Unauthorized")
       end
     end
+
+    context "when entity invalid" do
+      before do
+        admin = create(:user, :admin)
+        feature_toggle = attributes_for(:feature_toggle, :invalid)
+        token = JsonWebToken.encode({ id: admin.id })
+        headers = { Authorization: "Bearer #{token}" }
+        params = { feature_toggle: feature_toggle }
+        post api_v1_admin_feature_toggles_path, headers: headers, params: params
+      end
+
+      it "returns 422 status code" do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(false)
+      end
+
+      it "returns unprocessable entity message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Unprocessable Entity")
+      end
+
+      it "returns validation errors" do
+        result = JSON.parse(response.body)
+        expect(result["errors"].size).to be_positive
+      end
+    end
   end
 end
