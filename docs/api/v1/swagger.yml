@@ -148,6 +148,56 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /admin/feature-toggles/{id}:
+    patch:
+      tags:
+        - Admin Feature Toggle
+      summary: Update a feature toggle.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - feature_toggle
+              properties:
+                feature_toggle:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      enum:
+                        - off
+                        - on
+                      example: off
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      feature_toggle:
+                        $ref: "#/components/schemas/FeatureToggle"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /communities:
     get:
       tags:
