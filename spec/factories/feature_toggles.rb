@@ -13,6 +13,7 @@ FactoryBot.define do
 
     trait :invalid do
       name { "" }
+      status { "halt" }
     end
 
     trait :unformatted do
