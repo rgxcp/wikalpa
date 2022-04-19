@@ -1,3 +1,13 @@
+# [8.10.0](https://github.com/rgxcp/wikalpa/compare/v8.9.0...v8.10.0) (2022-04-19)
+
+
+### Features
+
+* PATCH /admin/feature-toggles/:id returns not found response when feature toggle not exists ([8ab8a07](https://github.com/rgxcp/wikalpa/commit/8ab8a07b2c657c1ce512eb67ab51ae5b2617a1dd))
+* PATCH /admin/feature-toggles/:id returns ok response when entity valid ([d887699](https://github.com/rgxcp/wikalpa/commit/d887699b19c30510b51175a47fbf64243110c313))
+* PATCH /admin/feature-toggles/:id returns unauthorized response when admin not logged in ([d69fb6a](https://github.com/rgxcp/wikalpa/commit/d69fb6a4586b76a84357c9696c4952cf8dba4e5d))
+* PATCH /admin/feature-toggles/:id returns unprocessable entity response when entity invalid ([bc31eb9](https://github.com/rgxcp/wikalpa/commit/bc31eb95e2dd452bd297d1222dc9d7e1b69a193e))
+
 # [8.9.0](https://github.com/rgxcp/wikalpa/compare/v8.8.0...v8.9.0) (2022-04-17)
 
 
