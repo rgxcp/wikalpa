@@ -15,6 +15,8 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
   def update
     feature_toggle = FeatureToggle.find(params[:id])
     feature_toggle.update(feature_toggle_update_params)
+
+    ok_response(data: { feature_toggle: feature_toggle })
   rescue ArgumentError => error
     unprocessable_entity_response(errors: error)
   end
