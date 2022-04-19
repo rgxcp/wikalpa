@@ -1,5 +1,5 @@
 class Api::V1::Admin::FeatureTogglesController < ApplicationController
-  before_action :authenticate_admin_request
+  before_action :authenticate_admin_request, only: [:create, :update]
 
   def create
     feature_toggle = FeatureToggle.new(feature_toggle_params)
@@ -10,6 +10,9 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
     else
       unprocessable_entity_response(errors: feature_toggle.errors.messages)
     end
+  end
+
+  def update
   end
 
   private
