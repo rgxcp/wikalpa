@@ -13,6 +13,7 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
   end
 
   def update
+    feature_toggle = FeatureToggle.find(params[:id])
   end
 
   private

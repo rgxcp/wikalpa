@@ -99,5 +99,28 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
         expect(result["message"]).to eq("Unauthorized")
       end
     end
+
+    context "when feature toggle not exists" do
+      before do
+        admin = create(:user, :admin)
+        token = JsonWebToken.encode({ id: admin.id })
+        headers = { Authorization: "Bearer #{token}" }
+        patch api_v1_admin_feature_toggle_path(0), headers: headers
+      end
+
+      it "returns 404 status code" do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(false)
+      end
+
+      it "returns not found message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Not Found")
+      end
+    end
   end
 end
