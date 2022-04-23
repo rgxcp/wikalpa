@@ -4,7 +4,11 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
   def index
     feature_toggles = FeatureToggle.all
 
-    not_found_response unless feature_toggles.present?
+    if feature_toggles.present?
+      ok_response(data: { feature_toggles: feature_toggles })
+    else
+      not_found_response
+    end
   end
 
   def create
