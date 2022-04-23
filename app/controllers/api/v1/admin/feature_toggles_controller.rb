@@ -1,5 +1,5 @@
 class Api::V1::Admin::FeatureTogglesController < ApplicationController
-  before_action :authenticate_admin_request, only: [:index, :show, :create, :update]
+  before_action :authenticate_admin_request, except: :destroy
 
   def index
     feature_toggles = FeatureToggle.all
