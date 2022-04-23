@@ -2,6 +2,9 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
   before_action :authenticate_admin_request, only: [:index, :create, :update]
 
   def index
+    feature_toggles = FeatureToggle.all
+
+    not_found_response unless feature_toggles.present?
   end
 
   def create
