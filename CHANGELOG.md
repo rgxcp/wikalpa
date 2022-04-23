@@ -1,3 +1,12 @@
+# [8.11.0](https://github.com/rgxcp/wikalpa/compare/v8.10.0...v8.11.0) (2022-04-23)
+
+
+### Features
+
+* GET /admin/feature-toggles returns not found response when feature toggles not exist ([54b5cee](https://github.com/rgxcp/wikalpa/commit/54b5cee89b53067bc0920ee0591c6ff21c97f5e4))
+* GET /admin/feature-toggles returns ok response when feature toggles exist ([acedb3c](https://github.com/rgxcp/wikalpa/commit/acedb3c2ad1a3e5d0ea1f84aba17989733a6d4a3))
+* GET /admin/feature-toggles returns unauthorized response when admin not logged in ([d4e9b0d](https://github.com/rgxcp/wikalpa/commit/d4e9b0da73780dd66c7f936ef683ff8114f759a4))
+
 # [8.10.0](https://github.com/rgxcp/wikalpa/compare/v8.9.0...v8.10.0) (2022-04-19)
 
 
