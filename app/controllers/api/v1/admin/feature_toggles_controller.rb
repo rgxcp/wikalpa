@@ -13,6 +13,8 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
 
   def show
     feature_toggle = FeatureToggle.find(params[:id])
+
+    ok_response(data: { feature_toggle: feature_toggle })
   end
 
   def create

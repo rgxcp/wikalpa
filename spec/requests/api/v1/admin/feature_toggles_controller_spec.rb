@@ -114,6 +114,35 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when feature toggle exists" do
+      before do
+        admin = create(:user, :admin)
+        feature_toggle = create(:feature_toggle, user: admin)
+        token = JsonWebToken.encode({ id: admin.id })
+        headers = { Authorization: "Bearer #{token}" }
+        get api_v1_admin_feature_toggle_path(feature_toggle), headers: headers
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(true)
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns feature toggle data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["feature_toggle"]).not_to be_empty
+      end
+    end
   end
 
   describe "POST /admin/feature-toggles" do
