@@ -1,5 +1,6 @@
 class Api::V1::Admin::FeatureTogglesController < ApplicationController
   before_action :authenticate_admin_request, except: :destroy
+  before_action :set_feature_toggle, only: [:show, :update]
 
   def index
     feature_toggles = FeatureToggle.all
@@ -12,9 +13,7 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
   end
 
   def show
-    feature_toggle = FeatureToggle.find(params[:id])
-
-    ok_response(data: { feature_toggle: feature_toggle })
+    ok_response(data: { feature_toggle: @feature_toggle })
   end
 
   def create
@@ -29,15 +28,18 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
   end
 
   def update
-    feature_toggle = FeatureToggle.find(params[:id])
-    feature_toggle.update(feature_toggle_update_params)
+    @feature_toggle.update(feature_toggle_update_params)
 
-    ok_response(data: { feature_toggle: feature_toggle })
+    ok_response(data: { feature_toggle: @feature_toggle })
   rescue ArgumentError => error
     unprocessable_entity_response(errors: error)
   end
 
   private
+
+  def set_feature_toggle
+    @feature_toggle = FeatureToggle.find(params[:id])
+  end
 
   def feature_toggle_params
     params.require(:feature_toggle).permit(:name)
