@@ -1,5 +1,8 @@
 class Api::V1::Admin::FeatureTogglesController < ApplicationController
-  before_action :authenticate_admin_request, only: [:create, :update]
+  before_action :authenticate_admin_request, only: [:index, :create, :update]
+
+  def index
+  end
 
   def create
     feature_toggle = FeatureToggle.new(feature_toggle_params)
