@@ -178,6 +178,35 @@ paths:
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
   /admin/feature-toggles/{id}:
+    get:
+      tags:
+        - Admin Feature Toggle
+      summary: Show a specific feature toggle.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      feature_toggle:
+                        $ref: "#/components/schemas/FeatureToggle"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
     patch:
       tags:
         - Admin Feature Toggle
