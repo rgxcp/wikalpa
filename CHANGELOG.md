@@ -1,3 +1,17 @@
+# [8.12.0](https://github.com/rgxcp/wikalpa/compare/v8.11.0...v8.12.0) (2022-04-24)
+
+
+### Features
+
+* add has many visitations on user ([420e27e](https://github.com/rgxcp/wikalpa/commit/420e27e52d3a90880e13d025d52f56cc1d16829a))
+* GET /admin/feature-toggles/:id returns not found response when feature toggle not exists ([8038e8e](https://github.com/rgxcp/wikalpa/commit/8038e8ebbdccedce579d814d674b89a58fcff99c))
+* GET /admin/feature-toggles/:id returns ok response when feature toggle exists ([15153c7](https://github.com/rgxcp/wikalpa/commit/15153c7d6b7f416d4bd4227d6db7fcd4784f9c0e))
+* GET /admin/feature-toggles/:id returns unauthorized response when admin not logged in ([ede3339](https://github.com/rgxcp/wikalpa/commit/ede333920552b14630a808808f43102395b26c70))
+* GET /users/:id/visitations returns forbidden response when viewing someone else visitations ([cd49361](https://github.com/rgxcp/wikalpa/commit/cd493619de3656c226d0fc320a1ac68688aafa5b))
+* GET /users/:id/visitations returns not found response when visitations not exist ([54f5311](https://github.com/rgxcp/wikalpa/commit/54f53117e3f6103020f8745af2f927a728c90a6c))
+* GET /users/:id/visitations returns ok response when visitations exist ([7883fdd](https://github.com/rgxcp/wikalpa/commit/7883fddac4810b1666e9bac5a2f1612295906a54))
+* GET /users/:id/visitations returns unauthorized response when user not logged in ([2dfbb64](https://github.com/rgxcp/wikalpa/commit/2dfbb64a6bfad3ce199f155161f058121dfbf363))
+
 # [8.11.0](https://github.com/rgxcp/wikalpa/compare/v8.10.0...v8.11.0) (2022-04-23)
 
 
