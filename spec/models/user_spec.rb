@@ -16,6 +16,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:posts) }
     it { is_expected.to have_many(:replies) }
     it { is_expected.to have_many(:upvotes) }
+    it { is_expected.to have_many(:visitations).class_name("Visitor").with_foreign_key("user_id") }
     it { is_expected.to have_many(:visitors) }
   end
 

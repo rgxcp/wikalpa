@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :replies
   has_many :upvotes
+  has_many :visitations, class_name: "Visitor", foreign_key: "user_id"
   has_many :visitors, as: :visitable
 
   validate :password_equality
