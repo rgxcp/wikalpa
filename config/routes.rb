@@ -60,6 +60,8 @@ Rails.application.routes.draw do
       resources :upvotes, only: :destroy
       resources :users, except: [:create, :destroy] do
         scope module: "user" do
+          get "/visitations", to: "visitations#index"
+
           resources :bookmarks, only: :index
           resources :buddies, only: [:index, :create]
           resources :collections, only: :index
