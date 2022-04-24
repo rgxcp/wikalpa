@@ -6,6 +6,10 @@ class Api::V1::User::VisitationsController < ApplicationController
 
     visitations = @auth_user.visitations
 
-    not_found_response unless visitations.present?
+    if visitations.present?
+      ok_response(data: { visitations: visitations })
+    else
+      not_found_response
+    end
   end
 end

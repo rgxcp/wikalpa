@@ -66,5 +66,35 @@ RSpec.describe "Api::V1::User::VisitationsController", type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when visitations exist" do
+      before do
+        user = create(:user)
+        community = create(:community)
+        create(:visitor, user: user, visitable: community)
+        token = JsonWebToken.encode({ id: user.id })
+        headers = { Authorization: "Bearer #{token}" }
+        get api_v1_user_visitations_path(user), headers: headers
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(true)
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns visitations data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["visitations"]).not_to be_empty
+      end
+    end
   end
 end
