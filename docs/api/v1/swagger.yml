@@ -2012,6 +2012,40 @@ paths:
                           $ref: "#/components/schemas/Upvote"
         "404":
           $ref: "#/components/responses/NotFound"
+  /users/{user_id}/visitations:
+    get:
+      tags:
+        - User Visitation
+      summary: Retrieve all user visitations.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      visitations:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Visitor"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /users/{user_id}/visitors:
     get:
       tags:
@@ -2690,6 +2724,8 @@ tags:
     description: Endpoints related for user reply resources.
   - name: User Upvote
     description: Endpoints related for user upvote resources.
+  - name: User Visitation
+    description: Endpoints related for user visitation resources.
   - name: User Visitor
     description: Endpoints related for user visitor resources.
   - name: Bookmark
