@@ -30,7 +30,7 @@ class User < ApplicationRecord
   end
 
   after_create :log_username_history
-  after_update :log_username_history
+  after_update :log_username_history, if: -> { username_previously_changed? }
 
   private
 

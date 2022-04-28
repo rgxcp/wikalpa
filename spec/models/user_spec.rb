@@ -73,6 +73,14 @@ RSpec.describe User, type: :model do
         new_username_history_exists = UsernameHistory.exists?(username: new_username)
         expect(new_username_history_exists).to be(true)
       end
+
+      it "logs username history only if username previously changed" do
+        user = create(:user)
+        new_username = user.username.reverse
+        user.update(username: new_username)
+        user.update(username: new_username)
+        expect(UsernameHistory.count).to eq(2)
+      end
     end
   end
 end
