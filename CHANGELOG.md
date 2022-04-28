@@ -1,3 +1,15 @@
+# [8.13.0](https://github.com/rgxcp/wikalpa/compare/v8.12.0...v8.13.0) (2022-04-28)
+
+
+### Features
+
+* add belongs to user association on username history ([7d4e78f](https://github.com/rgxcp/wikalpa/commit/7d4e78fef2b67b1272656f0b6328b8c44aeda2b6))
+* log user username to username history after create callback ([28f57fc](https://github.com/rgxcp/wikalpa/commit/28f57fcaad621535b58cec7c3e06ed71629ee9d6))
+* log user username to username history after update callback ([927ad40](https://github.com/rgxcp/wikalpa/commit/927ad40eea86be49f4c5e7c898d2d470c73eb00b))
+* log user username to username history after update callback only if username previously changed ([7ce4284](https://github.com/rgxcp/wikalpa/commit/7ce4284fa8fdf3feb7897fa40627bd15e9119870))
+* validate presence of user on username history ([4e480f9](https://github.com/rgxcp/wikalpa/commit/4e480f98a90b993d3d864837c0a66f499afe776d))
+* validate presence of username on username history ([b404e31](https://github.com/rgxcp/wikalpa/commit/b404e3191135447d1cdcc104eab3427db1c02daa))
+
 # [8.12.0](https://github.com/rgxcp/wikalpa/compare/v8.11.0...v8.12.0) (2022-04-24)
 
 
