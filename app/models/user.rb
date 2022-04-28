@@ -29,7 +29,13 @@ class User < ApplicationRecord
     self.username = username.strip.downcase if username.present?
   end
 
+  after_create :log_username_history
+
   private
+
+  def log_username_history
+    UsernameHistory.create(user: self, username: username)
+  end
 
   def password_equality
     errors.add(:password) if password == username

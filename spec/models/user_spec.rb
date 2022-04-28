@@ -55,4 +55,14 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  context "callbacks" do
+    context "after create" do
+      it "logs username history" do
+        user = create(:user)
+        username_history_exists = UsernameHistory.exists?(username: user.username)
+        expect(username_history_exists).to be(true)
+      end
+    end
+  end
 end
