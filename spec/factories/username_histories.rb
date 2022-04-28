@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :username_history do
     user
-    username { "the_cooler.john_doe" }
+    username { "cooler.john.doe" }
   end
 end
