@@ -64,5 +64,15 @@ RSpec.describe User, type: :model do
         expect(username_history_exists).to be(true)
       end
     end
+
+    context "after update" do
+      it "logs username history" do
+        user = create(:user)
+        new_username = user.username.reverse
+        user.update(username: new_username)
+        new_username_history_exists = UsernameHistory.exists?(username: new_username)
+        expect(new_username_history_exists).to be(true)
+      end
+    end
   end
 end
