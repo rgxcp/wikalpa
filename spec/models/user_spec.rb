@@ -57,9 +57,10 @@ RSpec.describe User, type: :model do
   end
 
   context "callbacks" do
+    subject(:user) { create(:user) }
+
     context "after create" do
       it "logs username history" do
-        user = create(:user)
         username_history_exists = UsernameHistory.exists?(username: user.username)
         expect(username_history_exists).to be(true)
       end
@@ -67,7 +68,6 @@ RSpec.describe User, type: :model do
 
     context "after update" do
       it "logs username history" do
-        user = create(:user)
         new_username = user.username.reverse
         user.update(username: new_username)
         new_username_history_exists = UsernameHistory.exists?(username: new_username)
@@ -75,7 +75,6 @@ RSpec.describe User, type: :model do
       end
 
       it "logs username history only if username previously changed" do
-        user = create(:user)
         new_username = user.username.reverse
         user.update(username: new_username)
         user.update(username: new_username)
