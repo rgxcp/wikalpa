@@ -19,5 +19,31 @@ RSpec.describe Api::V1::User::UsernameHistoriesController, type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when user exists" do
+      before do
+        user = create(:user)
+        get api_v1_user_username_histories_path(user)
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(true)
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns username histories data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["username_histories"]).not_to be_empty
+      end
+    end
   end
 end
