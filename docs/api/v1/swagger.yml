@@ -2012,6 +2012,37 @@ paths:
                           $ref: "#/components/schemas/Upvote"
         "404":
           $ref: "#/components/responses/NotFound"
+  /users/{user_id}/username-histories:
+    get:
+      tags:
+        - User Username History
+      security: []
+      summary: Retrieve all user username histories.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      username_histories:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/UsernameHistory"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /users/{user_id}/visitations:
     get:
       tags:
@@ -2724,6 +2755,8 @@ tags:
     description: Endpoints related for user reply resources.
   - name: User Upvote
     description: Endpoints related for user upvote resources.
+  - name: User Username History
+    description: Endpoints related for user username history resources.
   - name: User Visitation
     description: Endpoints related for user visitation resources.
   - name: User Visitor
@@ -3096,6 +3129,24 @@ components:
             - regular
             - admin
           example: regular
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+    UsernameHistory:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        username:
+          type: string
+          example: john.doe
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
