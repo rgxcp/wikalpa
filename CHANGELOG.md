@@ -1,3 +1,12 @@
+# [8.14.0](https://github.com/rgxcp/wikalpa/compare/v8.13.0...v8.14.0) (2022-04-29)
+
+
+### Features
+
+* add has many username histories relation on user ([0f35c32](https://github.com/rgxcp/wikalpa/commit/0f35c32fea9a000b87528d3447a2966c945772e6))
+* GET /users/:id/username-histories returns not found response when user not exists ([94592fd](https://github.com/rgxcp/wikalpa/commit/94592fdd90636cd327c7a4ed7b3162fafe63b677))
+* GET /users/:id/username-histories returns ok response when user exists ([803b4a3](https://github.com/rgxcp/wikalpa/commit/803b4a31fc69cdd980f94f98c7b588a99e1c9352))
+
 # [8.13.0](https://github.com/rgxcp/wikalpa/compare/v8.12.0...v8.13.0) (2022-04-28)
 
 
