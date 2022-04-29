@@ -71,6 +71,7 @@ Rails.application.routes.draw do
           resources :posts, only: :index
           resources :replies, only: :index
           resources :upvotes, only: :index
+          resources :username_histories, only: :index, path: "username-histories"
           resources :visitors, only: :index
         end
       end
