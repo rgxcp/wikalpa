@@ -38,6 +38,15 @@ RSpec.describe User, type: :model do
       end
     end
 
+    context "when password empty" do
+      it "does not validate length of password" do
+        user.save
+        refreshed_user = User.first
+        refreshed_user.update(username: refreshed_user.username.reverse)
+        expect(refreshed_user).to be_valid
+      end
+    end
+
     describe "#before_validation" do
       subject(:user) { build(:user, :unformatted) }
 
