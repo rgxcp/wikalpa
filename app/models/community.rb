@@ -20,6 +20,6 @@ class Community < ApplicationRecord
   end
 
   def community_member?(user)
-    true
+    community_members.exists?(community: self, user: user)
   end
 end

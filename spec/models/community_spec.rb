@@ -39,11 +39,16 @@ RSpec.describe Community, type: :model do
   end
 
   describe "#community_member?" do
+    let(:community) { create(:community) }
+    let(:user) { create(:user) }
+
     it "returns true if user is community member" do
-      community = create(:community)
-      user = create(:user)
       community_member = create(:community_member, community: community, user: user)
       expect(community.community_member?(user)).to be(true)
+    end
+
+    it "returns false if user is not community member" do
+      expect(community.community_member?(user)).to be(false)
     end
   end
 end
