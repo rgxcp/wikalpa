@@ -1,3 +1,11 @@
+# [8.15.0](https://github.com/rgxcp/wikalpa/compare/v8.14.1...v8.15.0) (2022-05-01)
+
+
+### Features
+
+* Community#community_member? returns false if user is not community member ([d55d24a](https://github.com/rgxcp/wikalpa/commit/d55d24aa4bc03629aaad59694742297def27f51c))
+* Community#community_member? returns true if user is community member ([7d3a369](https://github.com/rgxcp/wikalpa/commit/7d3a369b93c41ac30d8acabf3ef4f80582a91f74))
+
 ## [8.14.1](https://github.com/rgxcp/wikalpa/compare/v8.14.0...v8.14.1) (2022-04-30)
 
 
