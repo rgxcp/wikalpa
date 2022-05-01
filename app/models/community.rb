@@ -18,4 +18,8 @@ class Community < ApplicationRecord
     self.name = name.strip if name.present?
     self.description = description.strip if description.present?
   end
+
+  def community_member?(user)
+    true
+  end
 end
