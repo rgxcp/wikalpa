@@ -31,7 +31,7 @@ class Api::V1::CommunitiesController < ApplicationController
   end
 
   def update
-    return forbidden_response unless @community.community_members.exists?(user: @auth_user)
+    return forbidden_response unless @community.community_member?(@auth_user)
 
     if @community.update(community_params)
       ok_response(data: { community: @community })

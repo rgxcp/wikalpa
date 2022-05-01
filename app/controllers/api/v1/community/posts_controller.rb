@@ -13,7 +13,7 @@ class Api::V1::Community::PostsController < Api::V1::PostsController
   end
 
   def create
-    return forbidden_response unless @community.community_members.exists?(user: @auth_user)
+    return forbidden_response unless @community.community_member?(@auth_user)
 
     post = @community.posts.build(post_params)
     post.user = @auth_user
