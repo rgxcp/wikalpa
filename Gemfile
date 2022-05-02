@@ -43,6 +43,12 @@ group :development do
   gem "listen", "~> 3.3"
   # Debugger
   gem "pry", "~> 0.13.1"
+  # Rubocop Ruby
+  gem "rubocop", require: false
+  # Rubocop Rails
+  gem "rubocop-rails", require: false
+  # Rubocop RSpec
+  gem "rubocop-rspec", require: false
   # Keep application running in the background
   gem "spring"
 end
