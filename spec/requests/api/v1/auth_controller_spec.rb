@@ -89,7 +89,7 @@ RSpec.describe "Api::V1::AuthController", type: :request do
       end
     end
 
-    context "when maximum login tries count reached" do
+    context "when user maximum login tries count reached" do
       before do
         user = create(:user, login_tries_count: 6)
         params = { username: user.username, password: user.password }
@@ -119,7 +119,7 @@ RSpec.describe "Api::V1::AuthController", type: :request do
         post api_v1_auth_login_path, params: params
       end
 
-      it "increments user login tries count to 1" do
+      it "increments user login tries count by 1" do
         user.reload
         expect(user.login_tries_count).to eq(1)
       end
