@@ -95,4 +95,13 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "#allow_login?" do
+    context "login tries count < 6" do
+      it "returns true" do
+        user = create(:user, login_tries_count: 5)
+        expect(user.allow_login?).to be(true)
+      end
+    end
+  end
 end
