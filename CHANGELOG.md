@@ -1,3 +1,21 @@
+# [8.16.0](https://github.com/rgxcp/wikalpa/compare/v8.15.0...v8.16.0) (2022-05-07)
+
+
+### Features
+
+* only allow integer for login tries count on user ([30c4253](https://github.com/rgxcp/wikalpa/commit/30c4253b400f8f1fbe3f779c73e6f7ac96cc22cb))
+* only allow number >= 0 for login tries count on user ([9e69603](https://github.com/rgxcp/wikalpa/commit/9e6960386d01906e9d183dc256f71bed38e8eaaf))
+* POST /auth/login increments user login tries count to 1 when password not valid ([e855070](https://github.com/rgxcp/wikalpa/commit/e85507049b0dff326ba6efdb8bdb9d0ddb7554b7))
+* POST /auth/login resets user login tries count to 0 when password valid ([d7dd53d](https://github.com/rgxcp/wikalpa/commit/d7dd53d5d86121bebe643fa0fecb0a6103841018))
+* POST /auth/login returns too many requests response when maximum login tries count reached ([3cf118a](https://github.com/rgxcp/wikalpa/commit/3cf118a6f2d571194c49126904a4fe1a1ed6ed94))
+* User#allow_login? returns false when login tries count > 5 ([7434ad0](https://github.com/rgxcp/wikalpa/commit/7434ad0e44567fd2c2bacfd0c1be1b30dd59d088))
+* User#allow_login? returns true when login tries count < 6 ([3bddd04](https://github.com/rgxcp/wikalpa/commit/3bddd047b8dd53f87f6d60bdd66dfb365a7706d6))
+* User#increment_login_tries_count! increments login tries count by 1 ([331eeea](https://github.com/rgxcp/wikalpa/commit/331eeea2ac21e6b89127a85b340234d771644813))
+* User#reset_login_tries_count! resets login tries count to 0 ([ea761a6](https://github.com/rgxcp/wikalpa/commit/ea761a603110d01e5f31e131b397f3160741702d))
+* validate numericality of login tries count on user ([170778a](https://github.com/rgxcp/wikalpa/commit/170778ac3cb8be1c7f0185258a7fb03d9d6acccf))
+* validate presence of login tries count on user ([08f8897](https://github.com/rgxcp/wikalpa/commit/08f8897ccd602637f58a869130ba03df1d2bbc8e))
+* validate presence of role on user ([bf1b320](https://github.com/rgxcp/wikalpa/commit/bf1b320c1cfa3338158298765e36bb089c27543f))
+
 # [8.15.0](https://github.com/rgxcp/wikalpa/compare/v8.14.1...v8.15.0) (2022-05-01)
 
 
