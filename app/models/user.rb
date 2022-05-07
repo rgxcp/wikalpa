@@ -40,6 +40,10 @@ class User < ApplicationRecord
     login_tries_count <= 5
   end
 
+  def increment_login_tries_count!
+    update(login_tries_count: login_tries_count + 1)
+  end
+
   private
 
   def log_username_history

@@ -111,4 +111,12 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "#increment_login_tries_count!" do
+    it "increments login tries count by 1" do
+      user = create(:user, login_tries_count: 1)
+      user.increment_login_tries_count!
+      expect(user.login_tries_count).to eq(2)
+    end
+  end
 end
