@@ -62,6 +62,14 @@ class ApplicationController < ActionController::API
     except: except
   end
 
+  def too_many_requests_response
+    render json: {
+      success: false,
+      message: "Too Many Requests"
+    },
+    status: :too_many_requests
+  end
+
   def unauthorized_response
     render json: {
       success: false,

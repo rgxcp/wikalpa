@@ -89,6 +89,28 @@ RSpec.describe "Api::V1::AuthController", type: :request do
       end
     end
 
+    context "when maximum login tries count reached" do
+      before do
+        user = create(:user, login_tries_count: 6)
+        params = { username: user.username, password: user.password }
+        post api_v1_auth_login_path, params: params
+      end
+
+      it "returns 429 status code" do
+        expect(response).to have_http_status(:too_many_requests)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(false)
+      end
+
+      it "returns too many requests message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Too Many Requests")
+      end
+    end
+
     context "when password not valid" do
       before do
         user = create(:user)

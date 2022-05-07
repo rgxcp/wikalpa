@@ -12,6 +12,7 @@ class Api::V1::AuthController < ApplicationController
 
   def login
     user = User.find_by!(username: params[:username])
+    return too_many_requests_response unless user.allow_login?
 
     if user.authenticate(params[:password])
       token = JsonWebToken.encode({ id: user.id })
