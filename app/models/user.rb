@@ -25,6 +25,7 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :username, uniqueness: true
   validates :password, length: { minimum: 8 }, if: -> { password.present? }
+  validates :login_tries_count, presence: true
 
   before_validation do
     self.username = username.strip.downcase if username.present?
