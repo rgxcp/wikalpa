@@ -112,10 +112,16 @@ RSpec.describe "Api::V1::AuthController", type: :request do
     end
 
     context "when password not valid" do
+      let(:user) { create(:user) }
+
       before do
-        user = create(:user)
         params = { username: user.username, password: "!#{user.password}!" }
         post api_v1_auth_login_path, params: params
+      end
+
+      it "increments user login tries count to 1" do
+        user.reload
+        expect(user.login_tries_count).to eq(1)
       end
 
       it "returns 401 status code" do

@@ -18,6 +18,7 @@ class Api::V1::AuthController < ApplicationController
       token = JsonWebToken.encode({ id: user.id })
       ok_response(data: { user: user, token: token }, except: :password_digest)
     else
+      user.increment_login_tries_count!
       unauthorized_response
     end
   end
