@@ -37,7 +37,7 @@ class User < ApplicationRecord
   after_update :log_username_history, if: -> { username_previously_changed? }
 
   def allow_login?
-    true
+    login_tries_count <= 5
   end
 
   private
