@@ -51,7 +51,7 @@ class User < ApplicationRecord
   private
 
   def log_username_history
-    UsernameHistory.create(user: self, username: username)
+    username_histories.create(user: self, username: username)
   end
 
   def password_equality
