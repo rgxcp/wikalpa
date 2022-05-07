@@ -15,6 +15,7 @@ class Api::V1::AuthController < ApplicationController
     return too_many_requests_response unless user.allow_login?
 
     if user.authenticate(params[:password])
+      user.reset_login_tries_count!
       token = JsonWebToken.encode({ id: user.id })
       ok_response(data: { user: user, token: token }, except: :password_digest)
     else

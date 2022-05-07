@@ -140,10 +140,16 @@ RSpec.describe "Api::V1::AuthController", type: :request do
     end
 
     context "when password valid" do
+      let(:user) { create(:user, login_tries_count: 2) }
+
       before do
-        user = create(:user)
         params = { username: user.username, password: user.password }
         post api_v1_auth_login_path, params: params
+      end
+
+      it "resets user login tries count to 0" do
+        user.reload
+        expect(user.login_tries_count).to eq(0)
       end
 
       it "returns 200 status code" do
