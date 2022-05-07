@@ -119,4 +119,12 @@ RSpec.describe User, type: :model do
       expect(user.login_tries_count).to eq(2)
     end
   end
+
+  describe "#reset_login_tries_count!" do
+    it "resets login tries count to 0" do
+      user = create(:user, login_tries_count: 4)
+      user.reset_login_tries_count!
+      expect(user.login_tries_count).to eq(0)
+    end
+  end
 end

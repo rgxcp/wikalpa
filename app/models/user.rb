@@ -44,6 +44,10 @@ class User < ApplicationRecord
     update(login_tries_count: login_tries_count + 1)
   end
 
+  def reset_login_tries_count!
+    update(login_tries_count: 0)
+  end
+
   private
 
   def log_username_history
