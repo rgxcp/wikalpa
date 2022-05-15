@@ -45,27 +45,6 @@ RSpec.describe FeatureToggle, type: :model do
     end
   end
 
-  describe ".off?" do
-    context "when status is 0 (off)" do
-      it "returns true" do
-        feature_toggle = create(:feature_toggle, :off)
-        expect(FeatureToggle.off?(feature_toggle.name)).to be(true)
-      end
-    end
-
-    context "when status is 1 (on)" do
-      it "returns false" do
-        feature_toggle = create(:feature_toggle, :on)
-        expect(FeatureToggle.off?(feature_toggle.name)).to be(false)
-      end
-    end
-
-    it "search the name in case insensitive" do
-      feature_toggle = create(:feature_toggle, :off)
-      expect(FeatureToggle.off?(feature_toggle.name.downcase)).to be(true)
-    end
-  end
-
   describe ".on?" do
     context "when status is 1 (on)" do
       it "returns true" do
@@ -91,7 +70,7 @@ RSpec.describe FeatureToggle, type: :model do
     it "updates the status to 0 (off)" do
       feature_toggle = create(:feature_toggle, :on)
       FeatureToggle.off!(feature_toggle.name)
-      expect(FeatureToggle.off?(feature_toggle.name)).to be(true)
+      expect(FeatureToggle.on?(feature_toggle.name)).to be(false)
     end
   end
 

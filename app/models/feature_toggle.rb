@@ -16,10 +16,6 @@ class FeatureToggle < ApplicationRecord
     self.name = name.strip.upcase if name.present?
   end
 
-  def self.off?(name)
-    find_by(name: name.upcase).off?
-  end
-
   def self.on?(name)
     find_by(name: name.upcase).on?
   end
