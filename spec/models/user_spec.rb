@@ -97,14 +97,14 @@ RSpec.describe User, type: :model do
   end
 
   describe "#allow_login?" do
-    context "login tries count < 6" do
+    context "when login tries count < 6" do
       it "returns true" do
         user = create(:user, login_tries_count: 5)
         expect(user.allow_login?).to be(true)
       end
     end
 
-    context "login tries count > 5" do
+    context "when login tries count > 5" do
       it "returns false" do
         user = create(:user, login_tries_count: 6)
         expect(user.allow_login?).to be(false)
@@ -113,14 +113,14 @@ RSpec.describe User, type: :model do
   end
 
   describe "#enqueue_reset_user_login_tries_count_job?" do
-    context "login tries count != 6" do
+    context "when login tries count != 6" do
       it "returns false" do
         user = create(:user, login_tries_count: 5)
         expect(user.enqueue_reset_user_login_tries_count_job?).to be(false)
       end
     end
 
-    context "login tries count == 6" do
+    context "when login tries count == 6" do
       it "returns true" do
         user = create(:user, login_tries_count: 6)
         expect(user.enqueue_reset_user_login_tries_count_job?).to be(true)
