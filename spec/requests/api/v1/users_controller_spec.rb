@@ -103,13 +103,13 @@ RSpec.describe "Api::V1::UsersController", type: :request do
     end
 
     context "when visiting user while user logged in" do
-      it "enqueues visitor worker job in background" do
+      it "enqueues VisitorWorker job" do
         auth = create(:user)
         user = create(:user)
         token = JsonWebToken.encode({ id: auth.id })
         headers = { Authorization: "Bearer #{token}" }
-        expect(VisitorWorker).to receive(:perform_async).with("User", user.id, auth.id)
         get api_v1_user_path(user), headers: headers
+        expect(VisitorWorker).to have_enqueued_sidekiq_job("User", user.id, auth.id)
       end
     end
   end

@@ -93,13 +93,13 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
     end
 
     context "when visiting collection while user logged in" do
-      it "enqueues visitor worker job in background" do
+      it "enqueues VisitorWorker job" do
         auth = create(:user)
         collection = create(:collection)
         token = JsonWebToken.encode({ id: auth.id })
         headers = { Authorization: "Bearer #{token}" }
-        expect(VisitorWorker).to receive(:perform_async).with("Collection", collection.id, auth.id)
         get api_v1_collection_path(collection), headers: headers
+        expect(VisitorWorker).to have_enqueued_sidekiq_job("Collection", collection.id, auth.id)
       end
     end
   end

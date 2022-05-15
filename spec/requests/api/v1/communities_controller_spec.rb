@@ -93,13 +93,13 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
     end
 
     context "when visiting community while user logged in" do
-      it "enqueues visitor worker job in background" do
+      it "enqueues VisitorWorker job" do
         auth = create(:user)
         community = create(:community)
         token = JsonWebToken.encode({ id: auth.id })
         headers = { Authorization: "Bearer #{token}" }
-        expect(VisitorWorker).to receive(:perform_async).with("Community", community.id, auth.id)
         get api_v1_community_path(community), headers: headers
+        expect(VisitorWorker).to have_enqueued_sidekiq_job("Community", community.id, auth.id)
       end
     end
   end

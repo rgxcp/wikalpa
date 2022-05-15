@@ -278,14 +278,18 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
     end
 
     context "when collection item exists" do
+      let(:user) { create(:user) }
+      let(:collection) { create(:collection, user: user) }
+
       before do
-        user = create(:user)
-        collection = create(:collection, user: user)
         collection_item = create(:collection_item, collection: collection)
         token = JsonWebToken.encode({ id: user.id })
         headers = { Authorization: "Bearer #{token}" }
-        expect(CollectionWorker).to receive(:perform_async).with(collection.id)
         delete api_v1_collection_collection_item_path(collection, collection_item), headers: headers
+      end
+
+      it "enqueues CollectionWorker job" do
+        expect(CollectionWorker).to have_enqueued_sidekiq_job(collection.id)
       end
 
       it "returns 200 status code" do
