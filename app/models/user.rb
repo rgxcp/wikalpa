@@ -41,7 +41,7 @@ class User < ApplicationRecord
   end
 
   def enqueue_reset_user_login_tries_count_job?
-    false
+    login_tries_count == 6
   end
 
   def increment_login_tries_count!
