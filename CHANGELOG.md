@@ -1,3 +1,19 @@
+# [9.0.0](https://github.com/rgxcp/wikalpa/compare/v8.16.0...v9.0.0) (2022-05-15)
+
+
+### Performance Improvements
+
+* remove unused FeatureToggle.off? method ([dae8977](https://github.com/rgxcp/wikalpa/commit/dae8977eb0c234814bda4646e06b03f46ce029b8))
+
+
+### BREAKING CHANGES
+
+* FeatureToggle.off? method will be deprecated starting
+from this version. To check whether an FT is off, either change the
+expectation or use negation.
+
+Signed-off-by: Rommy Gustiawan <rgcppp@gmail.com>
+
 # [8.16.0](https://github.com/rgxcp/wikalpa/compare/v8.15.0...v8.16.0) (2022-05-07)
 
 
