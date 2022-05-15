@@ -90,10 +90,16 @@ RSpec.describe "Api::V1::AuthController", type: :request do
     end
 
     context "when user maximum login tries count reached" do
+      let(:user) { create(:user, login_tries_count: 5) }
+
       before do
-        user = create(:user, login_tries_count: 6)
         params = { username: user.username, password: user.password }
         post api_v1_auth_login_path, params: params
+      end
+
+      it "enqueues ResetUserLoginTriesCountWorker job" do
+        time = 30.minutes.from_now
+        expect(ResetUserLoginTriesCountWorker).to have_enqueued_sidekiq_job(user.id).at(time)
       end
 
       it "returns 429 status code" do
