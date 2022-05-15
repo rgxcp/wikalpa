@@ -112,6 +112,15 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#enqueue_reset_user_login_tries_count_job?" do
+    context "login tries count != 6" do
+      it "returns false" do
+        user = create(:user, login_tries_count: 5)
+        expect(user.enqueue_reset_user_login_tries_count_job?).to be(false)
+      end
+    end
+  end
+
   describe "#increment_login_tries_count!" do
     it "increments login tries count by 1" do
       user = create(:user, login_tries_count: 1)
