@@ -1,3 +1,18 @@
+# [9.1.0](https://github.com/rgxcp/wikalpa/compare/v9.0.0...v9.1.0) (2022-05-15)
+
+
+### Bug Fixes
+
+* enqueues ResetUserLoginTriesCountWorker job when user maximum login tries count reached ([34172bb](https://github.com/rgxcp/wikalpa/commit/34172bbf60149980f1602ad96e550c67498406e8))
+
+
+### Features
+
+* ResetUserLoginTriesCountWorker.perform_async enqueues sidekiq job ([f956444](https://github.com/rgxcp/wikalpa/commit/f956444a250b1063117257511491bad72cb133a3))
+* ResetUserLoginTriesCountWorker#perform resets user login tries count to 0 ([599df2b](https://github.com/rgxcp/wikalpa/commit/599df2b72f4a1a022545f9e7f430149ece6d44db))
+* User#enqueue_reset_user_login_tries_count_job? returns false when login tries count != 6 ([0dc0160](https://github.com/rgxcp/wikalpa/commit/0dc01600023eef283f3aa98829ff02d5a41e3ccb))
+* User#enqueue_reset_user_login_tries_count_job? returns false when login tries count == 6 ([f03586e](https://github.com/rgxcp/wikalpa/commit/f03586ec05fd130ec4ad435cd768f345491734c8))
+
 # [9.0.0](https://github.com/rgxcp/wikalpa/compare/v8.16.0...v9.0.0) (2022-05-15)
 
 
