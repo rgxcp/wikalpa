@@ -7,5 +7,6 @@ RSpec.describe Session, type: :model do
 
   describe "validations" do
     it { is_expected.to validate_presence_of(:user) }
+    it { is_expected.to validate_presence_of(:device) }
   end
 end
