@@ -65,8 +65,6 @@ group :test do
   gem "simplecov", require: false
   # SimpleCov XML formatter
   gem "simplecov-cobertura"
-  # Database adapter for testing
-  gem "sqlite3", "~> 1.4"
 end
 
 group :development, :test do
