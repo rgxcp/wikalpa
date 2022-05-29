@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_07_025958) do
+ActiveRecord::Schema.define(version: 2022_05_29_091644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,15 @@ ActiveRecord::Schema.define(version: 2022_05_07_025958) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "device", limit: 255, null: false
+    t.inet "ip", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
   create_table "upvotes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "upvoteable_type", null: false
@@ -175,6 +184,7 @@ ActiveRecord::Schema.define(version: 2022_05_07_025958) do
   add_foreign_key "posts", "users"
   add_foreign_key "replies", "comments"
   add_foreign_key "replies", "users"
+  add_foreign_key "sessions", "users"
   add_foreign_key "upvotes", "users"
   add_foreign_key "username_histories", "users"
   add_foreign_key "visitors", "users"
