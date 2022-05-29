@@ -31,10 +31,12 @@ jobs:
       - name: Install dependencies
         run: bundle install
       - name: Setup Database
-        run: bin/rails db:create RAILS_ENV=test
+        run: bin/rails db:create
         env:
           POSTGRES_HOST: localhost
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_PORT: 5432
+          RAILS_ENV: test
       - name: Run test
         run: bundle exec rspec
         env:
