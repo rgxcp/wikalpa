@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: bundle install
       - name: Setup Database
-        run: bin/rails db:create
+        run: bin/rails db:create RAILS_ENV=test
       - name: Run test
         run: bundle exec rspec
         env:
