@@ -1,12 +1,12 @@
 require "rails_helper"
 
 RSpec.describe CollectionItem, type: :model do
-  context "relations" do
+  describe "relations" do
     it { is_expected.to belong_to(:collectable) }
     it { is_expected.to belong_to(:collection) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject(:collection_item) { build(:collection_item) }
 
     it { is_expected.to validate_presence_of(:collection) }

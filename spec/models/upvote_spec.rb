@@ -1,12 +1,12 @@
 require "rails_helper"
 
 RSpec.describe Upvote, type: :model do
-  context "relations" do
+  describe "relations" do
     it { is_expected.to belong_to(:upvoteable) }
     it { is_expected.to belong_to(:user) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject(:upvote) { build(:upvote) }
 
     it { is_expected.to validate_presence_of(:user) }
@@ -14,7 +14,7 @@ RSpec.describe Upvote, type: :model do
     it { is_expected.to validate_inclusion_of(:upvoteable_type).in_array(["Collection", "Comment", "Post", "Reply"]) }
   end
 
-  context "callbacks" do
+  describe "callbacks" do
     describe "#before_create" do
       context "when upvoteable is downvoted" do
         it "deletes the downvote first" do

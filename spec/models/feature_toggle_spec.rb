@@ -1,15 +1,15 @@
 require "rails_helper"
 
 RSpec.describe FeatureToggle, type: :model do
-  context "enums" do
+  describe "enums" do
     it { is_expected.to define_enum_for(:status).with_values(off: 0, on: 1) }
   end
 
-  context "relations" do
+  describe "relations" do
     it { is_expected.to belong_to(:user) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject(:feature_toggle) { build(:feature_toggle) }
 
     it { is_expected.to validate_presence_of(:user) }

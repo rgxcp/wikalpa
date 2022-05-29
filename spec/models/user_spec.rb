@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  context "enums" do
+  describe "enums" do
     it { is_expected.to define_enum_for(:role).with_values(regular: 0, admin: 1) }
   end
 
-  context "relations" do
+  describe "relations" do
     it { is_expected.to have_many(:bookmarks) }
     it { is_expected.to have_many(:buddies) }
     it { is_expected.to have_many(:collections) }
@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:visitors) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject(:user) { build(:user) }
 
     it { is_expected.to have_secure_password }
@@ -69,17 +69,17 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context "callbacks" do
+  describe "callbacks" do
     subject(:user) { create(:user) }
 
-    context "after create" do
+    describe "#after_create" do
       it "logs username history" do
         username_history_exists = UsernameHistory.exists?(username: user.username)
         expect(username_history_exists).to be(true)
       end
     end
 
-    context "after update" do
+    describe "#after_update" do
       it "logs username history" do
         new_username = user.username.reverse
         user.update(username: new_username)

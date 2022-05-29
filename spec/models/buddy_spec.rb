@@ -1,12 +1,12 @@
 require "rails_helper"
 
 RSpec.describe Buddy, type: :model do
-  context "relations" do
+  describe "relations" do
     it { is_expected.to belong_to(:buddy).class_name("User") }
     it { is_expected.to belong_to(:user) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject(:buddy) { build(:buddy) }
 
     it { is_expected.to validate_presence_of(:user) }

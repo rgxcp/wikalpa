@@ -1,12 +1,12 @@
 require "rails_helper"
 
 RSpec.describe CommunityMember, type: :model do
-  context "relations" do
+  describe "relations" do
     it { is_expected.to belong_to(:community) }
     it { is_expected.to belong_to(:user) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject(:community_member) { build(:community_member) }
 
     it { is_expected.to validate_presence_of(:community) }

@@ -1,12 +1,12 @@
 require "rails_helper"
 
 RSpec.describe Bookmark, type: :model do
-  context "relations" do
+  describe "relations" do
     it { is_expected.to belong_to(:bookmarkable) }
     it { is_expected.to belong_to(:user) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject(:bookmark) { build(:bookmark) }
 
     it { is_expected.to validate_presence_of(:user) }

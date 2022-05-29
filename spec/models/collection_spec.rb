@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Collection, type: :model do
-  context "relations" do
+  describe "relations" do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:bookmarks) }
     it { is_expected.to have_many(:collection_items) }
@@ -10,11 +10,11 @@ RSpec.describe Collection, type: :model do
     it { is_expected.to have_many(:visitors) }
   end
 
-  context "nested attributes" do
+  describe "macros" do
     it { is_expected.to accept_nested_attributes_for(:collection_items) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject(:collection) { build(:collection) }
 
     it { is_expected.to validate_presence_of(:user) }

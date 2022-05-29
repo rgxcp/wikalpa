@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Community, type: :model do
-  context "relations" do
+  describe "relations" do
     it { is_expected.to have_many(:collection_items) }
     it { is_expected.to have_many(:collections).through(:collection_items) }
     it { is_expected.to have_many(:community_members) }
@@ -9,7 +9,7 @@ RSpec.describe Community, type: :model do
     it { is_expected.to have_many(:visitors) }
   end
 
-  context "validations" do
+  describe "validations" do
     subject(:community) { build(:community) }
 
     it { is_expected.not_to allow_value("! programmer.humor !").for(:name) }
