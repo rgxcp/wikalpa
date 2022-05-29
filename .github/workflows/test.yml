@@ -11,6 +11,7 @@ jobs:
       postgres:
         image: postgres:14.3
         env:
+          POSTGRES_USERNAME: runner
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         options: >-
           --health-cmd pg_isready
@@ -34,6 +35,7 @@ jobs:
         run: bin/rails db:create
         env:
           POSTGRES_HOST: localhost
+          POSTGRES_USERNAME: runner
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_PORT: 5432
           RAILS_ENV: test
