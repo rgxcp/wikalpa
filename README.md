@@ -35,10 +35,9 @@ MAINTAINING
 3. Bundler
 4. PostgreSQL
 5. Redis
-6. SQLite3
-7. Docker (_Optional_)
-8. Docker Compose (_Optional_)
-9. Postman (_Optional_)
+6. Docker (_Optional_)
+7. Docker Compose (_Optional_)
+8. Postman (_Optional_)
 
 ## 🥋 How to
 
@@ -53,15 +52,19 @@ MAINTAINING
    export RAILS_MASTER_KEY=
    export JWT_KEY=
    ```
+3. Install the dependencies.
+   ```
+   $ bundle install
+   ```
+4. Setup the database.
+   ```
+   $ bin/rails db:setup
+   ```
 
 ### 🔬 Run Test Suite
 
 1. Make sure you have [setup the project](#-setup-project).
-2. Install the dependencies.
-   ```
-   $ bundle install
-   ```
-3. Run the test.
+2. Run the test.
    ```
    $ bundle exec rspec
    ```
@@ -69,24 +72,16 @@ MAINTAINING
 ### 🏡 Run App on Local
 
 1. Make sure you have [setup the project](#-setup-project).
-2. Install the dependencies.
-   ```
-   $ bundle install
-   ```
-3. Setup the database.
-   ```
-   $ bin/rails db:setup
-   ```
-4. Run the server.
+2. Run the server.
    ```
    $ bin/rails s
    ```
-5. Run Sidekiq.
+3. Run Sidekiq.
    ```
    $ bundle exec sidekiq
    ```
 
-### 🚢 Run Dockerized App
+### 🚢 Run Dockerized App (⚠️ NOT TESTED ⚠️)
 
 1. Download the `docker-compose.yml` file and place it somewhere else.
 2. Configure the required environment variables in it.
