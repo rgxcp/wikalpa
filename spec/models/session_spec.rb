@@ -9,5 +9,6 @@ RSpec.describe Session, type: :model do
     it { is_expected.to validate_presence_of(:user) }
     it { is_expected.to validate_length_of(:device).is_at_most(255) }
     it { is_expected.to validate_presence_of(:device) }
+    it { is_expected.to validate_presence_of(:ip) }
   end
 end
