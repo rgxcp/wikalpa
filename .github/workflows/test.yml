@@ -10,6 +10,8 @@ jobs:
     services:
       postgres:
         image: postgres:14.3
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
