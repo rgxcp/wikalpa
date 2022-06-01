@@ -43,6 +43,7 @@ jobs:
         run: bundle exec rspec
         env:
           JWT_KEY: ${{ secrets.JWT_KEY }}
+          RAILS_ENV: test
       - name: Upload coverage report result to Codecov
         uses: codecov/codecov-action@v2
         with:
