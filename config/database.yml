@@ -58,8 +58,9 @@ development:
 test:
   <<: *default
   database: wikalpa_test
+  host: <%= ENV['POSTGRES_HOST'] %>
+  port: <%= ENV['POSTGRES_PORT'] %>
   username: <%= ENV['POSTGRES_USERNAME'] %>
-  host: localhost
   password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,

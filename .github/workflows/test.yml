@@ -11,7 +11,7 @@ jobs:
       postgres:
         image: postgres:14.3
         env:
-          POSTGRES_USERNAME: runner
+          POSTGRES_USERNAME: postgres
           POSTGRES_PASSWORD: postgres
         options: >-
           --health-cmd pg_isready
@@ -31,13 +31,13 @@ jobs:
         run: bundle config set without development
       - name: Install dependencies
         run: bundle install
-      - name: Setup Database
+      - name: Setup database
         run: bin/rails db:create
         env:
           POSTGRES_HOST: localhost
-          POSTGRES_USERNAME: runner
-          POSTGRES_PASSWORD: postgres
           POSTGRES_PORT: 5432
+          POSTGRES_USERNAME: postgres
+          POSTGRES_PASSWORD: postgres
           RAILS_ENV: test
       - name: Run test
         run: bundle exec rspec
