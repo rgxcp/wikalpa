@@ -1,3 +1,19 @@
+# [9.2.0](https://github.com/rgxcp/wikalpa/compare/v9.1.0...v9.2.0) (2022-06-01)
+
+
+### Bug Fixes
+
+* sending wrong object when calling api_v1_comment_replies_path ([faa6084](https://github.com/rgxcp/wikalpa/commit/faa6084bc8f49d965fa4260e820a775417826c65))
+
+
+### Features
+
+* add belongs to user association on session ([c35d5f9](https://github.com/rgxcp/wikalpa/commit/c35d5f9b8f5e74683f9fdb5b1f5dac13c36e36e7))
+* validate length of device is at most 255 on session ([dae82d3](https://github.com/rgxcp/wikalpa/commit/dae82d309ced8681570ae4a8d8c83f9c77f1ee70))
+* validate presence of device on session ([9ca9bad](https://github.com/rgxcp/wikalpa/commit/9ca9badd651f0c8bae3e90d0e2d60d44ae4346a7))
+* validate presence of ip on session ([02e4032](https://github.com/rgxcp/wikalpa/commit/02e4032bbb1766dae07d3f32ce2e609f81dd9784))
+* validate presence of user on session ([732f674](https://github.com/rgxcp/wikalpa/commit/732f6746f28e2348c9109742c8ab95030a6ec62c))
+
 # [9.1.0](https://github.com/rgxcp/wikalpa/compare/v9.0.0...v9.1.0) (2022-05-15)
 
 
