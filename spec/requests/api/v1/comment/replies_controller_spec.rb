@@ -48,7 +48,7 @@ RSpec.describe "Api::V1::Comment::RepliesController", type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         create(:reply, comment: comment, user: user)
-        get api_v1_comment_replies_path(post)
+        get api_v1_comment_replies_path(comment)
       end
 
       it "returns 200 status code" do
