@@ -6,13 +6,17 @@ RUN mkdir /app
 
 WORKDIR /app
 
-COPY . .
+COPY Gemfile .
+
+COPY Gemfile.lock .
 
 RUN gem install bundler:2.2.33 --no-document
 
 RUN bundle config set without development test
 
 RUN bundle install
+
+COPY . .
 
 EXPOSE 3000
 
