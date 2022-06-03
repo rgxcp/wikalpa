@@ -1,3 +1,16 @@
+# [9.3.0](https://github.com/rgxcp/wikalpa/compare/v9.2.0...v9.3.0) (2022-06-03)
+
+
+### Features
+
+* POST /auth/login stores user session when entity valid ([b047718](https://github.com/rgxcp/wikalpa/commit/b0477184c77497b6c3c0ce15fc8dcc9811b5d0e0))
+* POST /auth/register stores user session when entity valid ([f59ee2b](https://github.com/rgxcp/wikalpa/commit/f59ee2b63ba90161c7046fdc5740b13591ae1837))
+
+
+### Performance Improvements
+
+* only install gems when there are new gems in Gemfile ([5f6fac1](https://github.com/rgxcp/wikalpa/commit/5f6fac12701b320985b7e22e7702c792b92402f9))
+
 # [9.2.0](https://github.com/rgxcp/wikalpa/compare/v9.1.0...v9.2.0) (2022-06-01)
 
 
