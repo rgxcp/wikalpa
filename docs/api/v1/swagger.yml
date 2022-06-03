@@ -35,6 +35,15 @@ paths:
                     password_confirmation:
                       type: string
                       example: super-strong-password
+                session:
+                  type: object
+                  properties:
+                    device:
+                      type: string
+                      example: Nokia 3310
+                    ip:
+                      type: string
+                      example: 127.0.0.1
       responses:
         "201":
           description: Created
@@ -80,6 +89,15 @@ paths:
                 password:
                   type: string
                   example: super-strong-password
+                session:
+                  type: object
+                  properties:
+                    device:
+                      type: string
+                      example: Nokia 3310
+                    ip:
+                      type: string
+                      example: 127.0.0.1
       responses:
         "200":
           description: OK
