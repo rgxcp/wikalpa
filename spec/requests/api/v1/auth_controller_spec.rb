@@ -32,7 +32,8 @@ RSpec.describe "Api::V1::AuthController", type: :request do
     context "when entity valid" do
       before do
         user = attributes_for(:user)
-        params = { user: user }
+        session = attributes_for(:session)
+        params = { user: user, session: session }
         post api_v1_auth_register_path, params: params
       end
 
@@ -63,6 +64,12 @@ RSpec.describe "Api::V1::AuthController", type: :request do
       it "generates token data" do
         result = JSON.parse(response.body)
         expect(result["data"]["token"]).not_to be_empty
+      end
+
+      it "stores user session" do
+        result = JSON.parse(response.body)
+        user_id = result["data"]["user"]["id"]
+        expect(Session.exists?(user_id: user_id)).to be(true)
       end
     end
   end

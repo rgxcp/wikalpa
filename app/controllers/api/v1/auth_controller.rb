@@ -3,6 +3,7 @@ class Api::V1::AuthController < ApplicationController
     user = User.new(user_params)
 
     if user.save
+      Session.create(session_params(user.id))
       token = JsonWebToken.encode({ id: user.id })
       created_response(data: { user: user, token: token }, except: :password_digest)
     else
@@ -33,5 +34,10 @@ class Api::V1::AuthController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation)
+  end
+
+  def session_params(user_id)
+    params[:session][:user_id] = user_id
+    params.require(:session).permit(:user_id, :device, :ip)
   end
 end
