@@ -23,8 +23,8 @@ class Api::V1::AuthController < ApplicationController
 
     if user.authenticate(params[:password])
       user.reset_login_tries_count!
-      Session.create(session_params(user.id))
-      token = JsonWebToken.encode({ user_id: user.id })
+      session_id = Session.create(session_params(user.id)).id
+      token = JsonWebToken.encode({ user_id: user.id, session_id: session_id })
       ok_response(data: { user: user, token: token }, except: :password_digest)
     else
       unauthorized_response

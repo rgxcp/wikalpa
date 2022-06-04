@@ -206,6 +206,12 @@ RSpec.describe "Api::V1::AuthController", type: :request do
         user_id = result["data"]["user"]["id"]
         expect(Session.exists?(user_id: user_id)).to be(true)
       end
+
+      it "stores user session_id in given token" do
+        result = JSON.parse(response.body)
+        token = result["data"]["token"]
+        expect(JsonWebToken.decode(token).first["session_id"]).to be_present
+      end
     end
   end
 end
