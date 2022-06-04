@@ -3,8 +3,8 @@ class Api::V1::AuthController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      Session.create(session_params(user.id))
-      token = JsonWebToken.encode({ user_id: user.id })
+      session_id = Session.create(session_params(user.id)).id
+      token = JsonWebToken.encode({ user_id: user.id, session_id: session_id })
       created_response(data: { user: user, token: token }, except: :password_digest)
     else
       unprocessable_entity_response(errors: user.errors.messages)
