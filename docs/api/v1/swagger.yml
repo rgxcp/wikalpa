@@ -2001,6 +2001,38 @@ paths:
                           $ref: "#/components/schemas/Reply"
         "404":
           $ref: "#/components/responses/NotFound"
+  /users/{user_id}/sessions:
+    get:
+      tags:
+        - User Session
+      summary: Retrieve all user sessions.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      sessions:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Session"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /users/{user_id}/upvotes:
     get:
       tags:
@@ -2773,6 +2805,8 @@ tags:
     description: Endpoints related for user post resources.
   - name: User Reply
     description: Endpoints related for user reply resources.
+  - name: User Session
+    description: Endpoints related for user session resources.
   - name: User Upvote
     description: Endpoints related for user upvote resources.
   - name: User Username History
@@ -3099,6 +3133,27 @@ components:
         is_spoiler:
           type: boolean
           example: true
+        created_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+        updated_at:
+          type: string
+          example: "2021-12-12 12:12:12"
+    Session:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        device:
+          type: string
+          example: Nokia 3310
+        ip:
+          type: string
+          example: 127.0.0.1
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
