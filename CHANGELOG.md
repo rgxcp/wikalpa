@@ -1,3 +1,13 @@
+# [9.5.0](https://github.com/rgxcp/wikalpa/compare/v9.4.0...v9.5.0) (2022-06-04)
+
+
+### Features
+
+* add status enum on session ([f82cb29](https://github.com/rgxcp/wikalpa/commit/f82cb298dc904f7078596e77be4d39eb56d666a4))
+* POST /auth/login stores user session_id in given token when password valid ([206cf31](https://github.com/rgxcp/wikalpa/commit/206cf319cbd45a0c2743688cdbda0c907d48fc6d))
+* POST /auth/register stores user session_id in given token when entity valid ([b976f55](https://github.com/rgxcp/wikalpa/commit/b976f55919493eb99809e7157a6294b6a7b401b9))
+* validate inclusion of is_expired on session ([655af6a](https://github.com/rgxcp/wikalpa/commit/655af6aba2cc14b01e462036190c95aa0c6237d8))
+
 # [9.4.0](https://github.com/rgxcp/wikalpa/compare/v9.3.0...v9.4.0) (2022-06-04)
 
 
