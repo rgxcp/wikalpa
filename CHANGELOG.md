@@ -1,3 +1,13 @@
+# [9.4.0](https://github.com/rgxcp/wikalpa/compare/v9.3.0...v9.4.0) (2022-06-04)
+
+
+### Features
+
+* add has many sessions relation on user ([a2557d1](https://github.com/rgxcp/wikalpa/commit/a2557d184b58283ae1168cef5eeaf719952e7c3a))
+* GET /users/:id/sessions returns forbidden response when viewing someone else sessions ([2325d28](https://github.com/rgxcp/wikalpa/commit/2325d2829281724b080c99575092db7e3ae1568b))
+* GET /users/:id/sessions returns ok response when sessions exist ([2744346](https://github.com/rgxcp/wikalpa/commit/27443469c804957fe6b145bfb8422f31e9d375c6))
+* GET /users/:id/sessions returns unauthorized response when user not logged in ([8db5e8b](https://github.com/rgxcp/wikalpa/commit/8db5e8b30f6216b54f828d28df9a487ab68ead5b))
+
 # [9.3.0](https://github.com/rgxcp/wikalpa/compare/v9.2.0...v9.3.0) (2022-06-03)
 
 
