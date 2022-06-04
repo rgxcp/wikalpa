@@ -58,7 +58,7 @@ MAINTAINING
    ```
 4. Setup the database.
    ```
-   $ bin/rails db:setup
+   $ bin/setup_databases.sh
    ```
 
 ### 🔬 Run Test Suite
