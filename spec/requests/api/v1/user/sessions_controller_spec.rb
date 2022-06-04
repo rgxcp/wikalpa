@@ -43,5 +43,34 @@ RSpec.describe "Api::V1::User::SessionsController", type: :request do
         expect(result["message"]).to eq("Forbidden")
       end
     end
+
+    context "when sessions exist" do
+      before do
+        user = create(:user)
+        create(:session, user: user)
+        token = JsonWebToken.encode({ id: user.id })
+        headers = { Authorization: "Bearer #{token}" }
+        get api_v1_user_sessions_path(user), headers: headers
+      end
+
+      it "returns 200 status code" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns true success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(true)
+      end
+
+      it "returns ok message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("OK")
+      end
+
+      it "returns sessions data" do
+        result = JSON.parse(response.body)
+        expect(result["data"]["sessions"]).not_to be_empty
+      end
+    end
   end
 end
