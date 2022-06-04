@@ -23,7 +23,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
     context "when feature toggles not exist" do
       before do
         admin = create(:user, :admin)
-        token = JsonWebToken.encode({ id: admin.id })
+        token = JsonWebToken.encode({ user_id: admin.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_admin_feature_toggles_path, headers: headers
       end
@@ -47,7 +47,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
       before do
         admin = create(:user, :admin)
         create(:feature_toggle, user: admin)
-        token = JsonWebToken.encode({ id: admin.id })
+        token = JsonWebToken.encode({ user_id: admin.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_admin_feature_toggles_path, headers: headers
       end
@@ -95,7 +95,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
     context "when feature toggle not exists" do
       before do
         admin = create(:user, :admin)
-        token = JsonWebToken.encode({ id: admin.id })
+        token = JsonWebToken.encode({ user_id: admin.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_admin_feature_toggle_path(0), headers: headers
       end
@@ -119,7 +119,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
       before do
         admin = create(:user, :admin)
         feature_toggle = create(:feature_toggle, user: admin)
-        token = JsonWebToken.encode({ id: admin.id })
+        token = JsonWebToken.encode({ user_id: admin.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_admin_feature_toggle_path(feature_toggle), headers: headers
       end
@@ -168,7 +168,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
       before do
         admin = create(:user, :admin)
         feature_toggle = attributes_for(:feature_toggle, :invalid)
-        token = JsonWebToken.encode({ id: admin.id })
+        token = JsonWebToken.encode({ user_id: admin.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { feature_toggle: feature_toggle }
         post api_v1_admin_feature_toggles_path, headers: headers, params: params
@@ -198,7 +198,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
       before do
         admin = create(:user, :admin)
         feature_toggle = attributes_for(:feature_toggle)
-        token = JsonWebToken.encode({ id: admin.id })
+        token = JsonWebToken.encode({ user_id: admin.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { feature_toggle: feature_toggle }
         post api_v1_admin_feature_toggles_path, headers: headers, params: params
@@ -247,7 +247,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
     context "when feature toggle not exists" do
       before do
         admin = create(:user, :admin)
-        token = JsonWebToken.encode({ id: admin.id })
+        token = JsonWebToken.encode({ user_id: admin.id })
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_admin_feature_toggle_path(0), headers: headers
       end
@@ -272,7 +272,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
         admin = create(:user, :admin)
         feature_toggle = create(:feature_toggle, user: admin)
         entity = attributes_for(:feature_toggle, :invalid)
-        token = JsonWebToken.encode({ id: admin.id })
+        token = JsonWebToken.encode({ user_id: admin.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { feature_toggle: entity }
         patch api_v1_admin_feature_toggle_path(feature_toggle), headers: headers, params: params
@@ -303,7 +303,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
         admin = create(:user, :admin)
         feature_toggle = create(:feature_toggle, user: admin, status: :off)
         entity = { status: :on }
-        token = JsonWebToken.encode({ id: admin.id })
+        token = JsonWebToken.encode({ user_id: admin.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { feature_toggle: entity }
         patch api_v1_admin_feature_toggle_path(feature_toggle), headers: headers, params: params

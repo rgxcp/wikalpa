@@ -92,7 +92,7 @@ RSpec.describe "Api::V1::Collection::UpvotesController", type: :request do
     context "when collection not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_collection_upvotes_path(0), headers: headers
       end
@@ -117,7 +117,7 @@ RSpec.describe "Api::V1::Collection::UpvotesController", type: :request do
         user = create(:user)
         collection = create(:collection, user: user)
         create(:upvote, user: user, upvoteable: collection)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_collection_upvotes_path(collection), headers: headers
       end
@@ -146,7 +146,7 @@ RSpec.describe "Api::V1::Collection::UpvotesController", type: :request do
       before do
         user = create(:user)
         collection = create(:collection, user: user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_collection_upvotes_path(collection), headers: headers
       end

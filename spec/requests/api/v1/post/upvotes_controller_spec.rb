@@ -93,7 +93,7 @@ RSpec.describe "Api::V1::Post::UpvotesController", type: :request do
     context "when post not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_post_upvotes_path(0), headers: headers
       end
@@ -119,7 +119,7 @@ RSpec.describe "Api::V1::Post::UpvotesController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         create(:upvote, user: user, upvoteable: post)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_post_upvotes_path(post), headers: headers
       end
@@ -149,7 +149,7 @@ RSpec.describe "Api::V1::Post::UpvotesController", type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_post_upvotes_path(post), headers: headers
       end

@@ -23,7 +23,7 @@ RSpec.describe "Api::V1::DownvotesController", type: :request do
     context "when downvote not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_downvote_path(0), headers: headers
       end
@@ -50,7 +50,7 @@ RSpec.describe "Api::V1::DownvotesController", type: :request do
         user2 = create(:user)
         post = create(:post, community: community, user: user1)
         downvote = create(:downvote, user: user2, downvoteable: post)
-        token = JsonWebToken.encode({ id: user1.id })
+        token = JsonWebToken.encode({ user_id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_downvote_path(downvote), headers: headers
       end
@@ -76,7 +76,7 @@ RSpec.describe "Api::V1::DownvotesController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         downvote = create(:downvote, user: user, downvoteable: post)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_downvote_path(downvote), headers: headers
       end

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
 
   def parse_auth_id
     token = request.headers.fetch("Authorization", "").split.last
-    @auth_id = JsonWebToken.decode(token).first["id"]
+    @auth_id = JsonWebToken.decode(token).first["user_id"]
   rescue JWT::DecodeError
     nil
   end

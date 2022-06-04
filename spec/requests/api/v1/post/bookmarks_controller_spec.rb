@@ -23,7 +23,7 @@ RSpec.describe "Api::V1::Post::BookmarksController", type: :request do
     context "when post not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_post_bookmarks_path(0), headers: headers
       end
@@ -49,7 +49,7 @@ RSpec.describe "Api::V1::Post::BookmarksController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         create(:bookmark, user: user, bookmarkable: post)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_post_bookmarks_path(post), headers: headers
       end
@@ -79,7 +79,7 @@ RSpec.describe "Api::V1::Post::BookmarksController", type: :request do
         community = create(:community)
         user = create(:user)
         post = create(:post, community: community, user: user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_post_bookmarks_path(post), headers: headers
       end

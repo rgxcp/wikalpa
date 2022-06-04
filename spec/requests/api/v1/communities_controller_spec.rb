@@ -96,7 +96,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
       it "enqueues VisitorWorker job" do
         auth = create(:user)
         community = create(:community)
-        token = JsonWebToken.encode({ id: auth.id })
+        token = JsonWebToken.encode({ user_id: auth.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_community_path(community), headers: headers
         expect(VisitorWorker).to have_enqueued_sidekiq_job("Community", community.id, auth.id)
@@ -127,7 +127,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
       before do
         user = create(:user)
         community = attributes_for(:community, :invalid)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { community: community }
         post api_v1_communities_path, headers: headers, params: params
@@ -157,7 +157,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
       before do
         user = create(:user)
         community = attributes_for(:community)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { community: community }
         post api_v1_communities_path, headers: headers, params: params
@@ -212,7 +212,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
     context "when community not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_community_path(0), headers: headers
       end
@@ -236,7 +236,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_community_path(community), headers: headers
       end
@@ -262,7 +262,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
         user = create(:user)
         create(:community_member, community: community, user: user)
         entity = attributes_for(:community, :invalid)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { community: entity }
         patch api_v1_community_path(community), headers: headers, params: params
@@ -294,7 +294,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
         user = create(:user)
         create(:community_member, community: community, user: user)
         entity = attributes_for(:community)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { community: entity }
         patch api_v1_community_path(community), headers: headers, params: params

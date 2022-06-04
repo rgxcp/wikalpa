@@ -23,7 +23,7 @@ RSpec.describe "Api::V1::BuddiesController", type: :request do
     context "when user not a buddy" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_buddy_path(0), headers: headers
       end
@@ -49,7 +49,7 @@ RSpec.describe "Api::V1::BuddiesController", type: :request do
         user2 = create(:user)
         user3 = create(:user)
         buddy = create(:buddy, user: user3, buddy: user2)
-        token = JsonWebToken.encode({ id: user1.id })
+        token = JsonWebToken.encode({ user_id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_buddy_path(buddy), headers: headers
       end
@@ -74,7 +74,7 @@ RSpec.describe "Api::V1::BuddiesController", type: :request do
         user1 = create(:user)
         user2 = create(:user)
         buddy = create(:buddy, user: user1, buddy: user2)
-        token = JsonWebToken.encode({ id: user1.id })
+        token = JsonWebToken.encode({ user_id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_buddy_path(buddy), headers: headers
       end

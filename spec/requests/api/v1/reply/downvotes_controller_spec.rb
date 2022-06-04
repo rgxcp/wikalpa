@@ -23,7 +23,7 @@ RSpec.describe "Api::V1::Reply::DownvotesController", type: :request do
     context "when reply not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_reply_downvotes_path(0), headers: headers
       end
@@ -51,7 +51,7 @@ RSpec.describe "Api::V1::Reply::DownvotesController", type: :request do
         comment = create(:comment, post: post, user: user)
         reply = create(:reply, comment: comment, user: user)
         create(:downvote, user: user, downvoteable: reply)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_reply_downvotes_path(reply), headers: headers
       end
@@ -83,7 +83,7 @@ RSpec.describe "Api::V1::Reply::DownvotesController", type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         reply = create(:reply, comment: comment, user: user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_reply_downvotes_path(reply), headers: headers
       end

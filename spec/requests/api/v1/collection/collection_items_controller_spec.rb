@@ -69,7 +69,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
     context "when collection not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_collection_collection_items_path(0), headers: headers
       end
@@ -94,7 +94,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
         user1 = create(:user)
         user2 = create(:user)
         collection = create(:collection, user: user2)
-        token = JsonWebToken.encode({ id: user1.id })
+        token = JsonWebToken.encode({ user_id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_collection_collection_items_path(collection), headers: headers
       end
@@ -118,7 +118,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
       before do
         user = create(:user)
         collection = create(:collection, user: user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = {
           collection_item: {
@@ -154,7 +154,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
         user = create(:user)
         collection = create(:collection, user: user)
         community = create(:community)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = {
           collection_item: {
@@ -208,7 +208,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
     context "when collection not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_collection_collection_item_path(0, 1), headers: headers
       end
@@ -233,7 +233,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
         user1 = create(:user)
         user2 = create(:user)
         collection = create(:collection, user: user2)
-        token = JsonWebToken.encode({ id: user1.id })
+        token = JsonWebToken.encode({ user_id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_collection_collection_item_path(collection, 1), headers: headers
       end
@@ -257,7 +257,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
       before do
         user = create(:user)
         collection = create(:collection, user: user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_collection_collection_item_path(collection, 0), headers: headers
       end
@@ -283,7 +283,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
 
       before do
         collection_item = create(:collection_item, collection: collection)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_collection_collection_item_path(collection, collection_item), headers: headers
       end

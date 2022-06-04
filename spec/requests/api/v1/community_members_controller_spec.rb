@@ -23,7 +23,7 @@ RSpec.describe "Api::V1::CommunityMembersController", type: :request do
     context "when user not a community member" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_community_member_path(0), headers: headers
       end
@@ -49,7 +49,7 @@ RSpec.describe "Api::V1::CommunityMembersController", type: :request do
         user1 = create(:user)
         user2 = create(:user)
         community_member = create(:community_member, community: community, user: user2)
-        token = JsonWebToken.encode({ id: user1.id })
+        token = JsonWebToken.encode({ user_id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_community_member_path(community_member), headers: headers
       end
@@ -74,7 +74,7 @@ RSpec.describe "Api::V1::CommunityMembersController", type: :request do
         community = create(:community)
         user = create(:user)
         community_member = create(:community_member, community: community, user: user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         delete api_v1_community_member_path(community_member), headers: headers
       end

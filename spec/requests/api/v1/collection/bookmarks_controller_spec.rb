@@ -23,7 +23,7 @@ RSpec.describe "Api::V1::Collection::BookmarksController", type: :request do
     context "when collection not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_collection_bookmarks_path(0), headers: headers
       end
@@ -48,7 +48,7 @@ RSpec.describe "Api::V1::Collection::BookmarksController", type: :request do
         user = create(:user)
         collection = create(:collection, user: user)
         create(:bookmark, user: user, bookmarkable: collection)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_collection_bookmarks_path(collection), headers: headers
       end
@@ -77,7 +77,7 @@ RSpec.describe "Api::V1::Collection::BookmarksController", type: :request do
       before do
         user = create(:user)
         collection = create(:collection, user: user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_collection_bookmarks_path(collection), headers: headers
       end

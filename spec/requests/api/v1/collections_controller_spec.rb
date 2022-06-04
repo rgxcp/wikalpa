@@ -96,7 +96,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
       it "enqueues VisitorWorker job" do
         auth = create(:user)
         collection = create(:collection)
-        token = JsonWebToken.encode({ id: auth.id })
+        token = JsonWebToken.encode({ user_id: auth.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_collection_path(collection), headers: headers
         expect(VisitorWorker).to have_enqueued_sidekiq_job("Collection", collection.id, auth.id)
@@ -127,7 +127,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
       before do
         user = create(:user)
         collection = attributes_for(:collection, :invalid)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { collection: collection }
         post api_v1_collections_path, headers: headers, params: params
@@ -161,7 +161,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
           collectable_type: "Community",
           collectable_id: community.id
         }])
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { collection: collection }
         post api_v1_collections_path, headers: headers, params: params
@@ -210,7 +210,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
     context "when collection not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_collection_path(0), headers: headers
       end
@@ -236,7 +236,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
         user2 = create(:user)
         community = create(:community)
         collection = create(:collection, user: user2, collection_items_attributes: [{ collectable: community }])
-        token = JsonWebToken.encode({ id: user1.id })
+        token = JsonWebToken.encode({ user_id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_collection_path(collection), headers: headers
       end
@@ -262,7 +262,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
         community = create(:community)
         collection = create(:collection, user: user, collection_items_attributes: [{ collectable: community }])
         entity = attributes_for(:collection, :invalid)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { collection: entity }
         patch api_v1_collection_path(collection), headers: headers, params: params
@@ -294,7 +294,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
         community = create(:community)
         collection = create(:collection, user: user, collection_items_attributes: [{ collectable: community }])
         entity = attributes_for(:collection)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { collection: entity }
         patch api_v1_collection_path(collection), headers: headers, params: params

@@ -23,7 +23,7 @@ RSpec.describe "Api::V1::User::VisitorsController", type: :request do
     context "when user not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_visitors_path(0), headers: headers
       end
@@ -47,7 +47,7 @@ RSpec.describe "Api::V1::User::VisitorsController", type: :request do
       before do
         user1 = create(:user)
         user2 = create(:user)
-        token = JsonWebToken.encode({ id: user2.id })
+        token = JsonWebToken.encode({ user_id: user2.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_visitors_path(user1), headers: headers
       end
@@ -70,7 +70,7 @@ RSpec.describe "Api::V1::User::VisitorsController", type: :request do
     context "when visitors not exist" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_visitors_path(user), headers: headers
       end
@@ -94,7 +94,7 @@ RSpec.describe "Api::V1::User::VisitorsController", type: :request do
       before do
         user = create(:user)
         create(:visitor, user: user, visitable: user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_visitors_path(user), headers: headers
       end

@@ -69,7 +69,7 @@ RSpec.describe "Api::V1::RepliesController", type: :request do
     context "when reply not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_reply_path(0), headers: headers
       end
@@ -97,7 +97,7 @@ RSpec.describe "Api::V1::RepliesController", type: :request do
         post = create(:post, community: community, user: user1)
         comment = create(:comment, post: post, user: user1)
         reply = create(:reply, comment: comment, user: user2)
-        token = JsonWebToken.encode({ id: user1.id })
+        token = JsonWebToken.encode({ user_id: user1.id })
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_reply_path(reply), headers: headers
       end
@@ -125,7 +125,7 @@ RSpec.describe "Api::V1::RepliesController", type: :request do
         comment = create(:comment, post: post, user: user)
         reply = create(:reply, comment: comment, user: user)
         entity = attributes_for(:reply, :invalid)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { reply: entity }
         patch api_v1_reply_path(reply), headers: headers, params: params
@@ -159,7 +159,7 @@ RSpec.describe "Api::V1::RepliesController", type: :request do
         comment = create(:comment, post: post, user: user)
         reply = create(:reply, comment: comment, user: user)
         entity = attributes_for(:reply)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { reply: entity }
         patch api_v1_reply_path(reply), headers: headers, params: params
@@ -193,7 +193,7 @@ RSpec.describe "Api::V1::RepliesController", type: :request do
         comment = create(:comment, post: post, user: user)
         reply = create(:reply, comment: comment, user: user)
         entity = attributes_for(:reply, :spoiler)
-        token = JsonWebToken.encode({ id: user.id })
+        token = JsonWebToken.encode({ user_id: user.id })
         headers = { Authorization: "Bearer #{token}" }
         params = { reply: entity }
         patch api_v1_reply_path(reply), headers: headers, params: params

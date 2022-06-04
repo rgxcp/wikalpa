@@ -4,7 +4,7 @@ class Api::V1::AuthController < ApplicationController
 
     if user.save
       Session.create(session_params(user.id))
-      token = JsonWebToken.encode({ id: user.id })
+      token = JsonWebToken.encode({ user_id: user.id })
       created_response(data: { user: user, token: token }, except: :password_digest)
     else
       unprocessable_entity_response(errors: user.errors.messages)
@@ -24,7 +24,7 @@ class Api::V1::AuthController < ApplicationController
     if user.authenticate(params[:password])
       user.reset_login_tries_count!
       Session.create(session_params(user.id))
-      token = JsonWebToken.encode({ id: user.id })
+      token = JsonWebToken.encode({ user_id: user.id })
       ok_response(data: { user: user, token: token }, except: :password_digest)
     else
       unauthorized_response
