@@ -65,7 +65,7 @@ RSpec.describe "Api::V1::User::PostsController", type: :request do
 
       it "returns posts data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["posts"]).not_to be_empty
+        expect(result["data"]["posts"]).to be_present
       end
     end
   end

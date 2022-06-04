@@ -100,7 +100,7 @@ RSpec.describe "Api::V1::Post::BookmarksController", type: :request do
 
       it "returns bookmark data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["bookmark"]).not_to be_empty
+        expect(result["data"]["bookmark"]).to be_present
       end
 
       it "returns post as the bookmarkable type" do

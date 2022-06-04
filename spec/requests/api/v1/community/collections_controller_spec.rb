@@ -64,7 +64,7 @@ RSpec.describe "Api::V1::Community::CollectionsController", type: :request do
 
       it "returns collections data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["collections"]).not_to be_empty
+        expect(result["data"]["collections"]).to be_present
       end
     end
   end

@@ -42,7 +42,7 @@ RSpec.describe "Api::V1::User::UsernameHistoriesController", type: :request do
 
       it "returns username histories data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["username_histories"]).not_to be_empty
+        expect(result["data"]["username_histories"]).to be_present
       end
     end
   end

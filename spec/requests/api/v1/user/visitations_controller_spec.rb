@@ -93,7 +93,7 @@ RSpec.describe "Api::V1::User::VisitationsController", type: :request do
 
       it "returns visitations data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["visitations"]).not_to be_empty
+        expect(result["data"]["visitations"]).to be_present
       end
     end
   end

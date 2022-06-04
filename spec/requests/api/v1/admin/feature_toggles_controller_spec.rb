@@ -68,7 +68,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
 
       it "returns feature toggles data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["feature_toggles"]).not_to be_empty
+        expect(result["data"]["feature_toggles"]).to be_present
       end
     end
   end
@@ -140,7 +140,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
 
       it "returns feature toggle data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["feature_toggle"]).not_to be_empty
+        expect(result["data"]["feature_toggle"]).to be_present
       end
     end
   end
@@ -220,7 +220,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
 
       it "returns feature toggle data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["feature_toggle"]).not_to be_empty
+        expect(result["data"]["feature_toggle"]).to be_present
       end
     end
   end
@@ -325,7 +325,7 @@ RSpec.describe "Api::V1::Admin::FeatureTogglesController", type: :request do
 
       it "returns feature toggle data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["feature_toggle"]).not_to be_empty
+        expect(result["data"]["feature_toggle"]).to be_present
       end
     end
   end

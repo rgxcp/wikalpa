@@ -95,7 +95,7 @@ RSpec.describe "Api::V1::BuddiesController", type: :request do
 
       it "returns buddy data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["buddy"]).not_to be_empty
+        expect(result["data"]["buddy"]).to be_present
       end
     end
   end

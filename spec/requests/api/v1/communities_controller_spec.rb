@@ -42,7 +42,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
 
       it "returns communities data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["communities"]).not_to be_empty
+        expect(result["data"]["communities"]).to be_present
       end
     end
   end
@@ -88,7 +88,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
 
       it "returns community data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["community"]).not_to be_empty
+        expect(result["data"]["community"]).to be_present
       end
     end
 
@@ -179,7 +179,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
 
       it "returns community data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["community"]).not_to be_empty
+        expect(result["data"]["community"]).to be_present
       end
 
       it "adds auth user into community member" do
@@ -316,7 +316,7 @@ RSpec.describe "Api::V1::CommunitiesController", type: :request do
 
       it "returns community data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["community"]).not_to be_empty
+        expect(result["data"]["community"]).to be_present
       end
     end
   end

@@ -65,7 +65,7 @@ RSpec.describe "Api::V1::Community::VisitorsController", type: :request do
 
       it "returns visitors data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["visitors"]).not_to be_empty
+        expect(result["data"]["visitors"]).to be_present
       end
     end
   end

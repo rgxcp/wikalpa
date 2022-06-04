@@ -42,7 +42,7 @@ RSpec.describe "Api::V1::UsersController", type: :request do
 
       it "returns users data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["users"]).not_to be_empty
+        expect(result["data"]["users"]).to be_present
       end
 
       it "excludes password digest on users data" do
@@ -93,7 +93,7 @@ RSpec.describe "Api::V1::UsersController", type: :request do
 
       it "returns user data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["user"]).not_to be_empty
+        expect(result["data"]["user"]).to be_present
       end
 
       it "excludes password digest on user data" do
@@ -217,7 +217,7 @@ RSpec.describe "Api::V1::UsersController", type: :request do
 
       it "returns user data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["user"]).not_to be_empty
+        expect(result["data"]["user"]).to be_present
       end
 
       it "excludes password digest on user data" do

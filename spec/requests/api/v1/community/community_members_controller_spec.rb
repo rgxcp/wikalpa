@@ -65,7 +65,7 @@ RSpec.describe "Api::V1::Community::CommunityMembersController", type: :request 
 
       it "returns community members data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["community_members"]).not_to be_empty
+        expect(result["data"]["community_members"]).to be_present
       end
     end
   end
@@ -167,7 +167,7 @@ RSpec.describe "Api::V1::Community::CommunityMembersController", type: :request 
 
       it "returns community member data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["community_member"]).not_to be_empty
+        expect(result["data"]["community_member"]).to be_present
       end
     end
   end

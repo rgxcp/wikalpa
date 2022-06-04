@@ -102,7 +102,7 @@ RSpec.describe "Api::V1::Comment::DownvotesController", type: :request do
 
       it "returns downvote data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["downvote"]).not_to be_empty
+        expect(result["data"]["downvote"]).to be_present
       end
 
       it "returns comment as the downvoteable type" do

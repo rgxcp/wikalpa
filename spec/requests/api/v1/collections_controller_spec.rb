@@ -42,7 +42,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
 
       it "returns collections data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["collections"]).not_to be_empty
+        expect(result["data"]["collections"]).to be_present
       end
     end
   end
@@ -88,7 +88,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
 
       it "returns collection data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["collection"]).not_to be_empty
+        expect(result["data"]["collection"]).to be_present
       end
     end
 
@@ -183,7 +183,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
 
       it "returns collection data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["collection"]).not_to be_empty
+        expect(result["data"]["collection"]).to be_present
       end
     end
   end
@@ -316,7 +316,7 @@ RSpec.describe "Api::V1::CollectionsController", type: :request do
 
       it "returns collection data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["collection"]).not_to be_empty
+        expect(result["data"]["collection"]).to be_present
       end
     end
   end

@@ -53,7 +53,7 @@ RSpec.describe "Api::V1::AuthController", type: :request do
 
       it "returns user data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["user"]).not_to be_empty
+        expect(result["data"]["user"]).to be_present
       end
 
       it "excludes password digest on user data" do
@@ -63,7 +63,7 @@ RSpec.describe "Api::V1::AuthController", type: :request do
 
       it "generates token data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["token"]).not_to be_empty
+        expect(result["data"]["token"]).to be_present
       end
 
       it "stores user session" do
@@ -188,7 +188,7 @@ RSpec.describe "Api::V1::AuthController", type: :request do
 
       it "returns user data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["user"]).not_to be_empty
+        expect(result["data"]["user"]).to be_present
       end
 
       it "excludes password digest on user data" do
@@ -198,7 +198,7 @@ RSpec.describe "Api::V1::AuthController", type: :request do
 
       it "generates token data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["token"]).not_to be_empty
+        expect(result["data"]["token"]).to be_present
       end
 
       it "stores user session" do

@@ -42,7 +42,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
 
       it "returns posts data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["posts"]).not_to be_empty
+        expect(result["data"]["posts"]).to be_present
       end
     end
   end
@@ -88,7 +88,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
 
       it "returns post data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["post"]).not_to be_empty
+        expect(result["data"]["post"]).to be_present
       end
     end
 
@@ -232,7 +232,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
 
       it "returns post data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["post"]).not_to be_empty
+        expect(result["data"]["post"]).to be_present
       end
     end
 

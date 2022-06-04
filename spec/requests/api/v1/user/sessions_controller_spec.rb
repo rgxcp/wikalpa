@@ -69,7 +69,7 @@ RSpec.describe "Api::V1::User::SessionsController", type: :request do
 
       it "returns sessions data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["sessions"]).not_to be_empty
+        expect(result["data"]["sessions"]).to be_present
       end
     end
   end

@@ -94,7 +94,7 @@ RSpec.describe "Api::V1::User::BookmarksController", type: :request do
 
       it "returns bookmarks data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["bookmarks"]).not_to be_empty
+        expect(result["data"]["bookmarks"]).to be_present
       end
     end
   end

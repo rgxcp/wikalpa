@@ -42,7 +42,7 @@ RSpec.describe "Api::V1::RepliesController", type: :request do
 
       it "returns reply data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["reply"]).not_to be_empty
+        expect(result["data"]["reply"]).to be_present
       end
     end
   end
@@ -181,7 +181,7 @@ RSpec.describe "Api::V1::RepliesController", type: :request do
 
       it "returns reply data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["reply"]).not_to be_empty
+        expect(result["data"]["reply"]).to be_present
       end
     end
 

@@ -94,7 +94,7 @@ RSpec.describe "Api::V1::User::DownvotesController", type: :request do
 
       it "returns downvotes data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["downvotes"]).not_to be_empty
+        expect(result["data"]["downvotes"]).to be_present
       end
     end
   end

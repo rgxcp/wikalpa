@@ -42,7 +42,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
 
       it "returns collection items data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["collection_items"]).not_to be_empty
+        expect(result["data"]["collection_items"]).to be_present
       end
     end
   end
@@ -181,7 +181,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
 
       it "returns collection item data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["collection_item"]).not_to be_empty
+        expect(result["data"]["collection_item"]).to be_present
       end
     end
   end
@@ -308,7 +308,7 @@ RSpec.describe "Api::V1::Collection::CollectionItemsController", type: :request 
 
       it "returns collection item data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["collection_item"]).not_to be_empty
+        expect(result["data"]["collection_item"]).to be_present
       end
     end
   end

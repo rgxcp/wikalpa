@@ -97,7 +97,7 @@ RSpec.describe "Api::V1::UpvotesController", type: :request do
 
       it "returns upvote data" do
         result = JSON.parse(response.body)
-        expect(result["data"]["upvote"]).not_to be_empty
+        expect(result["data"]["upvote"]).to be_present
       end
     end
   end
