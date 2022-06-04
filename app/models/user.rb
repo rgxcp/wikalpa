@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :downvotes
   has_many :posts
   has_many :replies
+  has_many :sessions
   has_many :upvotes
   has_many :username_histories
   has_many :visitations, class_name: "Visitor", foreign_key: "user_id"
