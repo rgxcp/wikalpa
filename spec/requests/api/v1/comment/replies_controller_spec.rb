@@ -94,7 +94,7 @@ RSpec.describe "Api::V1::Comment::RepliesController", type: :request do
     context "when comment not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_comment_replies_path(0), headers: headers
       end
@@ -121,7 +121,7 @@ RSpec.describe "Api::V1::Comment::RepliesController", type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         reply = attributes_for(:reply, :invalid)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { reply: reply }
         post api_v1_comment_replies_path(comment), headers: headers, params: params
@@ -154,7 +154,7 @@ RSpec.describe "Api::V1::Comment::RepliesController", type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         reply = attributes_for(:reply)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { reply: reply }
         post api_v1_comment_replies_path(comment), headers: headers, params: params
@@ -187,7 +187,7 @@ RSpec.describe "Api::V1::Comment::RepliesController", type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         reply = attributes_for(:reply, :spoiler)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { reply: reply }
         post api_v1_comment_replies_path(comment), headers: headers, params: params

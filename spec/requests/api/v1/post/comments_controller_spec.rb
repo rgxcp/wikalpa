@@ -93,7 +93,7 @@ RSpec.describe "Api::V1::Post::CommentsController", type: :request do
     context "when post not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_post_comments_path(0), headers: headers
       end
@@ -119,7 +119,7 @@ RSpec.describe "Api::V1::Post::CommentsController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         comment = attributes_for(:comment, :invalid)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { comment: comment }
         post api_v1_post_comments_path(post), headers: headers, params: params
@@ -151,7 +151,7 @@ RSpec.describe "Api::V1::Post::CommentsController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         comment = attributes_for(:comment)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { comment: comment }
         post api_v1_post_comments_path(post), headers: headers, params: params
@@ -183,7 +183,7 @@ RSpec.describe "Api::V1::Post::CommentsController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         comment = attributes_for(:comment, :spoiler)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { comment: comment }
         post api_v1_post_comments_path(post), headers: headers, params: params

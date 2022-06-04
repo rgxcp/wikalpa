@@ -94,7 +94,7 @@ RSpec.describe "Api::V1::Comment::UpvotesController", type: :request do
     context "when comment not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_comment_upvotes_path(0), headers: headers
       end
@@ -121,7 +121,7 @@ RSpec.describe "Api::V1::Comment::UpvotesController", type: :request do
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
         create(:upvote, user: user, upvoteable: comment)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_comment_upvotes_path(comment), headers: headers
       end
@@ -152,7 +152,7 @@ RSpec.describe "Api::V1::Comment::UpvotesController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         comment = create(:comment, post: post, user: user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_comment_upvotes_path(comment), headers: headers
       end

@@ -24,7 +24,7 @@ RSpec.describe "Api::V1::User::SessionsController", type: :request do
       before do
         user1 = create(:user)
         user2 = create(:user)
-        token = JsonWebToken.encode({ user_id: user2.id })
+        token = login(user2.id)
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_sessions_path(user1), headers: headers
       end
@@ -48,7 +48,7 @@ RSpec.describe "Api::V1::User::SessionsController", type: :request do
       before do
         user = create(:user)
         create(:session, user: user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_sessions_path(user), headers: headers
       end

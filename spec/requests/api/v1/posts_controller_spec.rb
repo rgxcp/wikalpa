@@ -96,7 +96,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
       it "enqueues VisitorWorker job" do
         auth = create(:user)
         post = create(:post)
-        token = JsonWebToken.encode({ user_id: auth.id })
+        token = login(auth.id)
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_post_path(post), headers: headers
         expect(VisitorWorker).to have_enqueued_sidekiq_job("Post", post.id, auth.id)
@@ -126,7 +126,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
     context "when post not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_post_path(0), headers: headers
       end
@@ -152,7 +152,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
         user1 = create(:user)
         user2 = create(:user)
         post = create(:post, community: community, user: user2)
-        token = JsonWebToken.encode({ user_id: user1.id })
+        token = login(user1.id)
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_post_path(post), headers: headers
       end
@@ -178,7 +178,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         entity = attributes_for(:post, :invalid)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { post: entity }
         patch api_v1_post_path(post), headers: headers, params: params
@@ -210,7 +210,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         entity = attributes_for(:post)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { post: entity }
         patch api_v1_post_path(post), headers: headers, params: params
@@ -242,7 +242,7 @@ RSpec.describe "Api::V1::PostsController", type: :request do
         user = create(:user)
         post = create(:post, community: community, user: user)
         entity = attributes_for(:post, :spoiler)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { post: entity }
         patch api_v1_post_path(post), headers: headers, params: params

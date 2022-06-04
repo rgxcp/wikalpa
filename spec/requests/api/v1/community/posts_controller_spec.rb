@@ -92,7 +92,7 @@ RSpec.describe "Api::V1::Community::PostsController", type: :request do
     context "when community not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_community_posts_path(0), headers: headers
       end
@@ -116,7 +116,7 @@ RSpec.describe "Api::V1::Community::PostsController", type: :request do
       before do
         community = create(:community)
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_community_posts_path(community), headers: headers
       end
@@ -142,7 +142,7 @@ RSpec.describe "Api::V1::Community::PostsController", type: :request do
         user = create(:user)
         create(:community_member, community: community, user: user)
         post = attributes_for(:post, :invalid)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { post: post }
         post api_v1_community_posts_path(community), headers: headers, params: params
@@ -174,7 +174,7 @@ RSpec.describe "Api::V1::Community::PostsController", type: :request do
         user = create(:user)
         create(:community_member, community: community, user: user)
         post = attributes_for(:post)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { post: post }
         post api_v1_community_posts_path(community), headers: headers, params: params
@@ -206,7 +206,7 @@ RSpec.describe "Api::V1::Community::PostsController", type: :request do
         user = create(:user)
         create(:community_member, community: community, user: user)
         post = attributes_for(:post, :spoiler)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { post: post }
         post api_v1_community_posts_path(community), headers: headers, params: params

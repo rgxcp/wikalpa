@@ -92,7 +92,7 @@ RSpec.describe "Api::V1::Community::CommunityMembersController", type: :request 
     context "when community not exists" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_community_community_members_path(0), headers: headers
       end
@@ -117,7 +117,7 @@ RSpec.describe "Api::V1::Community::CommunityMembersController", type: :request 
         community = create(:community)
         user = create(:user)
         create(:community_member, community: community, user: user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_community_community_members_path(community), headers: headers
       end
@@ -146,7 +146,7 @@ RSpec.describe "Api::V1::Community::CommunityMembersController", type: :request 
       before do
         community = create(:community)
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         post api_v1_community_community_members_path(community), headers: headers
       end

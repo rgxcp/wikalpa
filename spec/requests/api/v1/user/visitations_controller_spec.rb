@@ -24,7 +24,7 @@ RSpec.describe "Api::V1::User::VisitationsController", type: :request do
       before do
         user1 = create(:user)
         user2 = create(:user)
-        token = JsonWebToken.encode({ user_id: user2.id })
+        token = login(user2.id)
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_visitations_path(user1), headers: headers
       end
@@ -47,7 +47,7 @@ RSpec.describe "Api::V1::User::VisitationsController", type: :request do
     context "when visitations not exist" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_visitations_path(user), headers: headers
       end
@@ -72,7 +72,7 @@ RSpec.describe "Api::V1::User::VisitationsController", type: :request do
         user = create(:user)
         community = create(:community)
         create(:visitor, user: user, visitable: community)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_visitations_path(user), headers: headers
       end

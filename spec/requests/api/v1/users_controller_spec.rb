@@ -106,7 +106,7 @@ RSpec.describe "Api::V1::UsersController", type: :request do
       it "enqueues VisitorWorker job" do
         auth = create(:user)
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: auth.id })
+        token = login(auth.id)
         headers = { Authorization: "Bearer #{token}" }
         get api_v1_user_path(user), headers: headers
         expect(VisitorWorker).to have_enqueued_sidekiq_job("User", user.id, auth.id)
@@ -137,7 +137,7 @@ RSpec.describe "Api::V1::UsersController", type: :request do
       before do
         user1 = create(:user)
         user2 = create(:user)
-        token = JsonWebToken.encode({ user_id: user2.id })
+        token = login(user2.id)
         headers = { Authorization: "Bearer #{token}" }
         patch api_v1_user_path(user1), headers: headers
       end
@@ -161,7 +161,7 @@ RSpec.describe "Api::V1::UsersController", type: :request do
       before do
         user = create(:user)
         entity = attributes_for(:user, :invalid)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = { user: entity }
         patch api_v1_user_path(user), headers: headers, params: params
@@ -190,7 +190,7 @@ RSpec.describe "Api::V1::UsersController", type: :request do
     context "when entity valid" do
       before do
         user = create(:user)
-        token = JsonWebToken.encode({ user_id: user.id })
+        token = login(user.id)
         headers = { Authorization: "Bearer #{token}" }
         params = {
           user: {
