@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::V1::User::UsernameHistoriesController, type: :request do
+RSpec.describe "Api::V1::User::UsernameHistoriesController", type: :request do
   describe "GET /users/:user_id/username-histories" do
     context "when user not exists" do
       before { get api_v1_user_username_histories_path(0) }
