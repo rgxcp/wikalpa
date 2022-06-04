@@ -5,4 +5,5 @@ class Session < ApplicationRecord
   validates :device, length: { maximum: 255 }
   validates :device, presence: true
   validates :ip, presence: true
+  validates :is_expired, inclusion: { in: [true, false] }
 end
