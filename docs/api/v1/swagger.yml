@@ -3154,6 +3154,9 @@ components:
         ip:
           type: string
           example: 127.0.0.1
+        is_expired:
+          type: boolean
+          example: false
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
