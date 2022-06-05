@@ -42,5 +42,30 @@ RSpec.describe "Api::V1::SessionsController", type: :request do
         expect(result["message"]).to eq("Not Found")
       end
     end
+
+    context "when deleting someone else session" do
+      before do
+        user1 = create(:user)
+        user2 = create(:user)
+        session = create(:session, user: user2)
+        token = login(user1.id)
+        headers = { Authorization: "Bearer #{token}" }
+        delete api_v1_session_path(session), headers: headers
+      end
+
+      it "returns 403 status code" do
+        expect(response).to have_http_status(:forbidden)
+      end
+
+      it "returns false success body" do
+        result = JSON.parse(response.body)
+        expect(result["success"]).to be(false)
+      end
+
+      it "returns forbidden message body" do
+        result = JSON.parse(response.body)
+        expect(result["message"]).to eq("Forbidden")
+      end
+    end
   end
 end
