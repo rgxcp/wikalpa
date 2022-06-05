@@ -1,5 +1,5 @@
 class Api::V1::Admin::FeatureTogglesController < ApplicationController
-  before_action :authenticate_admin_request, except: :destroy
+  before_action(except: :destroy) { authenticate_request(as_admin: true) }
   before_action :set_feature_toggle, only: [:show, :update]
 
   def index
@@ -18,7 +18,7 @@ class Api::V1::Admin::FeatureTogglesController < ApplicationController
 
   def create
     feature_toggle = FeatureToggle.new(feature_toggle_params)
-    feature_toggle.user = @auth_admin
+    feature_toggle.user = @auth_user
 
     if feature_toggle.save
       created_response(data: { feature_toggle: feature_toggle })

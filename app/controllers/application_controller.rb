@@ -10,18 +10,12 @@ class ApplicationController < ActionController::API
     @auth_id = @decoded_token && @decoded_token["user_id"]
   end
 
-  def authenticate_request
-    id = parse_auth_id
-    @auth_user = User.find(id)
+  def authenticate_request(as_admin: false)
+    parse_auth_id
+    parse_session_id
+    @auth_user = as_admin ? User.admin.find(@auth_id) : User.find(@auth_id)
 
-    unauthorized_response unless @auth_user.sessions.exists?(parse_session_id)
-  rescue ActiveRecord::RecordNotFound
-    unauthorized_response
-  end
-
-  def authenticate_admin_request
-    id = parse_auth_id
-    @auth_admin = User.admin.find(id)
+    unauthorized_response unless @auth_user.sessions.exists?(@session_id)
   rescue ActiveRecord::RecordNotFound
     unauthorized_response
   end
