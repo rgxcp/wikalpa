@@ -130,7 +130,7 @@ RSpec.describe "Api::V1::AuthController", type: :request do
       end
     end
 
-    context "when password not valid" do
+    context "when password invalid" do
       let(:user) { create(:user) }
 
       before do
