@@ -2189,6 +2189,38 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /sessions/{id}:
+    delete:
+      tags:
+        - Session
+      summary: Delete a session.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      session:
+                        $ref: "#/components/schemas/Session"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /bookmarks/{id}:
     delete:
       tags:
@@ -2841,6 +2873,8 @@ tags:
     description: Endpoints related for user visitation resources.
   - name: User Visitor
     description: Endpoints related for user visitor resources.
+  - name: Session
+    description: Endpoints related for session resources.
   - name: Bookmark
     description: Endpoints related for bookmark resources.
   - name: Buddy
