@@ -58,6 +58,7 @@ Rails.application.routes.draw do
           resources :upvotes, only: [:index, :create]
         end
       end
+      resources :sessions, only: :destroy
       resources :upvotes, only: :destroy
       resources :users, except: [:create, :destroy] do
         scope module: "user" do
