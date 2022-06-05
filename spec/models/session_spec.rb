@@ -1,10 +1,6 @@
 require "rails_helper"
 
 RSpec.describe Session, type: :model do
-  describe "enums" do
-    it { is_expected.to define_enum_for(:status).with_values(active: 0, expired: 1) }
-  end
-
   describe "relations" do
     it { is_expected.to belong_to(:user) }
   end

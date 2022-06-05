@@ -3154,12 +3154,6 @@ components:
         ip:
           type: string
           example: 127.0.0.1
-        status:
-          type: string
-          enum:
-            - active
-            - expired
-          example: active
         created_at:
           type: string
           example: "2021-12-12 12:12:12"
