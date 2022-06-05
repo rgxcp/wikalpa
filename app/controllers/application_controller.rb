@@ -6,10 +6,13 @@ class ApplicationController < ActionController::API
   protected
 
   def parse_auth_id
-    token = request.headers.fetch("Authorization", "").split.last
-    @auth_id = JsonWebToken.decode(token).first["user_id"]
-  rescue JWT::DecodeError
-    nil
+    @decoded_token ||= decode_token
+    @auth_id = @decoded_token && @decoded_token["user_id"]
+  end
+
+  def parse_session_id
+    @decoded_token ||= decode_token
+    @session_id = @decoded_token && @decoded_token["session_id"]
   end
 
   def authenticate_request
@@ -85,5 +88,14 @@ class ApplicationController < ActionController::API
       errors: errors
     },
     status: :unprocessable_entity
+  end
+
+  private
+
+  def decode_token
+    token = request.headers.fetch("Authorization", "").split.last
+    @decoded_token = JsonWebToken.decode(token).first
+  rescue JWT::DecodeError
+    @decoded_token = nil
   end
 end
