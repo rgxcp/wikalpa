@@ -17,9 +17,10 @@ class ApplicationController < ActionController::API
 
   def authenticate_request
     id = parse_auth_id
+    parse_session_id
     @auth_user = User.find(id)
 
-    unauthorized_response unless @auth_user.sessions.exists?(parse_session_id)
+    unauthorized_response unless @auth_user.sessions.exists?(@session_id)
   rescue ActiveRecord::RecordNotFound
     unauthorized_response
   end

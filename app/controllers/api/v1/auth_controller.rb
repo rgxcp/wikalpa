@@ -34,6 +34,10 @@ class Api::V1::AuthController < ApplicationController
   end
 
   def logout
+    session = @auth_user.sessions.find(@session_id)
+    session.destroy
+
+    ok_response(data: { session: session })
   end
 
   private
