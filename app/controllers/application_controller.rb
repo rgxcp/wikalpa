@@ -10,17 +10,11 @@ class ApplicationController < ActionController::API
     @auth_id = @decoded_token && @decoded_token["user_id"]
   end
 
-  def parse_session_id
-    @decoded_token ||= decode_token
-    @session_id = @decoded_token && @decoded_token["session_id"]
-  end
-
   def authenticate_request
     id = parse_auth_id
-    parse_session_id
     @auth_user = User.find(id)
 
-    unauthorized_response unless @auth_user.sessions.exists?(@session_id)
+    unauthorized_response unless @auth_user.sessions.exists?(parse_session_id)
   rescue ActiveRecord::RecordNotFound
     unauthorized_response
   end
@@ -100,5 +94,10 @@ class ApplicationController < ActionController::API
     @decoded_token = JsonWebToken.decode(token).first
   rescue JWT::DecodeError
     @decoded_token = nil
+  end
+
+  def parse_session_id
+    @decoded_token ||= decode_token
+    @session_id = @decoded_token && @decoded_token["session_id"]
   end
 end
