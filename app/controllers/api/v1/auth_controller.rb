@@ -1,4 +1,6 @@
 class Api::V1::AuthController < ApplicationController
+  before_action :authenticate_request, only: :logout
+
   def register
     user = User.new(user_params)
 
@@ -29,6 +31,9 @@ class Api::V1::AuthController < ApplicationController
     else
       unauthorized_response
     end
+  end
+
+  def logout
   end
 
   private
