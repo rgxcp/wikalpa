@@ -1,3 +1,16 @@
+# [9.6.0](https://github.com/rgxcp/wikalpa/compare/v9.5.0...v9.6.0) (2022-06-05)
+
+
+### Features
+
+* DELETE /auth/logout returns ok response when session valid ([416b8d3](https://github.com/rgxcp/wikalpa/commit/416b8d37c80eae9c33f95e8052408a4eea654c0c))
+* DELETE /auth/logout returns unauthorized response when session invalid ([673d62a](https://github.com/rgxcp/wikalpa/commit/673d62a38ea57c488a75b84095757c7280dc8fce))
+* DELETE /auth/logout returns unauthorized response when user not logged in ([4a4ac98](https://github.com/rgxcp/wikalpa/commit/4a4ac98b8cd70e4de90626cd244c5a2f778ba851))
+* DELETE /sessions/:id returns forbidden response when deleting someone else session ([559ed46](https://github.com/rgxcp/wikalpa/commit/559ed46a83f79d3b65d6ba2e36606253af8fe5f3))
+* DELETE /sessions/:id returns not found response when session not exists ([ffae587](https://github.com/rgxcp/wikalpa/commit/ffae58778b9afca5e500a7b2833f84c42c318a70))
+* DELETE /sessions/:id returns ok response when session exists ([b232be6](https://github.com/rgxcp/wikalpa/commit/b232be6de649ca0195bf9079c0ea5cbf7d797795))
+* DELETE /sessions/:id returns unauthorized response when user not logged in ([bf60174](https://github.com/rgxcp/wikalpa/commit/bf60174bc98c9ce7b561d0595e0dff12fe14df6c))
+
 # [9.5.0](https://github.com/rgxcp/wikalpa/compare/v9.4.0...v9.5.0) (2022-06-04)
 
 
