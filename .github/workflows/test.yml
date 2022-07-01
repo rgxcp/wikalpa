@@ -46,9 +46,9 @@ jobs:
           echo "Running workers test"
           bundle exec rspec spec/workers
           echo "Running routing test"
-          bundle exec rspec/routing
+          bundle exec rspec spec/routing
           echo "Running requests test"
-          bundle exec rspec/requests
+          bundle exec rspec spec/requests
         env:
           JWT_KEY: jwt
           POSTGRES_HOST: localhost
