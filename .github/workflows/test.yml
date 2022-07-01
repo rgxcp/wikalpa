@@ -40,15 +40,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           RAILS_ENV: test
       - name: Run test
-        run: |
-          echo "Running models test"
-          bundle exec rspec spec/models
-          echo "Running workers test"
-          bundle exec rspec spec/workers
-          echo "Running routing test"
-          bundle exec rspec spec/routing
-          echo "Running requests test"
-          bundle exec rspec spec/requests
+        run: bundle exec rspec
         env:
           JWT_KEY: jwt
           POSTGRES_HOST: localhost
