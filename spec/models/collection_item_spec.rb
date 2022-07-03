@@ -7,8 +7,8 @@ RSpec.describe CollectionItem, type: :model do
     it { is_expected.to have_db_column(:collectable_id).of_type(:integer).with_options(null: false) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(precision: 6, null: false) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(precision: 6, null: false) }
-    it { is_expected.to have_db_index([:collectable_type, :collectable_id]) }
     it { is_expected.to have_db_index(:collection_id) }
+    it { is_expected.to have_db_index([:collectable_type, :collectable_id]) }
   end
 
   describe "relations" do

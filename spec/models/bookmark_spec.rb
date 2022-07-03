@@ -7,8 +7,8 @@ RSpec.describe Bookmark, type: :model do
     it { is_expected.to have_db_column(:bookmarkable_id).of_type(:integer).with_options(null: false) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(precision: 6, null: false) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(precision: 6, null: false) }
-    it { is_expected.to have_db_index([:bookmarkable_type, :bookmarkable_id]) }
     it { is_expected.to have_db_index(:user_id) }
+    it { is_expected.to have_db_index([:bookmarkable_type, :bookmarkable_id]) }
   end
 
   describe "relations" do
