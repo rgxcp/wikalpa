@@ -1,3 +1,10 @@
+# [9.7.0](https://github.com/rgxcp/wikalpa/compare/v9.6.0...v9.7.0) (2022-07-03)
+
+
+### Features
+
+* add FeatureToggle.off? method back ([0b03206](https://github.com/rgxcp/wikalpa/commit/0b03206d7db2e42894167dd5867f97efa5ae388e))
+
 # [9.6.0](https://github.com/rgxcp/wikalpa/compare/v9.5.0...v9.6.0) (2022-06-05)
 
 
