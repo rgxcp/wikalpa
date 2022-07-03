@@ -1,6 +1,14 @@
 require "rails_helper"
 
 RSpec.describe Community, type: :model do
+  describe "db columns" do
+    it { is_expected.to have_db_column(:name).of_type(:string).with_options(limit: 20, null: false) }
+    it { is_expected.to have_db_column(:description).of_type(:string).with_options(limit: 255, null: false) }
+    it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(precision: 6, null: false) }
+    it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(precision: 6, null: false) }
+    it { is_expected.to have_db_index(:name).unique }
+  end
+
   describe "relations" do
     it { is_expected.to have_many(:collection_items) }
     it { is_expected.to have_many(:collections).through(:collection_items) }
