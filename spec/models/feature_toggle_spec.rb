@@ -1,6 +1,16 @@
 require "rails_helper"
 
 RSpec.describe FeatureToggle, type: :model do
+  describe "db columns" do
+    it { is_expected.to have_db_column(:user_id).of_type(:integer).with_options(null: false) }
+    it { is_expected.to have_db_column(:name).of_type(:string).with_options(limit: 50, null: false) }
+    it { is_expected.to have_db_column(:status).of_type(:integer).with_options(default: :off, null: false) }
+    it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(precision: 6, null: false) }
+    it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(precision: 6, null: false) }
+    it { is_expected.to have_db_index(:name).unique }
+    it { is_expected.to have_db_index(:user_id) }
+  end
+
   describe "enums" do
     it { is_expected.to define_enum_for(:status).with_values(off: 0, on: 1) }
   end
