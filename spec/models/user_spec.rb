@@ -1,6 +1,16 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
+  describe "db columns" do
+    it { is_expected.to have_db_column(:username).of_type(:string).with_options(limit: 15, null: false) }
+    it { is_expected.to have_db_column(:password_digest).of_type(:string).with_options(limit: 60, null: false) }
+    it { is_expected.to have_db_column(:role).of_type(:integer).with_options(default: :regular, null: false) }
+    it { is_expected.to have_db_column(:login_tries_count).of_type(:integer).with_options(default: 0, null: false) }
+    it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(precision: 6, null: false) }
+    it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(precision: 6, null: false) }
+    it { is_expected.to have_db_index(:username).unique }
+  end
+
   describe "enums" do
     it { is_expected.to define_enum_for(:role).with_values(regular: 0, admin: 1) }
   end
