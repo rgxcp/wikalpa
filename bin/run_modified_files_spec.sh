@@ -17,7 +17,7 @@ main () {
 	done
 
 	if [[ $1 == "-fd" ]]; then
-		bundle exec rspec -fd ${FILES[@]}
+		bundle exec rspec ${FILES[@]} -fd
 	else
 		bundle exec rspec ${FILES[@]}
 	fi
