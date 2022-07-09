@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Logout from current session", type: :request do
+RSpec.describe "Logout from a current session", type: :request do
   let(:parsed_body) { JSON.parse(response.body) }
 
   context "when user not logged in" do
