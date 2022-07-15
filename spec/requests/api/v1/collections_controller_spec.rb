@@ -1,63 +1,6 @@
 require "rails_helper"
 
 RSpec.describe "Api::V1::CollectionsController", type: :request do
-  describe "GET /collections/:id" do
-    context "when collection not exists" do
-      before { get api_v1_collection_path(0) }
-
-      it "returns 404 status code" do
-        expect(response).to have_http_status(:not_found)
-      end
-
-      it "returns false success body" do
-        result = JSON.parse(response.body)
-        expect(result["success"]).to be(false)
-      end
-
-      it "returns not found message body" do
-        result = JSON.parse(response.body)
-        expect(result["message"]).to eq("Not Found")
-      end
-    end
-
-    context "when collection exists" do
-      before do
-        collection = create(:collection)
-        get api_v1_collection_path(collection)
-      end
-
-      it "returns 200 status code" do
-        expect(response).to have_http_status(:ok)
-      end
-
-      it "returns true success body" do
-        result = JSON.parse(response.body)
-        expect(result["success"]).to be(true)
-      end
-
-      it "returns ok message body" do
-        result = JSON.parse(response.body)
-        expect(result["message"]).to eq("OK")
-      end
-
-      it "returns collection data" do
-        result = JSON.parse(response.body)
-        expect(result["data"]["collection"]).to be_present
-      end
-    end
-
-    context "when visiting collection while user logged in" do
-      it "enqueues VisitorWorker job" do
-        auth = create(:user)
-        collection = create(:collection)
-        token = login(auth.id)
-        headers = { Authorization: "Bearer #{token}" }
-        get api_v1_collection_path(collection), headers: headers
-        expect(VisitorWorker).to have_enqueued_sidekiq_job("Collection", collection.id, auth.id)
-      end
-    end
-  end
-
   describe "POST /collections" do
     context "when user not logged in" do
       before { post api_v1_collections_path }
