@@ -22,6 +22,7 @@ MAINTAINING
 
 ## 🔗 Links
 
+- [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2585139)
 - [ERD](https://drive.google.com/file/d/1RDpWLb1sisBXBDSx0idp9TvRBGxbRrJl/view?usp=sharing)
 - [Notion](https://torch-colony-099.notion.site/Wikalpa-2ba39daf9bb14ce3adf8b6c396dab55d)
 - [SwaggerHub](https://app.swaggerhub.com/apis-docs/rgxcp/wikalpa/1.0.0)
