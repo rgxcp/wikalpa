@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Downvote an entity", type: :request do
+RSpec.describe "Revoke downvote an entity", type: :request do
   let(:parsed_body) { JSON.parse(response.body) }
 
   context "when user not logged in" do
