@@ -1,57 +1,6 @@
 require "rails_helper"
 
 RSpec.describe "Api::V1::UsersController", type: :request do
-  describe "GET /users" do
-    context "when users not exist" do
-      before { get api_v1_users_path }
-
-      it "returns 404 status code" do
-        expect(response).to have_http_status(:not_found)
-      end
-
-      it "returns false success body" do
-        result = JSON.parse(response.body)
-        expect(result["success"]).to be(false)
-      end
-
-      it "returns not found message body" do
-        result = JSON.parse(response.body)
-        expect(result["message"]).to eq("Not Found")
-      end
-    end
-
-    context "when users exist" do
-      before do
-        create(:user)
-        get api_v1_users_path
-      end
-
-      it "returns 200 status code" do
-        expect(response).to have_http_status(:ok)
-      end
-
-      it "returns true success body" do
-        result = JSON.parse(response.body)
-        expect(result["success"]).to be(true)
-      end
-
-      it "returns ok message body" do
-        result = JSON.parse(response.body)
-        expect(result["message"]).to eq("OK")
-      end
-
-      it "returns users data" do
-        result = JSON.parse(response.body)
-        expect(result["data"]["users"]).to be_present
-      end
-
-      it "excludes password digest on users data" do
-        result = JSON.parse(response.body)
-        expect(result["data"]["users"][0]["password_digest"]).to be_nil
-      end
-    end
-  end
-
   describe "GET /users/:id" do
     context "when user not exists" do
       before { get api_v1_user_path(0) }
