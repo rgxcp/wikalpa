@@ -1,68 +1,6 @@
 require "rails_helper"
 
 RSpec.describe "Api::V1::UsersController", type: :request do
-  describe "GET /users/:id" do
-    context "when user not exists" do
-      before { get api_v1_user_path(0) }
-
-      it "returns 404 status code" do
-        expect(response).to have_http_status(:not_found)
-      end
-
-      it "returns false success body" do
-        result = JSON.parse(response.body)
-        expect(result["success"]).to be(false)
-      end
-
-      it "returns not found message body" do
-        result = JSON.parse(response.body)
-        expect(result["message"]).to eq("Not Found")
-      end
-    end
-
-    context "when user exists" do
-      before do
-        user = create(:user)
-        get api_v1_user_path(user)
-      end
-
-      it "returns 200 status code" do
-        expect(response).to have_http_status(:ok)
-      end
-
-      it "returns true success body" do
-        result = JSON.parse(response.body)
-        expect(result["success"]).to be(true)
-      end
-
-      it "returns ok message body" do
-        result = JSON.parse(response.body)
-        expect(result["message"]).to eq("OK")
-      end
-
-      it "returns user data" do
-        result = JSON.parse(response.body)
-        expect(result["data"]["user"]).to be_present
-      end
-
-      it "excludes password digest on user data" do
-        result = JSON.parse(response.body)
-        expect(result["data"]["user"]["password_digest"]).to be_nil
-      end
-    end
-
-    context "when visiting user while user logged in" do
-      it "enqueues VisitorWorker job" do
-        auth = create(:user)
-        user = create(:user)
-        token = login(auth.id)
-        headers = { Authorization: "Bearer #{token}" }
-        get api_v1_user_path(user), headers: headers
-        expect(VisitorWorker).to have_enqueued_sidekiq_job("User", user.id, auth.id)
-      end
-    end
-  end
-
   describe "PATCH /users/:id" do
     context "when user not logged in" do
       before { patch api_v1_user_path(1) }
