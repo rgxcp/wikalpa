@@ -60,7 +60,7 @@ group :test do
   # Test matchers
   gem "shoulda-matchers", "~> 5.0"
   # Code coverage generator
-  gem "simplecov", require: false
+  gem "simplecov"
   # SimpleCov XML formatter
   gem "simplecov-cobertura"
 end
