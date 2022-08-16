@@ -1,5 +1,3 @@
-require "regex"
-
 class Community < ApplicationRecord
   has_many :collection_items, as: :collectable
   has_many :collections, through: :collection_items

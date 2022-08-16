@@ -1,5 +1,3 @@
-require "regex"
-
 class User < ApplicationRecord
   enum role: { regular: 0, admin: 1 }
 
