@@ -41,8 +41,6 @@ group :development do
   ###########
   # Listen to file modifications
   gem "listen", "~> 3.3"
-  # Debugger
-  gem "pry", "~> 0.13.1"
   # Rubocop Ruby
   gem "rubocop", require: false
   # Rubocop Rails
@@ -79,6 +77,8 @@ group :development, :test do
   ##########
   # Test data factory
   gem "factory_bot_rails"
+  # Debugger
+  gem "pry", "~> 0.13.1"
   # Testing framework
   gem "rspec-rails", "~> 5.0.0"
 end
