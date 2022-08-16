@@ -1,3 +1,5 @@
+require "regex"
+
 class FeatureToggle < ApplicationRecord
   enum status: { off: 0, on: 1 }
 

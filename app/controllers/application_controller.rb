@@ -1,3 +1,5 @@
+require "json_web_token"
+
 class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
 
