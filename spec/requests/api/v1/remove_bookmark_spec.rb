@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Delete a bookmark", type: :request do
+RSpec.describe "Remove a bookmark", type: :request do
   let(:parsed_body) { JSON.parse(response.body) }
 
   context "when user not logged in" do
