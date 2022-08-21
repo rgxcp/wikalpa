@@ -1,3 +1,15 @@
+# [9.8.0](https://github.com/rgxcp/wikalpa/compare/v9.7.0...v9.8.0) (2022-08-21)
+
+
+### Features
+
+* [[#183039108](https://github.com/rgxcp/wikalpa/issues/183039108)] remove multiple collection item inside a collection ([c9b94b4](https://github.com/rgxcp/wikalpa/commit/c9b94b48a4e24919e5d5667ed4d7e3acd0694867))
+
+
+### Reverts
+
+* "chore: [[#182999679](https://github.com/rgxcp/wikalpa/issues/182999679)] auto load json_web_token & regex lib" ([56e3cbf](https://github.com/rgxcp/wikalpa/commit/56e3cbf6f0033e00d21ebab027d5a34b9f846743))
+
 # [9.7.0](https://github.com/rgxcp/wikalpa/compare/v9.6.0...v9.7.0) (2022-07-03)
 
 
