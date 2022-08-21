@@ -1,5 +1,7 @@
+require "string"
+
 class Api::V1::Collection::CollectionItemsController < ApplicationController
-  before_action :authenticate_request, only: [:create, :destroy]
+  before_action :authenticate_request, except: :index
   before_action :set_collection, except: [:show, :update]
 
   def index
@@ -29,6 +31,25 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
     CollectionWorker.perform_async(@collection.id)
 
     ok_response(data: { collection_item: collection_item })
+  end
+
+  def destroy_all
+    return forbidden_response unless @auth_id == @collection.user_id
+
+    unless params[:ids].present?
+      return bad_request_response(errors: ["Query parameters of 'ids' must be present"])
+    end
+
+    params[:ids].each do |id|
+      return bad_request_response(errors: ["Query parameters of 'ids' must be valid integers"]) unless id.integer?
+    end
+
+    collection_items = @collection.collection_items.where(id: params[:ids])
+    collection_items = collection_items.destroy_all
+
+    CollectionWorker.perform_async(@collection.id)
+
+    ok_response(data: { collection_items: collection_items })
   end
 
   private

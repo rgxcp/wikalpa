@@ -20,6 +20,15 @@ class ApplicationController < ActionController::API
     unauthorized_response
   end
 
+  def bad_request_response(errors:)
+    render json: {
+      success: false,
+      message: "Bad Request",
+      errors: errors
+    },
+    status: :bad_request
+  end
+
   def created_response(data:, except: nil)
     render json: {
       success: true,

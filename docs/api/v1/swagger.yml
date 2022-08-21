@@ -2538,6 +2538,42 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+    delete:
+      tags:
+        - Collection Item
+      summary: Delete multiple collection item.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+        - $ref: "#/components/parameters/Identifiers"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collection_items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CollectionItem"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /collections/{collection_id}/collection-items/{id}:
     delete:
       tags:
@@ -2951,6 +2987,15 @@ components:
       schema:
         type: integer
         example: 1
+    Identifiers:
+      in: query
+      name: ids
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+        example: [1, 2, 3]
   schemas:
     Bookmark:
       type: object
@@ -3315,6 +3360,24 @@ components:
           type: string
           example: "2021-12-12 12:12:12"
   responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Bad Request
+              errors:
+                type: array
+                items:
+                  type: string
+                  example: Error message
     Forbidden:
       description: Forbidden
       content:

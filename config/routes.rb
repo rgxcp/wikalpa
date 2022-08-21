@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       resources :buddies, only: :destroy
       resources :collections, except: :destroy do
         scope module: "collection" do
+          delete "/collection-items", to: "collection_items#destroy_all"
+
           resources :bookmarks, only: :create
           resources :collection_items, except: [:show, :update], path: "collection-items"
           resources :downvotes, only: :create
