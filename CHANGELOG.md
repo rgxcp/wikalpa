@@ -1,3 +1,10 @@
+# [9.9.0](https://github.com/rgxcp/wikalpa/compare/v9.8.0...v9.9.0) (2022-08-24)
+
+
+### Features
+
+* [[#183074683](https://github.com/rgxcp/wikalpa/issues/183074683)] block Andrew Tate from being able to register ([33dc53c](https://github.com/rgxcp/wikalpa/commit/33dc53cd39267a55d550cc1101caaa260d85a2df))
+
 # [9.8.0](https://github.com/rgxcp/wikalpa/compare/v9.7.0...v9.8.0) (2022-08-21)
 
 
