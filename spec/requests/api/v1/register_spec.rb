@@ -18,6 +18,23 @@ RSpec.describe "Register a new user", type: :request do
     end
   end
 
+  User::BLACKLISTED_USERNAMES.each do |blacklisted_username|
+    context "when using '#{blacklisted_username}' as username (blacklisted username)" do
+      before do
+        user = attributes_for(:user, username: blacklisted_username)
+        params = { user: user }
+        post api_v1_auth_register_path, params: params
+      end
+
+      it "returns unprocessable entity response" do
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(parsed_body["success"]).to be(false)
+        expect(parsed_body["message"]).to eq("Unprocessable Entity")
+        expect(parsed_body["errors"].present?).to be(true)
+      end
+    end
+  end
+
   context "when entity valid" do
     before do
       user = attributes_for(:user)

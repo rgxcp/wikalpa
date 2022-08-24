@@ -1,6 +1,21 @@
 require "regex"
 
 class User < ApplicationRecord
+  BLACKLISTED_USERNAMES = [
+    "cobratate",
+    "tatecobra",
+    "cobra.tate",
+    "tate.cobra",
+    "cobra_tate",
+    "tate_cobra",
+    "andrewtate",
+    "tateandrew",
+    "andrew.tate",
+    "tate.andrew",
+    "andrew_tate",
+    "tate_andrew"
+  ]
+
   enum role: { regular: 0, admin: 1 }
 
   has_secure_password
@@ -21,6 +36,7 @@ class User < ApplicationRecord
   has_many :visitors, as: :visitable
 
   validate :password_equality
+  validates :username, exclusion: { in: BLACKLISTED_USERNAMES }
   validates :username, format: { with: REGEX::NAME }
   validates :username, length: { in: 5..15 }
   validates :username, presence: true
