@@ -14,7 +14,7 @@ RSpec.describe String do
     ["-1", "2"].each do |item|
       context "when object is '#{item}'" do
         it "returns true" do
-          expect("1".integer?).to be(true)
+          expect(item.integer?).to be(true)
         end
       end
     end
