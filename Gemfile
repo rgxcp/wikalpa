@@ -79,6 +79,8 @@ group :development, :test do
   gem "factory_bot_rails"
   # Debugger
   gem "pry", "~> 0.13.1"
+  # Pry navigator
+  gem "pry-nav"
   # Testing framework
   gem "rspec-rails", "~> 5.0.0"
 end
