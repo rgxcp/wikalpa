@@ -2,7 +2,7 @@ require "string"
 
 class Api::V1::Collection::CollectionItemsController < ApplicationController
   before_action :authenticate_request, except: :index
-  before_action :set_collection, except: [:show, :update]
+  before_action :set_collection
 
   def index
     collection_items = @collection.collection_items

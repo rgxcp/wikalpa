@@ -1,5 +1,5 @@
 class Api::V1::Admin::FeatureTogglesController < ApplicationController
-  before_action(except: :destroy) { authenticate_request(as_admin: true) }
+  before_action { authenticate_request(as_admin: true) }
   before_action :set_feature_toggle, only: [:show, :update]
 
   def index
