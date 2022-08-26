@@ -20,6 +20,10 @@ class ApplicationController < ActionController::API
     unauthorized_response
   end
 
+  def current_user?(user_id)
+    @auth_id == user_id
+  end
+
   def bad_request_response(errors:)
     render json: {
       success: false,

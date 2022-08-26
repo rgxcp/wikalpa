@@ -11,7 +11,7 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   end
 
   def create
-    return forbidden_response unless @auth_id == @collection.user_id
+    return forbidden_response unless current_user?(@collection.user_id)
 
     collection_item = @collection.collection_items.build(collection_item_params)
 
@@ -23,7 +23,7 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   end
 
   def destroy
-    return forbidden_response unless @auth_id == @collection.user_id
+    return forbidden_response unless current_user?(@collection.user_id)
 
     collection_item = @collection.collection_items.find(params[:id])
     collection_item.destroy
@@ -34,7 +34,7 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   end
 
   def destroy_all
-    return forbidden_response unless @auth_id == @collection.user_id
+    return forbidden_response unless current_user?(@collection.user_id)
 
     unless params[:ids].present?
       return bad_request_response(errors: ["Query parameters of 'ids' must be present"])

@@ -14,7 +14,7 @@ class Api::V1::BookmarksController < ApplicationController
 
   def destroy
     bookmark = Bookmark.find(params[:id])
-    return forbidden_response unless @auth_id == bookmark.user_id
+    return forbidden_response unless current_user?(bookmark.user_id)
 
     bookmark.destroy
 

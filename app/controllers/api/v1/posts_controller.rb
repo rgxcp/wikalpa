@@ -20,7 +20,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def update
-    return forbidden_response unless @auth_id == @post.user_id
+    return forbidden_response unless current_user?(@post.user_id)
 
     if @post.update(post_params)
       ok_response(data: { post: @post })

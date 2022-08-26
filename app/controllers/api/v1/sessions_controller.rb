@@ -3,7 +3,7 @@ class Api::V1::SessionsController < ApplicationController
 
   def destroy
     session = Session.find(params[:id])
-    return forbidden_response unless @auth_id == session.user_id
+    return forbidden_response unless current_user?(session.user_id)
 
     session.destroy
 

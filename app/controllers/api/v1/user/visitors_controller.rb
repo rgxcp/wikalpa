@@ -3,7 +3,7 @@ class Api::V1::User::VisitorsController < Api::V1::VisitorsController
   before_action :set_visitable, only: :index
 
   def index
-    return forbidden_response unless @auth_id == @visitable.id
+    return forbidden_response unless current_user?(@visitable.id)
 
     super
   end

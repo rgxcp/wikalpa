@@ -24,7 +24,7 @@ class Api::V1::UpvotesController < ApplicationController
 
   def destroy
     upvote = Upvote.find(params[:id])
-    return forbidden_response unless @auth_id == upvote.user_id
+    return forbidden_response unless current_user?(upvote.user_id)
 
     upvote.destroy
 

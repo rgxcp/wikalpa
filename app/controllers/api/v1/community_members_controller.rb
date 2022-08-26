@@ -3,7 +3,7 @@ class Api::V1::CommunityMembersController < ApplicationController
 
   def destroy
     community_member = CommunityMember.find(params[:id])
-    return forbidden_response unless @auth_id == community_member.user_id
+    return forbidden_response unless current_user?(community_member.user_id)
 
     community_member.destroy
 

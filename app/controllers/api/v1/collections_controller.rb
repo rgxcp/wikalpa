@@ -31,7 +31,7 @@ class Api::V1::CollectionsController < ApplicationController
   end
 
   def update
-    return forbidden_response unless @auth_id == @collection.user_id
+    return forbidden_response unless current_user?(@collection.user_id)
 
     if @collection.update(collection_update_params)
       ok_response(data: { collection: @collection })
