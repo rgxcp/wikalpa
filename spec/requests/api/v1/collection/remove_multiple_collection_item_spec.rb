@@ -45,7 +45,11 @@ RSpec.describe "Remove multiple collection item inside a collection", type: :req
     end
   end
 
-  [{ ids: nil, title: "nil" }, { ids: "", title: "empty string" }].each do |item|
+  [
+    { ids: nil, title: "nil" },
+    { ids: "", title: "empty string" },
+    { ids: "1, 2, 3", title: "string" }
+  ].each do |item|
     context "when ids query params is #{item[:title]}" do
       before do
         user = create(:user)
@@ -64,7 +68,7 @@ RSpec.describe "Remove multiple collection item inside a collection", type: :req
     end
   end
 
-  context "when ids query params is not integers" do
+  context "when ids query params is not array of integers" do
     before do
       user = create(:user)
       collection = create(:collection, user: user)
@@ -81,7 +85,7 @@ RSpec.describe "Remove multiple collection item inside a collection", type: :req
     end
   end
 
-  context "when ids query params is integers" do
+  context "when ids query params is array of integers" do
     let(:user) { create(:user) }
     let(:collection) { create(:collection, user: user) }
 

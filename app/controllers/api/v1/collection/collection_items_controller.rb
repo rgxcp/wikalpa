@@ -36,7 +36,7 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   def destroy_all
     return forbidden_response unless current_user?(@collection.user_id)
 
-    unless params[:ids].present?
+    if !params[:ids].present? || !params[:ids].is_a?(Array)
       return bad_request_response(errors: ["Query parameters of 'ids' must be present"])
     end
 
