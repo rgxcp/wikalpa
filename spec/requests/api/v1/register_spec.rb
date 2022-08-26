@@ -54,13 +54,11 @@ RSpec.describe "Register a new user", type: :request do
 
     it "stores user session" do
       user_id = parsed_body["data"]["user"]["id"]
-
       expect(Session.exists?(user_id: user_id)).to be(true)
     end
 
     it "stores user session_id in given token" do
       token = parsed_body["data"]["token"]
-
       expect(JsonWebToken.decode(token).first["session_id"]).to be_present
     end
   end

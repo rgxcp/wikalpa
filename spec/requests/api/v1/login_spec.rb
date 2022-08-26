@@ -32,7 +32,6 @@ RSpec.describe "Login into an existing user", type: :request do
 
     it "enqueues ResetUserLoginTriesCountWorker job" do
       time = 30.minutes.from_now
-
       expect(ResetUserLoginTriesCountWorker).to have_enqueued_sidekiq_job(user.id).at(time)
     end
   end
@@ -53,7 +52,6 @@ RSpec.describe "Login into an existing user", type: :request do
 
     it "increments user login tries count by 1" do
       user.reload
-
       expect(user.login_tries_count).to eq(1)
     end
   end
@@ -78,19 +76,16 @@ RSpec.describe "Login into an existing user", type: :request do
 
     it "resets user login tries count to 0" do
       user.reload
-
       expect(user.login_tries_count).to eq(0)
     end
 
     it "stores user session" do
       user_id = parsed_body["data"]["user"]["id"]
-
       expect(Session.exists?(user_id: user_id)).to be(true)
     end
 
     it "stores user session_id in given token" do
       token = parsed_body["data"]["token"]
-
       expect(JsonWebToken.decode(token).first["session_id"]).to be_present
     end
   end
