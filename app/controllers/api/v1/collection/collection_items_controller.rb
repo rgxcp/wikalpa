@@ -3,6 +3,7 @@ require "string"
 class Api::V1::Collection::CollectionItemsController < ApplicationController
   before_action :authenticate_request, except: :index
   before_action :set_collection
+  before_action :check_user_ability, only: [:create, :destroy, :destroy_all]
 
   def index
     collection_items = @collection.collection_items
@@ -11,8 +12,6 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   end
 
   def create
-    return forbidden_response unless current_user?(@collection.user_id)
-
     collection_item = @collection.collection_items.build(collection_item_params)
 
     if collection_item.save
@@ -23,8 +22,6 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   end
 
   def destroy
-    return forbidden_response unless current_user?(@collection.user_id)
-
     collection_item = @collection.collection_items.find(params[:id])
     collection_item.destroy
 
@@ -34,8 +31,6 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
   end
 
   def destroy_all
-    return forbidden_response unless current_user?(@collection.user_id)
-
     if !params[:ids].present? || !params[:ids].is_a?(Array)
       return bad_request_response(errors: ["Query parameters of 'ids' must be present"])
     end
@@ -60,5 +55,9 @@ class Api::V1::Collection::CollectionItemsController < ApplicationController
 
   def collection_item_params
     params.require(:collection_item).permit(:collectable_type, :collectable_id)
+  end
+
+  def check_user_ability
+    return forbidden_response unless current_user?(@collection.user_id)
   end
 end
