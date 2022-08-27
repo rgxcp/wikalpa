@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   protected
 
   def parse_auth_id
-    @decoded_token ||= decode_token
+    @decoded_token = decode_token unless defined?(@decoded_token)
     @auth_id = @decoded_token && @decoded_token["user_id"]
   end
 
@@ -104,7 +104,7 @@ class ApplicationController < ActionController::API
   end
 
   def parse_session_id
-    @decoded_token ||= decode_token
+    @decoded_token = decode_token unless defined?(@decoded_token)
     @session_id = @decoded_token && @decoded_token["session_id"]
   end
 end
