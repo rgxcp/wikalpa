@@ -1,10 +1,10 @@
-ENV["JWT_KEY"] = "JWT_KEY"
-
 require "rails_helper"
 require "json_web_token"
 
 RSpec.describe JsonWebToken do
   let(:payload) { { user_id: 1, session_id: 2 } }
+
+  before { JsonWebToken::JWT_KEY = "JWT_KEY" }
 
   describe ".encode" do
     it "returns encoded payload" do
