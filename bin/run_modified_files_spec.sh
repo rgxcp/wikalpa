@@ -16,7 +16,9 @@ main () {
 		fi
 	done
 
-	bundle exec rspec ${FILES[@]} $1
+	if [[ ${FILES[@]} ]]; then
+		bundle exec rspec ${FILES[@]} $1
+	fi
 }
 
 main $1
