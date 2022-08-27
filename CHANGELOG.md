@@ -1,3 +1,10 @@
+# [9.10.0](https://github.com/rgxcp/wikalpa/compare/v9.9.0...v9.10.0) (2022-08-27)
+
+
+### Features
+
+* [[#183107987](https://github.com/rgxcp/wikalpa/issues/183107987)] only run modified files spec if modified files present ([d6a608d](https://github.com/rgxcp/wikalpa/commit/d6a608d044e624209fbe0dc945407a34d773b645))
+
 # [9.9.0](https://github.com/rgxcp/wikalpa/compare/v9.8.0...v9.9.0) (2022-08-24)
 
 
