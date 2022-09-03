@@ -8,65 +8,6 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 paths:
-  /auth/register:
-    post:
-      tags:
-        - Auth
-      security: []
-      summary: Register a new user.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - user
-              properties:
-                user:
-                  type: object
-                  properties:
-                    username:
-                      type: string
-                      example: john.doe
-                    password:
-                      type: string
-                      example: super-strong-password
-                    password_confirmation:
-                      type: string
-                      example: super-strong-password
-                session:
-                  type: object
-                  properties:
-                    device:
-                      type: string
-                      example: Nokia 3310
-                    ip:
-                      type: string
-                      example: 127.0.0.1
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      user:
-                        $ref: "#/components/schemas/User"
-                      token:
-                        $ref: "#/components/schemas/Token"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
   /auth/login:
     post:
       tags:
@@ -151,6 +92,65 @@ paths:
                         $ref: "#/components/schemas/Session"
         "401":
           $ref: "#/components/responses/Unauthorized"
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      security: []
+      summary: Register a new user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                      example: john.doe
+                    password:
+                      type: string
+                      example: super-strong-password
+                    password_confirmation:
+                      type: string
+                      example: super-strong-password
+                session:
+                  type: object
+                  properties:
+                    device:
+                      type: string
+                      example: Nokia 3310
+                    ip:
+                      type: string
+                      example: 127.0.0.1
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        $ref: "#/components/schemas/User"
+                      token:
+                        $ref: "#/components/schemas/Token"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
   /admin/feature-toggles:
     get:
       tags:
@@ -296,6 +296,868 @@ paths:
                     properties:
                       feature_toggle:
                         $ref: "#/components/schemas/FeatureToggle"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /bookmarks/{id}:
+    delete:
+      tags:
+        - Bookmark
+      summary: Delete a bookmark.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      bookmark:
+                        $ref: "#/components/schemas/Bookmark"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /buddies/{id}:
+    delete:
+      tags:
+        - Buddy
+      summary: Unfollow a user.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      buddy:
+                        $ref: "#/components/schemas/Buddy"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /collections:
+    get:
+      tags:
+        - Collection
+      security: []
+      summary: Retrieve all collections.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Collection"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      tags:
+        - Collection
+      summary: Create a new collection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - collection
+              properties:
+                collection:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Must Join Communities
+                    collection_items_attributes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          collectable_type:
+                            type: string
+                            enum:
+                              - Comment
+                              - Community
+                              - Post
+                              - Reply
+                              - User
+                            example: Community
+                          collectable_id:
+                            type: integer
+                            example: 1
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      collection:
+                        $ref: "#/components/schemas/Collection"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /collections/{id}:
+    get:
+      tags:
+        - Collection
+      security: []
+      summary: Show a specific collection.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collection:
+                        $ref: "#/components/schemas/Collection"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      tags:
+        - Collection
+      summary: Update a collection.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - collection
+              properties:
+                collection:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Must Join Communities
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collection:
+                        $ref: "#/components/schemas/Collection"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /collections/{collection_id}/bookmarks:
+    post:
+      tags:
+        - Collection Bookmark
+      summary: Bookmark a collection.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      bookmark:
+                        $ref: "#/components/schemas/Bookmark"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /collections/{collection_id}/collection-items:
+    get:
+      tags:
+        - Collection Item
+      security: []
+      summary: Retrieve all collection items.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collection_items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CollectionItem"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      tags:
+        - Collection Item
+      summary: Create a new collection item.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - collection_item
+              properties:
+                collection_item:
+                  type: object
+                  properties:
+                    collectable_type:
+                      type: string
+                      enum:
+                        - Comment
+                        - Community
+                        - Post
+                        - Reply
+                        - User
+                      example: Community
+                    collectable_id:
+                      type: integer
+                      example: 1
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      collection_item:
+                        $ref: "#/components/schemas/CollectionItem"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+    delete:
+      tags:
+        - Collection Item
+      summary: Delete multiple collection item.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+        - $ref: "#/components/parameters/Identifiers"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collection_items:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/CollectionItem"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /collections/{collection_id}/collection-items/{id}:
+    delete:
+      tags:
+        - Collection Item
+      summary: Delete a collection item.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collection_item:
+                        $ref: "#/components/schemas/CollectionItem"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /collections/{collection_id}/downvotes:
+    post:
+      tags:
+        - Collection Downvote
+      summary: Downvote a collection.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      downvote:
+                        $ref: "#/components/schemas/Downvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /collections/{collection_id}/upvotes:
+    get:
+      tags:
+        - Collection Upvote
+      security: []
+      summary: Retrieve all collection upvotes.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      upvotes:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Upvote"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      tags:
+        - Collection Upvote
+      summary: Upvote a collection.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      upvote:
+                        $ref: "#/components/schemas/Upvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /collections/{collection_id}/visitors:
+    get:
+      tags:
+        - Collection Visitor
+      security: []
+      summary: Retrieve all collection visitors.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierCollection"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      visitors:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Visitor"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /comments/{id}:
+    get:
+      tags:
+        - Comment
+      security: []
+      summary: Show a specific comment.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      comment:
+                        $ref: "#/components/schemas/Comment"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    patch:
+      tags:
+        - Comment
+      summary: Update a comment.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - comment
+              properties:
+                comment:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+                      example: just setting up my wklp
+                    is_spoiler:
+                      type: boolean
+                      example: true
+                      description: This property is optional.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      comment:
+                        $ref: "#/components/schemas/Comment"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /comments/{comment_id}/bookmarks:
+    post:
+      tags:
+        - Comment Bookmark
+      summary: Bookmark a comment.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      bookmark:
+                        $ref: "#/components/schemas/Bookmark"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /comments/{comment_id}/collections:
+    get:
+      tags:
+        - Comment Collection
+      security: []
+      summary: Retrieve all comment collections.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Collection"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /comments/{comment_id}/downvotes:
+    post:
+      tags:
+        - Comment Downvote
+      summary: Downvote a comment.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      downvote:
+                        $ref: "#/components/schemas/Downvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /comments/{comment_id}/replies:
+    get:
+      tags:
+        - Comment Reply
+      security: []
+      summary: Retrieve all comment replies.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      replies:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Reply"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      tags:
+        - Comment Reply
+      summary: Create a new comment reply.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - reply
+              properties:
+                reply:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+                      example: just setting up my wklp
+                    is_spoiler:
+                      type: boolean
+                      example: true
+                      description: This property is optional.
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      reply:
+                        $ref: "#/components/schemas/Reply"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+  /comments/{comment_id}/upvotes:
+    get:
+      tags:
+        - Comment Upvote
+      security: []
+      summary: Retrieve all comment upvotes.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      upvotes:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Upvote"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      tags:
+        - Comment Upvote
+      summary: Upvote a comment.
+      parameters:
+        - $ref: "#/components/parameters/IdentifierComment"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Created
+                  data:
+                    type: object
+                    properties:
+                      upvote:
+                        $ref: "#/components/schemas/Upvote"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -695,6 +1557,38 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  /downvotes/{id}:
+    delete:
+      tags:
+        - Downvote
+      summary: Delete a downvote.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      downvote:
+                        $ref: "#/components/schemas/Downvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /posts:
     get:
       tags:
@@ -1074,325 +1968,6 @@ paths:
                           $ref: "#/components/schemas/Visitor"
         "404":
           $ref: "#/components/responses/NotFound"
-  /comments/{id}:
-    get:
-      tags:
-        - Comment
-      security: []
-      summary: Show a specific comment.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      comment:
-                        $ref: "#/components/schemas/Comment"
-        "404":
-          $ref: "#/components/responses/NotFound"
-    patch:
-      tags:
-        - Comment
-      summary: Update a comment.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - comment
-              properties:
-                comment:
-                  type: object
-                  properties:
-                    body:
-                      type: string
-                      example: just setting up my wklp
-                    is_spoiler:
-                      type: boolean
-                      example: true
-                      description: This property is optional.
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      comment:
-                        $ref: "#/components/schemas/Comment"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-  /comments/{comment_id}/bookmarks:
-    post:
-      tags:
-        - Comment Bookmark
-      summary: Bookmark a comment.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierComment"
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      bookmark:
-                        $ref: "#/components/schemas/Bookmark"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-  /comments/{comment_id}/collections:
-    get:
-      tags:
-        - Comment Collection
-      security: []
-      summary: Retrieve all comment collections.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierComment"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      collections:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Collection"
-        "404":
-          $ref: "#/components/responses/NotFound"
-  /comments/{comment_id}/downvotes:
-    post:
-      tags:
-        - Comment Downvote
-      summary: Downvote a comment.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierComment"
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      downvote:
-                        $ref: "#/components/schemas/Downvote"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-  /comments/{comment_id}/replies:
-    get:
-      tags:
-        - Comment Reply
-      security: []
-      summary: Retrieve all comment replies.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierComment"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      replies:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Reply"
-        "404":
-          $ref: "#/components/responses/NotFound"
-    post:
-      tags:
-        - Comment Reply
-      summary: Create a new comment reply.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierComment"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - reply
-              properties:
-                reply:
-                  type: object
-                  properties:
-                    body:
-                      type: string
-                      example: just setting up my wklp
-                    is_spoiler:
-                      type: boolean
-                      example: true
-                      description: This property is optional.
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      reply:
-                        $ref: "#/components/schemas/Reply"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-  /comments/{comment_id}/upvotes:
-    get:
-      tags:
-        - Comment Upvote
-      security: []
-      summary: Retrieve all comment upvotes.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierComment"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      upvotes:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Upvote"
-        "404":
-          $ref: "#/components/responses/NotFound"
-    post:
-      tags:
-        - Comment Upvote
-      summary: Upvote a comment.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierComment"
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      upvote:
-                        $ref: "#/components/schemas/Upvote"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
   /replies/{id}:
     get:
       tags:
@@ -1631,6 +2206,70 @@ paths:
           $ref: "#/components/responses/NotFound"
         "422":
           $ref: "#/components/responses/UnprocessableEntity"
+  /sessions/{id}:
+    delete:
+      tags:
+        - Session
+      summary: Delete a session.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      session:
+                        $ref: "#/components/schemas/Session"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /upvotes/{id}:
+    delete:
+      tags:
+        - Upvote
+      summary: Delete a upvote.
+      parameters:
+        - $ref: "#/components/parameters/Identifier"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      upvote:
+                        $ref: "#/components/schemas/Upvote"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /users:
     get:
       tags:
@@ -2189,645 +2828,6 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
-  /sessions/{id}:
-    delete:
-      tags:
-        - Session
-      summary: Delete a session.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      session:
-                        $ref: "#/components/schemas/Session"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-  /bookmarks/{id}:
-    delete:
-      tags:
-        - Bookmark
-      summary: Delete a bookmark.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      bookmark:
-                        $ref: "#/components/schemas/Bookmark"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-  /buddies/{id}:
-    delete:
-      tags:
-        - Buddy
-      summary: Unfollow a user.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      buddy:
-                        $ref: "#/components/schemas/Buddy"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-  /collections:
-    get:
-      tags:
-        - Collection
-      security: []
-      summary: Retrieve all collections.
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      collections:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Collection"
-        "404":
-          $ref: "#/components/responses/NotFound"
-    post:
-      tags:
-        - Collection
-      summary: Create a new collection.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - collection
-              properties:
-                collection:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      example: Must Join Communities
-                    collection_items_attributes:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          collectable_type:
-                            type: string
-                            enum:
-                              - Comment
-                              - Community
-                              - Post
-                              - Reply
-                              - User
-                            example: Community
-                          collectable_id:
-                            type: integer
-                            example: 1
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      collection:
-                        $ref: "#/components/schemas/Collection"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-  /collections/{id}:
-    get:
-      tags:
-        - Collection
-      security: []
-      summary: Show a specific collection.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      collection:
-                        $ref: "#/components/schemas/Collection"
-        "404":
-          $ref: "#/components/responses/NotFound"
-    patch:
-      tags:
-        - Collection
-      summary: Update a collection.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - collection
-              properties:
-                collection:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      example: Must Join Communities
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      collection:
-                        $ref: "#/components/schemas/Collection"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-  /collections/{collection_id}/collection-items:
-    get:
-      tags:
-        - Collection Item
-      security: []
-      summary: Retrieve all collection items.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierCollection"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      collection_items:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/CollectionItem"
-        "404":
-          $ref: "#/components/responses/NotFound"
-    post:
-      tags:
-        - Collection Item
-      summary: Create a new collection item.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierCollection"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - collection_item
-              properties:
-                collection_item:
-                  type: object
-                  properties:
-                    collectable_type:
-                      type: string
-                      enum:
-                        - Comment
-                        - Community
-                        - Post
-                        - Reply
-                        - User
-                      example: Community
-                    collectable_id:
-                      type: integer
-                      example: 1
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      collection_item:
-                        $ref: "#/components/schemas/CollectionItem"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-    delete:
-      tags:
-        - Collection Item
-      summary: Delete multiple collection item.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierCollection"
-        - $ref: "#/components/parameters/Identifiers"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      collection_items:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/CollectionItem"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-  /collections/{collection_id}/collection-items/{id}:
-    delete:
-      tags:
-        - Collection Item
-      summary: Delete a collection item.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierCollection"
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      collection_item:
-                        $ref: "#/components/schemas/CollectionItem"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-  /collections/{collection_id}/bookmarks:
-    post:
-      tags:
-        - Collection Bookmark
-      summary: Bookmark a collection.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierCollection"
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      bookmark:
-                        $ref: "#/components/schemas/Bookmark"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-  /collections/{collection_id}/downvotes:
-    post:
-      tags:
-        - Collection Downvote
-      summary: Downvote a collection.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierCollection"
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      downvote:
-                        $ref: "#/components/schemas/Downvote"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-  /collections/{collection_id}/upvotes:
-    get:
-      tags:
-        - Collection Upvote
-      security: []
-      summary: Retrieve all collection upvotes.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierCollection"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      upvotes:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Upvote"
-        "404":
-          $ref: "#/components/responses/NotFound"
-    post:
-      tags:
-        - Collection Upvote
-      summary: Upvote a collection.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierCollection"
-      responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: Created
-                  data:
-                    type: object
-                    properties:
-                      upvote:
-                        $ref: "#/components/schemas/Upvote"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          $ref: "#/components/responses/UnprocessableEntity"
-  /collections/{collection_id}/visitors:
-    get:
-      tags:
-        - Collection Visitor
-      security: []
-      summary: Retrieve all collection visitors.
-      parameters:
-        - $ref: "#/components/parameters/IdentifierCollection"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      visitors:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/Visitor"
-        "404":
-          $ref: "#/components/responses/NotFound"
-  /upvotes/{id}:
-    delete:
-      tags:
-        - Upvote
-      summary: Delete a upvote.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      upvote:
-                        $ref: "#/components/schemas/Upvote"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
-  /downvotes/{id}:
-    delete:
-      tags:
-        - Downvote
-      summary: Delete a downvote.
-      parameters:
-        - $ref: "#/components/parameters/Identifier"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: OK
-                  data:
-                    type: object
-                    properties:
-                      downvote:
-                        $ref: "#/components/schemas/Downvote"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "404":
-          $ref: "#/components/responses/NotFound"
 security:
   - BearerAuth: []
 tags:
@@ -2835,16 +2835,46 @@ tags:
     description: Endpoints related for authentication and authorization.
   - name: Admin Feature Toggle
     description: Endpoints related for admin feature toggle resources.
+  - name: Bookmark
+    description: Endpoints related for bookmark resources.
+  - name: Buddy
+    description: Endpoints related for buddy resources.
+  - name: Collection
+    description: Endpoints related for collection resources.
+  - name: Collection Bookmark
+    description: Endpoints related for collection bookmark resources.
+  - name: Collection Downvote
+    description: Endpoints related for collection downvote resources.
+  - name: Collection Item
+    description: Endpoints related for collection item resources.
+  - name: Collection Upvote
+    description: Endpoints related for collection upvote resources.
+  - name: Collection Visitor
+    description: Endpoints related for collection visitor resources.
+  - name: Comment
+    description: Endpoints related for comment resources.
+  - name: Comment Bookmark
+    description: Endpoints related for comment bookmark resources.
+  - name: Comment Collection
+    description: Endpoints related for comment collection resources.
+  - name: Comment Downvote
+    description: Endpoints related for comment downvote resources.
+  - name: Comment Reply
+    description: Endpoints related for comment reply resources.
+  - name: Comment Upvote
+    description: Endpoints related for comment upvote resources.
   - name: Community
     description: Endpoints related for community resources.
-  - name: Community Member
-    description: Endpoints related for community member resources.
   - name: Community Collection
     description: Endpoints related for community collection resources.
+  - name: Community Member
+    description: Endpoints related for community member resources.
   - name: Community Post
     description: Endpoints related for community post resources.
   - name: Community Visitor
     description: Endpoints related for community visitor resources.
+  - name: Downvote
+    description: Endpoints related for downvote resources.
   - name: Post
     description: Endpoints related for post resources.
   - name: Post Bookmark
@@ -2859,18 +2889,6 @@ tags:
     description: Endpoints related for post upvote resources.
   - name: Post Visitor
     description: Endpoints related for post visitor resources.
-  - name: Comment
-    description: Endpoints related for comment resources.
-  - name: Comment Bookmark
-    description: Endpoints related for comment bookmark resources.
-  - name: Comment Collection
-    description: Endpoints related for comment collection resources.
-  - name: Comment Downvote
-    description: Endpoints related for comment downvote resources.
-  - name: Comment Reply
-    description: Endpoints related for comment reply resources.
-  - name: Comment Upvote
-    description: Endpoints related for comment upvote resources.
   - name: Reply
     description: Endpoints related for replies resources.
   - name: Reply Bookmark
@@ -2881,6 +2899,10 @@ tags:
     description: Endpoints related for reply downvote resources.
   - name: Reply Upvote
     description: Endpoints related for reply upvote resources.
+  - name: Session
+    description: Endpoints related for session resources.
+  - name: Upvote
+    description: Endpoints related for upvote resources.
   - name: User
     description: Endpoints related for user resources.
   - name: User Bookmark
@@ -2909,28 +2931,6 @@ tags:
     description: Endpoints related for user visitation resources.
   - name: User Visitor
     description: Endpoints related for user visitor resources.
-  - name: Session
-    description: Endpoints related for session resources.
-  - name: Bookmark
-    description: Endpoints related for bookmark resources.
-  - name: Buddy
-    description: Endpoints related for buddy resources.
-  - name: Collection
-    description: Endpoints related for collection resources.
-  - name: Collection Item
-    description: Endpoints related for collection item resources.
-  - name: Collection Bookmark
-    description: Endpoints related for collection bookmark resources.
-  - name: Collection Downvote
-    description: Endpoints related for collection downvote resources.
-  - name: Collection Upvote
-    description: Endpoints related for collection upvote resources.
-  - name: Collection Visitor
-    description: Endpoints related for collection visitor resources.
-  - name: Upvote
-    description: Endpoints related for upvote resources.
-  - name: Downvote
-    description: Endpoints related for downvote resources.
 components:
   securitySchemes:
     BearerAuth:
